@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'blog_page.title'|trans }}{% endblock %}
+
+{% block body %}
+    <!--====== Start Banner Section ======-->
+    <section class="page-banner light-red-bg pt-170 pb-170 bg_cover" style="background-image: url('{{ asset('assets/images/bg/page-bg-1.jpg') }}');">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="page-banner-content text-center text-white">
+                        <h1 class="page-title">{{ 'blog_page.title'|trans }}</h1>
+                        <ul class="breadcrumb-link text-white">
+                            <li><a href="{{ path('app_font_index') }}">{{ 'blog_page.breadcrumb_home'|trans }}</a></li>
+                            <li class="active">{{ 'blog_page.title'|trans }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Banner Section ======-->
+
+    <!--====== Start Blog Section ======-->
+    <section class="pt-80 pb-60">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center mb-50">
+                    <span style="color: #C8A97E; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 14px;">{{ 'blog_page.title'|trans }}</span>
+                    <h2 style="color: #3B281C; font-size: 36px; margin: 15px 0 10px 0;">{{ 'blog_page.subtitle'|trans }}</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                
+                <!-- ================= ARTICLE 1: PREPARING YOUR BAG ================= -->
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="blog-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0px 5px 30px rgba(59, 40, 28, 0.08); height: 100%; display: flex; flex-direction: column;">
+                        <div style="height: 220px; overflow: hidden;">
+                            <img src="https://res.cloudinary.com/dy13axswo/image/upload/w_600,h_440,c_fill,q_auto,f_auto/baroudeurs/service/details/Baroudeurs/1.jpg" alt="Preparing your bag for the desert" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                        </div>
+                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                            <p style="color: #999; font-size: 13px; margin-bottom: 10px;">{{ 'blog_page.posted_by'|trans }}: Ahmed Ben Ali | 15/01/2024</p>
+                            <h3 style="color: #3B281C; font-size: 20px; margin-bottom: 10px;">{{ 'blog_page.article1.title'|trans }}</h3>
+                            <p style="color: #5B4636; font-size: 14px; line-height: 24px; margin-bottom: 20px;">
+                                {{ 'blog_page.article1.excerpt'|trans }}
+                            </p>
+                            <div style="margin-top: auto;">
+                                <a href="{{ path('programmes') }}" class="main-btn btn-green" style="padding: 10px 25px; font-size: 14px;">
+                                    {{ 'blog_page.view_circuits'|trans }} <i class="far fa-angle-double-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= ARTICLE 2: KSAR GHILANE ================= -->
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="blog-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0px 5px 30px rgba(59, 40, 28, 0.08); height: 100%; display: flex; flex-direction: column;">
+                        <div style="height: 220px; overflow: hidden;">
+                            <img src="https://res.cloudinary.com/dy13axswo/image/upload/w_600,h_440,c_fill,q_auto,f_auto/baroudeurs/service/details/Tataouine/1.jpg" alt="What to see in Ksar Ghilane?" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                        </div>
+                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                            <p style="color: #999; font-size: 13px; margin-bottom: 10px;">{{ 'blog_page.posted_by'|trans }}: Mohamed El Khadra | 10/02/2024</p>
+                            <h3 style="color: #3B281C; font-size: 20px; margin-bottom: 10px;">{{ 'blog_page.article2.title'|trans }}</h3>
+                            <p style="color: #5B4636; font-size: 14px; line-height: 24px; margin-bottom: 20px;">
+                                {{ 'blog_page.article2.excerpt'|trans }}
+                            </p>
+                            <div style="margin-top: auto;">
+                                <a href="{{ path('programmes') }}" class="main-btn btn-green" style="padding: 10px 25px; font-size: 14px;">
+                                    {{ 'blog_page.view_circuits'|trans }} <i class="far fa-angle-double-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= ARTICLE 3: RECIPES ================= -->
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="blog-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0px 5px 30px rgba(59, 40, 28, 0.08); height: 100%; display: flex; flex-direction: column;">
+                        <div style="height: 220px; overflow: hidden;">
+                            <img src="https://res.cloudinary.com/dy13axswo/image/upload/w_600,h_440,c_fill,q_auto,f_auto/baroudeurs/service/details/Charm/1.jpg" alt="Our favorite recipes in bivouac" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                        </div>
+                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                            <p style="color: #999; font-size: 13px; margin-bottom: 10px;">{{ 'blog_page.posted_by'|trans }}: Laila Ben Amor | 05/03/2024</p>
+                            <h3 style="color: #3B281C; font-size: 20px; margin-bottom: 10px;">{{ 'blog_page.article3.title'|trans }}</h3>
+                            <p style="color: #5B4636; font-size: 14px; line-height: 24px; margin-bottom: 20px;">
+                                {{ 'blog_page.article3.excerpt'|trans }}
+                            </p>
+                            <div style="margin-top: auto;">
+                                <a href="{{ path('programmes') }}" class="main-btn btn-green" style="padding: 10px 25px; font-size: 14px;">
+                                    {{ 'blog_page.view_circuits'|trans }} <i class="far fa-angle-double-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section><!--====== End Blog Section ======-->
+{% endblock %}

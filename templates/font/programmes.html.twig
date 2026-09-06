@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our program{% endblock %}
+
+{% block body %}
+    {% set locale = app.request.locale %}
+
+    <!--====== Start Intro Banner Section ======-->
+    <section class="circuits-intro-banner" style="background-image: url('{{ asset('assets/images/bg/choose-bg-1.jpg') }}');">
+        <div class="circuits-intro-overlay"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-10 text-center">
+                    <h2 style="color: #E8D0A8; font-weight: 800; font-size: 42px; line-height: 1.35;">
+                        {{ 'circuits_page.intro_main'|trans }}
+                        <span style="color: #C96B3C;">{{ 'circuits_page.intro_highlight'|trans }}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Intro Banner Section ======-->
+
+    <!--====== Start Filter Section ======-->
+    <section class="pt-50 pb-50">
+        <div class="container">
+            <form method="get" action="{{ path('programmes') }}" class="row justify-content-center align-items-end" style="gap: 15px;">
+                <div class="col-lg-3 col-md-6">
+                    <label class="mb-10" style="display:block; font-weight:500;">{{ 'circuits_page.filter_destination'|trans }}</label>
+                    <select name="destination" class="nice-select wide" style="width:100%;">
+                        <option value="">{{ 'circuits_page.filter_all_destinations'|trans }}</option>
+                        <option value="Douz" {% if currentDestination == 'Douz' %}selected{% endif %}>Douz</option>
+                        <option value="Djerba" {% if currentDestination == 'Djerba' %}selected{% endif %}>Djerba</option>
+                        <option value="Tozeur" {% if currentDestination == 'Tozeur' %}selected{% endif %}>Tozeur</option>
+                        <option value="Tataouine" {% if currentDestination == 'Tataouine' %}selected{% endif %}>Tataouine</option>
+                        <option value="Ksar Ghilane" {% if currentDestination == 'Ksar Ghilane' %}selected{% endif %}>Ksar Ghilane</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <label class="mb-10" style="display:block; font-weight:500;">{{ 'circuits_page.filter_duration'|trans }}</label>
+                    <select name="duration" class="nice-select wide" style="width:100%;">
+                        <option value="">{{ 'circuits_page.filter_all_durations'|trans }}</option>
+                        <option value="1" {% if currentDuration == '1' %}selected{% endif %}>{{ 'circuits_page.duration_1'|trans }}</option>
+                        <option value="2-3" {% if currentDuration == '2-3' %}selected{% endif %}>{{ 'circuits_page.duration_2_3'|trans }}</option>
+                        <option value="4+" {% if currentDuration == '4+' %}selected{% endif %}>{{ 'circuits_page.duration_4plus'|trans }}</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <label class="mb-10" style="display:block; font-weight:500;">{{ 'circuits_page.filter_type'|trans }}</label>
+                    <select name="type" class="nice-select wide" style="width:100%;">
+                        <option value="">{{ 'circuits_page.filter_all_types'|trans }}</option>
+                        <option value="Dromadaire" {% if currentType == 'Dromadaire' %}selected{% endif %}>Dromadaire</option>
+                        <option value="Culturel" {% if currentType == 'Culturel' %}selected{% endif %}>Culturel</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <button type="submit" class="main-btn btn-green" style="width:100%;">
+                        {{ 'circuits_page.filter_button'|trans }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section><!--====== End Filter Section ======-->
+
+    <!--====== Start Programme Overview (alternating image/text) Section ======-->
+    <section class="pb-100">
+        <div class="container">
+            {% if programmes|length > 0 %}
+                {% for programme in programmes %}
+                    <div class="programme-overview-item">
+                        <div class="img-holder">
+                            <img src="{{ programme.image starts with 'http' ? programme.image : asset('assets/images/service/' ~ programme.image) }}" alt="{{ programme.titleFr }}">
+                        </div>
+                        <div class="content">
+                            <h3 class="title">
+                                {% if locale == 'fr' %}
+                                    {{ programme.titleFr }}
+                                {% elseif locale == 'ar' %}
+                                    {{ programme.titleAr }}
+                                {% elseif locale == 'it' %}
+                                    {{ programme.titleIt }}
+                                {% else %}
+                                    {{ programme.titleEn }}
+                                {% endif %}
+                            </h3>
+                            <ul class="tour-meta-list">
+                                <li>
+                                    <i class="far fa-clock"></i>
+                                    {% if locale == 'fr' %}
+                                        {{ programme.dureeFr }}
+                                    {% elseif locale == 'ar' %}
+                                        {{ programme.dureeAr }}
+                                    {% elseif locale == 'it' %}
+                                        {{ programme.dureeIt }}
+                                    {% else %}
+                                        {{ programme.dureeEn }}
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    <i class="far fa-tag"></i>
+                                    {% if programme.price %}
+                                        {{ 'program.price_from'|trans }} {{ programme.price }}
+                                    {% else %}
+                                        {{ 'program.price_on_request'|trans }}
+                                    {% endif %}
+                                </li>
+                            </ul>
+                            <p class="desc">
+                                {% if locale == 'fr' %}
+                                    {{ programme.shortDescriptionFr }}
+                                {% elseif locale == 'ar' %}
+                                    {{ programme.shortDescriptionAr }}
+                                {% elseif locale == 'it' %}
+                                    {{ programme.shortDescriptionIt }}
+                                {% else %}
+                                    {{ programme.shortDescriptionEn }}
+                                {% endif %}
+                            </p>
+                           <a href="{{ path('programme_detail', {'id': programme.id}) }}" class="view-track-btn">
+    {{ 'circuits_page.see_detail'|trans }}
+                                <i class="far fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center">
+                    <h4>{% if locale == 'fr' %}Aucun programme trouvé{% elseif locale == 'ar' %}لم يتم العثور على أي برنامج{% elseif locale == 'it' %}Nessun programma trovato{% else %}No programs found{% endif %}</h4>
+                </div>
+            {% endif %}
+        </div>
+    </section><!--====== End Programme Overview Section ======-->
+{% endblock %}

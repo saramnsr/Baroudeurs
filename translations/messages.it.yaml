@@ -1,0 +1,315 @@
+hero:
+  title: "Viaggi nel deserto"
+  sub: "Esplora il Sahara"
+  btn1: "Scopri i nostri viaggi"
+  btn2: "Prenota ora"
+  agency: "Agenzia di viaggi"
+  adv: "Avventura"
+  subtitle: "Esplora"
+  main_title: "Circuiti ed Escursioni in Tunisia — La tua avventura inizia qui!"
+  main_subtitle: "Scopri la Tunisia in un modo diverso grazie ai nostri tour privati, ideati da guide locali appassionate."
+
+slider:
+  title_1: "Viaggi nel deserto"
+  title_2: "Tour della Tunisia del sud"
+
+features:
+  subtitle: "I Nostri Programmi"
+  title: "Scopri i Nostri Tour Più Popolari"
+
+program:
+  sud:
+    title: "Tour della Tunisia del Sud"
+    desc: "4 giorni / 3 notti – Oasi, deserto, villaggi berberi e Djerba."
+
+  starwars:
+    title: "Tour di Star Wars"
+    desc: "3 giorni / 2 notti – Scopri i leggendari luoghi delle riprese in Tunisia."
+
+  transfer:
+    title: "Servizio di Trasferimento"
+    desc: "Trasferimenti privati da Djerba, Tozeur, Monastir e Tunisi."
+
+  mirage:
+    title: "Miraggio del Deserto"
+    desc: "8 giorni / 7 notti – Un'avventura completa nel Sahara tunisino."
+
+  view_all: "Vedi Tutti i Programmi"
+  price_from: "a partire da"
+  price_on_request: "Prezzo su richiesta"
+  view_circuit: "Vedi il tour"
+
+booking:
+  find: "Pianifica la tua avventura nel deserto"
+  subtitle: "Prenota la tua avventura"
+  title: "nel Sahara"
+  checkin: "Data di arrivo"
+  checkout: "Data di partenza"
+  guests: "Numero di partecipanti"
+  button: "Cerca"
+  destination: "Destinazione"
+  date: "Data"
+  duration: "Durata"
+
+about:
+  subtitle: "Chi siamo"
+  title: "Il tuo partner di fiducia"
+  title2: "per le avventure nel deserto"
+  description: "Baroudeurs de Désert offre esperienze indimenticabili nel Sahara tunisino. Trekking con i cammelli, campi nel deserto ed escursioni in 4x4 per vivere un'avventura autentica."
+  item1: "Esperienze autentiche nel Sahara"
+  item2: "Guide locali professionali"
+  item3: "Campi confortevoli nel deserto"
+  button: "Scopri di più"
+
+video:
+  title: "Scopri la bellezza del Sahara tunisino"
+  button: "Guarda il video"
+
+counter:
+  travelers: "Viaggiatori soddisfatti"
+  tours: "Tour nel deserto"
+  experience: "Anni di esperienza"
+  camps: "Campi nel deserto"
+
+services:
+  subtitle: "I Nostri Servizi"
+  title: "Esplora il Sahara"
+  title2: "con esperienze uniche"
+
+choose:
+  subtitle: "Perché sceglierci"
+  title: "Perché i viaggiatori scelgono"
+  title2: "Baroudeurs de Désert"
+
+  item1:
+    title: "Miglior rapporto qualità-prezzo"
+    desc: "Vivi indimenticabili avventure nel deserto a prezzi competitivi."
+
+  item2:
+    title: "Guide locali esperte"
+    desc: "Le nostre guide garantiscono un'esperienza autentica e sicura nel Sahara."
+
+  item3:
+    title: "Esperienza autentica nel deserto"
+    desc: "Scopri dune, oasi, escursioni in cammello e campi tradizionali."
+
+why:
+  subtitle: "Perché sceglierci"
+  title: "Perché viaggiare con"
+  title2: "Baroudeurs de Désert"
+  item1:
+    title: "Tour 100% privati"
+    desc: "Guida e veicolo dedicati, solo per te."
+  item2:
+    title: "Nessun convoglio, nessun gruppo"
+    desc: "Il tuo ritmo, la tua libertà, la tua avventura."
+  item3:
+    title: "Itinerari autentici"
+    desc: "Percorsi personalizzati fuori dai sentieri battuti."
+  item4:
+    title: "Guide locali appassionate"
+    desc: "Competenza del territorio trasmessa con passione."
+
+gallery:
+  subtitle: "La Nostra Galleria"
+  title: "Galleria"
+  title2: "Avventure nel deserto"
+  breadcrumb_home: "Home"
+  video_title: "Guarda l'avventura in video"
+  filter:
+    all: "Mostra tutto"
+    desert: "Deserto"
+    douz: "Douz"
+    djerba: "Djerba"
+    oasis: "Oasi"
+    bivouac: "Bivacco"
+    cuisine: "Cucina locale"
+    meeting: "Incontro"
+  caption:
+    desert: "Deserto del Sahara"
+    douz: "Douz, la porta del deserto"
+    djerba: "Isola di Djerba"
+    oasis: "Oasi del deserto"
+    bivouac: "Bivacco beduino"
+    cuisine: "Cucina locale"
+    meeting: "Incontro con i nomadi"
+
+testimonial:
+  subtitle: "Testimonianze"
+  title: "Cosa dicono"
+  title2: "i nostri viaggiatori"
+
+  client1:
+    name: "Emily Johnson"
+    country: "Regno Unito"
+    comment: "Un'esperienza indimenticabile! Il giro in cammello, il campo nel deserto e l'ospitalità sono stati eccezionali."
+
+  client2:
+    name: "Marco Rossi"
+    country: "Italia"
+    comment: "Tutto era organizzato alla perfezione. Il tramonto sulle dune è stato semplicemente magico."
+
+devis:
+  title: "Hai un progetto in mente?"
+  text: "Ti aiutiamo a organizzare il tuo soggiorno personalizzato in Tunisia."
+  button: "Richiedi un preventivo gratuito"
+
+contact:
+  subtitle: "Contattaci"
+  title: "Sei pronto a vivere"
+  title2: "una nuova avventura?"
+  locations: "La nostra agenzia"
+  email: "Email"
+  hotline: "Telefono"
+  follow: "Seguici"
+  form_title: "Inviaci un messaggio"
+  form_description: "Hai una domanda sulle nostre escursioni? Contattaci e il nostro team ti risponderà al più presto."
+  name_placeholder: "Nome completo"
+  email_placeholder: "Indirizzo email"
+  message_placeholder: "Scrivi il tuo messaggio..."
+  send: "Invia messaggio"
+
+circuits_page:
+  filter_destination: "Destinazione"
+  filter_all_destinations: "Tutte le destinazioni"
+  filter_duration: "Durata"
+  filter_all_durations: "Tutte le durate"
+  duration_1: "1 giorno"
+  duration_2_3: "2-3 giorni"
+  duration_4plus: "4+ giorni"
+  filter_type: "Tipo"
+  filter_all_types: "Tutti i tipi"
+  filter_button: "Filtra"
+  see_detail: "Vedi dettagli"
+  intro_main: "I nostri tour ed escursioni sono pensati per farvi vivere la Tunisia autentica:"
+  intro_highlight: "deserto, oasi, villaggi berberi, patrimonio culturale..."
+
+detail_page:
+  itinerary_title: "Itinerario completo"
+  included_title: "Incluso"
+  excluded_title: "Non incluso"
+  map_title: "Mappa del percorso"
+  reviews_title: "Recensioni dei viaggiatori"
+  book_now: "Prenota questo tour"
+  request_quote: "Richiedi un preventivo personalizzato"
+  back_to_list: "Torna a tutti i tour"
+  gallery_title: "Galleria fotografica"
+
+testimonials_page:
+  breadcrumb_home: "Home"
+  title: "Testimonianze"
+  intro: "Storie vere di viaggiatori che hanno vissuto il Sahara con noi."
+  video_title: "Guarda la loro storia"
+  leave_review: "Lascia la tua recensione"
+
+
+quote_page:
+  title: "Richiedi un Preventivo"
+  breadcrumb_home: "Home"
+  intro: "Hai un'idea per un viaggio? Creiamo il tuo tour personalizzato in Tunisia."
+  form_title: "Richiedi il Tuo Preventivo Personalizzato"
+  form_subtitle: "Compila il modulo qui sotto e ti risponderemo entro 24 ore."
+  last_name: "Cognome"
+  last_name_placeholder: "Inserisci il tuo cognome"
+  first_name: "Nome"
+  first_name_placeholder: "Inserisci il tuo nome"
+  email: "Email"
+  email_placeholder: "Inserisci il tuo indirizzo email"
+  telephone: "Telefono"
+  telephone_placeholder: "Inserisci il tuo numero di telefono"
+  circuit: "Circuito scelto o desiderato"
+  circuit_select: "Seleziona un circuito..."
+  circuit_custom: "Circuito personalizzato (descrivi sotto)"
+  departure_location: "Luogo di partenza"
+  departure_location_placeholder: "Da dove parti?"
+  arrival_location: "Luogo di arrivo"
+  arrival_location_placeholder: "Dove arrivi?"
+  start_date: "Data di inizio"
+  end_date: "Data di fine"
+  duration: "Durata (giorni)"
+  duration_placeholder: "Numero di giorni"
+  participants: "Partecipanti"
+  participants_placeholder: "Numero di persone"
+  specific_requests: "Richieste specifiche"
+  specific_requests_placeholder: "Parlaci delle tue preferenze, esigenze particolari o qualsiasi informazione aggiuntiva..."
+  send_button: "Invia la mia Richiesta"
+
+
+about_page:
+  title: "Chi Siamo"
+  breadcrumb_home: "Home"
+  intro: "Scopri la storia dietro Les Baroudeurs du Désert"
+  presentation_title: "La Nostra Storia"
+  presentation_text: "Les Baroudeurs du Désert è nato da una passione comune per gli spazi aperti e le tradizioni della Tunisia meridionale. Quello che è iniziato come un piccolo gruppo di amici che condividevano il loro amore per il deserto è diventato un team di professionisti dedicati, impegnati a condividere la bellezza e la cultura della Tunisia con viaggiatori da tutto il mondo."
+  mission_title: "La Nostra Missione"
+  mission_text: "Offrire esperienze autentiche e responsabili nel deserto che collegano i viaggiatori con il vero spirito della Tunisia. Crediamo in un viaggio che rispetta le comunità locali, preserva l'ambiente e crea ricordi duraturi."
+  
+  team_title: "Incontra il Nostro Team"
+  team_subtitle: "Le persone appassionate dietro la tua avventura nel deserto"
+  
+  team:
+    member1:
+      name: "Ahmed Ben Ali"
+      role: "Fondatore & Guida del Deserto"
+      description: "Nato e cresciuto a Douz, Ahmed esplora il Sahara da oltre 20 anni. La sua profonda conoscenza del deserto e la sua passione nel condividerla con gli altri sono il cuore di Les Baroudeurs du Désert."
+    member2:
+      name: "Mohamed El Khadra"
+      role: "Guida Senior"
+      description: "Con 15 anni di esperienza, Mohamed conosce ogni duna e oasi del Sahara tunisino. La sua calma e le sue capacità di narratore rendono ogni viaggio indimenticabile."
+    member3:
+      name: "Laila Ben Amor"
+      role: "Guida Culturale"
+      description: "Laila dà vita alle tradizioni della Tunisia. La sua conoscenza della cultura berbera, della cucina locale e dell'artigianato tradizionale aggiunge una dimensione unica a ogni tour."
+    member4:
+      name: "Karim El Mansour"
+      role: "Autista 4x4 & Meccanico"
+      description: "L'esperienza di Karim al volante e le sue competenze meccaniche garantiscono viaggi sicuri e confortevoli attraverso le piste desertiche più remote."
+  
+  values_title: "I Nostri Valori"
+  values_subtitle: "I principi che guidano tutto ciò che facciamo"
+  
+  values:
+    authenticity:
+      title: "Autenticità"
+      description: "Offriamo esperienze autentiche che riflettono la vera cultura e lo spirito della Tunisia. Niente trappole per turisti, solo vere connessioni con persone e luoghi."
+    safety:
+      title: "Sicurezza"
+      description: "La tua sicurezza è la nostra priorità. Le nostre guide sono professionisti addestrati, i nostri veicoli sono ben mantenuti e seguiamo rigorosi protocolli di sicurezza in ogni tour."
+    respect:
+      title: "Rispetto per le Comunità Locali"
+      description: "Lavoriamo a stretto contatto con le comunità locali, assicurando che il turismo porti benefici alle persone che vivono nel deserto. Rispettiamo le loro tradizioni e il loro stile di vita."
+    sustainability:
+      title: "Turismo Responsabile"
+      description: "Ci impegniamo a proteggere il fragile ecosistema del deserto. Riduciamo al minimo il nostro impatto ambientale, sosteniamo gli sforzi di conservazione e promuoviamo pratiche di viaggio sostenibili."
+  
+  responsible_title: "Il Nostro Approccio al Turismo Responsabile"
+  responsible_text: "A Les Baroudeurs du Désert, crediamo che il viaggio debba fare del bene. Il nostro approccio al turismo responsabile include:"
+  responsible_items:
+    item1: "Lavorare con guide e autisti locali"
+    item2: "Sostenere le imprese e gli artigiani locali"
+    item3: "Ridurre al minimo i rifiuti e l'impatto ambientale"
+    item4: "Rispettare la fauna selvatica e gli habitat naturali"
+    item5: "Promuovere lo scambio culturale e la comprensione"
+    item6: "Restituire alle comunità locali"
+  
+  gallery_title: "La Nostra Galleria"
+  gallery_subtitle: "Momenti delle nostre avventure nel deserto"
+  
+  cta_title: "Pronto a Esplorare il Deserto?"
+  cta_text: "Unisciti a noi per un'avventura indimenticabile nel Sahara tunisino"
+  cta_button: "Prenota la Tua Avventura"
+blog_page:
+  title: "Il Nostro Blog"
+  breadcrumb_home: "Home"
+  subtitle: "Consigli, Guide e Storie dal Sahara"
+  posted_by: "Pubblicato da"
+  view_circuits: "Vedi i Nostri Circuiti"
+  article1:
+    title: "Preparare lo zaino per il deserto"
+    excerpt: "Prepara lo zaino in modo intelligente! I nostri bivacchi forniscono tutti i pasti (pane di sabbia, formaggio, marmellata, tè, chorba, couscous). Ti servono solo vestiti caldi per le notti fredde, un costume per le sorgenti di Ksar Ghilane, scarpe comode, crema solare e una torcia."
+  article2:
+    title: "Cosa vedere a Ksar Ghilane?"
+    excerpt: "Scopri l'oasi più meridionale della Tunisia, situata ai margini del Grande Erg Orientale. Fai un bagno nella sua sorgente termale naturale circondata da palme, esplora le rovine romane e goditi giri in quad o a dorso di dromedario (opzionale)!"
+  article3:
+    title: "Le nostre ricette preferite al bivacco"
+    excerpt: "Vivi la vera cucina beduina! Guarda le nostre guide cuocere il 'Pane di Sabbia' sotto il fuoco e goditi cene tradizionali di chorba, couscous e frutta di stagione sotto le stelle."

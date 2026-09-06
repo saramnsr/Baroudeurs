@@ -1,0 +1,294 @@
+hero:
+  title: "Voyages dans le désert"
+  sub: "Explorez le Sahara"
+  btn1: "Découvrez nos voyages"
+  btn2: "Réserver maintenant"
+  agency: "Agence de voyage"
+  adv: "Aventure"
+  subtitle: "Explorer"
+  main_title: "Circuits et Excursions en Tunisie — Votre aventure commence ici !"
+  main_subtitle: "Découvrez la Tunisie autrement grâce à nos circuits privés, conçus par des guides locaux passionnés."
+
+slider:
+  title_1: "Voyages dans le désert"
+  title_2: "Tour du sud tunisien"
+
+features:
+  subtitle: "Nos programmes"
+  title: "Découvrez nos circuits les plus populaires"
+
+program:
+  sud:
+    title: "Circuit Sud Tunisien"
+    desc: "4 jours / 3 nuits – Oasis, désert, villages berbères et Djerba."
+
+  starwars:
+    title: "Star Wars Tour"
+    desc: "3 jours / 2 nuits – Découvrez les lieux de tournage mythiques en Tunisie."
+
+  transfer:
+    title: "Service de Transfert"
+    desc: "Transferts privés depuis Djerba, Tozeur, Monastir et Tunis."
+
+  mirage:
+    title: "Mirage du Désert"
+    desc: "8 jours / 7 nuits – Une aventure complète à travers le Sahara tunisien."
+
+  view_all: "Voir tous les programmes"
+  price_from: "à partir de"
+  price_on_request: "Sur devis"
+  view_circuit: "Voir le circuit"
+
+booking:
+  find: "Planifiez votre aventure dans le désert"
+  subtitle: "Réservez votre aventure"
+  title: "dans le Sahara"
+  checkin: "Date d'arrivée"
+  checkout: "Date de départ"
+  guests: "Nombre de personnes"
+  button: "Rechercher"
+  destination: "Destination"
+  date: "Date"
+  duration: "Durée"
+
+about:
+  subtitle: "À propos de nous"
+  title: "Votre partenaire de confiance"
+  title2: "pour les aventures dans le désert"
+  description: "Baroudeurs de Désert vous propose des expériences inoubliables dans le Sahara tunisien. Randonnées à dos de dromadaire, bivouacs et excursions en 4x4 pour vivre une aventure authentique."
+  item1: "Expériences authentiques dans le Sahara"
+  item2: "Guides locaux professionnels"
+  item3: "Camps confortables dans le désert"
+  button: "En savoir plus"
+
+video:
+  title: "Découvrez la beauté du Sahara tunisien"
+  button: "Voir la vidéo"
+
+counter:
+  travelers: "Voyageurs satisfaits"
+  tours: "Circuits dans le désert"
+  experience: "Années d'expérience"
+  camps: "Camps dans le désert"
+
+services:
+  subtitle: "Nos Services"
+  title: "Explorez le Sahara"
+  title2: "à travers des expériences uniques"
+
+choose:
+  subtitle: "Pourquoi nous choisir"
+  title: "Pourquoi les voyageurs choisissent"
+  title2: "Baroudeurs de Désert"
+
+  item1:
+    title: "Meilleur rapport qualité-prix"
+    desc: "Profitez d'aventures inoubliables dans le désert à des prix compétitifs."
+
+  item2:
+    title: "Guides locaux expérimentés"
+    desc: "Nos guides professionnels vous garantissent une expérience authentique et sécurisée."
+
+  item3:
+    title: "Expérience authentique du Sahara"
+    desc: "Découvrez les dunes, les oasis, les balades à dos de dromadaire et les camps traditionnels."
+
+why:
+  subtitle: "Pourquoi nous choisir"
+  title: "Pourquoi voyager avec"
+  title2: "Baroudeurs de Désert"
+  item1:
+    title: "Circuits 100 % privés"
+    desc: "Guide et véhicule dédiés, rien que pour vous."
+  item2:
+    title: "Aucun convoi, aucun groupe"
+    desc: "Votre rythme, votre liberté, votre aventure."
+  item3:
+    title: "Itinéraires authentiques"
+    desc: "Des parcours personnalisés loin des sentiers battus."
+  item4:
+    title: "Guides locaux passionnés"
+    desc: "Une expertise du terrain transmise avec passion."
+
+gallery:
+  subtitle: "Notre Galerie"
+  title: "Découvrez nos"
+  title2: "Aventures dans le désert"
+
+  filter:
+    all: "Tout"
+    south: "Sud Tunisien"
+    sahara: "Sahara"
+    camp: "Campement"
+    four: "Tours 4x4"
+    oasis: "Oasis"
+
+testimonial:
+  subtitle: "Témoignages"
+  title: "Ce que disent"
+  title2: "nos voyageurs"
+
+  client1:
+    name: "Emily Johnson"
+    country: "Royaume-Uni"
+    comment: "Une expérience inoubliable ! La balade à dos de dromadaire, le bivouac et l'accueil étaient exceptionnels."
+
+  client2:
+    name: "Marco Rossi"
+    country: "Italie"
+    comment: "Tout était parfaitement organisé. Le coucher de soleil sur les dunes était magique."
+
+devis:
+  title: "Un projet en tête ?"
+  text: "Nous vous accompagnons dans l'organisation de votre séjour personnalisé en Tunisie."
+  button: "Demandez un devis gratuit"
+
+contact:
+  subtitle: "Contactez-nous"
+  title: "Prêt à vivre"
+  title2: "une nouvelle aventure ?"
+  locations: "Notre agence"
+  email: "Email"
+  hotline: "Téléphone"
+  follow: "Suivez-nous"
+  form_title: "Envoyez-nous un message"
+  form_description: "Vous avez une question sur nos excursions ? Contactez-nous et notre équipe vous répondra rapidement."
+  name_placeholder: "Nom complet"
+  email_placeholder: "Adresse email"
+  message_placeholder: "Écrivez votre message..."
+  send: "Envoyer le message"
+
+circuits_page:
+  intro_main: "Nos circuits et excursions sont conçus pour vous faire vivre la Tunisie authentique :"
+  intro_highlight: "désert, oasis, villages berbères, patrimoine culturel..."
+  filter_destination: "Destination"
+  filter_all_destinations: "Toutes les destinations"
+  filter_duration: "Durée"
+  filter_all_durations: "Toutes les durées"
+  duration_1: "1 jour"
+  duration_2_3: "2-3 jours"
+  duration_4plus: "4 jours et plus"
+  filter_type: "Type"
+  filter_all_types: "Tous les types"
+  filter_button: "Filtrer"
+  see_detail: "Voir le détail"
+
+testimonials_page:
+  breadcrumb_home: "Accueil"
+  title: "Témoignages"
+  intro: "Des histoires vécues par nos voyageurs dans le Sahara."
+  video_title: "Découvrez leur histoire"
+  leave_review: "Laissez votre avis"
+
+
+quote_page:
+  title: "Demander un Devis"
+  breadcrumb_home: "Accueil"
+  intro: "Vous avez une idée de voyage ? Nous créons votre circuit sur mesure en Tunisie."
+  form_title: "Demandez votre Devis Personnalisé"
+  form_subtitle: "Remplissez le formulaire ci-dessous et nous vous répondrons sous 24 heures."
+  last_name: "Nom"
+  last_name_placeholder: "Entrez votre nom"
+  first_name: "Prénom"
+  first_name_placeholder: "Entrez votre prénom"
+  email: "Email"
+  email_placeholder: "Entrez votre adresse email"
+  telephone: "Téléphone"
+  telephone_placeholder: "Entrez votre numéro de téléphone"
+  circuit: "Circuit choisi ou souhaité"
+  circuit_select: "Sélectionnez un circuit..."
+  circuit_custom: "Circuit personnalisé (décrivez ci-dessous)"
+  departure_location: "Lieu de départ"
+  departure_location_placeholder: "D'où partez-vous ?"
+  arrival_location: "Lieu d'arrivée"
+  arrival_location_placeholder: "Où arrivez-vous ?"
+  start_date: "Date de début"
+  end_date: "Date de fin"
+  duration: "Durée (jours)"
+  duration_placeholder: "Nombre de jours"
+  participants: "Participants"
+  participants_placeholder: "Nombre de personnes"
+  specific_requests: "Demandes spécifiques"
+  specific_requests_placeholder: "Parlez-nous de vos préférences, besoins particuliers ou toute information supplémentaire..."
+  send_button: "Envoyer ma Demande"
+
+
+about_page:
+  title: "À Propos de Nous"
+  breadcrumb_home: "Accueil"
+  intro: "Découvrez l'histoire derrière Les Baroudeurs du Désert"
+  presentation_title: "Notre Histoire"
+  presentation_text: "Les Baroudeurs du Désert est né d'une passion commune pour les grands espaces et les traditions du sud tunisien. Ce qui a commencé comme un petit groupe d'amis partageant leur amour du désert est devenu une équipe de professionnels dévoués, engagés à faire découvrir la beauté et la culture de la Tunisie aux voyageurs du monde entier."
+  mission_title: "Notre Mission"
+  mission_text: "Offrir des expériences authentiques et responsables dans le désert qui connectent les voyageurs avec le véritable esprit de la Tunisie. Nous croyons en un voyage qui respecte les communautés locales, préserve l'environnement et crée des souvenirs durables."
+  
+  team_title: "Rencontrez Notre Équipe"
+  team_subtitle: "Les passionnés qui se cachent derrière votre aventure dans le désert"
+  
+  team:
+    member1:
+      name: "Ahmed Ben Ali"
+      role: "Fondateur & Guide Désert"
+      description: "Né et élevé à Douz, Ahmed explore le Sahara depuis plus de 20 ans. Sa connaissance profonde du désert et sa passion pour le partager avec les autres sont le cœur des Baroudeurs du Désert."
+    member2:
+      name: "Mohamed El Khadra"
+      role: "Guide Principal"
+      description: "Avec 15 ans d'expérience, Mohamed connaît chaque dune et oasis du Sahara tunisien. Son calme et ses talents de conteur rendent chaque voyage inoubliable."
+    member3:
+      name: "Laila Ben Amor"
+      role: "Guide Culturelle"
+      description: "Laila donne vie aux traditions de la Tunisie. Sa connaissance de la culture berbère, de la cuisine locale et de l'artisanat traditionnel ajoute une dimension unique à chaque circuit."
+    member4:
+      name: "Karim El Mansour"
+      role: "Chauffeur 4x4 & Mécanicien"
+      description: "L'expertise de Karim au volant et ses compétences mécaniques garantissent des voyages sûrs et confortables sur les pistes désertiques les plus reculées."
+  
+  values_title: "Nos Valeurs"
+  values_subtitle: "Les principes qui guident tout ce que nous faisons"
+  
+  values:
+    authenticity:
+      title: "Authenticité"
+      description: "Nous proposons des expériences authentiques qui reflètent la véritable culture et l'esprit de la Tunisie. Pas de pièges à touristes, juste de vraies connexions avec les personnes et les lieux."
+    safety:
+      title: "Sécurité"
+      description: "Votre sécurité est notre priorité. Nos guides sont des professionnels formés, nos véhicules sont bien entretenus et nous suivons des protocoles de sécurité stricts lors de chaque excursion."
+    respect:
+      title: "Respect des Communautés Locales"
+      description: "Nous travaillons main dans la main avec les communautés locales, en veillant à ce que le tourisme profite aux personnes qui habitent le désert. Nous respectons leurs traditions et leur mode de vie."
+    sustainability:
+      title: "Tourisme Responsable"
+      description: "Nous nous engageons à protéger le fragile écosystème désertique. Nous minimisons notre impact environnemental, soutenons les efforts de conservation et promouvons des pratiques de voyage durables."
+  
+  responsible_title: "Notre Approche de Tourisme Responsable"
+  responsible_text: "Aux Baroudeurs du Désert, nous croyons que le voyage devrait faire du bien. Notre approche de tourisme responsable comprend :"
+  responsible_items:
+    item1: "Travailler avec des guides et chauffeurs locaux"
+    item2: "Soutenir les entreprises et artisans locaux"
+    item3: "Minimiser les déchets et l'impact environnemental"
+    item4: "Respecter la faune et les habitats naturels"
+    item5: "Promouvoir les échanges culturels et la compréhension"
+    item6: "Redonner aux communautés locales"
+  
+  gallery_title: "Notre Galerie"
+  gallery_subtitle: "Des moments de nos aventures dans le désert"
+  
+  cta_title: "Prêt à Explorer le Désert ?"
+  cta_text: "Rejoignez-nous pour une aventure inoubliable dans le Sahara tunisien"
+  cta_button: "Réservez Votre Aventure"
+
+blog_page:
+  title: "Notre Blog"
+  breadcrumb_home: "Accueil"
+  subtitle: "Conseils, Guides & Histoires du Sahara"
+  posted_by: "Publié par"
+  view_circuits: "Voir Nos Circuits"
+  article1:
+    title: "Préparer votre sac pour le désert"
+    excerpt: "Préparez malin ! Nos bivouacs fournissent tous les repas (pain de sable, fromage, confiture, thé, chorba, couscous). Il vous faut juste des vêtements chauds pour les nuits fraîches, un maillot de bain pour les sources de Ksar Ghilane, des chaussures confortables, de la crème solaire et une lampe de poche."
+  article2:
+    title: "Que voir à Ksar Ghilane ?"
+    excerpt: "Découvrez l'oasis la plus méridionale de Tunisie, située aux portes du Grand Erg Oriental. Baignez-vous dans sa source thermale naturelle entourée de palmiers, explorez les ruines romaines et profitez de balades en quad ou à dos de dromadaire (en option) !"
+  article3:
+    title: "Nos recettes préférées en bivouac"
+    excerpt: "Vivez la véritable cuisine bédouine ! Regardez nos guides cuire le 'Pain de Sable' sous le feu, et savourez des dîners traditionnels de chorba, de couscous et de fruits de saison sous les étoiles."

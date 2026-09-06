@@ -1,0 +1,239 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our gallery{% endblock %}
+
+{% block body %}
+        <section class="page-banner light-red-bg pt-170 pb-170 bg_cover" style="background-image: url('{{ asset('assets/images/bg/page-bg-1.jpg') }}');">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="page-banner-content text-center text-white">
+                            <h1 class="page-title">{{ 'gallery.title'|trans }}</h1>
+                            <ul class="breadcrumb-link text-white">
+                                <li><a href="{{ path('app_font_index') }}">{{ 'gallery.breadcrumb_home'|trans }}</a></li>
+                                <li class="active">{{ 'gallery.title'|trans }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!--====== End Breadcrumb Section ======-->
+
+        <!--====== Start Gallery Section ======-->
+        <section class="gallery-section pt-100 pb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="gallery-filter-button text-center mb-60 wow fadeInDown">
+                            <ul class="gallery-btn">
+                                <li class="active" data-filter="*">{{ 'gallery.filter.all'|trans }}</li>
+                                <li data-filter=".cat-desert">{{ 'gallery.filter.desert'|trans }}</li>
+                                <li data-filter=".cat-douz">{{ 'gallery.filter.douz'|trans }}</li>
+                                <li data-filter=".cat-djerba">{{ 'gallery.filter.djerba'|trans }}</li>
+                                <li data-filter=".cat-oasis">{{ 'gallery.filter.oasis'|trans }}</li>
+                                <li data-filter=".cat-bivouac">{{ 'gallery.filter.bivouac'|trans }}</li>
+                                <li data-filter=".cat-cuisine">{{ 'gallery.filter.cuisine'|trans }}</li>
+                                <li data-filter=".cat-meeting">{{ 'gallery.filter.meeting'|trans }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row gallery-row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-column cat-desert cat-douz">
+                        <div class="single-gallery-item mb-25 wow fadeInUp">
+                            <div class="gallery-img">
+                                <a href="{{ asset('assets/images/gallery/g-1.jpg') }}" class="img-popup" title="{{ 'gallery.caption.desert'|trans }}">
+                                    <img src="{{ asset('assets/images/gallery/g-1.jpg') }}" alt="{{ 'gallery.caption.desert'|trans }}">
+                                    <div class="hover-overlay"></div>
+                                    <div class="hover-content">
+                                        <span class="icon-btn"><i class="far fa-search-plus"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="gallery-content">
+                                <h4 class="title">{{ 'gallery.caption.desert'|trans }}</h4>
+                                <span class="cat-link">{{ 'gallery.filter.desert'|trans }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-column cat-bivouac">
+                        <div class="single-gallery-item mb-25 wow fadeInUp">
+                            <div class="gallery-img">
+                                <a href="{{ asset('assets/images/gallery/g-2.jpg') }}" class="img-popup" title="{{ 'gallery.caption.bivouac'|trans }}">
+                                    <img src="{{ asset('assets/images/gallery/g-2.jpg') }}" alt="{{ 'gallery.caption.bivouac'|trans }}">
+                                    <div class="hover-overlay"></div>
+                                    <div class="hover-content">
+                                        <span class="icon-btn"><i class="far fa-search-plus"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="gallery-content">
+                                <h4 class="title">{{ 'gallery.caption.bivouac'|trans }}</h4>
+                                <span class="cat-link">{{ 'gallery.filter.bivouac'|trans }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-column cat-meeting">
+                        <div class="single-gallery-item mb-25 wow fadeInUp">
+                            <div class="gallery-img">
+                                <a href="{{ asset('assets/images/gallery/g-3.jpg') }}" class="img-popup" title="{{ 'gallery.caption.meeting'|trans }}">
+                                    <img src="{{ asset('assets/images/gallery/g-3.jpg') }}" alt="{{ 'gallery.caption.meeting'|trans }}">
+                                    <div class="hover-overlay"></div>
+                                    <div class="hover-content">
+                                        <span class="icon-btn"><i class="far fa-search-plus"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="gallery-content">
+                                <h4 class="title">{{ 'gallery.caption.meeting'|trans }}</h4>
+                                <span class="cat-link">{{ 'gallery.filter.meeting'|trans }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-column cat-djerba">
+                        <div class="single-gallery-item mb-25 wow fadeInUp">
+                            <div class="gallery-img">
+                                <a href="{{ asset('assets/images/gallery/g-4.jpg') }}" class="img-popup" title="{{ 'gallery.caption.djerba'|trans }}">
+                                    <img src="{{ asset('assets/images/gallery/g-4.jpg') }}" alt="{{ 'gallery.caption.djerba'|trans }}">
+                                    <div class="hover-overlay"></div>
+                                    <div class="hover-content">
+                                        <span class="icon-btn"><i class="far fa-search-plus"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="gallery-content">
+                                <h4 class="title">{{ 'gallery.caption.djerba'|trans }}</h4>
+                                <span class="cat-link">{{ 'gallery.filter.djerba'|trans }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-column cat-oasis cat-douz">
+                        <div class="single-gallery-item mb-25 wow fadeInUp">
+                            <div class="gallery-img">
+                                <a href="{{ asset('assets/images/gallery/g-5.jpg') }}" class="img-popup" title="{{ 'gallery.caption.oasis'|trans }}">
+                                    <img src="{{ asset('assets/images/gallery/g-5.jpg') }}" alt="{{ 'gallery.caption.oasis'|trans }}">
+                                    <div class="hover-overlay"></div>
+                                    <div class="hover-content">
+                                        <span class="icon-btn"><i class="far fa-search-plus"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="gallery-content">
+                                <h4 class="title">{{ 'gallery.caption.oasis'|trans }}</h4>
+                                <span class="cat-link">{{ 'gallery.filter.oasis'|trans }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-column cat-cuisine cat-bivouac">
+                        <div class="single-gallery-item mb-25 wow fadeInUp">
+                            <div class="gallery-img">
+                                <a href="{{ asset('assets/images/gallery/g-6.jpg') }}" class="img-popup" title="{{ 'gallery.caption.cuisine'|trans }}">
+                                    <img src="{{ asset('assets/images/gallery/g-6.jpg') }}" alt="{{ 'gallery.caption.cuisine'|trans }}">
+                                    <div class="hover-overlay"></div>
+                                    <div class="hover-content">
+                                        <span class="icon-btn"><i class="far fa-search-plus"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="gallery-content">
+                                <h4 class="title">{{ 'gallery.caption.cuisine'|trans }}</h4>
+                                <span class="cat-link">{{ 'gallery.filter.cuisine'|trans }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-column cat-desert">
+                        <div class="single-gallery-item mb-25 wow fadeInUp">
+                            <div class="gallery-img">
+                                <a href="{{ asset('assets/images/gallery/g-7.jpg') }}" class="img-popup" title="{{ 'gallery.caption.desert'|trans }}">
+                                    <img src="{{ asset('assets/images/gallery/g-7.jpg') }}" alt="{{ 'gallery.caption.desert'|trans }}">
+                                    <div class="hover-overlay"></div>
+                                    <div class="hover-content">
+                                        <span class="icon-btn"><i class="far fa-search-plus"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="gallery-content">
+                                <h4 class="title">{{ 'gallery.caption.desert'|trans }}</h4>
+                                <span class="cat-link">{{ 'gallery.filter.desert'|trans }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-column cat-douz cat-djerba">
+                        <div class="single-gallery-item mb-25 wow fadeInUp">
+                            <div class="gallery-img">
+                                <a href="{{ asset('assets/images/gallery/g-8.jpg') }}" class="img-popup" title="{{ 'gallery.caption.douz'|trans }}">
+                                    <img src="{{ asset('assets/images/gallery/g-8.jpg') }}" alt="{{ 'gallery.caption.douz'|trans }}">
+                                    <div class="hover-overlay"></div>
+                                    <div class="hover-content">
+                                        <span class="icon-btn"><i class="far fa-search-plus"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="gallery-content">
+                                <h4 class="title">{{ 'gallery.caption.douz'|trans }}</h4>
+                                <span class="cat-link">{{ 'gallery.filter.douz'|trans }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-column cat-oasis cat-cuisine">
+                        <div class="single-gallery-item mb-25 wow fadeInUp">
+                            <div class="gallery-img">
+                                <a href="{{ asset('assets/images/gallery/g-9.jpg') }}" class="img-popup" title="{{ 'gallery.caption.oasis'|trans }}">
+                                    <img src="{{ asset('assets/images/gallery/g-9.jpg') }}" alt="{{ 'gallery.caption.oasis'|trans }}">
+                                    <div class="hover-overlay"></div>
+                                    <div class="hover-content">
+                                        <span class="icon-btn"><i class="far fa-search-plus"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="gallery-content">
+                                <h4 class="title">{{ 'gallery.caption.oasis'|trans }}</h4>
+                                <span class="cat-link">{{ 'gallery.filter.oasis'|trans }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!--====== End Gallery Section ======-->
+
+               <!--====== Start Video Section ======-->
+        <section class="pt-40 pb-100">
+            <div class="container-fluid">
+                <div class="row justify-content-center mb-40">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="detail-section-heading" style="display:inline-block;">{{ 'gallery.video_title'|trans }}</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <video id="gallery-auto-video" muted playsinline loop style="width:100%; max-height:85vh; object-fit:cover; border-radius:14px; box-shadow:0px 10px 60px rgba(59,40,28,0.15);">
+                           <source src="https://res.cloudinary.com/dy13axswo/video/upload/v1788699280/baroudeurs/videos/desert-4x4-tour.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section><!--====== End Video Section ======-->
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            var video = document.getElementById('gallery-auto-video');
+            if (video) {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(video);
+            }
+        });
+    </script>
+{% endblock %}

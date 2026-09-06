@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title|trans }}{% endblock %}
+
+{% block body %}
+    <!--====== Start Banner Section ======-->
+    <section class="page-banner light-red-bg pt-170 pb-170 bg_cover" style="background-image: url('{{ asset('assets/images/bg/page-bg-1.jpg') }}');">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="page-banner-content text-center text-white">
+                        <h1 class="page-title">{{ article.title|trans }}</h1>
+                        <ul class="breadcrumb-link text-white">
+                            <li><a href="{{ path('app_font_index') }}">{{ 'blog_page.breadcrumb_home'|trans }}</a></li>
+                            <li><a href="{{ path('app_font_blog') }}">{{ 'blog_page.title'|trans }}</a></li>
+                            <li class="active">{{ article.title|trans }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Banner Section ======-->
+
+    <section class="pt-60 pb-60">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Rich Visual -->
+                    <div style="border-radius: 20px; overflow: hidden; margin-bottom: 30px;">
+                        <img src="{{ asset(article.image) }}" alt="{{ article.title|trans }}" style="width: 100%; height: 450px; object-fit: cover;">
+                    </div>
+                    
+                    <p style="color: #999; font-size: 14px; margin-bottom: 20px;">
+                        {{ 'blog_page.posted_by'|trans }}: {{ article.author }} | {{ article.date|date('d/m/Y') }}
+                    </p>
+                    
+                    <h2 style="color: #3B281C; font-size: 36px; margin-bottom: 20px;">{{ article.title|trans }}</h2>
+                    
+                    <div style="color: #5B4636; font-size: 17px; line-height: 30px;">
+                        <p>{{ article.content1|trans }}</p>
+                        <p>{{ article.content2|trans }}</p>
+                    </div>
+
+                    <!-- Internal Link to Circuit -->
+                    <div style="background: #f9f6f0; padding: 20px; border-radius: 8px; margin-top: 30px; border-left: 4px solid #C8A97E;">
+                        <h4 style="color: #3B281C; margin-bottom: 10px;">{{ 'blog_page.internal_link'|trans }}</h4>
+                        <a href="{{ path('programme_detail', {'id': article.circuit_id}) }}" style="color: #C8A97E; font-weight: 600; text-decoration: none;">
+                            {{ 'blog_page.internal_link'|trans }} &rarr;
+                        </a>
+                    </div>
+
+                    <div style="margin-top: 50px;">
+                        <a href="{{ path('app_font_blog') }}" class="main-btn btn-green">{{ 'blog_page.read_more'|trans }} &larr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

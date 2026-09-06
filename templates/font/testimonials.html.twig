@@ -1,0 +1,470 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Testimonials{% endblock %}
+
+{% block body %}
+    {% set locale = app.request.locale %}
+
+    <!-- Flash Messages -->
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: #28a745; color: #fff; padding: 15px 25px; border-radius: 8px; box-shadow: 0px 5px 30px rgba(0,0,0,0.2); z-index: 10000;">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 15px; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: #dc3545; color: #fff; padding: 15px 25px; border-radius: 8px; box-shadow: 0px 5px 30px rgba(0,0,0,0.2); z-index: 10000;">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 15px; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
+    <!--====== Start Banner Section ======-->
+    <section class="page-banner light-red-bg pt-170 pb-170 bg_cover" style="background-image: url('{{ asset('assets/images/bg/page-bg-1.jpg') }}');">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="page-banner-content text-center text-white">
+                        <h1 class="page-title">{{ 'testimonials_page.title'|trans }}</h1>
+                        <ul class="breadcrumb-link text-white">
+                            <li><a href="{{ path('app_font_index') }}">{{ 'testimonials_page.breadcrumb_home'|trans }}</a></li>
+                            <li class="active">{{ 'testimonials_page.title'|trans }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Banner Section ======-->
+
+    <!--====== Start Intro Section ======-->
+    <section class="pt-80 pb-40">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <p style="font-size: 18px; line-height: 28px; color: #5B4636;">{{ 'testimonials_page.intro'|trans }}</p>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Intro Section ======-->
+
+    {% set videoTestimonial = null %}
+    {% for t in testimonials %}
+        {% if t.videoFilename and videoTestimonial is null %}
+            {% set videoTestimonial = t %}
+        {% endif %}
+    {% endfor %}
+
+    <!--====== Start Video Testimonial Section ======-->
+    {% if videoTestimonial %}
+    <section class="pb-60" id="videoSection">
+        <div class="container">
+            <h3 class="detail-section-heading text-center" style="display:block; margin: 0 auto 40px;">{{ 'testimonials_page.video_title'|trans }}</h3>
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <!-- Container with both video and comment -->
+                    <div style="background: #3B281C; padding: 40px; border-radius: 14px; color: #fff;">
+                        <div class="row align-items-center">
+                            <!-- Video Column -->
+                            <div class="col-lg-7 mb-30">
+                                <div style="background: #000; border-radius: 14px; overflow: hidden;">
+                                    <video 
+                                        id="testimonial-video"
+                                        muted 
+                                        playsinline 
+                                        loop
+                                        style="width:100%; display: block; max-height: 400px; object-fit: cover;"
+                                        preload="metadata"
+                                    >
+                                        <source src="{{ videoTestimonial.videoFilename starts with 'http' ? videoTestimonial.videoFilename : asset('assets/videos/' ~ videoTestimonial.videoFilename) }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+                            <!-- Comment Column -->
+                            <div class="col-lg-5 mb-30">
+                                <div style="padding: 20px;">
+                                    <div class="d-flex align-items-center" style="margin-bottom: 15px;">
+                                        <div style="width: 60px; height: 60px; border-radius: 50%; background: #C8A97E; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px; margin-right: 15px; overflow: hidden; flex-shrink: 0;">
+                                            {% set randomImage = randomImages[random(0, randomImages|length - 1)] %}
+                                            <img src="{{ asset('assets/images/testimonial/' ~ randomImage) }}" alt="{{ videoTestimonial.name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                        </div>
+                                        <div>
+                                            <h4 style="font-size: 20px; margin-bottom: 2px; color: #C8A97E;">{{ videoTestimonial.name }}</h4>
+                                            <p style="color: #C8A97E; margin-bottom: 5px; font-size: 14px; opacity: 0.8;">{{ videoTestimonial.country }}</p>
+                                            <ul class="ratings" style="display: flex; gap: 3px; padding: 0; margin: 0; list-style: none;">
+                                                {% for i in 1..5 %}
+                                                    <li><i class="{{ i <= videoTestimonial.rating ? 'fas' : 'far' }} fa-star" style="color: #C96B3C; font-size: 14px;"></i></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #C8A97E;">
+                                        <p style="margin: 0; color: #E8D0A8; line-height: 1.8; font-size: 15px;">
+                                            {% if locale == 'fr' %}
+                                                J'ai filmé une partie de notre excursion, vous pouvez voir par vous-mêmes à quel point le désert tunisien est magique. Une équipe professionnelle et chaleureuse du début à la fin. Les paysages étaient à couper le souffle et chaque moment passé dans le désert était unique. Je recommande vivement cette expérience à tous ceux qui cherchent l'aventure et l'authenticité.
+                                            {% elseif locale == 'ar' %}
+                                                صورت جزءًا من رحلتنا، يمكنكم أن تروا بأنفسكم مدى سحر الصحراء التونسية. فريق محترف ودافئ من البداية إلى النهاية. كانت المناظر الطبيعية خلابة وكل لحظة قضيناها في الصحراء كانت فريدة من نوعها. أوصي بشدة بهذه التجربة لكل من يبحث عن المغامرة والأصالة.
+                                            {% elseif locale == 'it' %}
+                                                Ho filmato parte della nostra escursione, potete vedere con i vostri occhi quanto sia magico il deserto tunisino. Un team professionale e caloroso dall'inizio alla fine. I paesaggi erano mozzafiato e ogni momento trascorso nel deserto era unico. Raccomando vivamente questa esperienza a tutti coloro che cercano avventura e autenticità.
+                                            {% else %}
+                                                I filmed part of our excursion, you can see for yourselves how magical the Tunisian desert is. A professional and warm team from start to finish. The landscapes were breathtaking and every moment spent in the desert was unique. I highly recommend this experience to anyone looking for adventure and authenticity. The camel rides, the starry nights, and the traditional Bedouin meals made this an unforgettable journey that exceeded all our expectations.
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!--====== Start Testimonial Section with Tabs ======-->
+    <section class="pb-60">
+        <div class="container">
+            <div class="row mb-40">
+                <div class="col-12 text-center">
+                    <div class="testimonial-tabs">
+                        <button class="btn active" onclick="showTestimonials('mosaic')">Mosaic View</button>
+                        <button class="btn" onclick="showTestimonials('slider')">Slider View</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mosaic Grid View -->
+            <div id="mosaicView" class="row">
+                {% set hasNonVideo = false %}
+                {% for t in testimonials %}
+                    {% if t.videoFilename is null %}
+                        {% set hasNonVideo = true %}
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
+                            <div class="detail-review-card" style="background: #fff; padding: 25px; border-radius: 16px; box-shadow: 0px 5px 30px rgba(59,40,28,0.08); transition: all 0.3s ease; height: 100%;">
+                                <div class="d-flex align-items-center" style="margin-bottom: 15px;">
+                                    <div style="width: 55px; height: 55px; border-radius: 50%; background: #C8A97E; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 18px; margin-right: 15px; overflow: hidden; flex-shrink: 0;">
+                                        {% set randomImage = randomImages[random(0, randomImages|length - 1)] %}
+                                        <img src="{{ asset('assets/images/testimonial/' ~ randomImage) }}" alt="{{ t.name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div>
+                                        <h4 style="font-size: 16px; margin-bottom: 2px; color: #3B281C;">{{ t.name }}</h4>
+                                        <p style="color: #C8A97E; margin-bottom: 5px; font-size: 13px;">{{ t.country }}</p>
+                                    </div>
+                                </div>
+                                <p style="color: #5B4636; font-size: 14px; line-height: 1.7; margin-bottom: 15px;">
+                                    {% if locale == 'fr' %}{{ t.commentFr|slice(0, 120) ~ '...' }}
+                                    {% elseif locale == 'ar' %}{{ t.commentAr|slice(0, 120) ~ '...' }}
+                                    {% elseif locale == 'it' %}{{ t.commentIt|slice(0, 120) ~ '...' }}
+                                    {% else %}{{ t.commentEn|slice(0, 120) ~ '...' }}
+                                    {% endif %}
+                                </p>
+                                <ul class="ratings" style="display: flex; gap: 3px; padding: 0; margin: 0; list-style: none;">
+                                    {% for i in 1..5 %}
+                                        <li><i class="{{ i <= t.rating ? 'fas fa-star' : 'far fa-star' }}" style="color: #C96B3C; font-size: 16px;"></i></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% if not hasNonVideo %}
+                    <div class="col-12 text-center">
+                        <p>No testimonials yet.</p>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Slider View -->
+            <div id="sliderView" class="row" style="display: none;">
+                {% set hasNonVideo = false %}
+                {% for t in testimonials %}
+                    {% if t.videoFilename is null %}
+                        {% set hasNonVideo = true %}
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
+                            <div class="detail-review-card" style="background: #fff; padding: 25px; border-radius: 16px; box-shadow: 0px 5px 30px rgba(59,40,28,0.08); text-align: center; transition: all 0.3s ease; height: 100%;">
+                                <div style="width: 70px; height: 70px; border-radius: 50%; background: #C8A97E; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px; margin: 0 auto 15px; overflow: hidden;">
+                                    {% set randomImage = randomImages[random(0, randomImages|length - 1)] %}
+                                    <img src="{{ asset('assets/images/testimonial/' ~ randomImage) }}" alt="{{ t.name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <h4 style="font-size: 18px; margin-bottom: 2px; color: #3B281C;">{{ t.name }}</h4>
+                                <p style="color: #C8A97E; margin-bottom: 12px; font-size: 13px;">{{ t.country }}</p>
+                                <ul class="ratings" style="display: flex; justify-content: center; gap: 3px; padding: 0; margin: 0 0 15px 0; list-style: none;">
+                                    {% for i in 1..5 %}
+                                        <li><i class="{{ i <= t.rating ? 'fas fa-star' : 'far fa-star' }}" style="color: #C96B3C; font-size: 16px;"></i></li>
+                                    {% endfor %}
+                                </ul>
+                                <p style="color: #5B4636; font-size: 14px; line-height: 1.7; margin: 0;">
+                                    {% if locale == 'fr' %}{{ t.commentFr|slice(0, 150) ~ '...' }}
+                                    {% elseif locale == 'ar' %}{{ t.commentAr|slice(0, 150) ~ '...' }}
+                                    {% elseif locale == 'it' %}{{ t.commentIt|slice(0, 150) ~ '...' }}
+                                    {% else %}{{ t.commentEn|slice(0, 150) ~ '...' }}
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% if not hasNonVideo %}
+                    <div class="col-12 text-center">
+                        <p>No testimonials yet.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section><!--====== End Testimonial Section ======-->
+
+    <!--====== Start Second Video Testimonial Section (Laura Martínez with video3) ======-->
+    <section class="pb-60">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <!-- Container with #C96B3C background -->
+                    <div style="background: #C96B3C; padding: 40px; border-radius: 14px; color: #fff;">
+                        <div class="row align-items-center">
+                            <!-- Video Column -->
+                            <div class="col-lg-7 mb-30">
+                                <div style="background: #000; border-radius: 14px; overflow: hidden;">
+                                    <video 
+                                        id="testimonial-video2"
+                                        muted 
+                                        playsinline 
+                                        loop
+                                        style="width:100%; display: block; max-height: 400px; object-fit: cover;"
+                                        preload="metadata"
+                                    >
+                                       <source src="https://res.cloudinary.com/dy13axswo/video/upload/v1788697656/baroudeurs/videos/video3.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+                            <!-- Comment Column -->
+                            <div class="col-lg-5 mb-30">
+                                <div style="padding: 20px;">
+                                    <div class="d-flex align-items-center" style="margin-bottom: 15px;">
+                                        <div style="width: 60px; height: 60px; border-radius: 50%; background: #3B281C; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px; margin-right: 15px; overflow: hidden; flex-shrink: 0;">
+                                            <img src="{{ asset('assets/images/testimonial/author-thumb-1.jpg') }}" alt="Laura Martínez" style="width: 100%; height: 100%; object-fit: cover;">
+                                        </div>
+                                        <div>
+                                            <h4 style="font-size: 20px; margin-bottom: 2px; color: #fff;">Laura Martínez</h4>
+                                            <p style="color: #3B281C; margin-bottom: 5px; font-size: 14px; opacity: 0.9; font-weight: 500;">Spain</p>
+                                            <ul class="ratings" style="display: flex; gap: 3px; padding: 0; margin: 0; list-style: none;">
+                                                {% for i in 1..5 %}
+                                                    <li><i class="fas fa-star" style="color: #fff; font-size: 14px;"></i></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="background: rgba(59,40,28,0.2); padding: 20px; border-radius: 12px; border-left: 4px solid #fff;">
+                                        <p style="margin: 0; color: #fff; line-height: 1.8; font-size: 15px;">
+                                            {% if locale == 'fr' %}
+                                                Une expérience inoubliable ! La balade à dos de chameau, le bivouac sous les étoiles et l'hospitalité des guides étaient exceptionnels. Tout était parfaitement organisé, du transfert à l'aéroport jusqu'au dernier repas. Le coucher de soleil sur les dunes de Ksar Ghilane était à couper le souffle. Je recommande vivement cette aventure à tous les amoureux de la nature et des grands espaces.
+                                            {% elseif locale == 'ar' %}
+                                                تجربة لا تُنسى! ركوب الجمال، والتخييم تحت النجوم، وكرم الضيافة من المرشدين كان رائعًا. كل شيء كان منظمًا بشكل مثالي، من النقل من المطار إلى آخر وجبة. غروب الشمس على كثبان قصر غيلان كان خلابًا. أوصي بشدة بهذه المغامرة لكل عشاق الطبيعة والفضاءات المفتوحة.
+                                            {% elseif locale == 'it' %}
+                                                Un'esperienza indimenticabile! La passeggiata in cammello, il bivacco sotto le stelle e l'ospitalità delle guide erano eccezionali. Tutto era perfettamente organizzato, dal trasferimento in aeroporto fino all'ultimo pasto. Il tramonto sulle dune di Ksar Ghilane era mozzafiato. Consiglio vivamente questa avventura a tutti gli amanti della natura e degli spazi aperti.
+                                            {% else %}
+                                                An unforgettable experience! The camel ride, the bivouac under the stars, and the guides' hospitality were outstanding. Everything was perfectly organized, from the airport transfer to the last meal. The sunset over the dunes of Ksar Ghilane was breathtaking. I highly recommend this adventure to all nature lovers and open space enthusiasts.
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Second Video Testimonial Section ======-->
+
+    <!--====== Start Leave Review Section ======-->
+    <section class="pt-60 pb-80">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Full brown form container -->
+                    <div style="background: #3B281C; padding: 50px; border-radius: 20px; box-shadow: 0px 10px 60px rgba(59,40,28,0.1);">
+                        <h3 style="margin-bottom: 10px; color: #C8A97E; text-align: center;">{{ 'testimonials_page.leave_review'|trans }}</h3>
+                        <p style="text-align: center; color: #E8D0A8; margin-bottom: 30px;">Share your experience with us!</p>
+                        
+                        <form method="post" action="{{ path('app_testimonial_submit') }}">
+                            <div class="row">
+                                <!-- Left Column - Name, Country, Rating -->
+                                <div class="col-md-6">
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #C8A97E; font-weight: 500;">Your Name</label>
+                                        <input type="text" name="name" placeholder="Enter your name" required style="width: 100%; padding: 12px 15px; border: 1px solid #C8A97E; border-radius: 8px; background: rgba(255,255,255,0.9); color: #3B281C;">
+                                    </div>
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #C8A97E; font-weight: 500;">Your Country</label>
+                                        <input type="text" name="country" placeholder="Enter your country" required style="width: 100%; padding: 12px 15px; border: 1px solid #C8A97E; border-radius: 8px; background: rgba(255,255,255,0.9); color: #3B281C;">
+                                    </div>
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #C8A97E; font-weight: 500;">Rating</label>
+                                        <div style="display: flex; gap: 10px; font-size: 28px; color: #C96B3C;">
+                                            <i class="far fa-star" data-rating="1" onclick="setRating(1)" style="cursor: pointer; color: #E8D0A8;"></i>
+                                            <i class="far fa-star" data-rating="2" onclick="setRating(2)" style="cursor: pointer; color: #E8D0A8;"></i>
+                                            <i class="far fa-star" data-rating="3" onclick="setRating(3)" style="cursor: pointer; color: #E8D0A8;"></i>
+                                            <i class="far fa-star" data-rating="4" onclick="setRating(4)" style="cursor: pointer; color: #E8D0A8;"></i>
+                                            <i class="far fa-star" data-rating="5" onclick="setRating(5)" style="cursor: pointer; color: #E8D0A8;"></i>
+                                        </div>
+                                        <input type="hidden" name="rating" id="ratingValue" value="0" required>
+                                        <small style="color: #E8D0A8; opacity: 0.7;">Click on stars to rate</small>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right Column - Message and Submit -->
+                                <div class="col-md-6">
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #C8A97E; font-weight: 500;">Your Message</label>
+                                        <textarea name="message" rows="5" placeholder="Write your testimonial here..." required style="width: 100%; padding: 12px 15px; border: 1px solid #C8A97E; border-radius: 8px; background: rgba(255,255,255,0.9); color: #3B281C; resize: vertical; height: 125px;"></textarea>
+                                    </div>
+                                    <div class="text-right">
+                                        <button type="submit" class="main-btn" style="padding: 14px 40px; background: #C8A97E; color: #3B281C; border: none; border-radius: 30px; font-weight: 600; transition: all 0.3s ease; width: 100%;">
+                                            <i class="fas fa-pen" style="margin-right: 8px;"></i>
+                                            Leave Your Review
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Leave Review Section ======-->
+
+    <!--====== Start CTA Section ======-->
+    <section class="detail-cta-section" style="background-image: url('{{ asset('assets/images/bg/fun-bg-1.png') }}');">
+        <div class="detail-cta-overlay"></div>
+        <div class="container text-center" style="position: relative; z-index: 1;">
+            <h2 class="detail-cta-heading">{{ 'devis.title'|trans }}</h2>
+            <p style="color:#3B281C; margin-bottom:30px;">{{ 'devis.text'|trans }}</p>
+            <!-- Request a free quote → Quote Page -->
+            <a href="{{ path('app_font_quote') }}" class="main-btn btn-green">
+                {{ 'devis.button'|trans }}
+                <i class="far fa-angle-double-right"></i>
+            </a>
+        </div>
+    </section><!--====== End CTA Section ======-->
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    // Rating system with stars
+    function setRating(value) {
+        document.getElementById('ratingValue').value = value;
+        
+        // Update star icons
+        const stars = document.querySelectorAll('[data-rating]');
+        stars.forEach(star => {
+            const rating = parseInt(star.getAttribute('data-rating'));
+            if (rating <= value) {
+                star.className = 'fas fa-star';
+                star.style.color = '#C96B3C';
+            } else {
+                star.className = 'far fa-star';
+                star.style.color = '#E8D0A8';
+            }
+        });
+    }
+
+    // Toggle between mosaic and slider views
+    function showTestimonials(view) {
+        const mosaicView = document.getElementById('mosaicView');
+        const sliderView = document.getElementById('sliderView');
+        const buttons = document.querySelectorAll('.testimonial-tabs .btn');
+        
+        // Update buttons
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        if (view === 'mosaic') {
+            mosaicView.style.display = 'flex';
+            sliderView.style.display = 'none';
+            buttons[0].classList.add('active');
+        } else {
+            mosaicView.style.display = 'none';
+            sliderView.style.display = 'flex';
+            buttons[1].classList.add('active');
+        }
+    }
+
+    // Video control for testimonials page
+    let isVideoPlaying = false;
+    let testimonialVideo = null;
+    let testimonialVideo2 = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        testimonialVideo = document.getElementById('testimonial-video');
+        testimonialVideo2 = document.getElementById('testimonial-video2');
+        
+        // Auto-play first video when in viewport
+        if (testimonialVideo) {
+            var observer1 = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        if (!isVideoPlaying) {
+                            testimonialVideo.play().catch(function(e) {
+                                console.log('Autoplay prevented, user must interact');
+                            });
+                        }
+                    } else {
+                        if (isVideoPlaying) {
+                            testimonialVideo.pause();
+                        }
+                    }
+                });
+            }, { threshold: 0.3 });
+            observer1.observe(testimonialVideo);
+
+            testimonialVideo.addEventListener('play', function() {
+                isVideoPlaying = true;
+            });
+
+            testimonialVideo.addEventListener('pause', function() {
+                isVideoPlaying = false;
+            });
+        }
+
+        // Auto-play second video when in viewport
+        if (testimonialVideo2) {
+            var observer2 = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        testimonialVideo2.play().catch(function(e) {
+                            console.log('Autoplay prevented, user must interact');
+                        });
+                    } else {
+                        testimonialVideo2.pause();
+                    }
+                });
+            }, { threshold: 0.3 });
+            observer2.observe(testimonialVideo2);
+        }
+
+        // Set default view to mosaic
+        showTestimonials('mosaic');
+    });
+
+    // Auto-close flash messages after 5 seconds
+    setTimeout(function() {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            alert.style.opacity = '0';
+            alert.style.transition = 'opacity 0.5s ease';
+            setTimeout(function() {
+                alert.style.display = 'none';
+            }, 500);
+        });
+    }, 5000);
+</script>
+{% endblock %}

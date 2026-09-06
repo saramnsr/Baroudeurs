@@ -1,0 +1,198 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if app.request.locale == 'fr' %}{{ programme.titleFr }}
+    {% elseif app.request.locale == 'ar' %}{{ programme.titleAr }}
+    {% elseif app.request.locale == 'it' %}{{ programme.titleIt }}
+    {% else %}{{ programme.titleEn }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% set locale = app.request.locale %}
+    {% set title = locale == 'fr' ? programme.titleFr : (locale == 'ar' ? programme.titleAr : (locale == 'it' ? programme.titleIt : programme.titleEn)) %}
+    {% set duree = locale == 'fr' ? programme.dureeFr : (locale == 'ar' ? programme.dureeAr : (locale == 'it' ? programme.dureeIt : programme.dureeEn)) %}
+    {% set description = locale == 'fr' ? programme.descriptionFr : (locale == 'ar' ? programme.descriptionAr : (locale == 'it' ? programme.descriptionIt : programme.descriptionEn)) %}
+    {% set included = locale == 'fr' ? programme.includedFr : (locale == 'ar' ? programme.includedAr : (locale == 'it' ? programme.includedIt : programme.includedEn)) %}
+    {% set excluded = locale == 'fr' ? programme.excludedFr : (locale == 'ar' ? programme.excludedAr : (locale == 'it' ? programme.excludedIt : programme.excludedEn)) %}
+    {% set galleryImages = programme.images is not empty ? programme.images : [programme.image] %}
+
+    <!--====== Start Hero Gallery Slider (with overlaid big bold title) ======-->
+  <section class="detail-hero">
+    <div class="detail-hero-bg bg_cover" style="background-image: url('{{ programme.image starts with 'http' ? programme.image : asset('assets/images/service/' ~ programme.image) }}');"></div>
+    <div class="detail-hero-haze"></div>
+    <div class="detail-hero-overlay-content">
+        <span class="detail-hero-eyebrow">
+            {% if programme.destination %}{{ programme.destination }}{% endif %}
+        </span>
+        <h1 class="detail-hero-title">{{ title }}</h1>
+        <ul class="detail-hero-badges">
+            <li><i class="far fa-clock"></i> {{ duree }}</li>
+            <li>
+                <i class="far fa-tag"></i>
+                {% if programme.price %}
+                    {{ 'program.price_from'|trans }} {{ programme.price }}
+                {% else %}
+                    {{ 'program.price_on_request'|trans }}
+                {% endif %}
+            </li>
+            {% if programme.type %}
+                <li><i class="far fa-compass"></i> {{ programme.type }}</li>
+            {% endif %}
+        </ul>
+    </div>
+</section><!--====== End Hero Gallery Slider ======-->
+
+        <!--====== Start Photo Gallery Slider Section ======-->
+    {% if galleryImages|length > 1 %}
+        <section class="detail-photo-gallery-section">
+            <div class="container">
+                <h3 class="detail-section-heading">{{ 'detail_page.gallery_title'|trans }}</h3>
+                <div class="row align-items-center">
+                    <div class="col-lg-7 mb-30">
+                        <div class="detail-photo-gallery-slider">
+                            {% for img in galleryImages %}
+                                <div class="single-slider">
+                                    <div class="image-layer bg_cover" style="background-image: url('{{ img starts with 'http' ? img : asset('assets/images/service/' ~ img) }}');"></div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+<div class="col-lg-5 mb-30">
+    <div class="detail-gallery-panel">
+        <span class="detail-gallery-panel-eyebrow">
+            {% if programme.destination %}{{ programme.destination }}{% endif %}
+        </span>
+        <h4 class="detail-gallery-panel-title">{{ title }}</h4>
+        <ul class="detail-gallery-panel-meta">
+            <li><i class="far fa-clock"></i> {{ duree }}</li>
+            <li>
+                <i class="far fa-tag"></i>
+                {% if programme.price %}
+                    {{ 'program.price_from'|trans }} {{ programme.price }}
+                {% else %}
+                    {{ 'program.price_on_request'|trans }}
+                {% endif %}
+            </li>
+        </ul>
+        {% if programme.type %}
+            <ul class="detail-gallery-panel-tags">
+                <li><i class="far fa-compass"></i> {{ programme.type }}</li>
+            </ul>
+        {% endif %}
+    </div>
+</div>
+                </div>
+            </div>
+        </section>
+    {% endif %}<!--====== End Photo Gallery Slider Section ======-->
+
+    <!--====== Start Full Itinerary + Sidebar Section ======-->
+<section class="detail-content-section">
+    <div class="container">
+        <div class="detail-itinerary-card">
+            <h3 class="detail-section-heading">{{ 'detail_page.itinerary_title'|trans }}</h3>
+            <p class="detail-itinerary-text">{{ description }}</p>
+        </div>
+    </div>
+</section><!--====== End Full Itinerary + Sidebar Section ======-->
+
+    <!--====== Start Map Section ======-->
+    <section class="detail-map-section">
+        <div class="container">
+            <h3 class="detail-section-heading">{{ 'detail_page.map_title'|trans }}</h3>
+            <div class="map-box detail-map-box">
+                <iframe
+                    src="https://maps.google.com/maps?q={{ programme.destination|default('Tunisie')|url_encode }}&t=&z=8&ie=UTF8&iwloc=&output=embed"
+                    allowfullscreen loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section><!--====== End Map Section ======-->
+
+    <!--====== Start Reviews Section ======-->
+    <section class="detail-reviews-section">
+        <div class="container">
+            <h3 class="detail-section-heading">{{ 'detail_page.reviews_title'|trans }}</h3>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="detail-review-card">
+                        <div class="author-title">
+                            <h3 class="title">{{ 'testimonial.client1.name'|trans }}</h3>
+                            <p class="position">{{ 'testimonial.client1.country'|trans }}</p>
+                        </div>
+                        <p>{{ 'testimonial.client1.comment'|trans }}</p>
+                        <ul class="ratings">
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="detail-review-card">
+                        <div class="author-title">
+                            <h3 class="title">{{ 'testimonial.client2.name'|trans }}</h3>
+                            <p class="position">{{ 'testimonial.client2.country'|trans }}</p>
+                        </div>
+                        <p>{{ 'testimonial.client2.comment'|trans }}</p>
+                        <ul class="ratings">
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Reviews Section ======-->
+
+    <!--====== Start CTA Section ======-->
+   <section class="detail-cta-section" style="background-image: url('{{ asset('assets/images/bg/cta-bg-1.png') }}');">
+    <div class="detail-cta-overlay"></div>
+    <div class="container text-center" style="position: relative; z-index: 1;">
+        <h2 class="detail-cta-heading">{{ title }}</h2>
+<!-- Book This Tour → Contact Page -->
+<a href="{{ path('app_font_contact') }}" class="main-btn detail-cta-book-btn">
+    {{ 'detail_page.book_now'|trans }}
+    <i class="far fa-angle-double-right"></i>
+</a>
+<!-- Request a Personalized Quote → Quote Page -->
+<a href="{{ path('app_font_quote') }}" class="main-btn btn-green">
+    {{ 'detail_page.request_quote'|trans }}
+    <i class="far fa-angle-double-right"></i>
+</a>
+        <div class="mt-30">
+            <a href="{{ path('programmes') }}" class="detail-cta-back-link">
+                {{ 'detail_page.back_to_list'|trans }}
+            </a>
+        </div>
+    </div>
+</section><!--====== End CTA Section ======-->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('.detail-photo-gallery-slider').slick({
+                dots: false,
+                arrows: true,
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                speed: 800,
+                fade: true,
+                cssEase: 'ease-in-out',
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                prevArrow: '<div class="prev"><i class="far fa-arrow-left"></i></div>',
+                nextArrow: '<div class="next"><i class="far fa-arrow-right"></i></div>'
+            });
+        });
+    </script>
+{% endblock %}

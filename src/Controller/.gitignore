@@ -1,0 +1,13 @@
+/.env
+/.env.test
+/.env.local
+/.env.*.local
+
+/vendor/
+/var/
+
+/.idea/
+/.vscode/
+
+.phpunit.result.cache
+.phpunit.cache/

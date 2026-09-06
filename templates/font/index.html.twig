@@ -1,0 +1,536 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    {% set locale = app.request.locale %}
+
+    <!--====== Start Banner Section ======-->
+    <section class="banner-section">
+        <div class="hero-wrapper-one p-r z-1">
+            <div class="hero-dots"></div>
+            <div class="hero-slider-one">
+                <!--====== Single Slider ======-->
+                <div class="single-slider p-r z-1" data-title={{ 'hero.sub'|trans }}>
+                    <div class="image-layer bg_cover" style="background-image: url(assets/images/service/12.jpeg);"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="hero-content text-white">
+                                    <span class="sub-title" data-animation="fadeInDown" data-delay=".4s"><span class="number">01</span>{{ 'hero.sub'|trans }}</span>
+                                    <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
+                                    <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
+                                    <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
+                                        <!-- Discover our trips → Programmes page -->
+                                        <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                        <!-- Book now → Contact page -->
+                                        <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== Single Slider ======-->
+                <div class="single-slider p-r z-1" data-title={{ 'hero.adv'|trans }}>
+                    <div class="image-layer bg_cover" style="background-image: url(assets/images/hero/hero-slider-two.jpg);"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="hero-content text-white">
+                                    <span class="sub-title" data-animation="fadeInDown" data-delay=".4s"><span class="number">02</span>{{ 'hero.sub'|trans }}</span>
+                                    <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
+                                    <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
+                                    <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
+                                        <!-- Discover our trips → Programmes page -->
+                                        <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                        <!-- Book now → Contact page -->
+                                        <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Banner Section ======-->
+
+    <!--====== Start Hero Search Form (built into the hero banner, overlapping its bottom edge) ======-->
+    <div class="container p-r z-2">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-11">
+<div class="hero-area-form mt-minus-130 wow fadeInUp">
+    <div class="adventure-hero-form">
+        <span>{{ 'booking.subtitle'|trans }}</span>
+        <form method="post" action="{{ path('app_book_adventure_submit') }}" class="row align-items-end">
+           <div class="col-lg-3 col-md-6">
+                <div class="form_group">
+                    <select class="form_control" name="destination" required>
+                        <option data-display="{{ 'booking.destination'|trans }}" value="">{{ 'booking.destination'|trans }}</option>
+                        <option value="douz">Douz</option>
+                        <option value="djerba">Djerba</option>
+                        <option value="tozeur">Tozeur</option>
+                        <option value="tataouine">Tataouine</option>
+                        <option value="ksar-ghilane">Ksar Ghilane</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="form_group">
+                    <input type="text" class="form_control datepicker" name="date" placeholder="{{ 'booking.date'|trans }}" required>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="form_group">
+                    <input type="text" class="form_control" name="duree" placeholder="{{ 'booking.duration'|trans }}" required>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <div class="form_group">
+                    <input type="number" min="1" class="form_control" name="guests" placeholder="{{ 'booking.guests'|trans }}" required>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-12">
+                <div class="form_group">
+                    <button class="main-btn btn-green" type="submit">
+                        <i class="far fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+            </div>
+        </div>
+    </div><!--====== End Hero Search Form ======-->
+
+    <!--====== Start Circuits Vedettes Section ======-->
+    <section class="services-section pt-90 pb-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-10">
+                    <div class="section-title text-center mb-50 wow fadeInDown">
+                        <span class="sub-title">
+                            <span class="number">02</span>{{ 'services.subtitle'|trans }}
+                        </span>
+                        <h2>
+                            {{ 'services.title'|trans }}
+                            <span class="thin">{{ 'services.title2'|trans }}</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                {% for programme in featuredProgrammes %}
+                    <div class="col-xl-4 col-md-6 col-sm-12">
+                        <div class="single-service-item mb-30 wow fadeInUp">
+                            <div class="img-holder">
+                           <img src="{{ programme.image starts with 'http' ? programme.image : asset('assets/images/service/' ~ programme.image) }}" alt="{{ programme.titleFr }}">
+                                <div class="shape"></div>
+                            </div>
+                            <div class="text">
+                                <h3 class="title">
+                                    <a href="{{ path('programmes') }}">
+                                        {% if locale == 'fr' %}
+                                            {{ programme.titleFr }}
+                                        {% elseif locale == 'ar' %}
+                                            {{ programme.titleAr }}
+                                        {% elseif locale == 'it' %}
+                                            {{ programme.titleIt }}
+                                        {% else %}
+                                            {{ programme.titleEn }}
+                                        {% endif %}
+                                    </a>
+                                </h3>
+                                <ul class="tour-meta-list">
+                                    <li>
+                                        <i class="far fa-clock"></i>
+                                        {% if locale == 'fr' %}
+                                            {{ programme.dureeFr }}
+                                        {% elseif locale == 'ar' %}
+                                            {{ programme.dureeAr }}
+                                        {% elseif locale == 'it' %}
+                                            {{ programme.dureeIt }}
+                                        {% else %}
+                                            {{ programme.dureeEn }}
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        <i class="far fa-tag"></i>
+                                        {% if programme.price %}
+                                            {{ 'program.price_from'|trans }} {{ programme.price }}
+                                        {% else %}
+                                            {{ 'program.price_on_request'|trans }}
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                                <p class="short-desc">
+                                    {% if locale == 'fr' %}
+                                        {{ programme.shortDescriptionFr }}
+                                    {% elseif locale == 'ar' %}
+                                        {{ programme.shortDescriptionAr }}
+                                    {% elseif locale == 'it' %}
+                                        {{ programme.shortDescriptionIt }}
+                                    {% else %}
+                                        {{ programme.shortDescriptionEn }}
+                                    {% endif %}
+                                </p>
+                                <div class="meta">
+                              <a href="{{ path('programme_detail', {'id': programme.id}) }}" class="view-track-btn">
+    {{ 'program.view_circuit'|trans }}
+                                        <i class="far fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-12 text-center">
+                        <p>No programs found.</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <a href="{{ path('programmes') }}" class="main-btn btn-green">
+                        {{ 'program.view_all'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Circuits Vedettes Section ======-->
+
+    <!--====== Start Pourquoi Nous Choisir Section (4 blocs) ======-->
+    <section class="features-section pt-95 pb-50">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-10">
+                    <div class="section-title text-center mb-50 wow fadeInDown">
+                        <span class="sub-title"><span class="number">03</span> {{ 'why.subtitle'|trans }}</span>
+                        <h2>{{ 'why.title'|trans }} <span class="thin">{{ 'why.title2'|trans }}</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <div class="fancy-icon-box mb-40 wow fadeInUp">
+                        <div class="icon">
+                            <i class="flaticon-tent-4"></i>
+                        </div>
+                        <div class="text">
+                            <h5 class="title">{{ 'why.item1.title'|trans }}</h5>
+                            <p>{{ 'why.item1.desc'|trans }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <div class="fancy-icon-box mb-40 wow fadeInUp">
+                        <div class="icon">
+                            <i class="flaticon-hiking"></i>
+                        </div>
+                        <div class="text">
+                            <h5 class="title">{{ 'why.item2.title'|trans }}</h5>
+                            <p>{{ 'why.item2.desc'|trans }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <div class="fancy-icon-box mb-40 wow fadeInUp">
+                        <div class="icon">
+                            <i class="flaticon-branch"></i>
+                        </div>
+                        <div class="text">
+                            <h5 class="title">{{ 'why.item3.title'|trans }}</h5>
+                            <p>{{ 'why.item3.desc'|trans }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <div class="fancy-icon-box mb-40 wow fadeInUp">
+                        <div class="icon">
+                            <i class="flaticon-campfire"></i>
+                        </div>
+                        <div class="text">
+                            <h5 class="title">{{ 'why.item4.title'|trans }}</h5>
+                            <p>{{ 'why.item4.desc'|trans }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Pourquoi Nous Choisir Section ======-->
+
+    <!--====== Start About Section ======-->
+    <section class="about-section pt-100 pb-50">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-image-box text-lg-end pr-lg-30 mb-50 wow fadeInLeft">
+                        <img src="assets/images/about/about-1.jpg" alt="About Image">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content-box pl-lg-50 mb-50 wow fadeInRight">
+                        <div class="section-title mb-20">
+                            <span class="sub-title"><span class="number">04</span>{{ 'about.subtitle'|trans }}</span>
+                            <h2>
+                                {{ 'about.title'|trans }}
+                                <span class="thin">{{ 'about.title2'|trans }}</span>
+                            </h2>
+                        </div>
+
+                        <p class="mb-30">{{ 'about.description'|trans }}</p>
+
+                        <ul class="check-style-one mb-35">
+                            <li><i class="flaticon-draw-check-mark"></i>{{ 'about.item1'|trans }}</li>
+                            <li><i class="flaticon-draw-check-mark"></i>{{ 'about.item2'|trans }}</li>
+                            <li><i class="flaticon-draw-check-mark"></i>{{ 'about.item3'|trans }}</li>
+                        </ul>
+
+                        <!-- Learn more → About page -->
+                        <a href="{{ path('app_font_about') }}" class="main-btn btn-yellow">
+                            {{ 'about.button'|trans }}
+                            <i class="far fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End About Section ======-->
+
+    <!--====== Start Video Section ======-->
+    <section class="video-bg-section pt-140 pb-210 p-r z-1 bg_cover" style="background-image: url(assets/images/video/video-1.jpg);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="video-content-box text-white mb-40 wow fadeInLeft">
+                        <h2 class="mb-30">{{ 'video.title'|trans }}</h2>
+                        <!-- Removed Watch Video and Start buttons -->
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="play-box text-lg-end mb-40 wow fadeInRight">
+                        <!-- Play button opens video2 in popup -->
+                     <a href="https://res.cloudinary.com/dy13axswo/video/upload/v1788696626/baroudeurs/videos/video2.mp4" class="video-popup"><i class="fas fa-play"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Video Section ======-->
+
+    <!--====== Start Fun Section ======-->
+    <section class="fun-fact mt-minus-100 plr-5p p-r z-2">
+        <div class="container-fluid">
+            <div class="fun-wrapper mt-minus-100 p-r z-2 bg_cover pt-60 pb-20 light-gray-bg" style="background-image: url(assets/images/bg/fun-bg-1.png);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="counter-item mb-30 d-flex justify-content-center wow fadeInUp">
+                                <div class="counter-inner-item">
+                                    <div class="icon"><i class="flaticon-hiking"></i></div>
+                                    <div class="text">
+                                        <h2><span class="count">365</span>+</h2>
+                                        <p>{{ 'counter.travelers'|trans }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="counter-item mb-30 d-flex justify-content-center wow fadeInUp">
+                                <div class="counter-inner-item">
+                                    <div class="icon"><i class="flaticon-tent-1"></i></div>
+                                    <div class="text">
+                                        <h2><span class="count">135</span>+</h2>
+                                        <p>{{ 'counter.tours'|trans }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="counter-item mb-30 d-flex justify-content-center wow fadeInUp">
+                                <div class="counter-inner-item">
+                                    <div class="icon"><i class="flaticon-branch"></i></div>
+                                    <div class="text">
+                                        <h2><span class="count">5</span>+</h2>
+                                        <p>{{ 'counter.experience'|trans }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="counter-item mb-30 d-flex justify-content-center wow fadeInUp">
+                                <div class="counter-inner-item">
+                                    <div class="icon"><i class="flaticon-tent-2"></i></div>
+                                    <div class="text">
+                                        <h2><span class="count">85</span>+</h2>
+                                        <p>{{ 'counter.camps'|trans }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Fun Section ======-->
+
+    <!--====== Start Gallery Section ======-->
+    <section class="gallery-section pt-90">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+               <div class="col-xl-6 col-lg-10">
+                    <div class="section-title text-center mb-50 wow fadeInDown">
+                        <span class="sub-title">
+                            <span class="number">05</span>{{ 'gallery.subtitle'|trans }}
+                        </span>
+                        <h2>
+                            {{ 'gallery.title'|trans }}
+                            <span class="thin">{{ 'gallery.title2'|trans }}</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-slider-one wow fadeInUp">
+                <div class="gallery-item">
+                    <div class="gallery-img">
+                        <img src="assets/images/gallery/gl-1.jpg" alt="Gallery Image">
+                        <div class="hover-overlay">
+                            <div class="hover-content text-center text-white">
+                                <a href="{{ path('app_font_gallery') }}" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-img">
+                        <img src="assets/images/gallery/gl-2.jpg" alt="Gallery Image">
+                        <div class="hover-overlay">
+                            <div class="hover-content text-center text-white">
+                                <a href="{{ path('app_font_gallery') }}" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-img">
+                        <img src="assets/images/gallery/gl-3.jpg" alt="Gallery Image">
+                        <div class="hover-overlay">
+                            <div class="hover-content text-center text-white">
+                                <a href="{{ path('app_font_gallery') }}" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-img">
+                        <img src="assets/images/gallery/gl-4.jpg" alt="Gallery Image">
+                        <div class="hover-overlay">
+                            <div class="hover-content text-center text-white">
+                                <a href="{{ path('app_font_gallery') }}" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-img">
+                        <img src="assets/images/gallery/gl-3.jpg" alt="Gallery Image">
+                        <div class="hover-overlay">
+                            <div class="hover-content text-center text-white">
+                                <a href="{{ path('app_font_gallery') }}" class="icon-btn"><i class="far fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Gallery Section ======-->
+
+    <!--====== Start Feedback / Testimonials Section ======-->
+    <section class="feedback-section pt-100">
+        <div class="container">
+            <div class="feedback-wrapper-one">
+                <div class="row align-items-center">
+                    <div class="col-lg-5">
+                        <div class="feedback-content-box wow fadeInLeft">
+                            <div class="section-title mb-45">
+                                <span class="sub-title">
+                                    <span class="number">06</span>{{ 'testimonial.subtitle'|trans }}
+                                </span>
+                                <h2>
+                                    {{ 'testimonial.title'|trans }}
+                                    <span class="thin">{{ 'testimonial.title2'|trans }}</span>
+                                </h2>
+                            </div>
+                            <div class="testimonial-arrows mb-45"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="testimonial-wrapper wow fadeInRight">
+                            <div class="testimonial-slider-one">
+                                <div class="single-testimonial-item text-center">
+                                    <div class="testimonial-content">
+                                        <div class="author-title">
+                                            <h3 class="title">{{ 'testimonial.client1.name'|trans }}</h3>
+                                            <p class="position">{{ 'testimonial.client1.country'|trans }}</p>
+                                        </div>
+                                        <p>{{ 'testimonial.client1.comment'|trans }}</p>
+                                        <ul class="ratings">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="single-testimonial-item text-center">
+                                    <div class="testimonial-content">
+                                        <div class="author-title-thumb d-inline-flex">
+                                            <div class="author-thumb">
+                                                <img src="assets/images/testimonial/author-thumb-1.jpg" alt="Author Thumb">
+                                            </div>
+                                            <div class="author-title">
+                                                <h3 class="title">{{ 'testimonial.client2.name'|trans }}</h3>
+                                                <p class="position">{{ 'testimonial.client2.country'|trans }}</p>
+                                            </div>
+                                        </div>
+                                        <p>{{ 'testimonial.client2.comment'|trans }}</p>
+                                        <ul class="ratings">
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Feedback Section ======-->
+
+    <!--====== Start Demander un Devis Section ======-->
+    <section class="dark-black-bg text-white pt-90 pb-90">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <div class="section-title mb-30">
+                        <h2>{{ 'devis.title'|trans }}</h2>
+                        <p class="mt-20">{{ 'devis.text'|trans }}</p>
+                    </div>
+                    <!-- Request a free quote → Quote page -->
+                    <a href="{{ path('app_font_quote') }}" class="main-btn btn-yellow">
+                        {{ 'devis.button'|trans }}
+                        <i class="far fa-angle-double-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Demander un Devis Section ======-->
+{% endblock %}

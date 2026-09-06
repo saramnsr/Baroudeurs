@@ -1,0 +1,182 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'quote_page.title'|trans }}{% endblock %}
+
+{% block body %}
+    {% set locale = app.request.locale %}
+
+    <!-- Flash Messages -->
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: #28a745; color: #fff; padding: 15px 25px; border-radius: 8px; box-shadow: 0px 5px 30px rgba(0,0,0,0.2); z-index: 10000;">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 15px; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: #dc3545; color: #fff; padding: 15px 25px; border-radius: 8px; box-shadow: 0px 5px 30px rgba(0,0,0,0.2); z-index: 10000;">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 15px; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+
+    <!--====== Start Banner Section ======-->
+    <section class="page-banner light-red-bg pt-170 pb-170 bg_cover" style="background-image: url('{{ asset('assets/images/bg/features-bg-1.jpg') }}');">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="page-banner-content text-center text-white">
+                        <h1 class="page-title">{{ 'quote_page.title'|trans }}</h1>
+                        <ul class="breadcrumb-link text-white">
+                            <li><a href="{{ path('app_font_index') }}">{{ 'quote_page.breadcrumb_home'|trans }}</a></li>
+                            <li class="active">{{ 'quote_page.title'|trans }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Banner Section ======-->
+
+    <!--====== Start Intro Section ======-->
+    <section class="pt-80 pb-40">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <p style="font-size: 28px; line-height: 40px; color: #3B281C; font-weight: 700; letter-spacing: 0.5px;">
+                        {{ 'quote_page.intro'|trans }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Intro Section ======-->
+
+    <!--====== Start Quote Form Section with Background Image ======-->
+    <section class="pt-20 pb-80 bg_cover" style="background-image: url('{{ asset('assets/images/bg/cta-bg-1.png') }}');">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- White overlay for the form -->
+                    <div style="background: rgba(255,255,255,0.92); padding: 50px; border-radius: 20px; box-shadow: 0px 10px 60px rgba(59,40,28,0.1);">
+                        <h3 style="margin-bottom: 10px; color: #3B281C; text-align: center;">{{ 'quote_page.form_title'|trans }}</h3>
+                        <p style="text-align: center; color: #5B4636; margin-bottom: 30px;">{{ 'quote_page.form_subtitle'|trans }}</p>
+                        
+                        <form method="post" action="{{ path('app_quote_submit') }}">
+                            <div class="row">
+                                <!-- Left Column -->
+                                <div class="col-md-6">
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.last_name'|trans }} <span style="color: #dc3545;">*</span></label>
+                                        <input type="text" name="lastName" placeholder="{{ 'quote_page.last_name_placeholder'|trans }}" required style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C;">
+                                    </div>
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.first_name'|trans }} <span style="color: #dc3545;">*</span></label>
+                                        <input type="text" name="firstName" placeholder="{{ 'quote_page.first_name_placeholder'|trans }}" required style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C;">
+                                    </div>
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.email'|trans }} <span style="color: #dc3545;">*</span></label>
+                                        <input type="email" name="email" placeholder="{{ 'quote_page.email_placeholder'|trans }}" required style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C;">
+                                    </div>
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.telephone'|trans }} <span style="color: #dc3545;">*</span></label>
+                                        <input type="tel" name="telephone" placeholder="{{ 'quote_page.telephone_placeholder'|trans }}" required style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C;">
+                                    </div>
+                                </div>
+                                
+                                <!-- Right Column -->
+                                <div class="col-md-6">
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.circuit'|trans }}</label>
+                                        <select name="circuit" style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C;">
+                                            <option value="">{{ 'quote_page.circuit_select'|trans }}</option>
+                                            {% for programme in programmes %}
+                                                <option value="{{ programme.id }}">
+                                                    {% if locale == 'fr' %}{{ programme.titleFr }}
+                                                    {% elseif locale == 'ar' %}{{ programme.titleAr }}
+                                                    {% elseif locale == 'it' %}{{ programme.titleIt }}
+                                                    {% else %}{{ programme.titleEn }}
+                                                    {% endif %}
+                                                </option>
+                                            {% endfor %}
+                                            <option value="custom">{{ 'quote_page.circuit_custom'|trans }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.departure_location'|trans }}</label>
+                                        <input type="text" name="departureLocation" placeholder="{{ 'quote_page.departure_location_placeholder'|trans }}" style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C;">
+                                    </div>
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.arrival_location'|trans }}</label>
+                                        <input type="text" name="arrivalLocation" placeholder="{{ 'quote_page.arrival_location_placeholder'|trans }}" style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Full Width Row -->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.start_date'|trans }}</label>
+                                        <input type="date" name="startDate" style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C;">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.end_date'|trans }}</label>
+                                        <input type="date" name="endDate" style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C;">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.duration'|trans }}</label>
+                                        <input type="number" name="duration" placeholder="{{ 'quote_page.duration_placeholder'|trans }}" min="1" style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C;">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.participants'|trans }}</label>
+                                        <input type="number" name="participants" placeholder="{{ 'quote_page.participants_placeholder'|trans }}" min="1" style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-20">
+                                        <label style="display: block; margin-bottom: 5px; color: #3B281C; font-weight: 500;">{{ 'quote_page.specific_requests'|trans }}</label>
+                                        <textarea name="specificRequests" rows="4" placeholder="{{ 'quote_page.specific_requests_placeholder'|trans }}" style="width: 100%; padding: 12px 15px; border: 1px solid #e0d5c8; border-radius: 8px; background: #fff; color: #3B281C; resize: vertical;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="main-btn" style="padding: 16px 50px; background: #C8A97E; color: #3B281C; border: none; border-radius: 30px; font-weight: 600; font-size: 18px; transition: all 0.3s ease;">
+                                        <i class="fas fa-paper-plane" style="margin-right: 10px;"></i>
+                                        {{ 'quote_page.send_button'|trans }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Quote Form Section ======-->
+
+    <!--====== Start CTA Section ======-->
+    <section class="detail-cta-section" style="background-image: url('{{ asset('assets/images/bg/fun-bg-1.png') }}');">
+        <div class="detail-cta-overlay"></div>
+        <div class="container text-center" style="position: relative; z-index: 1;">
+            <h2 class="detail-cta-heading">{{ 'devis.title'|trans }}</h2>
+            <p style="color:#3B281C; margin-bottom:30px;">{{ 'devis.text'|trans }}</p>
+            <a href="{{ path('app_font_contact') }}" class="main-btn btn-green">
+                {{ 'devis.button'|trans }}
+                <i class="far fa-angle-double-right"></i>
+            </a>
+        </div>
+    </section><!--====== End CTA Section ======-->
+{% endblock %}
