@@ -9,14 +9,18 @@
     <section class="banner-section">
         <div class="hero-wrapper-one p-r z-1">
             <div class="hero-dots"></div>
+            <div class="hero-slider-one-nav">
+    <button type="button" class="hero-nav-btn prev" aria-label="Previous slide"><i class="fal fa-chevron-left"></i></button>
+<button type="button" class="hero-nav-btn next" aria-label="Next slide"><i class="fal fa-chevron-right"></i></button>
+</div>
             <div class="hero-slider-one">
                 <!--====== Single Slider ======-->
                 <div class="single-slider p-r z-1" data-title={{ 'hero.sub'|trans }}>
-                    <div class="image-layer bg_cover" style="background-image: url(assets/images/service/12.jpeg);"></div>
+                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-slider-one.jpg') }});"></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
-                                <div class="hero-content text-white">
+                                <div class="hero-content text-white text-center">
                                     <span class="sub-title" data-animation="fadeInDown" data-delay=".4s"><span class="number">01</span>{{ 'hero.sub'|trans }}</span>
                                     <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
                                     <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
@@ -33,11 +37,11 @@
                 </div>
                 <!--====== Single Slider ======-->
                 <div class="single-slider p-r z-1" data-title={{ 'hero.adv'|trans }}>
-                    <div class="image-layer bg_cover" style="background-image: url(assets/images/hero/hero-slider-two.jpg);"></div>
+                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-slider-two.jpg') }});"></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
-                                <div class="hero-content text-white">
+                                <div class="hero-content text-white text-center">
                                     <span class="sub-title" data-animation="fadeInDown" data-delay=".4s"><span class="number">02</span>{{ 'hero.sub'|trans }}</span>
                                     <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
                                     <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
@@ -55,6 +59,7 @@
             </div>
         </div>
     </section><!--====== End Banner Section ======-->
+
 
     <!--====== Start Hero Search Form (built into the hero banner, overlapping its bottom edge) ======-->
     <div class="container p-r z-2">
@@ -533,4 +538,24 @@
             </div>
         </div>
     </section><!--====== End Demander un Devis Section ======-->
+{% endblock %}
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                if (window.jQuery) {
+                    jQuery('.hero-nav-btn.prev').on('click', function () {
+                        jQuery('.hero-slider-one').slick('slickPrev');
+                    });
+                    jQuery('.hero-nav-btn.next').on('click', function () {
+                        jQuery('.hero-slider-one').slick('slickNext');
+                    });
+                }
+            }, 300);
+        });
+    </script>
 {% endblock %}
