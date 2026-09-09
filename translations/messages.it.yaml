@@ -328,3 +328,11 @@ blog_page:
 
 
 success_message: "La tua richiesta è stata inviata con successo! Ti risponderemo il prima possibile."
+
+
+
+excursions:
+  subtitle: "Le Nostre Escursioni"
+  title: "Le Nostre Migliori"
+  title2: "Escursioni"
+  discover: "Scopri"

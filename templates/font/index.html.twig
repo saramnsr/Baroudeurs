@@ -170,8 +170,8 @@
         </div>
     </div><!--====== End Hero Search Form ======-->
 
-    <!--====== Start Circuits Vedettes Section ======-->
-    <section class="services-section pt-90 pb-100">
+       <!--====== Start Circuits Section ======-->
+    <section class="circuits-section pt-90 pb-60">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-10">
@@ -188,72 +188,42 @@
             </div>
 
             <div class="row justify-content-center">
-                {% for programme in featuredProgrammes %}
-                    <div class="col-xl-4 col-md-6 col-sm-12">
-                        <div class="single-service-item mb-30 wow fadeInUp">
-                            <div class="img-holder">
-                           <img src="{{ programme.image starts with 'http' ? programme.image : asset('assets/images/service/' ~ programme.image) }}" alt="{{ programme.titleFr }}">
-                                <div class="shape"></div>
+                {% for programme in featuredProgrammes|slice(0, 3) %}
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="circuit-card mb-30 wow fadeInUp">
+                            <div class="circuit-card-img">
+                                <img src="{{ programme.image starts with 'http' ? programme.image : asset('assets/images/service/' ~ programme.image) }}" alt="{{ programme.titleFr }}">
                             </div>
-                            <div class="text">
-                                <h3 class="title">
-                                    <a href="{{ path('programmes') }}">
-                                        {% if locale == 'fr' %}
-                                            {{ programme.titleFr }}
-                                        {% elseif locale == 'ar' %}
-                                            {{ programme.titleAr }}
-                                        {% elseif locale == 'it' %}
-                                            {{ programme.titleIt }}
-                                        {% else %}
-                                            {{ programme.titleEn }}
+                            <div class="circuit-card-body">
+                                <ul class="circuit-stars">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                </ul>
+                                <h3 class="circuit-card-title">
+                                    <a href="{{ path('programme_detail', {'id': programme.id}) }}">
+                                        {% if locale == 'fr' %}{{ programme.titleFr }}
+                                        {% elseif locale == 'ar' %}{{ programme.titleAr }}
+                                        {% elseif locale == 'it' %}{{ programme.titleIt }}
+                                        {% else %}{{ programme.titleEn }}
                                         {% endif %}
                                     </a>
                                 </h3>
-                                <ul class="tour-meta-list">
-                                    <li>
-                                        <i class="far fa-clock"></i>
-                                        {% if locale == 'fr' %}
-                                            {{ programme.dureeFr }}
-                                        {% elseif locale == 'ar' %}
-                                            {{ programme.dureeAr }}
-                                        {% elseif locale == 'it' %}
-                                            {{ programme.dureeIt }}
-                                        {% else %}
-                                            {{ programme.dureeEn }}
-                                        {% endif %}
-                                    </li>
-                                    <li>
-                                        <i class="far fa-tag"></i>
-                                        {% if programme.price %}
-                                            {{ 'program.price_from'|trans }} {{ programme.price }}
-                                        {% else %}
-                                            {{ 'program.price_on_request'|trans }}
-                                        {% endif %}
-                                    </li>
-                                </ul>
-                                <p class="short-desc">
-                                    {% if locale == 'fr' %}
-                                        {{ programme.shortDescriptionFr }}
-                                    {% elseif locale == 'ar' %}
-                                        {{ programme.shortDescriptionAr }}
-                                    {% elseif locale == 'it' %}
-                                        {{ programme.shortDescriptionIt }}
-                                    {% else %}
-                                        {{ programme.shortDescriptionEn }}
+                                <p class="circuit-card-desc">
+                                    {% if locale == 'fr' %}{{ programme.shortDescriptionFr }}
+                                    {% elseif locale == 'ar' %}{{ programme.shortDescriptionAr }}
+                                    {% elseif locale == 'it' %}{{ programme.shortDescriptionIt }}
+                                    {% else %}{{ programme.shortDescriptionEn }}
                                     {% endif %}
                                 </p>
-                                <div class="meta">
-                              <a href="{{ path('programme_detail', {'id': programme.id}) }}" class="view-track-btn">
-    {{ 'program.view_circuit'|trans }}
-                                        <i class="far fa-arrow-right"></i>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
                 {% else %}
                     <div class="col-12 text-center">
-                        <p>No programs found.</p>
+                        <p>No circuits found.</p>
                     </div>
                 {% endfor %}
             </div>
@@ -266,7 +236,54 @@
                 </div>
             </div>
         </div>
-    </section><!--====== End Circuits Vedettes Section ======-->
+    </section><!--====== End Circuits Section ======-->
+
+
+
+        <!--====== Start Excursions Section ======-->
+    <section class="excursions-section pt-40 pb-100" id="excursions">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-10">
+                    <div class="section-title text-center mb-50 wow fadeInDown">
+                        <span class="sub-title">
+                            <span class="number">03</span>{{ 'excursions.subtitle'|trans }}
+                        </span>
+                        <h2>
+                            {{ 'excursions.title'|trans }}
+                            <span class="thin">{{ 'excursions.title2'|trans }}</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="excursion-grid">
+                {% for excursion in featuredExcursions %}
+                    <a href="{{ path('programme_detail', {'id': excursion.id}) }}" class="excursion-card {{ loop.index <= 2 ? 'excursion-card-large' : 'excursion-card-small' }}">
+                        <div class="excursion-card-bg" style="background-image: url({{ excursion.image starts with 'http' ? excursion.image : asset('assets/images/' ~ excursion.image) }});"></div>
+                        <div class="excursion-card-overlay"></div>
+                        <div class="excursion-card-content">
+                            <h3>
+                                {% if locale == 'fr' %}{{ excursion.titleFr }}
+                                {% elseif locale == 'ar' %}{{ excursion.titleAr }}
+                                {% elseif locale == 'it' %}{{ excursion.titleIt }}
+                                {% else %}{{ excursion.titleEn }}
+                                {% endif %}
+                            </h3>
+                            <span class="excursion-card-subtitle">
+                                {% if locale == 'fr' %}{{ excursion.dureeFr }}
+                                {% elseif locale == 'ar' %}{{ excursion.dureeAr }}
+                                {% elseif locale == 'it' %}{{ excursion.dureeIt }}
+                                {% else %}{{ excursion.dureeEn }}
+                                {% endif %}
+                            </span>
+                        </div>
+                        <span class="excursion-discover-btn">{{ 'excursions.discover'|trans }}</span>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section><!--====== End Excursions Section ======-->
 
     <!--====== Start Pourquoi Nous Choisir Section (4 blocs) ======-->
     <section class="features-section pt-95 pb-50">

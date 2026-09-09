@@ -39,9 +39,12 @@ class FontController extends AbstractController
     {
         $programmes = $this->programmeRepository->findAll();
         $featuredProgrammes = $this->programmeRepository->findFeatured(5);
+        $featuredExcursions = $this->programmeRepository->findBy(['type' => 'Excursion Vedette'], null, 5);
+
         return $this->render('font/index.html.twig', [
             'programmes' => $programmes,
             'featuredProgrammes' => $featuredProgrammes,
+            'featuredExcursions' => $featuredExcursions,
         ]);
     }
 

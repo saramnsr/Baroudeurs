@@ -306,3 +306,10 @@ blog_page:
 
 
 success_message: "Votre demande a été envoyée avec succès ! Nous vous recontacterons dans les plus brefs délais."
+
+
+excursions:
+  subtitle: "Nos excursions"
+  title: "Nos meilleures"
+  title2: "excursions"
+  discover: "Découvrir"

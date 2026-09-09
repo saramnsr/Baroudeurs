@@ -7014,4 +7014,274 @@ input:focus, textarea:focus {
 @keyframes flashSlideIn {
   from { opacity: 0; transform: translate(-50%, -20px); }
   to { opacity: 1; transform: translate(-50%, 0); }
+}/* ===== Circuits Section — card style matching Image 1 ===== */
+.circuit-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease-out 0s;
+}
+.circuit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.1);
+}
+
+.circuit-card-img {
+  border-radius: 16px;
+  overflow: hidden;
+  height: 260px;
+}
+.circuit-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.circuit-card:hover .circuit-card-img img {
+  transform: scale(1.05);
+}
+
+.circuit-card-body {
+  padding: 20px 5px 0;
+}
+
+.circuit-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+.circuit-stars li i {
+  color: #F7921E;
+  font-size: 14px;
+}
+
+.circuit-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.circuit-card-title a {
+  color: #1C231F;
+}
+.circuit-card-title a:hover {
+  color: #63AC45;
+}
+
+.circuit-card-desc {
+  font-size: 15px;
+  line-height: 24px;
+  color: #5B4636;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}/* ===== Circuits section — floating text, section title & button colors ===== */
+
+/* 1. Remove card container feel — text floats under the image, no card background/shadow */
+.circuit-card {
+  background-color: transparent;
+  border-radius: 0;
+  overflow: visible;
+}
+.circuit-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+.circuit-card-img {
+  border-radius: 16px;
+  overflow: hidden;
+  height: 260px;
+}
+.circuit-card-body {
+  padding: 20px 0 0;
+  background-color: transparent;
+}
+
+/* 2. Section title color */
+.circuits-section .section-title span.sub-title,
+.circuits-section .section-title h2,
+.circuits-section .section-title h2 span.thin {
+  color: #1C231F;
+}
+
+/* 3. "View All Programs" button */
+.circuits-section .main-btn.btn-green {
+  background-color: #63AC45;
+  color: #FFFFFF;
+}
+.circuits-section .main-btn.btn-green:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+
+
+/* ===== Excursions Section — asymmetric grid matching reference image ===== */
+.excursion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 220px;
+  gap: 20px;
+}
+.excursion-card-large {
+  grid-row: span 2;
+}
+.excursion-card-small {
+  grid-row: span 1;
+}
+
+@media (min-width: 768px) {
+  .excursion-grid {
+    grid-template-columns: repeat(2, 1fr) 1fr 1fr 1fr;
+    grid-template-rows: repeat(2, 220px);
+  }
+  .excursion-card-large:nth-child(1) {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+  }
+  .excursion-card-large:nth-child(2) {
+    grid-column: 3 / 6;
+    grid-row: 1 / 2;
+  }
+  .excursion-card-small:nth-child(3) {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+  .excursion-card-small:nth-child(4) {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+  }
+  .excursion-card-small:nth-child(5) {
+    grid-column: 4 / 6;
+    grid-row: 2 / 3;
+  }
+}
+
+.excursion-card {
+  position: relative;
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+  text-decoration: none;
+}
+
+.excursion-card-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+.excursion-card:hover .excursion-card-bg {
+  transform: scale(1.06);
+}
+
+.excursion-card-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(28,35,31,0.55) 0%, rgba(28,35,31,0.15) 40%, rgba(28,35,31,0.55) 100%);
+}
+
+.excursion-card-content {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  z-index: 2;
+}
+.excursion-card-content h3 {
+  color: #FFFFFF;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.excursion-card-small .excursion-card-content h3 {
+  font-size: 20px;
+}
+.excursion-card-subtitle {
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+  font-weight: 400;
+  display: block;
+}
+
+.excursion-discover-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2;
+  background-color: #F7921E;
+  color: #1C231F;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 22px;
+  border-radius: 4px;
+  transition: all 0.3s ease-out 0s;
+}
+.excursion-card:hover .excursion-discover-btn {
+  background-color: #1C231F;
+  color: #FFFFFF;
+}
+
+
+/* ===== Excursions — bigger cards + green Discover button ===== */
+.excursion-grid {
+  grid-auto-rows: 280px;
+}
+@media (min-width: 768px) {
+  .excursion-grid {
+    grid-template-rows: repeat(2, 280px);
+  }
+}
+
+.excursion-discover-btn {
+  background-color: #63AC45;
+  color: #FFFFFF;
+}
+.excursion-card:hover .excursion-discover-btn {
+  background-color: #1C231F;
+  color: #FFFFFF;
+}
+
+
+/* ===== Bigger circuit cards + text ===== */
+.circuit-card-img {
+  height: 320px;
+}
+.circuit-card-title {
+  font-size: 26px;
+}
+.circuit-card-desc {
+  font-size: 17px;
+  line-height: 27px;
+}
+.circuit-stars li i {
+  font-size: 16px;
+}
+
+/* ===== Bigger excursion cards + text ===== */
+.excursion-grid {
+  grid-auto-rows: 340px;
+}
+@media (min-width: 768px) {
+  .excursion-grid {
+    grid-template-rows: repeat(2, 340px);
+  }
+}
+.excursion-card-content h3 {
+  font-size: 32px;
+}
+.excursion-card-small .excursion-card-content h3 {
+  font-size: 24px;
+}
+.excursion-card-subtitle {
+  font-size: 17px;
+}
+.excursion-discover-btn {
+  font-size: 16px;
+  padding: 12px 26px;
 }
