@@ -1432,167 +1432,240 @@ button {
 .hero-content .hero-button .btn-link {
   color: #E8D0A8;
 }
-/* Hero Form  */
+/* ===== Booking Form — full-width, professional inputs, modern datepicker ===== */
+
 .hero-area-form {
-  background-color: #E8D0A8;
-  padding: 73px 60px 80px;
-  border-radius: 20px;
+  background-color: #FFFFFF;
+  padding: 45px 40px;
+  border-radius: 12px;
+  box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 @media (max-width: 767px) {
   .hero-area-form {
-    padding: 73px 30px 80px;
+    padding: 30px 20px;
   }
-}
-.hero-area-form .adventure-hero-form span {
-  font-weight: 500;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-.hero-area-form .adventure-hero-form label {
-  position: absolute;
-  top: 55px;
-  right: 25px;
-}
-.hero-area-form .adventure-hero-form .nice-select, .hero-area-form .adventure-hero-form .form_control {
-  height: 60px;
-  border: 1px solid rgba(59, 40, 28, 0.15);
-  -webkit-box-shadow: 0px 10px 60px rgba(59, 40, 28, 0.10);
-          box-shadow: 0px 10px 60px rgba(59, 40, 28, 0.10);
-  border-radius: 5px;
-  margin-bottom: 32px;
-  padding: 0 25px;
-}
-.hero-area-form .adventure-hero-form .nice-select {
-  line-height: 60px;
-}
-.hero-area-form .adventure-hero-form .nice-select:after {
-  right: 25px;
-}
-.hero-area-form .adventure-hero-form .main-btn {
-  width: 100%;
 }
 
-/* Hero wrapper  */
-.hero-wrapper-one .hero-dots {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 17%;
-  z-index: 3;
+.hero-area-form .booking-form-row {
+  width: 100%;
+  margin-left: -10px;
+  margin-right: -10px;
 }
-@media (max-width: 1199px) {
-  .hero-wrapper-one .hero-dots {
-    right: 5%;
-  }
+.hero-area-form .booking-form-row > div {
+  padding-left: 10px;
+  padding-right: 10px;
 }
-.hero-wrapper-one .hero-dots .slick-dots li {
+
+.hero-area-form .adventure-hero-form span {
+  display: none;
+}
+
+/* Label row: icon on the LEFT, title text right after it */
+.hero-area-form .field-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #1C231F;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.hero-area-form .field-label i {
+  color: #8FAB45;
+  font-size: 16px;
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+}
+
+.hero-area-form .form_group {
+  position: relative;
+}
+
+/* Professional inputs — uniform size, centered text/placeholder */
+.hero-area-form .form_control,
+.hero-area-form select.form_control {
+  height: 56px;
+  width: 100%;
+  border: 1.5px solid #E3E1DC;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  margin-bottom: 0;
+  padding: 0 18px;
+  background-color: #F2F1EE;
+  color: #5B4636;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 56px;
+  display: flex;
+  align-items: center;
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease-out 0s, background-color 0.3s ease-out 0s;
+}
+.hero-area-form select.form_control {
+  line-height: 56px;
+}
+.hero-area-form input.form_control {
   display: block;
 }
-.hero-wrapper-one .hero-dots .slick-dots li:not(:last-child) {
-  margin-bottom: 25px;
+.hero-area-form input.form_control::placeholder {
+  color: #9A9690;
+  opacity: 1;
 }
-.hero-wrapper-one .hero-dots .slick-dots li a {
-  position: relative;
-  color: #E8D0A8;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 23px;
-  -webkit-transition: all 0.3s ease-out 0s;
+.hero-area-form .form_control:focus,
+.hero-area-form select.form_control:focus {
+  border-color: #8FAB45;
+  background-color: #FFFFFF;
+  outline: none;
+}
+
+.hero-area-form .form_group label {
+  display: none;
+}
+
+.booking-submit-btn {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #63AC45;
+  border: 1px solid #63AC45;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+  cursor: pointer;
   transition: all 0.3s ease-out 0s;
+  box-sizing: border-box;
 }
-.hero-wrapper-one .hero-dots .slick-dots li a:hover:after {
-  width: 100%;
+.booking-submit-btn i {
+  color: #FFFFFF;
 }
-.hero-wrapper-one .hero-dots .slick-dots li a:after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  content: "";
-  width: 0%;
-  height: 1px;
-  background-color: #E8D0A8;
-  -webkit-transition: all 0.4s ease-out 0s;
-  transition: all 0.4s ease-out 0s;
+.booking-submit-btn:hover {
+  background-color: #1C231F;
+  border-color: #1C231F;
+  color: #FFFFFF;
 }
-.hero-wrapper-one .hero-dots .slick-dots li.slick-active a {
-  -webkit-margin-start: -15px;
-          margin-inline-start: -15px;
-}
-.hero-wrapper-one .hero-dots .slick-dots li.slick-active a:after {
-  width: 100%;
-}
-.hero-wrapper-one .single-slider {
-  padding: 205px 0 210px;
-}
-@media (max-width: 767px) {
-  .hero-wrapper-one .single-slider {
-    padding: 155px 0 160px;
+
+@media (max-width: 991px) {
+  .hero-area-form .col-lg-3,
+  .hero-area-form .col-lg-2 {
+    margin-bottom: 20px;
   }
 }
 
-.hero-wrapper-two .single-slider {
-  padding: 308px 0 360px;
+/* ===== jQuery UI Datepicker — modern theme override ===== */
+.ui-datepicker {
+  width: 300px;
+  padding: 18px;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0px 20px 60px rgba(28, 35, 31, 0.18);
+  background-color: #FFFFFF;
+  font-family: "Prompt", sans-serif;
 }
-@media (max-width: 767px) {
-  .hero-wrapper-two .single-slider {
-    padding: 208px 0 260px;
-  }
+.ui-datepicker .ui-datepicker-header {
+  background: none;
+  border: none;
+  padding: 0 0 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
-.hero-wrapper-three {
-  background-color: #3B281C;
-  padding-top: 270px;
+.ui-datepicker .ui-datepicker-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: #1C231F;
 }
-@media (max-width: 767px) {
-  .hero-wrapper-three {
-    padding-top: 170px;
-  }
-}
-.hero-wrapper-three .shape {
-  position: absolute;
-  z-index: -1;
-}
-.hero-wrapper-three .shape.hero-shape {
-  top: 80px;
-  left: 70px;
-}
-.hero-wrapper-three .hero-content {
-  margin-bottom: 90px;
-}
-@media only screen and (min-width: 1200px) and (max-width: 1600px) {
-  .hero-wrapper-three .hero-content h1 {
-    font-size: 100px;
-  }
-}
-.hero-wrapper-three .hero-area-form {
-  position: relative;
-  min-width: 690px;
-  margin-bottom: -50px;
-  z-index: 2;
-}
-@media only screen and (min-width: 1200px) and (max-width: 1600px) {
-  .hero-wrapper-three .hero-area-form {
-    min-width: 580px;
-  }
-}
-@media (max-width: 1199px) {
-  .hero-wrapper-three .hero-area-form {
-    min-width: 100%;
-  }
-}
-.hero-wrapper-three .video-wrapper {
-  min-height: 730px;
-}
-.hero-wrapper-three .video-wrapper:after {
-  position: absolute;
-  content: "";
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #F2F1EE;
+  cursor: pointer;
   top: 0;
-  left: 0;
+  transition: background-color 0.2s ease-out 0s;
+}
+.ui-datepicker .ui-datepicker-prev:hover,
+.ui-datepicker .ui-datepicker-next:hover {
+  background-color: #8FAB45;
+}
+.ui-datepicker .ui-datepicker-prev:hover .ui-icon,
+.ui-datepicker .ui-datepicker-next:hover .ui-icon {
+  filter: brightness(0) invert(1);
+}
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+  margin: 0;
+  top: 8px;
+  left: 8px;
+}
+.ui-datepicker table {
   width: 100%;
-  height: 100%;
-  background-color: rgba(59, 40, 28, 0.20);
-  z-index: -1;
+  border-collapse: collapse;
+  margin: 0;
+}
+.ui-datepicker th {
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #9A9690;
+  text-align: center;
+}
+.ui-datepicker td {
+  padding: 2px;
+  text-align: center;
+}
+.ui-datepicker td a,
+.ui-datepicker td span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1C231F;
+  text-decoration: none;
+  transition: all 0.2s ease-out 0s;
+  background: none;
+  border: none;
+}
+.ui-datepicker td a:hover {
+  background-color: #F2F1EE;
+}
+.ui-datepicker td .ui-state-active {
+  background-color: #8FAB45 !important;
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+.ui-datepicker td .ui-datepicker-today a {
+  border: 1.5px solid #8FAB45;
+}
+.ui-datepicker-calendar .ui-datepicker-week-end a {
+  color: #C96B3C;
+}/* Nudge the select dropdown arrow slightly left, for destination & programme fields */
+.hero-area-form select.form_control {
+  padding-right: 40px;
+}
+
+.hero-area-form .nice-select:after {
+  right: 22px !important;
 }
 
 /* page banner  */
@@ -6875,4 +6948,70 @@ input:focus, textarea:focus {
 }
 .hero-content.text-center .hero-button .main-btn.btn-link:hover {
   color: #F7921E !important;
+}
+
+
+
+/* ===== Header — new menu spacing + scroll background ===== */
+.header-navigation.transparent-header.scrolled {
+  background-color: #1C231F !important;
+  padding: 15px 0;
+}
+
+
+/* Logo — bumped up further */
+.header-navigation .site-branding {
+  max-width: 300px !important;
+}
+.header-navigation .site-branding img {
+  max-height: 130px !important;
+  width: auto !important;
+}
+
+/* ===== Flash messages (booking/contact confirmation) ===== */
+.site-flash-message {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.15);
+  max-width: 90%;
+  animation: flashSlideIn 0.4s ease-out;
+}
+.site-flash-success {
+  background-color: #63AC45;
+  color: #FFFFFF;
+}
+.site-flash-error {
+  background-color: #C96B3C;
+  color: #FFFFFF;
+}
+.site-flash-warning {
+  background-color: #F7921E;
+  color: #FFFFFF;
+}
+.flash-close {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.8;
+}
+.flash-close:hover {
+  opacity: 1;
+}
+@keyframes flashSlideIn {
+  from { opacity: 0; transform: translate(-50%, -20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
 }

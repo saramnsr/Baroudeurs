@@ -352,23 +352,42 @@ class FontController extends AbstractController
         ]);
     }
 
-      /**
+    /**
      * @Route("/book-adventure/submit", name="app_book_adventure_submit", methods={"POST"})
      */
     public function submitBookAdventure(Request $request): Response
     {
         $destination = $request->request->get('destination');
+        $programmeId = $request->request->get('programme');
         $date = $request->request->get('date');
-        $duration = $request->request->get('duree');
         $guests = $request->request->get('guests');
-        
-        if (empty($destination) || empty($date) || empty($duration) || empty($guests)) {
+
+        if (empty($destination) || empty($programmeId) || empty($date) || empty($guests)) {
             $this->addFlash('error', 'Please fill in all required fields.');
             return $this->redirectToRoute('app_font_index');
         }
-        
+
+        $programmeTitle = 'N/A';
+        $programme = $this->programmeRepository->find($programmeId);
+        if ($programme) {
+            $locale = $request->getLocale();
+            switch ($locale) {
+                case 'fr':
+                    $programmeTitle = $programme->getTitleFr();
+                    break;
+                case 'ar':
+                    $programmeTitle = $programme->getTitleAr();
+                    break;
+                case 'it':
+                    $programmeTitle = $programme->getTitleIt();
+                    break;
+                default:
+                    $programmeTitle = $programme->getTitleEn();
+            }
+        }
+
         $mail = new PHPMailer(true);
-        
+
         try {
             // Gmail SMTP settings
             $mail->isSMTP();
@@ -378,37 +397,36 @@ class FontController extends AbstractController
             $mail->Username   = 'takamuramhatli@gmail.com';     // ← YOUR Gmail
             $mail->Password   = 'iiwb djvx ctpd ooej';       // ← YOUR App Password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            
+
             $mail->setFrom('noreply@baroudeursdedesert.com', 'Baroudeurs du Désert');
             $mail->addAddress('contact@baroudeursdedesert.com');      // ← Company email
-            
+
             $mail->isHTML(false);
             $mail->Subject = 'New Booking Request - Baroudeurs du Désert';
             $mail->Body    = "
             =====================================
             NEW BOOKING REQUEST
             =====================================
-            
+
             Destination: {$destination}
+            Programme: {$programmeTitle}
             Date: {$date}
-            Duration: {$duration}
             Number of Guests: {$guests}
-            
+
             -------------------------------------
             Submitted from: Website Booking Form
             Date Submitted: " . date('Y-m-d H:i:s') . "
             =====================================
             ";
-            
+
             $mail->send();
             $this->addFlash('success', 'Your booking request has been sent successfully! We will contact you shortly.');
         } catch (Exception $e) {
             $this->addFlash('error', "Message could not be sent. Error: {$mail->ErrorInfo}");
         }
-        
+
         return $this->redirectToRoute('app_font_index');
     }
-
   /**
  * @Route("/newsletter/subscribe", name="app_newsletter_subscribe", methods={"POST"})
  */

@@ -10,11 +10,11 @@
         <div class="hero-wrapper-one p-r z-1">
             <div class="hero-dots"></div>
             <div class="hero-slider-one-nav">
-    <button type="button" class="hero-nav-btn prev" aria-label="Previous slide"><i class="fal fa-chevron-left"></i></button>
-<button type="button" class="hero-nav-btn next" aria-label="Next slide"><i class="fal fa-chevron-right"></i></button>
-</div>
+                <button type="button" class="hero-nav-btn prev" aria-label="Previous slide"><i class="fal fa-chevron-left"></i></button>
+                <button type="button" class="hero-nav-btn next" aria-label="Next slide"><i class="fal fa-chevron-right"></i></button>
+            </div>
             <div class="hero-slider-one">
-                <!--====== Single Slider ======-->
+                <!--====== Single Slider 1 ======-->
                 <div class="single-slider p-r z-1" data-title={{ 'hero.sub'|trans }}>
                     <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-slider-one.jpg') }});"></div>
                     <div class="container">
@@ -25,9 +25,7 @@
                                     <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
                                     <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
                                     <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
-                                        <!-- Discover our trips → Programmes page -->
                                         <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
-                                        <!-- Book now → Contact page -->
                                         <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
                                     </div>
                                 </div>
@@ -35,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <!--====== Single Slider ======-->
+                <!--====== Single Slider 2 ======-->
                 <div class="single-slider p-r z-1" data-title={{ 'hero.adv'|trans }}>
                     <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-slider-two.jpg') }});"></div>
                     <div class="container">
@@ -46,9 +44,64 @@
                                     <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
                                     <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
                                     <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
-                                        <!-- Discover our trips → Programmes page -->
                                         <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
-                                        <!-- Book now → Contact page -->
+                                        <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== Single Slider 3 ======-->
+                <div class="single-slider p-r z-1" data-title={{ 'hero.sub'|trans }}>
+                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-slider-three.jpg') }});"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="hero-content text-white text-center">
+                                    <span class="sub-title" data-animation="fadeInDown" data-delay=".4s"><span class="number">03</span>{{ 'hero.sub'|trans }}</span>
+                                    <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
+                                    <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
+                                    <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
+                                        <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                        <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== Single Slider 4 ======-->
+                <div class="single-slider p-r z-1" data-title={{ 'hero.adv'|trans }}>
+                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-two_slider-1.jpg') }});"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="hero-content text-white text-center">
+                                    <span class="sub-title" data-animation="fadeInDown" data-delay=".4s"><span class="number">04</span>{{ 'hero.sub'|trans }}</span>
+                                    <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
+                                    <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
+                                    <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
+                                        <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                        <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== Single Slider 5 ======-->
+                <div class="single-slider p-r z-1" data-title={{ 'hero.sub'|trans }}>
+                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-two_slider-2.jpg') }});"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="hero-content text-white text-center">
+                                    <span class="sub-title" data-animation="fadeInDown" data-delay=".4s"><span class="number">05</span>{{ 'hero.sub'|trans }}</span>
+                                    <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
+                                    <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
+                                    <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
+                                        <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
                                         <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
                                     </div>
                                 </div>
@@ -60,53 +113,60 @@
         </div>
     </section><!--====== End Banner Section ======-->
 
-
-    <!--====== Start Hero Search Form (built into the hero banner, overlapping its bottom edge) ======-->
-    <div class="container p-r z-2">
-        <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-11">
-<div class="hero-area-form mt-minus-130 wow fadeInUp">
-    <div class="adventure-hero-form">
-        <span>{{ 'booking.subtitle'|trans }}</span>
-        <form method="post" action="{{ path('app_book_adventure_submit') }}" class="row align-items-end">
-           <div class="col-lg-3 col-md-6">
-                <div class="form_group">
-                    <select class="form_control" name="destination" required>
-                        <option data-display="{{ 'booking.destination'|trans }}" value="">{{ 'booking.destination'|trans }}</option>
-                        <option value="douz">Douz</option>
-                        <option value="djerba">Djerba</option>
-                        <option value="tozeur">Tozeur</option>
-                        <option value="tataouine">Tataouine</option>
-                        <option value="ksar-ghilane">Ksar Ghilane</option>
-                    </select>
+    <!--====== Start Hero Search Form ======-->
+    <div class="container-fluid p-r z-2">
+        <div class="hero-area-form mt-minus-130 wow fadeInUp">
+            <form method="post" action="{{ path('app_book_adventure_submit') }}" class="row align-items-end booking-form-row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="form_group">
+                        <span class="field-label"><i class="fas fa-map-marker-alt"></i>{{ 'booking.destination'|trans }}</span>
+                        <select class="form_control" name="destination" required>
+                            <option value="">{{ 'booking.destination_placeholder'|trans }}</option>
+                            <option value="douz">Douz</option>
+                            <option value="djerba">Djerba</option>
+                            <option value="tozeur">Tozeur</option>
+                            <option value="tataouine">Tataouine</option>
+                            <option value="ksar-ghilane">Ksar Ghilane</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="form_group">
-                    <input type="text" class="form_control datepicker" name="date" placeholder="{{ 'booking.date'|trans }}" required>
+                <div class="col-lg-3 col-md-6">
+                    <div class="form_group">
+                        <span class="field-label"><i class="fas fa-route"></i>{{ 'booking.programme'|trans }}</span>
+                        <select class="form_control" name="programme" required>
+                            <option value="">{{ 'booking.programme_placeholder'|trans }}</option>
+                            {% for p in programmes %}
+                                <option value="{{ p.id }}">
+                                    {% if locale == 'fr' %}{{ p.titleFr }}
+                                    {% elseif locale == 'ar' %}{{ p.titleAr }}
+                                    {% elseif locale == 'it' %}{{ p.titleIt }}
+                                    {% else %}{{ p.titleEn }}
+                                    {% endif %}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="form_group">
-                    <input type="text" class="form_control" name="duree" placeholder="{{ 'booking.duration'|trans }}" required>
+                <div class="col-lg-2 col-md-6">
+                    <div class="form_group">
+                        <span class="field-label"><i class="far fa-calendar-alt"></i>{{ 'booking.date'|trans }}</span>
+                        <input type="text" class="form_control datepicker" name="date" placeholder="{{ 'booking.date_placeholder'|trans }}" required>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-2 col-md-6">
-                <div class="form_group">
-                    <input type="number" min="1" class="form_control" name="guests" placeholder="{{ 'booking.guests'|trans }}" required>
+                <div class="col-lg-2 col-md-6">
+                    <div class="form_group">
+                        <span class="field-label"><i class="fas fa-user-friends"></i>{{ 'booking.guests'|trans }}</span>
+                        <input type="number" min="1" class="form_control" name="guests" placeholder="{{ 'booking.guests_placeholder'|trans }}" required>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-1 col-md-12">
-                <div class="form_group">
-                    <button class="main-btn btn-green" type="submit">
-                        <i class="far fa-search"></i>
-                    </button>
+                <div class="col-lg-2 col-md-12">
+                    <div class="form_group">
+                        <button class="booking-submit-btn" type="submit">
+                            {{ 'booking.button'|trans }} <i class="far fa-angle-double-right"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
-</div>
-            </div>
+            </form>
         </div>
     </div><!--====== End Hero Search Form ======-->
 
@@ -540,22 +600,46 @@
     </section><!--====== End Demander un Devis Section ======-->
 {% endblock %}
 
-
-
 {% block javascripts %}
     {{ parent() }}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             setTimeout(function () {
                 if (window.jQuery) {
+                    var $slider = jQuery('.hero-slider-one');
+
+                    // Speed up autoplay without reinitializing the whole slider
+                    if ($slider.hasClass('slick-initialized')) {
+                        $slider.slick('slickSetOption', 'autoplaySpeed', 2200, true);
+                    }
+
                     jQuery('.hero-nav-btn.prev').on('click', function () {
-                        jQuery('.hero-slider-one').slick('slickPrev');
+                        $slider.slick('slickPrev');
                     });
                     jQuery('.hero-nav-btn.next').on('click', function () {
-                        jQuery('.hero-slider-one').slick('slickNext');
+                        $slider.slick('slickNext');
                     });
                 }
             }, 300);
         });
     </script>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.flash-close').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                btn.closest('.site-flash-message').remove();
+            });
+        });
+        document.querySelectorAll('.site-flash-message').forEach(function (el) {
+            setTimeout(function () {
+                el.style.transition = 'opacity 0.4s ease-out';
+                el.style.opacity = '0';
+                setTimeout(function () { el.remove(); }, 400);
+            }, 5000);
+        });
+    });
+</script>
 {% endblock %}
+

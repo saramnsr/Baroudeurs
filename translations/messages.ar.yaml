@@ -1,3 +1,13 @@
+nav:
+  home: "الرئيسية"
+  about: "من نحن؟"
+  circuits: "الرحلات"
+  excursions: "الرحلات النهارية"
+  services: "خدماتنا"
+  blog: "المدونة"
+  contact: "اتصل بنا"
+
+
 hero:
   title: "رحلات الصحراء"
   sub: "استكشف الصحراء"
@@ -43,13 +53,15 @@ booking:
   find: "خطط لمغامرتك في الصحراء"
   subtitle: "احجز مغامرتك"
   title: "في الصحراء"
-  checkin: "تاريخ الوصول"
-  checkout: "تاريخ المغادرة"
-  guests: "عدد المشاركين"
-  button: "بحث"
   destination: "الوجهة"
+  destination_placeholder: "اختر وجهة"
+  programme: "البرنامج"
+  programme_placeholder: "اختر رحلة"
   date: "التاريخ"
-  duration: "المدة"
+  date_placeholder: "اختر تاريخًا"
+  guests: "عدد الأماكن"
+  guests_placeholder: "عدد الأشخاص"
+  button: "تحقق من التوفر"
 
 about:
   subtitle: "من نحن"
@@ -315,3 +327,7 @@ blog_page:
   article3:
     title: "وصفاتنا المفضلة في المخيم"
     excerpt: "عش تجربة المطبخ البدوي الأصيل! شاهد مرشدينا وهم يخبزون 'خبز الرمل' تحت النار، واستمتع بعشاءات تقليدية من الشوربة والكسكس والفواكه الموسمية تحت النجوم."
+
+
+
+success_message: "تم إرسال طلبك بنجاح! سنتواصل معك في أقرب وقت ممكن."

@@ -1,3 +1,12 @@
+nav:
+  home: "Accueil"
+  about: "Qui sommes-nous ?"
+  circuits: "Circuits"
+  excursions: "Excursions"
+  services: "Services"
+  blog: "Blog"
+  contact: "Contact"
+
 hero:
   title: "Voyages dans le désert"
   sub: "Explorez le Sahara"
@@ -43,13 +52,15 @@ booking:
   find: "Planifiez votre aventure dans le désert"
   subtitle: "Réservez votre aventure"
   title: "dans le Sahara"
-  checkin: "Date d'arrivée"
-  checkout: "Date de départ"
-  guests: "Nombre de personnes"
-  button: "Rechercher"
   destination: "Destination"
+  destination_placeholder: "Choisissez une destination"
+  programme: "Programme"
+  programme_placeholder: "Choisissez un circuit"
   date: "Date"
-  duration: "Durée"
+  date_placeholder: "Sélectionnez une date"
+  guests: "Nombre de places"
+  guests_placeholder: "Nombre de personnes"
+  button: "Vérifier la disponibilité"
 
 about:
   subtitle: "À propos de nous"
@@ -292,3 +303,6 @@ blog_page:
   article3:
     title: "Nos recettes préférées en bivouac"
     excerpt: "Vivez la véritable cuisine bédouine ! Regardez nos guides cuire le 'Pain de Sable' sous le feu, et savourez des dîners traditionnels de chorba, de couscous et de fruits de saison sous les étoiles."
+
+
+success_message: "Votre demande a été envoyée avec succès ! Nous vous recontacterons dans les plus brefs délais."

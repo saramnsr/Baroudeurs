@@ -1,3 +1,13 @@
+nav:
+  home: "Home"
+  about: "About Us"
+  circuits: "Circuits"
+  excursions: "Excursions"
+  services: "Services"
+  blog: "Blog"
+  contact: "Contact"
+
+
 hero:
   title: "Desert Trips"
   sub: "Explore the Sahara"
@@ -43,13 +53,15 @@ booking:
   find: "Plan Your Desert Adventure"
   subtitle: "Book Your Adventure"
   title: "in the Sahara"
-  checkin: "Check-in Date"
-  checkout: "Check-out Date"
-  guests: "Number of Guests"
-  button: "Search"
   destination: "Destination"
+  destination_placeholder: "Choose a destination"
+  programme: "Programme"
+  programme_placeholder: "Choose a tour"
   date: "Date"
-  duration: "Duration"
+  date_placeholder: "Select a date"
+  guests: "Number of Seats"
+  guests_placeholder: "Number of people"
+  button: "Check Availability"
 
 about:
   subtitle: "About Us"
@@ -313,3 +325,5 @@ blog_page:
   article3:
     title: "Our favorite recipes in bivouac"
     excerpt: "Experience true Bedouin cuisine! Watch our guides bake 'Pain de Sable' (sand bread) under the fire, and enjoy traditional dinners of Chorba soup, couscous, and seasonal fruits under the stars."
+
+  success_message: "Your request has been sent successfully! We will get back to you as soon as possible."

@@ -1,3 +1,13 @@
+nav:
+  home: "Home"
+  about: "Chi siamo?"
+  circuits: "Circuiti"
+  excursions: "Escursioni"
+  services: "Servizi"
+  blog: "Blog"
+  contact: "Contatti"
+
+
 hero:
   title: "Viaggi nel deserto"
   sub: "Esplora il Sahara"
@@ -43,13 +53,15 @@ booking:
   find: "Pianifica la tua avventura nel deserto"
   subtitle: "Prenota la tua avventura"
   title: "nel Sahara"
-  checkin: "Data di arrivo"
-  checkout: "Data di partenza"
-  guests: "Numero di partecipanti"
-  button: "Cerca"
   destination: "Destinazione"
+  destination_placeholder: "Scegli una destinazione"
+  programme: "Programma"
+  programme_placeholder: "Scegli un tour"
   date: "Data"
-  duration: "Durata"
+  date_placeholder: "Seleziona una data"
+  guests: "Numero di posti"
+  guests_placeholder: "Numero di persone"
+  button: "Verifica disponibilità"
 
 about:
   subtitle: "Chi siamo"
@@ -313,3 +325,6 @@ blog_page:
   article3:
     title: "Le nostre ricette preferite al bivacco"
     excerpt: "Vivi la vera cucina beduina! Guarda le nostre guide cuocere il 'Pane di Sabbia' sotto il fuoco e goditi cene tradizionali di chorba, couscous e frutta di stagione sotto le stelle."
+
+
+success_message: "La tua richiesta è stata inviata con successo! Ti risponderemo il prima possibile."

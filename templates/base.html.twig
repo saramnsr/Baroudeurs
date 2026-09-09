@@ -32,6 +32,15 @@
         {% endblock %}
     </head>
     <body>
+            <!--====== Flash Messages ======-->
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="site-flash-message site-flash-{{ label }}">
+                    <span>{{ message }}</span>
+                    <button type="button" class="flash-close" aria-label="Close">&times;</button>
+                </div>
+            {% endfor %}
+        {% endfor %}
         <!--====== Start Preloader ======-->
         <div class="preloader">
             <div class="loader">
@@ -80,18 +89,17 @@
                                 </form>
                             </div>
                             <!--=== Main Menu ===-->
-<nav class="main-menu">
-    <ul>
-        <li class="menu-item"><a href="{{ path('app_font_index') }}">Home</a></li>
-        <li class="menu-item has-children"><a href="{{ path('programmes') }}">Our program</a></li>
-        <li class="menu-item"><a href="{{ path('app_font_about') }}">About</a></li>
-        <li class="menu-item"><a href="{{ path('app_font_gallery') }}">Our gallery</a></li>
-        <li class="menu-item"><a href="{{ path('testimonials') }}">Testimonials</a></li>
-        <li class="menu-item"><a href="{{ path('app_font_blog') }}">Blog</a></li>
-        <li class="menu-item"><a href="{{ path('app_font_quote') }}">Quote</a></li>
-        <li class="menu-item"><a href="{{ path('app_font_contact') }}">contact us</a></li>
-    </ul>
-</nav>
+                            <nav class="main-menu">
+                                <ul>
+                                    <li class="menu-item"><a href="{{ path('app_font_index') }}">{{ 'nav.home'|trans }}</a></li>
+                                    <li class="menu-item"><a href="{{ path('app_font_about') }}">{{ 'nav.about'|trans }}</a></li>
+                                    <li class="menu-item"><a href="{{ path('programmes') }}">{{ 'nav.circuits'|trans }}</a></li>
+                                    <li class="menu-item"><a href="#">{{ 'nav.excursions'|trans }}</a></li>
+                                    <li class="menu-item"><a href="#">{{ 'nav.services'|trans }}</a></li>
+                                    <li class="menu-item"><a href="{{ path('app_font_blog') }}">{{ 'nav.blog'|trans }}</a></li>
+                                    <li class="menu-item"><a href="{{ path('app_font_contact') }}">{{ 'nav.contact'|trans }}</a></li>
+                                </ul>
+                            </nav>
                             <!--=== Nav Button ===-->
                             <div class="menu-button mt-40 d-xl-none">
                                 <a href="{{ path('app_font_contact') }}" class="main-btn btn-green">Book now<i class="far fa-angle-double-right"></i></a>
@@ -165,13 +173,13 @@
                                 <h4 class="widget-title">Links</h4>
                                 <div class="footer-nav-content">
            <ul class="footer-nav">
-                        <li><a href="{{ path('app_font_index') }}">Home</a></li>
-                        <li><a href="{{ path('programmes') }}">Our program</a></li>
-                        <li><a href="{{ path('app_font_about') }}">About</a></li>
-                        <li><a href="{{ path('app_font_blog') }}">Blog</a></li>
+                        <li><a href="{{ path('app_font_index') }}">{{ 'nav.home'|trans }}</a></li>
+                        <li><a href="{{ path('programmes') }}">{{ 'nav.circuits'|trans }}</a></li>
+                        <li><a href="{{ path('app_font_about') }}">{{ 'nav.about'|trans }}</a></li>
+                        <li><a href="{{ path('app_font_blog') }}">{{ 'nav.blog'|trans }}</a></li>
                         <li><a href="{{ path('testimonials') }}">Testimonials</a></li>
                         <li><a href="{{ path('app_font_quote') }}">Quote</a></li>
-                        <li><a href="{{ path('app_font_contact') }}">Contact</a></li>
+                        <li><a href="{{ path('app_font_contact') }}">{{ 'nav.contact'|trans }}</a></li>
                         <li><a href="{{ path('app_font_gallery') }}">Our Gallery</a></li>
                     </ul>
                                 </div>
@@ -257,6 +265,21 @@
         <script src="{{ asset('assets/vendor/wow.min.js') }}"></script>
         <!--====== Main js ======-->
         <script src="{{ asset('assets/js/theme.js') }}"></script>
+        <!--====== Header scroll color js ======-->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var header = document.querySelector('.header-navigation.transparent-header');
+                if (header) {
+                    window.addEventListener('scroll', function () {
+                        if (window.scrollY > 50) {
+                            header.classList.add('scrolled');
+                        } else {
+                            header.classList.remove('scrolled');
+                        }
+                    });
+                }
+            });
+        </script>
         {% endblock %}
     </body>
 </html>
