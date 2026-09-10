@@ -62,6 +62,7 @@ booking:
   guests: "Numero di posti"
   guests_placeholder: "Numero di persone"
   button: "Verifica disponibilità"
+  success_message: "La tua richiesta è stata inviata con successo! Ti risponderemo il prima possibile."
 
 about:
   subtitle: "Chi siamo"
@@ -84,9 +85,9 @@ counter:
   camps: "Campi nel deserto"
 
 services:
-  subtitle: "I Nostri Servizi"
-  title: "Esplora il Sahara"
-  title2: "con esperienze uniche"
+  subtitle: "I Nostri Tour"
+  title: "Tour"
+  title2: "con Esperienze Uniche"
 
 choose:
   subtitle: "Perché sceglierci"
@@ -109,6 +110,11 @@ why:
   subtitle: "Perché sceglierci"
   title: "Perché viaggiare con"
   title2: "Baroudeurs de Désert"
+  intro: "Crediamo in viaggi su misura, lontani dai sentieri battuti, guidati da esperti che conoscono il deserto come casa propria."
+  check1: "Solo per te"
+  check2: "Il tuo ritmo"
+  check3: "Percorsi rari"
+  check4: "Vera passione"
   item1:
     title: "Tour 100% privati"
     desc: "Guida e veicolo dedicati, solo per te."
@@ -310,6 +316,7 @@ about_page:
   cta_title: "Pronto a Esplorare il Deserto?"
   cta_text: "Unisciti a noi per un'avventura indimenticabile nel Sahara tunisino"
   cta_button: "Prenota la Tua Avventura"
+
 blog_page:
   title: "Il Nostro Blog"
   breadcrumb_home: "Home"
@@ -326,13 +333,19 @@ blog_page:
     title: "Le nostre ricette preferite al bivacco"
     excerpt: "Vivi la vera cucina beduina! Guarda le nostre guide cuocere il 'Pane di Sabbia' sotto il fuoco e goditi cene tradizionali di chorba, couscous e frutta di stagione sotto le stelle."
 
-
-success_message: "La tua richiesta è stata inviata con successo! Ti risponderemo il prima possibile."
-
-
-
 excursions:
   subtitle: "Le Nostre Escursioni"
   title: "Le Nostre Migliori"
   title2: "Escursioni"
   discover: "Scopri"
+
+circuit_showcase:
+  circuit1:
+    title: "Circuito nel Deserto Douz - Tembaïne"
+    desc: "8 giorni in 4x4 tra dune infinite, Ksar Ghilane e incontri con i nomadi del Grande Sud."
+  circuit2:
+    title: "Escursione Notturna a Ksar Ghilane"
+    desc: "Villaggi berberi, il mercato di Tataouine e una notte magica nell'oasi di Ksar Ghilane."
+  circuit3:
+    title: "Escursione a Tataouine"
+    desc: "Mercato locale, il villaggio trogloditico di Chenini e il set di Star Wars a Ksar Hadada."

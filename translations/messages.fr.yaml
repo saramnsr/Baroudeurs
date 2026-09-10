@@ -61,6 +61,7 @@ booking:
   guests: "Nombre de places"
   guests_placeholder: "Nombre de personnes"
   button: "Vérifier la disponibilité"
+  success_message: "Votre demande a été envoyée avec succès ! Nous vous recontacterons dans les plus brefs délais."
 
 about:
   subtitle: "À propos de nous"
@@ -83,9 +84,9 @@ counter:
   camps: "Camps dans le désert"
 
 services:
-  subtitle: "Nos Services"
-  title: "Explorez le Sahara"
-  title2: "à travers des expériences uniques"
+  subtitle: "Nos Circuits"
+  title: "Circuits"
+  title2: "avec des expériences uniques"
 
 choose:
   subtitle: "Pourquoi nous choisir"
@@ -108,6 +109,11 @@ why:
   subtitle: "Pourquoi nous choisir"
   title: "Pourquoi voyager avec"
   title2: "Baroudeurs de Désert"
+  intro: "Nous croyons en des voyages sur mesure, loin des sentiers battus, guidés par des experts qui connaissent le désert comme leur propre maison."
+  check1: "Rien que vous"
+  check2: "Votre rythme"
+  check3: "Chemins rares"
+  check4: "Vraie passion"
   item1:
     title: "Circuits 100 % privés"
     desc: "Guide et véhicule dédiés, rien que pour vous."
@@ -304,12 +310,19 @@ blog_page:
     title: "Nos recettes préférées en bivouac"
     excerpt: "Vivez la véritable cuisine bédouine ! Regardez nos guides cuire le 'Pain de Sable' sous le feu, et savourez des dîners traditionnels de chorba, de couscous et de fruits de saison sous les étoiles."
 
-
-success_message: "Votre demande a été envoyée avec succès ! Nous vous recontacterons dans les plus brefs délais."
-
-
 excursions:
   subtitle: "Nos excursions"
   title: "Nos meilleures"
   title2: "excursions"
   discover: "Découvrir"
+
+circuit_showcase:
+  circuit1:
+    title: "Circuit Désert Douz - Tembaïne"
+    desc: "8 jours en 4x4 entre dunes infinies, Ksar Ghilane et rencontres avec les nomades du Grand Sud."
+  circuit2:
+    title: "Excursion Nuit à Ksar Ghilane"
+    desc: "Villages berbères, marché de Tataouine et une nuit magique dans l'oasis de Ksar Ghilane."
+  circuit3:
+    title: "Excursion à Tataouine"
+    desc: "Marché local, village troglodyte de Chenini et décor de Star Wars au ksar Hadada."

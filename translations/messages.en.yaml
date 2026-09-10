@@ -62,6 +62,7 @@ booking:
   guests: "Number of Seats"
   guests_placeholder: "Number of people"
   button: "Check Availability"
+  success_message: "Your request has been sent successfully! We will get back to you as soon as possible."
 
 about:
   subtitle: "About Us"
@@ -84,8 +85,8 @@ counter:
   camps: "Desert Camps"
 
 services:
-  subtitle: "Our Services"
-  title: "Explore the Sahara"
+  subtitle: "Our Tours"
+  title: "Tours"
   title2: "with Unique Experiences"
 
 choose:
@@ -109,6 +110,12 @@ why:
   subtitle: "Why Choose Us"
   title: "Why Travel With"
   title2: "Baroudeurs de Désert"
+  intro: "We believe in tailor-made journeys, far from the beaten path, guided by experts who know the desert like their own home."
+  check1: "Just yours"
+  check2: "Your pace"
+  check3: "Rare paths"
+  check4: "Real passion"
+  button: "Learn More"
   item1:
     title: "100% Private Tours"
     desc: "A dedicated guide and vehicle, just for you."
@@ -326,10 +333,19 @@ blog_page:
     title: "Our favorite recipes in bivouac"
     excerpt: "Experience true Bedouin cuisine! Watch our guides bake 'Pain de Sable' (sand bread) under the fire, and enjoy traditional dinners of Chorba soup, couscous, and seasonal fruits under the stars."
 
-  success_message: "Your request has been sent successfully! We will get back to you as soon as possible."
-
 excursions:
   subtitle: "Our Excursions"
   title: "Our Best"
   title2: "Excursions"
   discover: "Discover"
+
+circuit_showcase:
+  circuit1:
+    title: "Douz - Tembaïne Desert Circuit"
+    desc: "8 days by 4x4 through endless dunes, Ksar Ghilane, and encounters with nomads of the Great South."
+  circuit2:
+    title: "Ksar Ghilane Overnight Excursion"
+    desc: "Berber villages, the Tataouine market, and a magical night in the Ksar Ghilane oasis."
+  circuit3:
+    title: "Tataouine Excursion"
+    desc: "Local market, the troglodyte village of Chenini, and the Star Wars set at Ksar Hadada."

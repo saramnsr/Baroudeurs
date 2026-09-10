@@ -7285,3 +7285,453 @@ input:focus, textarea:focus {
   font-size: 16px;
   padding: 12px 26px;
 }
+
+
+
+/* ===== Circuit card image hover — green circle with arrow ===== */
+.circuit-card-img {
+  position: relative;
+}
+.circuit-hover-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: #A8D24C;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  opacity: 0;
+  transition: all 0.3s ease-out 0s;
+  pointer-events: none;
+}
+.circuit-card:hover .circuit-hover-arrow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
+/* ===== Circuit card image hover — dark overlay + green circle arrow ===== */
+.circuit-card-img {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark haze overlay on hover */
+.circuit-card-img::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.3s ease-out 0s;
+  z-index: 1;
+}
+.circuit-card:hover .circuit-card-img::before {
+  opacity: 1;
+}
+
+.circuit-hover-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: #A8D24C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease-out 0s;
+  pointer-events: none;
+  z-index: 2;
+}
+.circuit-hover-arrow i {
+  color: #FFFFFF;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 300;
+  transform: rotate(-45deg);
+  display: inline-block;
+}
+
+.circuit-card:hover .circuit-hover-arrow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
+.circuits-section .section-title h2 a {
+  color: #1C231F;
+  transition: color 0.3s ease-out 0s;
+}
+.circuits-section .section-title h2 a:hover {
+  color: #63AC45;
+}
+
+
+/* ===== excursion-card-bg is now an <img>, not a div ===== */
+.excursion-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease-out 0s;
+}
+
+/* Hover animation — image zooms in smoothly */
+.excursion-card:hover .excursion-card-bg {
+  transform: scale(1.08);
+}
+
+/* ===== Why Choose Us — final consolidated version ===== */
+.why-choose-section {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.why-choose-section .section-title .sub-title span.number:after {
+  background-color: #1C231F;
+}
+
+.why-choose-intro {
+  font-size: 18px;
+  line-height: 28px;
+  color: #5B4636;
+}
+
+.why-choose-content .check-style-one li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  font-size: 19px;
+  font-weight: 500;
+  color: #1C231F;
+}
+.why-choose-content .check-style-one li i {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #63AC45;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.why-choose-content .main-btn.btn-yellow {
+  background-color: #F7921E;
+  color: #FFFFFF;
+  font-size: 16px;
+  padding: 18px 34px;
+}
+.why-choose-content .main-btn.btn-yellow:hover {
+  background-color: #1C231F;
+  color: #FFFFFF;
+}
+
+/* Extra space between text column and card grid */
+.why-choose-section .row.align-items-center > .col-lg-7 {
+  padding-left: 40px;
+}
+@media (max-width: 991px) {
+  .why-choose-section .row.align-items-center > .col-lg-7 {
+    padding-left: 15px;
+    margin-top: 30px;
+  }
+}
+
+/* Grid with zigzag offset */
+.why-choose-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 18px;
+  row-gap: 18px;
+}
+
+.why-choose-card {
+  padding: 32px 22px;
+  min-height: 320px;
+  background-color: #F5F4F1;
+  border-radius: 0;
+  transition: all 0.3s ease-out 0s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.why-choose-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Card backgrounds */
+.why-choose-card-large,
+.why-choose-card:nth-child(3),
+.why-choose-card-alt {
+  background-color: #F5F4F1;
+  box-shadow: none;
+}
+
+/* Card 2 — green background, white icon + text */
+.why-choose-card-dark {
+  background-color: #63AC45 !important;
+}
+.why-choose-card-dark .icon i {
+  color: #FFFFFF !important;
+}
+.why-choose-card-dark .title,
+.why-choose-card-dark p {
+  color: #FFFFFF !important;
+}
+
+/* Zigzag offset */
+.why-choose-card-large {
+  margin-top: 0;
+}
+.why-choose-card-dark {
+  margin-top: 20px;
+}
+.why-choose-card:nth-child(3) {
+  margin-top: 0;
+}
+.why-choose-card-alt {
+  margin-top: 20px;
+}
+
+/* Icons — green by default (card 2 overridden above) */
+.why-choose-card .icon i,
+.why-choose-card:nth-child(3) .icon i {
+  color: #63AC45 !important;
+}
+.why-choose-card .title,
+.why-choose-card:nth-child(3) .title,
+.why-choose-card p,
+.why-choose-card:nth-child(3) p {
+  color: #1C231F !important;
+}
+
+.why-choose-card .icon {
+  margin-bottom: 18px;
+}
+.why-choose-card .icon i {
+  font-size: 68px;
+  transition: transform 0.4s ease-out 0s;
+}
+.why-choose-card:hover .icon i {
+  transform: scale(1.08);
+}
+
+.why-choose-card .title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.why-choose-card p {
+  font-size: 15px;
+  line-height: 24px;
+  opacity: 0.85;
+}
+
+@media (max-width: 767px) {
+  .why-choose-grid {
+    grid-template-columns: 1fr;
+  }
+  .why-choose-card-dark,
+  .why-choose-card-alt {
+    margin-top: 0;
+  }
+}/* Card 2 — white icon + text (reaffirm) */
+.why-choose-card-dark .icon i {
+  color: #FFFFFF !important;
+}
+.why-choose-card-dark .title,
+.why-choose-card-dark p {
+  color: #FFFFFF !important;
+}
+
+/* Icons slightly bigger, no card size change */
+.why-choose-card .icon i {
+  font-size: 76px;
+}/* ===== About Section — pill tags + dual overlapping images ===== */
+
+/* Pill-style tags matching reference */
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.about-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1C231F;
+}
+.about-tag i {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #63AC45;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+/* Dual overlapping image layout */
+.about-image-duo {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.about-image-duo-main {
+  flex: 0 0 60%;
+  max-width: 60%;
+}
+.about-image-duo-main img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.about-image-duo-secondary {
+  flex: 0 0 36%;
+  max-width: 36%;
+  margin-top: 50px;
+}
+.about-image-duo-secondary img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Circular icon badge sitting at the seam between the two images */
+.about-image-duo-badge {
+  position: absolute;
+  top: 45%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #63AC45;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  box-shadow: 0px 10px 30px rgba(99, 172, 69, 0.35);
+  z-index: 2;
+}
+
+@media (max-width: 991px) {
+  .about-image-duo {
+    flex-direction: column;
+  }
+  .about-image-duo-main,
+  .about-image-duo-secondary {
+    max-width: 100%;
+    flex: none;
+    margin-top: 0;
+  }
+  .about-image-duo-badge {
+    display: none;
+  }
+}/* ===== About Section — round 2 fixes ===== */
+
+/* 1. Bigger images */
+.about-image-duo-main img {
+  height: 520px;
+}
+.about-image-duo-secondary img {
+  height: 420px;
+}
+.about-image-duo-secondary {
+  margin-top: 80px;
+}
+
+/* 2. Bigger circle badge */
+.about-image-duo-badge {
+  width: 120px;
+  height: 120px;
+  font-size: 46px;
+}
+
+/* 3. Tags stacked vertically */
+.about-tags {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.about-tag {
+  width: fit-content;
+}
+
+/* 4. Orange button, white text */
+.about-content-box .main-btn.btn-yellow {
+  background-color: #F7921E;
+  color: #FFFFFF;
+}
+.about-content-box .main-btn.btn-yellow:hover {
+  background-color: #1C231F;
+  color: #FFFFFF;
+}/* ===== About Section — round 3: bigger images, square corners ===== */
+
+.about-image-duo-main img {
+  height: 580px;
+  border-radius: 0;
+}
+.about-image-duo-secondary img {
+  height: 480px;
+  border-radius: 0;
+}
+.about-image-duo-badge {
+  border-radius: 50%; /* keep circle badge round, just the photos go square */
+}
+
+
+/* Bigger badge circle + icon */
+.about-image-duo-badge {
+  width: 150px;
+  height: 150px;
+  font-size: 60px;
+}
+.about-image-duo-badge i.flaticon-tent-5 {
+  font-size: 0.65em;
+}.about-image-duo-badge i.flaticon-tent-5 {
+  font-size: 1.3em;
+}/* Two icons side by side inside the badge */
+.about-image-duo-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.about-image-duo-badge i {
+  font-size: 0.55em;
+}

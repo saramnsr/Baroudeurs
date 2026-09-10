@@ -287,11 +287,11 @@ class ProgrammeFixtures extends Fixture
 
         $manager->persist($p4);
 
-        // ============ EXCURSION 1: Appel du désert dromadaire (Cloudinary) ============
+        // ============ EXCURSION 1: Appel du désert dromadaire (Cloudinary, compressed) ============
         $e1 = new Programme();
         $e1->setTitle('Appel du Désert - Dromadaire');
         $e1->setDescription("Balade à dos de dromadaire au cœur du désert tunisien");
-        $e1->setImage('https://res.cloudinary.com/dy13axswo/image/upload/v1788560005/1_ua9uyn.jpg');
+        $e1->setImage('https://res.cloudinary.com/dy13axswo/image/upload/f_auto,q_auto/v1789040783/baroudeurs/excursions/kuw674phwztv921qnwzv.jpg');
         $e1->setDuree('1 jour');
         $e1->setEnter('Douz');
         $e1->setTitleFr('Appel du Désert - Dromadaire');
@@ -322,14 +322,14 @@ class ProgrammeFixtures extends Fixture
         $e1->setExcludedEn("✗ Meals\n✗ Drinks");
         $e1->setExcludedAr("✗ الوجبات\n✗ المشروبات");
         $e1->setExcludedIt("✗ Pasti\n✗ Bevande");
-        $e1->setImages(['https://res.cloudinary.com/dy13axswo/image/upload/v1788560005/1_ua9uyn.jpg']);
+        $e1->setImages(['https://res.cloudinary.com/dy13axswo/image/upload/f_auto,q_auto/v1789040783/baroudeurs/excursions/kuw674phwztv921qnwzv.jpg']);
         $manager->persist($e1);
 
-        // ============ EXCURSION 2: BAROUDEURS DE DESERT 15JR DROMADAIRE (Cloudinary) ============
+        // ============ EXCURSION 2: BAROUDEURS DE DESERT 15JR DROMADAIRE (Cloudinary, compressed) ============
         $e2 = new Programme();
         $e2->setTitle('Baroudeurs de Désert - 15 Jours Dromadaire');
         $e2->setDescription("Une grande traversée du désert de 15 jours à dos de dromadaire");
-        $e2->setImage('https://res.cloudinary.com/dy13axswo/image/upload/v1788609943/baroudeurs/service/Douz.jpg');
+        $e2->setImage('https://res.cloudinary.com/dy13axswo/image/upload/f_auto,q_auto/v1789039833/baroudeurs/excursions/tmsxxbazvkthqj1mkxkm.jpg');
         $e2->setDuree('15 jours / 14 nuits');
         $e2->setEnter('Douz, Sahara');
         $e2->setTitleFr('Baroudeurs de Désert - 15 Jours Dromadaire');
@@ -360,14 +360,14 @@ class ProgrammeFixtures extends Fixture
         $e2->setExcludedEn("✗ International flights\n✗ Tips");
         $e2->setExcludedAr("✗ الرحلات الجوية الدولية\n✗ البقشيش");
         $e2->setExcludedIt("✗ Voli internazionali\n✗ Mance");
-        $e2->setImages(['https://res.cloudinary.com/dy13axswo/image/upload/v1788609943/baroudeurs/service/Douz.jpg']);
+        $e2->setImages(['https://res.cloudinary.com/dy13axswo/image/upload/f_auto,q_auto/v1789039833/baroudeurs/excursions/tmsxxbazvkthqj1mkxkm.jpg']);
         $manager->persist($e2);
 
-        // ============ EXCURSION 3: Charme du désert 2jrs dromadaire (Cloudinary) ============
+        // ============ EXCURSION 3: Charme du désert 2jrs dromadaire (Cloudinary, compressed) ============
         $e3 = new Programme();
         $e3->setTitle('Charme du Désert - 2 Jours Dromadaire');
         $e3->setDescription("2 jours de balade à dos de dromadaire et bivouac sous les étoiles");
-        $e3->setImage('https://res.cloudinary.com/dy13axswo/image/upload/v1788609936/baroudeurs/service/details/Charm/2.jpg');
+        $e3->setImage('https://res.cloudinary.com/dy13axswo/image/upload/f_auto,q_auto/v1789039841/baroudeurs/excursions/haawxvspuowtvz8qfbis.jpg');
         $e3->setDuree('2 jours / 1 nuit');
         $e3->setEnter('Douz, Sahara');
         $e3->setTitleFr('Charme du Désert - 2 Jours Dromadaire');
@@ -398,10 +398,10 @@ class ProgrammeFixtures extends Fixture
         $e3->setExcludedEn("✗ Drinks\n✗ Tips");
         $e3->setExcludedAr("✗ المشروبات\n✗ البقشيش");
         $e3->setExcludedIt("✗ Bevande\n✗ Mance");
-        $e3->setImages(['https://res.cloudinary.com/dy13axswo/image/upload/v1788609936/baroudeurs/service/details/Charm/2.jpg']);
+        $e3->setImages(['https://res.cloudinary.com/dy13axswo/image/upload/f_auto,q_auto/v1789039841/baroudeurs/excursions/haawxvspuowtvz8qfbis.jpg']);
         $manager->persist($e3);
 
-        // ============ EXCURSION 4: Désert Infini 8JRS DROM (Cloudinary) ============
+        // ============ EXCURSION 4: Désert Infini 8JRS DROM (unchanged) ============
         $e4 = new Programme();
         $e4->setTitle('Désert Infini - 8 Jours Dromadaire');
         $e4->setDescription("8 jours de traversée à dos de dromadaire dans l'infini du désert tunisien");
@@ -439,11 +439,11 @@ class ProgrammeFixtures extends Fixture
         $e4->setImages(['https://res.cloudinary.com/dy13axswo/image/upload/v1788608782/baroudeurs/service/details/Circuit/4.jpg']);
         $manager->persist($e4);
 
-        // ============ EXCURSION 5: Rose de Sables 8jrs drom (Cloudinary) ============
+        // ============ EXCURSION 5: Rose de Sables 8jrs drom (Cloudinary, compressed) ============
         $e5 = new Programme();
         $e5->setTitle('Rose de Sables - 8 Jours Dromadaire');
         $e5->setDescription("8 jours de traversée à dos de dromadaire à la découverte des roses des sables");
-        $e5->setImage('https://res.cloudinary.com/dy13axswo/image/upload/v1788606072/baroudeurs/service/details/Mirage/4.jpg');
+        $e5->setImage('https://res.cloudinary.com/dy13axswo/image/upload/f_auto,q_auto/v1789040800/baroudeurs/excursions/tydi5hs3wo5w81gqnuus.jpg');
         $e5->setDuree('8 jours / 7 nuits');
         $e5->setEnter('Douz, Chott El Jerid');
         $e5->setTitleFr('Rose de Sables - 8 Jours Dromadaire');
@@ -474,7 +474,7 @@ class ProgrammeFixtures extends Fixture
         $e5->setExcludedEn("✗ International flights\n✗ Tips");
         $e5->setExcludedAr("✗ الرحلات الجوية الدولية\n✗ البقشيش");
         $e5->setExcludedIt("✗ Voli internazionali\n✗ Mance");
-        $e5->setImages(['https://res.cloudinary.com/dy13axswo/image/upload/v1788606072/baroudeurs/service/details/Mirage/4.jpg']);
+        $e5->setImages(['https://res.cloudinary.com/dy13axswo/image/upload/f_auto,q_auto/v1789040800/baroudeurs/excursions/tydi5hs3wo5w81gqnuus.jpg']);
         $manager->persist($e5);
 
         $manager->flush();
