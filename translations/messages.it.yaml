@@ -78,6 +78,7 @@ video:
   title: "Scopri la bellezza del Sahara tunisino"
   button: "Guarda il video"
 
+
 counter:
   travelers: "Viaggiatori soddisfatti"
   tours: "Tour nel deserto"
@@ -168,7 +169,8 @@ testimonial:
     comment: "Tutto era organizzato alla perfezione. Il tramonto sulle dune è stato semplicemente magico."
 
 devis:
-  title: "Hai un progetto in mente?"
+  title_normal: "Hai un"
+  title_bold: "viaggio in mente?"
   text: "Ti aiutiamo a organizzare il tuo soggiorno personalizzato in Tunisia."
   button: "Richiedi un preventivo gratuito"
 
@@ -201,6 +203,7 @@ circuits_page:
   see_detail: "Vedi dettagli"
   intro_main: "I nostri tour ed escursioni sono pensati per farvi vivere la Tunisia autentica:"
   intro_highlight: "deserto, oasi, villaggi berberi, patrimonio culturale..."
+  more_details: "Maggiori Dettagli"
 
 detail_page:
   itinerary_title: "Itinerario completo"
@@ -349,3 +352,38 @@ circuit_showcase:
   circuit3:
     title: "Escursione a Tataouine"
     desc: "Mercato locale, il villaggio trogloditico di Chenini e il set di Star Wars a Ksar Hadada."
+
+
+gallery_showcase:
+  subtitle: "I Nostri Servizi"
+  title: "Cosa Offriamo"
+  title2: "Per Ogni Avventura"
+  category: "Viaggi & Campeggio"
+  item1: "Campeggio in Tenda Classico"
+  item2: "Campeggio di Coppia"
+  item3: "Cabina Safari"
+  item4: "Campeggio in Tenda Familiare"
+  item5: "Campeggio sull'Albero"
+  item6: "Cabina Doppia di Lusso"
+
+
+tips:
+  subtitle: "News & Blog"
+  title: "Leggi Ogni"
+  title2: "Articolo e Consiglio del Blog"
+  readmore: "Leggi di Più"
+  card1:
+    tag: "Campeggio"
+    title: "Era Dicembre 2022 Edizione Desktop"
+    author: "William H. Jackson"
+    date: "23 Novembre, 2022"
+  card2:
+    tag: "Avventura"
+    title: "Costruire una Testa Dinamica Con Inter Observer"
+    author: "James D. Garcia"
+    date: "23 Novembre, 2022"
+  card3:
+    tag: "Campeggio"
+    title: "L'Ascesa del Design Thinking Come Strategia"
+    author: "Dale V. Hornback"
+    date: "23 Novembre, 2022"

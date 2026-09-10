@@ -93,7 +93,7 @@
                                 <ul>
                                     <li class="menu-item"><a href="{{ path('app_font_index') }}">{{ 'nav.home'|trans }}</a></li>
                                     <li class="menu-item"><a href="{{ path('app_font_about') }}">{{ 'nav.about'|trans }}</a></li>
-                                    <li class="menu-item"><a href="{{ path('programmes') }}">{{ 'nav.circuits'|trans }}</a></li>
+                                    <li class="menu-item"><a href="{{ path('app_font_circuits') }}">{{ 'nav.circuits'|trans }}</a></li>
                                     <li class="menu-item"><a href="#">{{ 'nav.excursions'|trans }}</a></li>
                                     <li class="menu-item"><a href="#">{{ 'nav.services'|trans }}</a></li>
                                     <li class="menu-item"><a href="{{ path('app_font_blog') }}">{{ 'nav.blog'|trans }}</a></li>
@@ -130,111 +130,110 @@
         </header><!--====== End Header ======-->
 
         {% block body %}{% endblock %}
-
-         <!--====== Start Footer ======-->
-        <footer class="footer-default dark-black-bg text-white">
-            <div class="container">
-                <div class="footer-newsletter pt-80 pb-40">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="section-title mb-30 wow fadeInLeft">
-                                <h2>Subscribe Our Newsletter<span class="thin">Get Every Update</span></h2>
+<!--====== Start Footer ======-->
+<footer class="footer-default">
+    <div class="container">
+        <div class="footer-newsletter pt-80 pb-40">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="section-title mb-30 wow fadeInLeft">
+                        <h2>Subscribe Our Newsletter<span class="thin">Get Every Update</span></h2>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="newsletter-form mb-30 wow fadeInRight">
+                        <form method="post" action="{{ path('app_newsletter_subscribe') }}">
+                            <div class="form_group">
+                                <label><i class="far fa-envelope-open"></i></label>
+                                <input type="email" name="email" class="form_control" placeholder="Email Address" required>
+                                <button type="submit" class="main-btn btn-green">Subscribe<i class="far fa-angle-double-right"></i></button>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                      <div class="newsletter-form mb-30 wow fadeInRight">
-    <form method="post" action="{{ path('app_newsletter_subscribe') }}">
-        <div class="form_group">
-            <label><i class="far fa-envelope-open"></i></label>
-            <input type="email" name="email" class="form_control" placeholder="Email Address" required>
-            <button type="submit" class="main-btn btn-green">Subscribe<i class="far fa-angle-double-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
-</div>
+        <div class="footer-widget-area pt-80 pb-30">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footer-widget about-company-widget mb-40 wow fadeInDown">
+                        <a href="{{ path('app_font_index') }}" class="footer-logo"><img src="{{ asset('assets/images/logo/main-logo.png') }}" alt="Brand Logo"></a>
+                        <p>Where the desert meets your spirit of adventure.</p>
+                        <ul class="social-link">
+                            <li><a href="https://www.facebook.com/share/1YKGE3mPCg/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="https://www.instagram.com/baroudeurs_de_desert?igsh=MWhhcHJsMGNkM3o4Yw=="><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footer-widget footer-nav-widget mb-40 wow fadeInUp">
+                        <h4 class="widget-title">Links</h4>
+                        <div class="footer-nav-content">
+                            <ul class="footer-nav">
+                                <li><a href="{{ path('app_font_index') }}">{{ 'nav.home'|trans }}</a></li>
+                                <li><a href="{{ path('app_font_circuits') }}">{{ 'nav.circuits'|trans }}</a></li>
+                                <li><a href="{{ path('app_font_about') }}">{{ 'nav.about'|trans }}</a></li>
+                                <li><a href="{{ path('app_font_blog') }}">{{ 'nav.blog'|trans }}</a></li>
+                                <li><a href="{{ path('testimonials') }}">Testimonials</a></li>
+                                <li><a href="{{ path('app_font_quote') }}">Quote</a></li>
+                                <li><a href="{{ path('app_font_contact') }}">{{ 'nav.contact'|trans }}</a></li>
+                                <li><a href="{{ path('app_font_gallery') }}">Our Gallery</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="footer-widget-area pt-80 pb-30">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="footer-widget about-company-widget mb-40 wow fadeInDown">
-                                <a href="{{ path('app_font_index') }}" class="footer-logo"><img src="{{ asset('assets/images/logo/main-logo.png') }}" alt="Brand Logo"></a>
-                                <p>Where the desert meets your spirit of adventure.</p>
-                                <ul class="social-link">
-                                    <li><a href="https://www.facebook.com/share/1YKGE3mPCg/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="https://www.instagram.com/baroudeurs_de_desert?igsh=MWhhcHJsMGNkM3o4Yw=="><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-4 col-md-6">
-                            <div class="footer-widget footer-nav-widget pl-lg-55 mb-40 wow fadeInUp">
-                                <h4 class="widget-title">Links</h4>
-                                <div class="footer-nav-content">
-           <ul class="footer-nav">
-                        <li><a href="{{ path('app_font_index') }}">{{ 'nav.home'|trans }}</a></li>
-                        <li><a href="{{ path('programmes') }}">{{ 'nav.circuits'|trans }}</a></li>
-                        <li><a href="{{ path('app_font_about') }}">{{ 'nav.about'|trans }}</a></li>
-                        <li><a href="{{ path('app_font_blog') }}">{{ 'nav.blog'|trans }}</a></li>
-                        <li><a href="{{ path('testimonials') }}">Testimonials</a></li>
-                        <li><a href="{{ path('app_font_quote') }}">Quote</a></li>
-                        <li><a href="{{ path('app_font_contact') }}">{{ 'nav.contact'|trans }}</a></li>
-                        <li><a href="{{ path('app_font_gallery') }}">Our Gallery</a></li>
-                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-4 col-md-6">
-                            <div class="footer-widget footer-nav-widget pl-lg-70 mb-40 wow fadeInUp">
-                                <h4 class="widget-title">Support</h4>
-                                <div class="footer-nav-content">
-                                    <ul class="footer-nav">
-                                        <li><a href="#">Meet Our Team</a></li>
-                                        <li><a href="#">Item Support</a></li>
-                                        <li><a href="#">Contact Foram</a></li>
-                                        <li><a href="#">Report Abuse</a></li>
-                                        <li><a href="#">Live</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="footer-widget contact-info-widget pl-lg-100 mb-40 wow fadeInDown">
-                                <div class="contact-info-box mb-35">
-                                    <h4 class="title">Location</h4>
-                                    <p><i class="far fa-map-marker-alt"></i><span>10 Avenue Habib bourgiba , 4260 Douz , Tunisia</span></p>
-                                </div>
-                                <div class="contact-info-box mb-35">
-                                    <h4 class="title">Contact</h4>
-                                    <p><i class="far fa-envelope"></i><a href="mailto:support@gmail.com">contact@baroudeursdedesert.com</a></p>
-                                    <p><i class="far fa-phone"></i><a href="tel:+000(123)4566">+(216) 24 77 72 32</a></p>
-                                </div>
-                            </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footer-widget footer-nav-widget mb-40 wow fadeInUp">
+                        <h4 class="widget-title">Support</h4>
+                        <div class="footer-nav-content">
+                            <ul class="footer-nav">
+                                <li><a href="#">Meet Our Team</a></li>
+                                <li><a href="#">Item Support</a></li>
+                                <li><a href="#">Contact Foram</a></li>
+                                <li><a href="#">Report Abuse</a></li>
+                                <li><a href="#">Live</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <!--=== Copyright Area ===-->
-                <div class="copyright-area">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="copyright-text">
-                                <p>&copy; 2023 <span style="color:#F7921E;">Vidhak</span>, All Rights Reserved</p>
-                            </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footer-widget contact-info-widget mb-40 wow fadeInDown">
+                        <div class="contact-info-box mb-35">
+                            <h4 class="title">Location</h4>
+                            <p><i class="far fa-map-marker-alt"></i><span>10 Avenue Habib bourgiba , 4260 Douz , Tunisia</span></p>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="copyright-nav float-lg-end">
-                                <ul>
-                                    <li><a href="#">Setting & Privacy</a></li>
-                                    <li><a href="#">Faqs</a></li>
-                                    <li><a href="#">Food Menu</a></li>
-                                </ul>
-                            </div>
+                        <div class="contact-info-box mb-35">
+                            <h4 class="title">Contact</h4>
+                            <p><i class="far fa-envelope"></i><a href="mailto:support@gmail.com">contact@baroudeursdedesert.com</a></p>
+                            <p><i class="far fa-phone"></i><a href="tel:+000(123)4566">+(216) 24 77 72 32</a></p>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer><!--====== End Footer ======-->
+        </div>
+        <!--=== Copyright Area ===-->
+        <div class="copyright-area">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="copyright-text">
+                        <p>&copy; 2023 <span style="color:#F7921E;">Vidhak</span>, All Rights Reserved</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="copyright-nav float-lg-end">
+                        <ul>
+                            <li><a href="#">Setting & Privacy</a></li>
+                            <li><a href="#">Faqs</a></li>
+                            <li><a href="#">Food Menu</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer><!--====== End Footer ======-->
 
         <!--====== Back To Top  ======-->
         <a href="#" class="back-to-top"><i class="far fa-angle-up"></i></a>

@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProgrammeRepository;
 use App\Repository\TestimonialRepository;
 use App\Repository\QuoteRepository;
+use App\Repository\CircuitRepository;
 use App\Entity\Testimonial;
 use App\Entity\Quote;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,15 +22,18 @@ class FontController extends AbstractController
     private ProgrammeRepository $programmeRepository;
     private TestimonialRepository $testimonialRepository;
     private QuoteRepository $quoteRepository;
+    private CircuitRepository $circuitRepository;
 
     public function __construct(
         ProgrammeRepository $programmeRepository, 
         TestimonialRepository $testimonialRepository,
-        QuoteRepository $quoteRepository
+        QuoteRepository $quoteRepository,
+        CircuitRepository $circuitRepository
     ) {
         $this->programmeRepository = $programmeRepository;
         $this->testimonialRepository = $testimonialRepository;
         $this->quoteRepository = $quoteRepository;
+        $this->circuitRepository = $circuitRepository;
     }
 
     /**
@@ -571,4 +575,19 @@ public function submitContact(Request $request): Response
     
     return $this->redirectToRoute('app_font_contact');
 }
+
+/**
+ * @Route("/circuits", name="app_font_circuits")
+ */
+public function circuits(): Response
+{
+    $circuits = $this->circuitRepository->findAllOrdered();
+    $programmes = $this->programmeRepository->findAll();
+
+    return $this->render('font/circuits.html.twig', [
+        'circuits' => $circuits,
+        'programmes' => $programmes,
+    ]);
+}
+
 }

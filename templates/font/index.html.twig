@@ -426,19 +426,20 @@
     </section><!--====== End About Section ======-->
 
     <!--====== Start Video Section ======-->
-    <section class="video-bg-section pt-140 pb-210 p-r z-1 bg_cover" style="background-image: url(assets/images/video/video-1.jpg);">
+    <section class="video-bg-section pt-140 pb-210 p-r z-1 bg_cover" style="background-image: url('{{ asset('assets/images/video/video-1.jpg') }}');">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <div class="video-content-box text-white mb-40 wow fadeInLeft">
                         <h2 class="mb-30">{{ 'video.title'|trans }}</h2>
-                        <!-- Removed Watch Video and Start buttons -->
+                        <a href="https://res.cloudinary.com/dy13axswo/video/upload/v1788696626/baroudeurs/videos/video2.mp4" class="main-btn btn-green video-popup-btn">
+                            {{ 'video.button'|trans }}<i class="far fa-angle-double-right"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="play-box text-lg-end mb-40 wow fadeInRight">
-                        <!-- Play button opens video2 in popup -->
-                     <a href="https://res.cloudinary.com/dy13axswo/video/upload/v1788696626/baroudeurs/videos/video2.mp4" class="video-popup"><i class="fas fa-play"></i></a>
+                        <a href="https://res.cloudinary.com/dy13axswo/video/upload/v1788696626/baroudeurs/videos/video2.mp4" class="video-popup"><i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </div>
@@ -448,7 +449,7 @@
     <!--====== Start Fun Section ======-->
     <section class="fun-fact mt-minus-100 plr-5p p-r z-2">
         <div class="container-fluid">
-            <div class="fun-wrapper mt-minus-100 p-r z-2 bg_cover pt-60 pb-20 light-gray-bg" style="background-image: url(assets/images/bg/fun-bg-1.png);">
+            <div class="fun-wrapper mt-minus-100 p-r z-2 bg_cover pt-60 pb-20 light-gray-bg" style="background-image: url('{{ asset('assets/images/bg/fun-bg-1.png') }}');">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-12">
@@ -456,7 +457,7 @@
                                 <div class="counter-inner-item">
                                     <div class="icon"><i class="flaticon-hiking"></i></div>
                                     <div class="text">
-                                        <h2><span class="count">365</span>+</h2>
+                                        <h2><span class="count">365</span>K+</h2>
                                         <p>{{ 'counter.travelers'|trans }}</p>
                                     </div>
                                 </div>
@@ -478,7 +479,7 @@
                                 <div class="counter-inner-item">
                                     <div class="icon"><i class="flaticon-branch"></i></div>
                                     <div class="text">
-                                        <h2><span class="count">5</span>+</h2>
+                                        <h2><span class="count">458</span>+</h2>
                                         <p>{{ 'counter.experience'|trans }}</p>
                                     </div>
                                 </div>
@@ -489,7 +490,7 @@
                                 <div class="counter-inner-item">
                                     <div class="icon"><i class="flaticon-tent-2"></i></div>
                                     <div class="text">
-                                        <h2><span class="count">85</span>+</h2>
+                                        <h2><span class="count">985</span>+</h2>
                                         <p>{{ 'counter.camps'|trans }}</p>
                                     </div>
                                 </div>
@@ -500,109 +501,107 @@
             </div>
         </div>
     </section><!--====== End Fun Section ======-->
-
-    <!--====== Start Gallery Section ======-->
-    <section class="gallery-section pt-90">
-<div class="row justify-content-center">
-    <div class="col-xl-7 col-lg-10">
-        <div class="section-title text-center mb-50 wow fadeInDown">
-            <span class="sub-title">
-                <span class="number">02</span>{{ 'services.subtitle'|trans }}
-            </span>
-            <h2>
-                <a href="{{ path('programmes') }}">
-                    {{ 'services.title'|trans }}
-                    <span class="thin">{{ 'services.title2'|trans }}</span>
-                </a>
-            </h2>
+      <!--====== Start Gallery Section ======-->
+    <section class="gallery-section pt-90 pb-90">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-10">
+                    <div class="section-title text-center mb-50 wow fadeInDown">
+                        <span class="sub-title">
+                            <span class="number">02</span>{{ 'gallery_showcase.subtitle'|trans }}
+                        </span>
+                        <h2>
+                            <a href="{{ path('programmes') }}">
+                                {{ 'gallery_showcase.title'|trans }}
+                                <span class="thin">{{ 'gallery_showcase.title2'|trans }}</span>
+                            </a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-            <div class="gallery-slider-one wow fadeInUp">
-                <div class="gallery-item">
-                    <div class="gallery-img">
-                        <img src="assets/images/gallery/gl-1.jpg" alt="Gallery Image">
-                        <div class="hover-overlay">
-                            <div class="hover-content text-center text-white">
-                                <a href="{{ path('app_font_gallery') }}" class="icon-btn"><i class="far fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+
+        <div class="showcase-slider">
+            <div class="showcase-card">
+                <img src="{{ asset('assets/images/service/service-12.jpg') }}" alt="{{ 'gallery_showcase.item1'|trans }}">
+                <div class="showcase-overlay"></div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
+                    <span class="showcase-tag-title">{{ 'gallery_showcase.item1'|trans }}</span>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">
-                        <img src="assets/images/gallery/gl-2.jpg" alt="Gallery Image">
-                        <div class="hover-overlay">
-                            <div class="hover-content text-center text-white">
-                                <a href="{{ path('app_font_gallery') }}" class="icon-btn"><i class="far fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="showcase-card">
+                <img src="{{ asset('assets/images/service/service-15.jpg') }}" alt="{{ 'gallery_showcase.item2'|trans }}">
+                <div class="showcase-overlay"></div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
+                    <span class="showcase-tag-title">{{ 'gallery_showcase.item2'|trans }}</span>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">
-                        <img src="assets/images/gallery/gl-3.jpg" alt="Gallery Image">
-                        <div class="hover-overlay">
-                            <div class="hover-content text-center text-white">
-                                <a href="{{ path('app_font_gallery') }}" class="icon-btn"><i class="far fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="showcase-card">
+                <img src="{{ asset('assets/images/service/service-14.jpg') }}" alt="{{ 'gallery_showcase.item3'|trans }}">
+                <div class="showcase-overlay"></div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
+                    <span class="showcase-tag-title">{{ 'gallery_showcase.item3'|trans }}</span>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">
-                        <img src="assets/images/gallery/gl-4.jpg" alt="Gallery Image">
-                        <div class="hover-overlay">
-                            <div class="hover-content text-center text-white">
-                                <a href="{{ path('app_font_gallery') }}" class="icon-btn"><i class="far fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="showcase-card">
+                <img src="{{ asset('assets/images/service/s-2.jpg') }}" alt="{{ 'gallery_showcase.item4'|trans }}">
+                <div class="showcase-overlay"></div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
+                    <span class="showcase-tag-title">{{ 'gallery_showcase.item4'|trans }}</span>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">
-                        <img src="assets/images/gallery/gl-3.jpg" alt="Gallery Image">
-                        <div class="hover-overlay">
-                            <div class="hover-content text-center text-white">
-                                <a href="{{ path('app_font_gallery') }}" class="icon-btn"><i class="far fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="showcase-card">
+                <img src="{{ asset('assets/images/service/ad-banner.jpg') }}" alt="{{ 'gallery_showcase.item5'|trans }}">
+                <div class="showcase-overlay"></div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
+                    <span class="showcase-tag-title">{{ 'gallery_showcase.item5'|trans }}</span>
+                </div>
+            </div>
+            <div class="showcase-card">
+                <img src="{{ asset('assets/images/service/service-13.jpg') }}" alt="{{ 'gallery_showcase.item6'|trans }}">
+                <div class="showcase-overlay"></div>
+                <div class="showcase-tags">
+                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
+                    <span class="showcase-tag-title">{{ 'gallery_showcase.item6'|trans }}</span>
                 </div>
             </div>
         </div>
     </section><!--====== End Gallery Section ======-->
+<!--====== Start Testimonial Section ======-->
+<section class="testimonial-section pt-100 pb-100 bg_cover" style="background-color: #1C231F; background-image: url('{{ asset('assets/images/bg/testimonial-bg-1.png') }}');">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-10">
+                <div class="section-title text-center text-white mb-60 wow fadeInDown">
+                    <span class="sub-title">
+                        <span class="number">05</span>{{ 'testimonial.subtitle'|trans }}
+                    </span>
+                    <h2 class="text-white">
+                        {{ 'testimonial.title'|trans }} <span class="thin">{{ 'testimonial.title2'|trans }}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
 
-    <!--====== Start Feedback / Testimonials Section ======-->
-    <section class="feedback-section pt-100">
-        <div class="container">
-            <div class="feedback-wrapper-one">
-                <div class="row align-items-center">
-                    <div class="col-lg-5">
-                        <div class="feedback-content-box wow fadeInLeft">
-                            <div class="section-title mb-45">
-                                <span class="sub-title">
-                                    <span class="number">06</span>{{ 'testimonial.subtitle'|trans }}
-                                </span>
-                                <h2>
-                                    {{ 'testimonial.title'|trans }}
-                                    <span class="thin">{{ 'testimonial.title2'|trans }}</span>
-                                </h2>
-                            </div>
-                            <div class="testimonial-arrows mb-45"></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="testimonial-wrapper wow fadeInRight">
-                            <div class="testimonial-slider-one">
-                                <div class="single-testimonial-item text-center">
-                                    <div class="testimonial-content">
-                                        <div class="author-title">
-                                            <h3 class="title">{{ 'testimonial.client1.name'|trans }}</h3>
-                                            <p class="position">{{ 'testimonial.client1.country'|trans }}</p>
-                                        </div>
-                                        <p>{{ 'testimonial.client1.comment'|trans }}</p>
-                                        <ul class="ratings">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="testimonial-text-slider">
+                    <div class="testimonial-slider-track">
+                        <div class="testimonial-slide">
+                            <div class="testimonial-text-box text-white">
+                                <div class="quote-mark">&ldquo;</div>
+                                <p class="testimonial-quote">{{ 'testimonial.client1.comment'|trans }}</p>
+                                <div class="testimonial-author">
+                                    <img src="{{ asset('assets/images/testimonial/author-thumb-1.jpg') }}" alt="{{ 'testimonial.client1.name'|trans }}" class="author-avatar">
+                                    <div class="author-info">
+                                        <h5>{{ 'testimonial.client1.name'|trans }}</h5>
+                                        <span>{{ 'testimonial.client1.country'|trans }}</span>
+                                        <ul class="testimonial-stars">
                                             <li><i class="fas fa-star"></i></li>
                                             <li><i class="fas fa-star"></i></li>
                                             <li><i class="fas fa-star"></i></li>
@@ -611,19 +610,19 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="single-testimonial-item text-center">
-                                    <div class="testimonial-content">
-                                        <div class="author-title-thumb d-inline-flex">
-                                            <div class="author-thumb">
-                                                <img src="assets/images/testimonial/author-thumb-1.jpg" alt="Author Thumb">
-                                            </div>
-                                            <div class="author-title">
-                                                <h3 class="title">{{ 'testimonial.client2.name'|trans }}</h3>
-                                                <p class="position">{{ 'testimonial.client2.country'|trans }}</p>
-                                            </div>
-                                        </div>
-                                        <p>{{ 'testimonial.client2.comment'|trans }}</p>
-                                        <ul class="ratings">
+                            </div>
+                        </div>
+
+                        <div class="testimonial-slide">
+                            <div class="testimonial-text-box text-white">
+                                <div class="quote-mark">&ldquo;</div>
+                                <p class="testimonial-quote">{{ 'testimonial.client2.comment'|trans }}</p>
+                                <div class="testimonial-author">
+                                    <img src="{{ asset('assets/images/testimonial/author-thumb-2.jpg') }}" alt="{{ 'testimonial.client2.name'|trans }}" class="author-avatar">
+                                    <div class="author-info">
+                                        <h5>{{ 'testimonial.client2.name'|trans }}</h5>
+                                        <span>{{ 'testimonial.client2.country'|trans }}</span>
+                                        <ul class="testimonial-stars">
                                             <li><i class="fas fa-star"></i></li>
                                             <li><i class="fas fa-star"></i></li>
                                             <li><i class="fas fa-star"></i></li>
@@ -637,18 +636,105 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div class="testimonial-image-box wow fadeInRight">
+                    <img src="{{ asset('assets/images/testimonial/testimonial-1.jpg') }}" alt="Testimonial">
+                </div>
+            </div>
         </div>
-    </section><!--====== End Feedback Section ======-->
+    </div>
+</section><!--====== End Testimonial Section ======-->
+<!--====== Start Tips Section ======-->
+<section class="tips-section pt-100 pb-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-10">
+                <div class="section-title text-center mb-60 wow fadeInDown">
+                    <span class="sub-title">
+                        <span class="number">06</span>{{ 'tips.subtitle'|trans }}
+                    </span>
+                    <h2>
+                        {{ 'tips.title'|trans }} <span class="thin">{{ 'tips.title2'|trans }}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
 
-    <!--====== Start Demander un Devis Section ======-->
-    <section class="dark-black-bg text-white pt-90 pb-90">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <div class="section-title mb-30">
-                        <h2>{{ 'devis.title'|trans }}</h2>
-                        <p class="mt-20">{{ 'devis.text'|trans }}</p>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="tips-card wow fadeInUp">
+                    <div class="tips-card-bg" style="background-image: url('{{ asset('assets/images/blog/blog-single-2.jpg') }}');"></div>
+                    <div class="tips-card-overlay"></div>
+                    <div class="tips-card-content">
+                        <span class="tips-tag">{{ 'tips.card1.tag'|trans }}</span>
+                        <h4 class="tips-title"><a href="#">{{ 'tips.card1.title'|trans }}</a></h4>
+                        <div class="tips-author">
+                            <img src="{{ asset('assets/images/blog/author-2.jpg') }}" alt="{{ 'tips.card1.author'|trans }}" class="tips-avatar">
+                            <span class="tips-author-name">{{ 'tips.card1.author'|trans }}</span>
+                        </div>
                     </div>
+                    <div class="tips-bottom-bar">
+                        <span class="tips-date"><i class="far fa-calendar-alt"></i> {{ 'tips.card1.date'|trans }}</span>
+                        <a href="#" class="tips-readmore">{{ 'tips.readmore'|trans }} <i class="fas fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tips-card wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="tips-card-bg" style="background-image: url('{{ asset('assets/images/blog/blog-single-3.jpg') }}');"></div>
+                    <div class="tips-card-overlay"></div>
+                    <div class="tips-card-content">
+                        <span class="tips-tag">{{ 'tips.card2.tag'|trans }}</span>
+                        <h4 class="tips-title"><a href="#">{{ 'tips.card2.title'|trans }}</a></h4>
+                        <div class="tips-author">
+                            <img src="{{ asset('assets/images/blog/author-3.jpg') }}" alt="{{ 'tips.card2.author'|trans }}" class="tips-avatar">
+                            <span class="tips-author-name">{{ 'tips.card2.author'|trans }}</span>
+                        </div>
+                    </div>
+                    <div class="tips-bottom-bar">
+                        <span class="tips-date"><i class="far fa-calendar-alt"></i> {{ 'tips.card2.date'|trans }}</span>
+                        <a href="#" class="tips-readmore">{{ 'tips.readmore'|trans }} <i class="fas fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tips-card wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="tips-card-bg" style="background-image: url('{{ asset('assets/images/blog/blog-6.jpg') }}');"></div>
+                    <div class="tips-card-overlay"></div>
+                    <div class="tips-card-content">
+                        <span class="tips-tag">{{ 'tips.card3.tag'|trans }}</span>
+                        <h4 class="tips-title"><a href="#">{{ 'tips.card3.title'|trans }}</a></h4>
+                        <div class="tips-author">
+                            <img src="{{ asset('assets/images/blog/author-4.jpg') }}" alt="{{ 'tips.card3.author'|trans }}" class="tips-avatar">
+                            <span class="tips-author-name">{{ 'tips.card3.author'|trans }}</span>
+                        </div>
+                    </div>
+                    <div class="tips-bottom-bar">
+                        <span class="tips-date"><i class="far fa-calendar-alt"></i> {{ 'tips.card3.date'|trans }}</span>
+                        <a href="#" class="tips-readmore">{{ 'tips.readmore'|trans }} <i class="fas fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== End Tips Section ======-->
+  <!--====== Start Demander un Devis Section ======-->
+<section class="devis-cta-section pt-60 pb-0">
+    <div class="container">
+        <div class="devis-card" style="background-image: url('{{ asset('assets/images/bg/cta-bg-1.png') }}');">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="section-title mb-0 text-white">
+                        <h2 class="text-white">
+                            {{ 'devis.title_normal'|trans }} <span class="bold">{{ 'devis.title_bold'|trans }}</span>
+                        </h2>
+                        <p class="mt-20 text-white">{{ 'devis.text'|trans }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-lg-end text-start mt-30 mt-lg-0">
                     <!-- Request a free quote → Quote page -->
                     <a href="{{ path('app_font_quote') }}" class="main-btn btn-yellow">
                         {{ 'devis.button'|trans }}
@@ -657,7 +743,9 @@
                 </div>
             </div>
         </div>
-    </section><!--====== End Demander un Devis Section ======-->
+    </div>
+</section>
+<!--====== End Demander un Devis Section ======-->
 {% endblock %}
 
 {% block javascripts %}
@@ -700,6 +788,54 @@
             }, 5000);
         });
     });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var slider = document.querySelector('.showcase-slider');
+        if (slider) {
+            var scrollAmount = 1;
+            var scrollSpeed = 20; // ms between steps — lower = faster
+            var autoScroll = setInterval(function () {
+                if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 1) {
+                    slider.scrollLeft = 0; // loop back to start
+                } else {
+                    slider.scrollLeft += scrollAmount;
+                }
+            }, scrollSpeed);
+
+            // Pause on hover, resume on mouse leave
+            slider.addEventListener('mouseenter', function () {
+                clearInterval(autoScroll);
+            });
+            slider.addEventListener('mouseleave', function () {
+                autoScroll = setInterval(function () {
+                    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 1) {
+                        slider.scrollLeft = 0;
+                    } else {
+                        slider.scrollLeft += scrollAmount;
+                    }
+                }, scrollSpeed);
+            });
+        }
+    });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var track = document.querySelector('.testimonial-slider-track');
+  var slides = document.querySelectorAll('.testimonial-slide');
+  if (!track || slides.length <= 1) return;
+
+  var current = 0;
+  var total = slides.length;
+
+  setInterval(function () {
+    current = (current + 1) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+  }, 6000);
+});
 </script>
 {% endblock %}
 

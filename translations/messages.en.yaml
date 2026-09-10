@@ -78,6 +78,7 @@ video:
   title: "Discover the Beauty of the Tunisian Sahara"
   button: "Watch Video"
 
+
 counter:
   travelers: "Happy Travelers"
   tours: "Desert Tours"
@@ -169,7 +170,8 @@ testimonial:
     comment: "Everything was perfectly organized. Watching the sunset over the dunes was simply magical."
 
 devis:
-  title: "Have a trip in mind?"
+  title_normal: "Got a"
+  title_bold: "Trip in mind?"
   text: "We'll help you plan your own personalized trip in Tunisia."
   button: "Request a free quote"
 
@@ -202,6 +204,7 @@ circuits_page:
   see_detail: "See detail"
   intro_main: "Our tours and excursions are designed to make you experience the authentic Tunisia:"
   intro_highlight: "desert, oasis, Berber villages, cultural heritage..."
+  more_details: "More Details"
 
 detail_page:
   itinerary_title: "Full Itinerary"
@@ -349,3 +352,39 @@ circuit_showcase:
   circuit3:
     title: "Tataouine Excursion"
     desc: "Local market, the troglodyte village of Chenini, and the Star Wars set at Ksar Hadada."
+
+
+gallery_showcase:
+  subtitle: "Our Services"
+  title: "What We Offer"
+  title2: "For Every Adventure"
+  category: "Travel & Camping"
+  item1: "Classic Tent Camping"
+  item2: "Couple Camping"
+  item3: "Safari Cabin"
+  item4: "Family Tent Camping"
+  item5: "Tree House Camping"
+  item6: "Luxury Double Cabin"
+
+
+
+tips:
+  subtitle: "News & Blog"
+  title: "Read Every"
+  title2: "News & Blog Articles & Tips"
+  readmore: "Read More"
+  card1:
+    tag: "Camping"
+    title: "It's Was Time December 2022 Desktop Edition"
+    author: "William H. Jackson"
+    date: "November 23, 2022"
+  card2:
+    tag: "Adventure"
+    title: "Building Dynamic Head With Inter Observer"
+    author: "James D. Garcia"
+    date: "November 23, 2022"
+  card3:
+    tag: "Camping"
+    title: "Rise Of Design Thinking Solving Strategy"
+    author: "Dale V. Hornback"
+    date: "November 23, 2022"

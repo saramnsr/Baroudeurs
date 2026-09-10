@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Circuits - Baroudeurs du Désert{% endblock %}
+
+{% block body %}
+
+    <!--====== Start Page Banner ======-->
+    <section class="page-banner-section" style="background-image: url('{{ asset('assets/images/bg/choose-bg-1.jpg') }}');">
+        <div class="container">
+            <div class="page-banner-content text-center">
+                <h1 class="page-title">Circuits</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="{{ path('app_font_index') }}">Home</a></li>
+                    <li><span class="separator"><i class="fas fa-chevron-right"></i></span></li>
+                    <li class="active">Circuits</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--====== End Page Banner ======-->
+
+    <!--====== Start Hero Search Form ======-->
+    <div class="container-fluid p-r z-2">
+        <div class="hero-area-form mt-minus-130 wow fadeInUp">
+            <form method="post" action="{{ path('app_book_adventure_submit') }}" class="row align-items-end booking-form-row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="form_group">
+                        <span class="field-label"><i class="fas fa-map-marker-alt"></i>{{ 'booking.destination'|trans }}</span>
+                        <select class="form_control" name="destination" required>
+                            <option value="">{{ 'booking.destination_placeholder'|trans }}</option>
+                            <option value="douz">Douz</option>
+                            <option value="djerba">Djerba</option>
+                            <option value="tozeur">Tozeur</option>
+                            <option value="tataouine">Tataouine</option>
+                            <option value="ksar-ghilane">Ksar Ghilane</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="form_group">
+                        <span class="field-label"><i class="fas fa-route"></i>{{ 'booking.programme'|trans }}</span>
+                        <select class="form_control" name="programme" required>
+                            <option value="">{{ 'booking.programme_placeholder'|trans }}</option>
+                            {% for p in programmes %}
+                                <option value="{{ p.id }}">
+                                    {% if app.request.locale == 'fr' %}{{ p.titleFr }}
+                                    {% elseif app.request.locale == 'ar' %}{{ p.titleAr }}
+                                    {% elseif app.request.locale == 'it' %}{{ p.titleIt }}
+                                    {% else %}{{ p.titleEn }}
+                                    {% endif %}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <div class="form_group">
+                        <span class="field-label"><i class="far fa-calendar-alt"></i>{{ 'booking.date'|trans }}</span>
+                        <input type="text" class="form_control datepicker" name="date" placeholder="{{ 'booking.date_placeholder'|trans }}" required>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <div class="form_group">
+                        <span class="field-label"><i class="fas fa-user-friends"></i>{{ 'booking.guests'|trans }}</span>
+                        <input type="number" min="1" class="form_control" name="guests" placeholder="{{ 'booking.guests_placeholder'|trans }}" required>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-12">
+                    <div class="form_group">
+                        <button class="booking-submit-btn" type="submit">
+                            {{ 'booking.button'|trans }} <i class="far fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--====== End Hero Search Form ======-->
+
+    <!--====== Start Circuits List Section ======-->
+    <section class="circuits-list-section pt-100 pb-100">
+        <div class="circuits-wrapper">
+           {% for circuit in circuits %}
+    <div class="circuit-item {{ loop.index is odd ? 'circuit-normal' : 'circuit-reverse' }} wow {{ loop.index is odd ? 'fadeInLeft' : 'fadeInRight' }}" data-wow-delay="0.1s">
+        <div class="circuit-media">
+            <div class="circuit-image">
+                <img src="{{ circuit.image starts with 'http' ? circuit.image : asset('assets/images/' ~ circuit.image) }}" alt="{{ circuit.getTitle(app.request.locale) }}">
+            </div>
+            <div class="circuit-content">
+                <div class="circuit-title-row">
+                    <span class="circuit-line"></span>
+                    <h3 class="circuit-title">{{ circuit.getTitle(app.request.locale) }}</h3>
+                </div>
+                <p class="circuit-desc">{{ circuit.getDescription(app.request.locale) }}</p>
+                <div class="circuit-bottom-row">
+                    <div class="circuit-meta">
+                        {% if circuit.getDuration(app.request.locale) %}
+                            <span class="circuit-icon" title="{{ circuit.getDuration(app.request.locale) }}"><i class="fas fa-calendar-alt"></i></span>
+                        {% endif %}
+                        {% for icon in circuit.icons %}
+                            <span class="circuit-icon"><i class="{{ icon }}"></i></span>
+                        {% endfor %}
+                    </div>
+                    <a href="{{ path('app_font_quote') }}" class="circuit-btn">
+                        {{ 'circuits_page.more_details'|trans }} <i class="fas fa-angle-double-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+        </div>
+    </section>
+    <!--====== End Circuits List Section ======-->
+
+{% endblock %}

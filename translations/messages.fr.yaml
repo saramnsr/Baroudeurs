@@ -156,7 +156,8 @@ testimonial:
     comment: "Tout était parfaitement organisé. Le coucher de soleil sur les dunes était magique."
 
 devis:
-  title: "Un projet en tête ?"
+  title_normal: "Vous avez un"
+  title_bold: "voyage en tête ?"
   text: "Nous vous accompagnons dans l'organisation de votre séjour personnalisé en Tunisie."
   button: "Demandez un devis gratuit"
 
@@ -189,6 +190,7 @@ circuits_page:
   filter_all_types: "Tous les types"
   filter_button: "Filtrer"
   see_detail: "Voir le détail"
+  more_details: "Plus de Détails"
 
 testimonials_page:
   breadcrumb_home: "Accueil"
@@ -326,3 +328,38 @@ circuit_showcase:
   circuit3:
     title: "Excursion à Tataouine"
     desc: "Marché local, village troglodyte de Chenini et décor de Star Wars au ksar Hadada."
+
+
+gallery_showcase:
+  subtitle: "Nos Services"
+  title: "Ce Que Nous Offrons"
+  title2: "Pour Chaque Aventure"
+  category: "Voyage & Camping"
+  item1: "Camping Tente Classique"
+  item2: "Camping en Couple"
+  item3: "Cabane Safari"
+  item4: "Camping Tente Familiale"
+  item5: "Camping Cabane dans l'Arbre"
+  item6: "Cabine Double de Luxe"
+
+
+tips:
+  subtitle: "Actualités & Blog"
+  title: "Lisez Chaque"
+  title2: "Article et Astuce du Blog"
+  readmore: "Lire Plus"
+  card1:
+    tag: "Camping"
+    title: "C'était Décembre 2022 Édition Desktop"
+    author: "William H. Jackson"
+    date: "23 Novembre, 2022"
+  card2:
+    tag: "Aventure"
+    title: "Construire une Tête Dynamique Avec Inter Observer"
+    author: "James D. Garcia"
+    date: "23 Novembre, 2022"
+  card3:
+    tag: "Camping"
+    title: "L'Essor de la Pensée Design Comme Stratégie"
+    author: "Dale V. Hornback"
+    date: "23 Novembre, 2022"
