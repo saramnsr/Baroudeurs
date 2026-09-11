@@ -606,4 +606,98 @@ public function excursions(): Response
     ]);
 }
 
+
+
+/**
+ * @Route("/detail/{type}/{id}", name="app_font_detail", requirements={"type"="circuit|excursion", "id"="\d+"})
+ */
+public function detail(string $type, int $id): Response
+{
+    if ($type === 'circuit') {
+        $item = $this->circuitRepository->find($id);
+        $related = $this->circuitRepository->findAllOrdered();
+    } else {
+        $item = $this->excursionRepository->find($id);
+        $related = $this->excursionRepository->findAllOrdered();
+    }
+
+    if (!$item) {
+        throw $this->createNotFoundException('Item not found');
+    }
+
+    return $this->render('font/detail.html.twig', [
+        'type' => $type,
+        'item' => $item,
+        'circuits' => $related,
+    ]);
+}
+
+
+
+/**
+ * @Route("/circuit/booking/submit", name="app_circuit_booking_submit", methods={"POST"})
+ */
+public function submitCircuitBooking(Request $request): Response
+{
+    $checkIn = $request->request->get('checkIn');
+    $checkOut = $request->request->get('checkOut');
+    $guests = $request->request->get('guests');
+    $circuitId = $request->request->get('circuitId');
+    $circuitTitle = $request->request->get('circuitTitle');
+    $name = $request->request->get('name');
+    $email = $request->request->get('email');
+
+    if (empty($checkIn) || empty($checkOut) || empty($guests) || empty($name) || empty($email)) {
+        $this->addFlash('error', 'Please fill in all required fields.');
+        return $this->redirectToRoute('app_font_detail', ['type' => 'circuit', 'id' => $circuitId]);
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $this->addFlash('error', 'Please enter a valid email address.');
+        return $this->redirectToRoute('app_font_detail', ['type' => 'circuit', 'id' => $circuitId]);
+    }
+
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->Port       = 587;
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'takamuramhatli@gmail.com';
+        $mail->Password   = 'iiwb djvx ctpd ooej';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
+        $mail->setFrom('noreply@baroudeursdedesert.com', 'Baroudeurs du Désert');
+        $mail->addAddress('contact@baroudeursdedesert.com');
+        $mail->addReplyTo($email, $name);
+
+        $mail->isHTML(false);
+        $mail->Subject = 'New Circuit Booking Request - ' . $circuitTitle;
+        $mail->Body    = "
+        =====================================
+        NEW CIRCUIT BOOKING REQUEST
+        =====================================
+
+        Circuit: {$circuitTitle}
+        Name: {$name}
+        Email: {$email}
+        Check-in: {$checkIn}
+        Check-out: {$checkOut}
+        Guests: {$guests}
+
+        -------------------------------------
+        Submitted from: Circuit Detail Page
+        Date Submitted: " . date('Y-m-d H:i:s') . "
+        =====================================
+        ";
+
+        $mail->send();
+        $this->addFlash('success', 'Your booking request has been sent successfully! We will contact you shortly.');
+    } catch (Exception $e) {
+        $this->addFlash('error', "Message could not be sent. Error: {$mail->ErrorInfo}");
+    }
+
+    return $this->redirectToRoute('app_font_detail', ['type' => 'circuit', 'id' => $circuitId]);
+}
 }

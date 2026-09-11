@@ -92,6 +92,80 @@ class Circuit
      */
     private int $position = 0;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $introFr = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $introEn = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $introAr = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $introIt = null;
+
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $fullDescriptionFr = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $fullDescriptionEn = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $fullDescriptionAr = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $fullDescriptionIt = null;
+
+    /** @ORM\Column(type="json") */
+    private array $itineraryFr = [];
+    /** @ORM\Column(type="json") */
+    private array $itineraryEn = [];
+    /** @ORM\Column(type="json") */
+    private array $itineraryAr = [];
+    /** @ORM\Column(type="json") */
+    private array $itineraryIt = [];
+
+    /** @ORM\Column(type="json") */
+    private array $itineraryDetailFr = [];
+    /** @ORM\Column(type="json") */
+    private array $itineraryDetailEn = [];
+    /** @ORM\Column(type="json") */
+    private array $itineraryDetailAr = [];
+    /** @ORM\Column(type="json") */
+    private array $itineraryDetailIt = [];
+
+    /** @ORM\Column(type="json") */
+    private array $includedFr = [];
+    /** @ORM\Column(type="json") */
+    private array $includedEn = [];
+    /** @ORM\Column(type="json") */
+    private array $includedAr = [];
+    /** @ORM\Column(type="json") */
+    private array $includedIt = [];
+
+    /** @ORM\Column(type="json") */
+    private array $excludedFr = [];
+    /** @ORM\Column(type="json") */
+    private array $excludedEn = [];
+    /** @ORM\Column(type="json") */
+    private array $excludedAr = [];
+    /** @ORM\Column(type="json") */
+    private array $excludedIt = [];
+
+    /** @ORM\Column(type="json") */
+    private array $includedIcons = [];
+    /** @ORM\Column(type="json") */
+    private array $excludedIcons = [];
+
+    /** @ORM\Column(type="json") */
+    private array $galleryImages = [];
+
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $closingFr = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $closingEn = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $closingAr = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $closingIt = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -179,6 +253,128 @@ class Circuit
             'ar' => $this->durationAr,
             'it' => $this->durationIt,
             default => $this->durationEn,
+        };
+    }
+
+    public function getIntroFr(): ?string { return $this->introFr; }
+    public function setIntroFr(?string $v): self { $this->introFr = $v; return $this; }
+    public function getIntroEn(): ?string { return $this->introEn; }
+    public function setIntroEn(?string $v): self { $this->introEn = $v; return $this; }
+    public function getIntroAr(): ?string { return $this->introAr; }
+    public function setIntroAr(?string $v): self { $this->introAr = $v; return $this; }
+    public function getIntroIt(): ?string { return $this->introIt; }
+    public function setIntroIt(?string $v): self { $this->introIt = $v; return $this; }
+
+    public function getFullDescriptionFr(): ?string { return $this->fullDescriptionFr; }
+    public function setFullDescriptionFr(?string $v): self { $this->fullDescriptionFr = $v; return $this; }
+    public function getFullDescriptionEn(): ?string { return $this->fullDescriptionEn; }
+    public function setFullDescriptionEn(?string $v): self { $this->fullDescriptionEn = $v; return $this; }
+    public function getFullDescriptionAr(): ?string { return $this->fullDescriptionAr; }
+    public function setFullDescriptionAr(?string $v): self { $this->fullDescriptionAr = $v; return $this; }
+    public function getFullDescriptionIt(): ?string { return $this->fullDescriptionIt; }
+    public function setFullDescriptionIt(?string $v): self { $this->fullDescriptionIt = $v; return $this; }
+
+    public function getItineraryFr(): array { return $this->itineraryFr; }
+    public function setItineraryFr(array $v): self { $this->itineraryFr = $v; return $this; }
+    public function getItineraryEn(): array { return $this->itineraryEn; }
+    public function setItineraryEn(array $v): self { $this->itineraryEn = $v; return $this; }
+    public function getItineraryAr(): array { return $this->itineraryAr; }
+    public function setItineraryAr(array $v): self { $this->itineraryAr = $v; return $this; }
+    public function getItineraryIt(): array { return $this->itineraryIt; }
+    public function setItineraryIt(array $v): self { $this->itineraryIt = $v; return $this; }
+
+    public function getItineraryDetailFr(): array { return $this->itineraryDetailFr; }
+    public function setItineraryDetailFr(array $v): self { $this->itineraryDetailFr = $v; return $this; }
+    public function getItineraryDetailEn(): array { return $this->itineraryDetailEn; }
+    public function setItineraryDetailEn(array $v): self { $this->itineraryDetailEn = $v; return $this; }
+    public function getItineraryDetailAr(): array { return $this->itineraryDetailAr; }
+    public function setItineraryDetailAr(array $v): self { $this->itineraryDetailAr = $v; return $this; }
+    public function getItineraryDetailIt(): array { return $this->itineraryDetailIt; }
+    public function setItineraryDetailIt(array $v): self { $this->itineraryDetailIt = $v; return $this; }
+
+    public function getIncludedFr(): array { return $this->includedFr; }
+    public function setIncludedFr(array $v): self { $this->includedFr = $v; return $this; }
+    public function getIncludedEn(): array { return $this->includedEn; }
+    public function setIncludedEn(array $v): self { $this->includedEn = $v; return $this; }
+    public function getIncludedAr(): array { return $this->includedAr; }
+    public function setIncludedAr(array $v): self { $this->includedAr = $v; return $this; }
+    public function getIncludedIt(): array { return $this->includedIt; }
+    public function setIncludedIt(array $v): self { $this->includedIt = $v; return $this; }
+
+    public function getExcludedFr(): array { return $this->excludedFr; }
+    public function setExcludedFr(array $v): self { $this->excludedFr = $v; return $this; }
+    public function getExcludedEn(): array { return $this->excludedEn; }
+    public function setExcludedEn(array $v): self { $this->excludedEn = $v; return $this; }
+    public function getExcludedAr(): array { return $this->excludedAr; }
+    public function setExcludedAr(array $v): self { $this->excludedAr = $v; return $this; }
+    public function getExcludedIt(): array { return $this->excludedIt; }
+    public function setExcludedIt(array $v): self { $this->excludedIt = $v; return $this; }
+
+    public function getIncludedIcons(): array { return $this->includedIcons; }
+    public function setIncludedIcons(array $v): self { $this->includedIcons = $v; return $this; }
+    public function getExcludedIcons(): array { return $this->excludedIcons; }
+    public function setExcludedIcons(array $v): self { $this->excludedIcons = $v; return $this; }
+
+    public function getGalleryImages(): array { return $this->galleryImages; }
+    public function setGalleryImages(array $v): self { $this->galleryImages = $v; return $this; }
+
+    public function getClosingFr(): ?string { return $this->closingFr; }
+    public function setClosingFr(?string $v): self { $this->closingFr = $v; return $this; }
+    public function getClosingEn(): ?string { return $this->closingEn; }
+    public function setClosingEn(?string $v): self { $this->closingEn = $v; return $this; }
+    public function getClosingAr(): ?string { return $this->closingAr; }
+    public function setClosingAr(?string $v): self { $this->closingAr = $v; return $this; }
+    public function getClosingIt(): ?string { return $this->closingIt; }
+    public function setClosingIt(?string $v): self { $this->closingIt = $v; return $this; }
+
+    // locale-aware getters
+    public function getIntro(string $locale): ?string
+    {
+        return match ($locale) {
+            'fr' => $this->introFr, 'ar' => $this->introAr, 'it' => $this->introIt,
+            default => $this->introEn,
+        };
+    }
+    public function getFullDescription(string $locale): ?string
+    {
+        return match ($locale) {
+            'fr' => $this->fullDescriptionFr, 'ar' => $this->fullDescriptionAr, 'it' => $this->fullDescriptionIt,
+            default => $this->fullDescriptionEn,
+        };
+    }
+    public function getItinerary(string $locale): array
+    {
+        return match ($locale) {
+            'fr' => $this->itineraryFr, 'ar' => $this->itineraryAr, 'it' => $this->itineraryIt,
+            default => $this->itineraryEn,
+        };
+    }
+    public function getItineraryDetail(string $locale): array
+    {
+        return match ($locale) {
+            'fr' => $this->itineraryDetailFr, 'ar' => $this->itineraryDetailAr, 'it' => $this->itineraryDetailIt,
+            default => $this->itineraryDetailEn,
+        };
+    }
+    public function getIncluded(string $locale): array
+    {
+        return match ($locale) {
+            'fr' => $this->includedFr, 'ar' => $this->includedAr, 'it' => $this->includedIt,
+            default => $this->includedEn,
+        };
+    }
+    public function getExcluded(string $locale): array
+    {
+        return match ($locale) {
+            'fr' => $this->excludedFr, 'ar' => $this->excludedAr, 'it' => $this->excludedIt,
+            default => $this->excludedEn,
+        };
+    }
+    public function getClosing(string $locale): ?string
+    {
+        return match ($locale) {
+            'fr' => $this->closingFr, 'ar' => $this->closingAr, 'it' => $this->closingIt,
+            default => $this->closingEn,
         };
     }
 }

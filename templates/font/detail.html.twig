@@ -1,0 +1,269 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ item.getTitle(app.request.locale) }} - Baroudeurs du Désert{% endblock %}
+
+{% block body %}
+
+    <style>
+      .header-navigation.transparent-header .main-menu ul li a,
+      .header-navigation.transparent-header .site-branding,
+      .header-navigation.transparent-header .lang-dropdown select {
+        color: #1C231F !important;
+      }
+    </style>
+
+    {% set gallery = item.getGalleryImages() %}
+
+    <!--====== Start Detail Gallery ======-->
+    <section class="detail-gallery-section pt-100">
+        <div class="container-fluid">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="detail-gallery-img">
+                        <img src="{{ gallery[0] is defined ? gallery[0] : item.image }}" alt="{{ item.getTitle(app.request.locale) }}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="detail-gallery-img">
+                        <img src="{{ gallery[1] is defined ? gallery[1] : item.image }}" alt="{{ item.getTitle(app.request.locale) }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End Detail Gallery ======-->
+
+    <!--====== Start Detail Main Section ======-->
+    <section class="detail-main-section pt-40 pb-60">
+        <div class="container">
+            <div class="row">
+                <!-- Main content -->
+                <div class="col-lg-8">
+                    <h1 class="detail-page-title">{{ item.getTitle(app.request.locale) }}</h1>
+                    {% if item.getIntro(app.request.locale) %}
+                        <p class="detail-full-desc">{{ item.getIntro(app.request.locale) }} {{ item.getFullDescription(app.request.locale) }}</p>
+                    {% else %}
+                        <p class="detail-full-desc">{{ item.getFullDescription(app.request.locale) }}</p>
+                    {% endif %}
+
+                    <h3 class="detail-section-title">{{ 'detail_page.itinerary_title'|trans }}</h3>
+                    <div class="detail-itinerary-accordion">
+                        {% set details = item.getItineraryDetail(app.request.locale) %}
+                        {% for day in item.getItinerary(app.request.locale) %}
+                            <details class="itinerary-item">
+                                <summary>
+                                    <span class="day-badge">{{ 'detail_page.day'|trans }} {{ loop.index }}</span>
+                                    {{ day }}
+                                    <i class="fas fa-chevron-down toggle-icon"></i>
+                                </summary>
+                                {% if details[loop.index0] is defined %}
+                                    <div class="itinerary-detail">{{ details[loop.index0] }}</div>
+                                {% endif %}
+                            </details>
+                        {% endfor %}
+                    </div>
+
+                    {% if item.getIncluded(app.request.locale)|length > 0 or item.getExcluded(app.request.locale)|length > 0 %}
+                        <h3 class="detail-section-title">{{ 'detail_page.included_title'|trans }}</h3>
+                        <div class="equipment-table-wrap {{ item.getExcluded(app.request.locale)|length == 0 ? 'single-col' : '' }}">
+                            <div class="equipment-col">
+                                <div class="equipment-col-header">{{ 'detail_page.included_title'|trans }}</div>
+                                <div class="equipment-rows-grid">
+                                    {% set incList = item.getIncluded(app.request.locale) %}
+                                    {% set incIcons = item.getIncludedIcons() %}
+                                    {% for i in 0..(incList|length - 1) %}
+                                        <div class="equipment-row">
+                                            <i class="flaticon-{{ incIcons[i] is defined ? incIcons[i] : 'draw-check-mark' }}"></i>
+                                            <span>{{ incList[i] }}</span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% if item.getExcluded(app.request.locale)|length > 0 %}
+                                <div class="equipment-col">
+                                    <div class="equipment-col-header">{{ 'detail_page.excluded_title'|trans }}</div>
+                                    <div class="equipment-rows-grid">
+                                        {% set excList = item.getExcluded(app.request.locale) %}
+                                        {% set excIcons = item.getExcludedIcons() %}
+                                        {% for i in 0..(excList|length - 1) %}
+                                            <div class="equipment-row">
+                                                <i class="flaticon-{{ excIcons[i] is defined ? excIcons[i] : 'quotation' }}"></i>
+                                                <span>{{ excList[i] }}</span>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <div class="detail-sidebar">
+                        <div class="mini-calendar">
+                            <div class="mini-calendar-header">
+                                <span>&lt;</span>
+                                <span>SEPTEMBER 2026</span>
+                                <span>&gt;</span>
+                            </div>
+                            <table class="mini-calendar-table">
+                                <thead>
+                                    <tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="muted">30</td><td class="muted">31</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+                                    <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td class="today">11</td><td>12</td></tr>
+                                    <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+                                    <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+                                    <tr><td>27</td><td>28</td><td>29</td><td>30</td><td class="muted">1</td><td class="muted">2</td><td class="muted">3</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="sidebar-trending">
+                            <h4>{{ 'detail_page.trending_places'|trans }}</h4>
+                            <div class="sidebar-trending-img">
+                                <img src="{{ gallery[0] is defined ? gallery[0] : item.image }}" alt="{{ item.getTitle(app.request.locale) }}">
+                                <div class="sidebar-trending-caption">
+                                    <strong>{{ item.getTitle(app.request.locale) }}</strong>
+                                    <span><i class="fas fa-map-marker-alt"></i> Tunisia</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="{{ path('app_font_quote') }}" class="sidebar-book-btn">
+                            {{ 'detail_page.book_now'|trans }} <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End Detail Main Section ======-->
+
+    {% if gallery|length > 2 %}
+        <!--====== Start Auto-Scroll Gallery ======-->
+        <div class="detail-scroll-gallery-wrap">
+            <div class="detail-scroll-gallery-track">
+                {% for img in gallery|slice(2) %}
+                    <div class="scroll-gallery-item">
+                        <img src="{{ img }}" alt="{{ item.getTitle(app.request.locale) }}">
+                        <div class="scroll-gallery-hover">
+                            <span>{{ item.getTitle(app.request.locale) }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% for img in gallery|slice(2) %}
+                    <div class="scroll-gallery-item">
+                        <img src="{{ img }}" alt="{{ item.getTitle(app.request.locale) }}">
+                        <div class="scroll-gallery-hover">
+                            <span>{{ item.getTitle(app.request.locale) }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!--====== End Auto-Scroll Gallery ======-->
+    {% endif %}
+
+    {% if item.getClosing(app.request.locale) %}
+     <!--====== Start Circuit Booking Card ======-->
+<section class="circuit-booking-section">
+    <div class="container">
+        <div class="circuit-booking-card">
+            <h3 class="circuit-booking-title">
+                {{ 'detail_page.find_availability_1'|trans }} <span class="thin">{{ 'detail_page.find_availability_2'|trans }}</span>
+            </h3>
+            <form method="post" action="{{ path('app_circuit_booking_submit') }}" class="row g-4 align-items-end">
+                <input type="hidden" name="circuitId" value="{{ item.id }}">
+                <input type="hidden" name="circuitTitle" value="{{ item.getTitle(app.request.locale) }}">
+
+                <div class="col-md-6">
+                    <div class="booking-field">
+                        <span>{{ 'detail_page.check_in'|trans }}</span>
+                        <input type="text" class="booking-input datepicker" name="checkIn" placeholder="{{ 'detail_page.select_date'|trans }}" required>
+                        <i class="far fa-calendar-alt booking-field-icon"></i>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="booking-field">
+                        <span>{{ 'detail_page.check_out'|trans }}</span>
+                        <input type="text" class="booking-input datepicker" name="checkOut" placeholder="{{ 'detail_page.select_date'|trans }}" required>
+                        <i class="far fa-calendar-alt booking-field-icon"></i>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="booking-field">
+                        <span>{{ 'detail_page.guest'|trans }}</span>
+                        <input type="number" min="1" class="booking-input" name="guests" placeholder="{{ 'detail_page.number_of_people'|trans }}" required>
+                        <i class="fas fa-user booking-field-icon"></i>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="booking-field">
+                        <span>{{ 'detail_page.full_name'|trans }}</span>
+                        <input type="text" class="booking-input" name="name" placeholder="{{ 'detail_page.full_name'|trans }}" required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="booking-field">
+                        <span>{{ 'detail_page.your_email'|trans }}</span>
+                        <input type="email" class="booking-input" name="email" placeholder="{{ 'detail_page.your_email'|trans }}" required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="booking-submit-btn">
+                        {{ 'detail_page.check_availability'|trans }} <i class="far fa-angle-double-right"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!--====== End Circuit Booking Card ======-->
+    {% endif %}
+
+    <!--====== Start Related Circuits ======-->
+    <section class="related-circuits-section pt-100 pb-100">
+        <div class="container">
+            <div class="row justify-content-center mb-50">
+                <div class="col-lg-6 text-center">
+                    <h2 class="related-title">{{ 'detail_page.other_circuits'|trans }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                {% for related in circuits|default([])|slice(0, 4) %}
+                    {% if related.id != item.id %}
+                        <div class="col-lg-4 col-md-6 mb-40">
+                            <div class="related-card">
+                                <div class="related-card-image">
+                                    <img src="{{ related.image starts with 'http' ? related.image : asset('assets/images/' ~ related.image) }}" alt="{{ related.getTitle(app.request.locale) }}">
+                                </div>
+                                <div class="related-card-content">
+                                    <div class="related-card-title-row">
+                                        <span class="related-card-line"></span>
+                                        <h4>{{ related.getTitle(app.request.locale) }}</h4>
+                                    </div>
+                                    <p>{{ related.getDescription(app.request.locale) }}</p>
+                                    <div class="related-card-bottom">
+                                        <div class="related-card-icons">
+                                            {% for icon in related.icons|slice(0, 4) %}
+                                                <i class="{{ icon }}"></i>
+                                            {% endfor %}
+                                        </div>
+                                        <a href="{{ path('app_font_detail', {type: 'circuit', id: related.id}) }}" class="related-card-btn">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--====== End Related Circuits ======-->
+
+{% endblock %}

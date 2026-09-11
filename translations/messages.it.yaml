@@ -116,6 +116,7 @@ why:
   check2: "Il tuo ritmo"
   check3: "Percorsi rari"
   check4: "Vera passione"
+  button: "Scopri di Più"
   item1:
     title: "Tour 100% privati"
     desc: "Guida e veicolo dedicati, solo per te."
@@ -205,16 +206,27 @@ circuits_page:
   intro_highlight: "deserto, oasi, villaggi berberi, patrimonio culturale..."
   more_details: "Maggiori Dettagli"
 
+
+  
 detail_page:
-  itinerary_title: "Itinerario completo"
+  itinerary_title: "Itinerario Completo"
   included_title: "Incluso"
-  excluded_title: "Non incluso"
-  map_title: "Mappa del percorso"
-  reviews_title: "Recensioni dei viaggiatori"
-  book_now: "Prenota questo tour"
-  request_quote: "Richiedi un preventivo personalizzato"
-  back_to_list: "Torna a tutti i tour"
-  gallery_title: "Galleria fotografica"
+  excluded_title: "Non Incluso"
+  book_now: "Prenota Ora"
+  other_circuits: "Altri Fantastici Circuiti"
+  day: "Giorno"
+  gallery_title: "Galleria Fotografica"
+  trending_places: "Luoghi di Tendenza"
+  find_availability_1: "Trova la Migliore"
+  find_availability_2: "Disponibilità del Circuito"
+  check_in: "Check In"
+  check_out: "Check Out"
+  guest: "Ospiti"
+  full_name: "Nome Completo"
+  your_email: "La Tua Email"
+  select_date: "Seleziona una data"
+  number_of_people: "Numero di persone"
+  check_availability: "Verifica Disponibilità"
 
 testimonials_page:
   breadcrumb_home: "Home"
@@ -255,70 +267,56 @@ quote_page:
   specific_requests_placeholder: "Parlaci delle tue preferenze, esigenze particolari o qualsiasi informazione aggiuntiva..."
   send_button: "Invia la mia Richiesta"
 
-
 about_page:
+  hero_label: "Chi Siamo"
   title: "Chi Siamo"
   breadcrumb_home: "Home"
-  intro: "Scopri la storia dietro Les Baroudeurs du Désert"
-  presentation_title: "La Nostra Storia"
-  presentation_text: "Les Baroudeurs du Désert è nato da una passione comune per gli spazi aperti e le tradizioni della Tunisia meridionale. Quello che è iniziato come un piccolo gruppo di amici che condividevano il loro amore per il deserto è diventato un team di professionisti dedicati, impegnati a condividere la bellezza e la cultura della Tunisia con viaggiatori da tutto il mondo."
-  mission_title: "La Nostra Missione"
-  mission_text: "Offrire esperienze autentiche e responsabili nel deserto che collegano i viaggiatori con il vero spirito della Tunisia. Crediamo in un viaggio che rispetta le comunità locali, preserva l'ambiente e crea ricordi duraturi."
-  
-  team_title: "Incontra il Nostro Team"
-  team_subtitle: "Le persone appassionate dietro la tua avventura nel deserto"
-  
-  team:
-    member1:
-      name: "Ahmed Ben Ali"
-      role: "Fondatore & Guida del Deserto"
-      description: "Nato e cresciuto a Douz, Ahmed esplora il Sahara da oltre 20 anni. La sua profonda conoscenza del deserto e la sua passione nel condividerla con gli altri sono il cuore di Les Baroudeurs du Désert."
-    member2:
-      name: "Mohamed El Khadra"
-      role: "Guida Senior"
-      description: "Con 15 anni di esperienza, Mohamed conosce ogni duna e oasi del Sahara tunisino. La sua calma e le sue capacità di narratore rendono ogni viaggio indimenticabile."
-    member3:
-      name: "Laila Ben Amor"
-      role: "Guida Culturale"
-      description: "Laila dà vita alle tradizioni della Tunisia. La sua conoscenza della cultura berbera, della cucina locale e dell'artigianato tradizionale aggiunge una dimensione unica a ogni tour."
-    member4:
-      name: "Karim El Mansour"
-      role: "Autista 4x4 & Meccanico"
-      description: "L'esperienza di Karim al volante e le sue competenze meccaniche garantiscono viaggi sicuri e confortevoli attraverso le piste desertiche più remote."
-  
-  values_title: "I Nostri Valori"
-  values_subtitle: "I principi che guidano tutto ciò che facciamo"
-  
+
+  # Hero
+  hero_title: "Chi Siamo"
+  hero_subtitle: "Più di un viaggio, un'avventura da vivere."
+  hero_text: "Baroudeurs du Désert ti invita a scoprire paesaggi autentici, orizzonti infiniti ed esperienze indimenticabili nel cuore del deserto."
+  hero_button: "Scopri le nostre avventure"
+
+  # La nostra storia
+  story_label: "La Nostra Storia"
+  story_title: "Una passione per l'avventura e il deserto"
+  story_p1: "Baroudeurs du Désert è nato da una passione: far scoprire il deserto in modo diverso."
+  story_p2: "Creiamo esperienze autentiche per viaggiatori in cerca di avventura, cambiamento e incontri."
+  story_p3: "Dalle dune infinite alle oasi nascoste, passando per villaggi tradizionali e paesaggi selvaggi, ogni tour è pensato per farti vivere un'avventura unica."
+  story_objective: "Il nostro obiettivo?"
+  story_tagline: "Portarti dove iniziano i ricordi."
+
+  # I nostri valori
+  values_subtitle: "I Nostri Valori"
+  values_title: "Ciò che ci guida ogni giorno"
   values:
     authenticity:
       title: "Autenticità"
-      description: "Offriamo esperienze autentiche che riflettono la vera cultura e lo spirito della Tunisia. Niente trappole per turisti, solo vere connessioni con persone e luoghi."
+      text: "Ti facciamo scoprire il deserto, i suoi paesaggi, le tradizioni e la sua gente in modo autentico."
+    adventure:
+      title: "Avventura"
+      text: "Escursioni, trekking e tour pensati per gli amanti della scoperta e delle esperienze uniche."
+    proximity:
+      title: "Vicinanza"
+      text: "Un team appassionato e disponibile ad accompagnarti prima, durante e dopo il tuo viaggio."
     safety:
       title: "Sicurezza"
-      description: "La tua sicurezza è la nostra priorità. Le nostre guide sono professionisti addestrati, i nostri veicoli sono ben mantenuti e seguiamo rigorosi protocolli di sicurezza in ogni tour."
-    respect:
-      title: "Rispetto per le Comunità Locali"
-      description: "Lavoriamo a stretto contatto con le comunità locali, assicurando che il turismo porti benefici alle persone che vivono nel deserto. Rispettiamo le loro tradizioni e il loro stile di vita."
-    sustainability:
-      title: "Turismo Responsabile"
-      description: "Ci impegniamo a proteggere il fragile ecosistema del deserto. Riduciamo al minimo il nostro impatto ambientale, sosteniamo gli sforzi di conservazione e promuoviamo pratiche di viaggio sostenibili."
-  
-  responsible_title: "Il Nostro Approccio al Turismo Responsabile"
-  responsible_text: "A Les Baroudeurs du Désert, crediamo che il viaggio debba fare del bene. Il nostro approccio al turismo responsabile include:"
-  responsible_items:
-    item1: "Lavorare con guide e autisti locali"
-    item2: "Sostenere le imprese e gli artigiani locali"
-    item3: "Ridurre al minimo i rifiuti e l'impatto ambientale"
-    item4: "Rispettare la fauna selvatica e gli habitat naturali"
-    item5: "Promuovere lo scambio culturale e la comprensione"
-    item6: "Restituire alle comunità locali"
-  
-  gallery_title: "La Nostra Galleria"
-  gallery_subtitle: "Momenti delle nostre avventure nel deserto"
-  
-  cta_title: "Pronto a Esplorare il Deserto?"
-  cta_text: "Unisciti a noi per un'avventura indimenticabile nel Sahara tunisino"
-  cta_button: "Prenota la Tua Avventura"
+      text: "Partner locali esperti e tour organizzati con cura per viaggiare in tutta serenità."
+
+  # Perché
+  why_title: "Perché scegliere Baroudeurs du Désert?"
+  why_item1: "Esperienze autentiche"
+  why_item2: "Guide e partner locali"
+  why_item3: "Tour adatti a tutti i viaggiatori"
+  why_item4: "Piccoli gruppi per un'esperienza più umana"
+  why_item5: "Paesaggi eccezionali"
+  why_item6: "Assistenza e supporto personalizzato"
+
+  # Emozione
+  emotional_quote: "Il deserto non si visita soltanto... si sente."
+  emotional_question: "Pronto a vivere la tua prossima avventura?"
+  emotional_button: "Scopri i nostri tour"
 
 blog_page:
   title: "Il Nostro Blog"

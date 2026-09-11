@@ -101,9 +101,9 @@
                             <span class="circuit-icon"><i class="{{ icon }}"></i></span>
                         {% endfor %}
                     </div>
-                    <a href="{{ path('app_font_quote') }}" class="circuit-btn">
-                        {{ 'circuits_page.more_details'|trans }} <i class="fas fa-angle-double-right"></i>
-                    </a>
+                  <a href="{{ path('app_font_detail', {type: 'circuit', id: circuit.id}) }}" class="circuit-btn">
+    {{ 'circuits_page.more_details'|trans }} <i class="fas fa-angle-double-right"></i>
+</a>
                 </div>
             </div>
         </div>

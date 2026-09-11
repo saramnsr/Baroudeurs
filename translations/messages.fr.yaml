@@ -114,6 +114,7 @@ why:
   check2: "Votre rythme"
   check3: "Chemins rares"
   check4: "Vraie passion"
+  button: "En savoir plus"
   item1:
     title: "Circuits 100 % privés"
     desc: "Guide et véhicule dédiés, rien que pour vous."
@@ -131,7 +132,8 @@ gallery:
   subtitle: "Notre Galerie"
   title: "Découvrez nos"
   title2: "Aventures dans le désert"
-
+  breadcrumb_home: "Accueil"
+  video_title: "Regardez l'Aventure"
   filter:
     all: "Tout"
     south: "Sud Tunisien"
@@ -139,6 +141,20 @@ gallery:
     camp: "Campement"
     four: "Tours 4x4"
     oasis: "Oasis"
+    desert: "Désert"
+    douz: "Douz"
+    djerba: "Djerba"
+    bivouac: "Bivouac"
+    cuisine: "Cuisine Locale"
+    meeting: "Rencontre"
+  caption:
+    desert: "Désert du Sahara"
+    douz: "Douz, Porte du Désert"
+    djerba: "Île de Djerba"
+    oasis: "Oasis du Désert"
+    bivouac: "Campement Bédouin"
+    cuisine: "Cuisine Locale"
+    meeting: "Rencontre avec les Nomades"
 
 testimonial:
   subtitle: "Témoignages"
@@ -231,70 +247,56 @@ quote_page:
   specific_requests_placeholder: "Parlez-nous de vos préférences, besoins particuliers ou toute information supplémentaire..."
   send_button: "Envoyer ma Demande"
 
-
 about_page:
-  title: "À Propos de Nous"
+  hero_label: "Qui sommes-nous ?"
+  title: "Qui sommes-nous ?"
   breadcrumb_home: "Accueil"
-  intro: "Découvrez l'histoire derrière Les Baroudeurs du Désert"
-  presentation_title: "Notre Histoire"
-  presentation_text: "Les Baroudeurs du Désert est né d'une passion commune pour les grands espaces et les traditions du sud tunisien. Ce qui a commencé comme un petit groupe d'amis partageant leur amour du désert est devenu une équipe de professionnels dévoués, engagés à faire découvrir la beauté et la culture de la Tunisie aux voyageurs du monde entier."
-  mission_title: "Notre Mission"
-  mission_text: "Offrir des expériences authentiques et responsables dans le désert qui connectent les voyageurs avec le véritable esprit de la Tunisie. Nous croyons en un voyage qui respecte les communautés locales, préserve l'environnement et crée des souvenirs durables."
-  
-  team_title: "Rencontrez Notre Équipe"
-  team_subtitle: "Les passionnés qui se cachent derrière votre aventure dans le désert"
-  
-  team:
-    member1:
-      name: "Ahmed Ben Ali"
-      role: "Fondateur & Guide Désert"
-      description: "Né et élevé à Douz, Ahmed explore le Sahara depuis plus de 20 ans. Sa connaissance profonde du désert et sa passion pour le partager avec les autres sont le cœur des Baroudeurs du Désert."
-    member2:
-      name: "Mohamed El Khadra"
-      role: "Guide Principal"
-      description: "Avec 15 ans d'expérience, Mohamed connaît chaque dune et oasis du Sahara tunisien. Son calme et ses talents de conteur rendent chaque voyage inoubliable."
-    member3:
-      name: "Laila Ben Amor"
-      role: "Guide Culturelle"
-      description: "Laila donne vie aux traditions de la Tunisie. Sa connaissance de la culture berbère, de la cuisine locale et de l'artisanat traditionnel ajoute une dimension unique à chaque circuit."
-    member4:
-      name: "Karim El Mansour"
-      role: "Chauffeur 4x4 & Mécanicien"
-      description: "L'expertise de Karim au volant et ses compétences mécaniques garantissent des voyages sûrs et confortables sur les pistes désertiques les plus reculées."
-  
-  values_title: "Nos Valeurs"
-  values_subtitle: "Les principes qui guident tout ce que nous faisons"
-  
+
+  # Hero
+  hero_title: "Qui sommes-nous ?"
+  hero_subtitle: "Plus qu'un voyage, une aventure à vivre."
+  hero_text: "Baroudeurs du Désert vous invite à découvrir des paysages authentiques, des horizons infinis et des expériences inoubliables au cœur du désert."
+  hero_button: "Découvrir nos aventures"
+
+  # Notre histoire
+  story_label: "Notre Histoire"
+  story_title: "Une passion pour l'aventure et le désert"
+  story_p1: "Baroudeurs du Désert est né d'une passion : celle de faire découvrir le désert autrement."
+  story_p2: "Nous créons des expériences authentiques pour les voyageurs en quête d'aventure, de dépaysement et de rencontres."
+  story_p3: "Des dunes infinies aux oasis cachées, en passant par les villages traditionnels et les paysages sauvages, chaque circuit est pensé pour vous faire vivre une aventure unique."
+  story_objective: "Notre objectif ?"
+  story_tagline: "Vous emmener là où les souvenirs commencent."
+
+  # Nos valeurs
+  values_subtitle: "Nos valeurs"
+  values_title: "Ce qui nous anime au quotidien"
   values:
     authenticity:
       title: "Authenticité"
-      description: "Nous proposons des expériences authentiques qui reflètent la véritable culture et l'esprit de la Tunisie. Pas de pièges à touristes, juste de vraies connexions avec les personnes et les lieux."
+      text: "Nous vous faisons découvrir le désert, ses paysages, ses traditions et ses habitants de manière authentique."
+    adventure:
+      title: "Aventure"
+      text: "Excursions, treks et circuits pensés pour les amoureux de découverte et d'expériences uniques."
+    proximity:
+      title: "Proximité"
+      text: "Une équipe passionnée et disponible pour vous accompagner avant, pendant et après votre voyage."
     safety:
       title: "Sécurité"
-      description: "Votre sécurité est notre priorité. Nos guides sont des professionnels formés, nos véhicules sont bien entretenus et nous suivons des protocoles de sécurité stricts lors de chaque excursion."
-    respect:
-      title: "Respect des Communautés Locales"
-      description: "Nous travaillons main dans la main avec les communautés locales, en veillant à ce que le tourisme profite aux personnes qui habitent le désert. Nous respectons leurs traditions et leur mode de vie."
-    sustainability:
-      title: "Tourisme Responsable"
-      description: "Nous nous engageons à protéger le fragile écosystème désertique. Nous minimisons notre impact environnemental, soutenons les efforts de conservation et promouvons des pratiques de voyage durables."
-  
-  responsible_title: "Notre Approche de Tourisme Responsable"
-  responsible_text: "Aux Baroudeurs du Désert, nous croyons que le voyage devrait faire du bien. Notre approche de tourisme responsable comprend :"
-  responsible_items:
-    item1: "Travailler avec des guides et chauffeurs locaux"
-    item2: "Soutenir les entreprises et artisans locaux"
-    item3: "Minimiser les déchets et l'impact environnemental"
-    item4: "Respecter la faune et les habitats naturels"
-    item5: "Promouvoir les échanges culturels et la compréhension"
-    item6: "Redonner aux communautés locales"
-  
-  gallery_title: "Notre Galerie"
-  gallery_subtitle: "Des moments de nos aventures dans le désert"
-  
-  cta_title: "Prêt à Explorer le Désert ?"
-  cta_text: "Rejoignez-nous pour une aventure inoubliable dans le Sahara tunisien"
-  cta_button: "Réservez Votre Aventure"
+      text: "Des partenaires locaux expérimentés et des circuits organisés avec soin pour voyager en toute sérénité."
+
+  # Pourquoi
+  why_title: "Pourquoi choisir Baroudeurs du Désert ?"
+  why_item1: "Des expériences authentiques"
+  why_item2: "Des guides et partenaires locaux"
+  why_item3: "Des circuits adaptés à tous les voyageurs"
+  why_item4: "Des petits groupes pour une expérience plus humaine"
+  why_item5: "Des paysages exceptionnels"
+  why_item6: "Une assistance et un accompagnement personnalisé"
+
+  # Émotion
+  emotional_quote: "Le désert ne se visite pas seulement... il se ressent."
+  emotional_question: "Prêt à vivre votre prochaine aventure ?"
+  emotional_button: "Découvrir nos circuits"
 
 blog_page:
   title: "Notre Blog"
@@ -363,3 +365,23 @@ tips:
     title: "L'Essor de la Pensée Design Comme Stratégie"
     author: "Dale V. Hornback"
     date: "23 Novembre, 2022"
+
+detail_page:
+  itinerary_title: "Itinéraire Complet"
+  included_title: "Inclus"
+  excluded_title: "Non Inclus"
+  book_now: "Réserver"
+  other_circuits: "D'Autres Circuits Formidables"
+  day: "Jour"
+  gallery_title: "Galerie Photo"
+  trending_places: "Lieux Populaires"
+  find_availability_1: "Trouvez la Meilleure"
+  find_availability_2: "Disponibilité du Circuit"
+  check_in: "Arrivée"
+  check_out: "Départ"
+  guest: "Invités"
+  full_name: "Nom Complet"
+  your_email: "Votre Email"
+  select_date: "Sélectionnez une date"
+  number_of_people: "Nombre de personnes"
+  check_availability: "Vérifier la Disponibilité"

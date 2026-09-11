@@ -206,16 +206,7 @@ circuits_page:
   intro_highlight: "desert, oasis, Berber villages, cultural heritage..."
   more_details: "More Details"
 
-detail_page:
-  itinerary_title: "Full Itinerary"
-  included_title: "Included"
-  excluded_title: "Not Included"
-  map_title: "Route Map"
-  reviews_title: "Traveler Reviews"
-  book_now: "Book This Tour"
-  request_quote: "Request a Personalized Quote"
-  back_to_list: "Back to all tours"
-  gallery_title: "Photo Gallery"
+
 
 testimonials_page:
   breadcrumb_home: "Home"
@@ -257,68 +248,55 @@ quote_page:
   send_button: "Send My Request"
 
 about_page:
+  hero_label: "About Us"
   title: "About Us"
   breadcrumb_home: "Home"
-  intro: "Discover the story behind Les Baroudeurs du Désert"
-  presentation_title: "Our Story"
-  presentation_text: "Les Baroudeurs du Désert was born from a common passion for the wide open spaces and traditions of southern Tunisia. What started as a small group of friends sharing their love for the desert has grown into a team of dedicated professionals committed to sharing the beauty and culture of Tunisia with travelers from around the world."
-  mission_title: "Our Mission"
-  mission_text: "To offer authentic and responsible desert experiences that connect travelers with the true spirit of Tunisia. We believe in travel that respects local communities, preserves the environment, and creates lasting memories."
-  
-  team_title: "Meet Our Team"
-  team_subtitle: "The passionate people behind your desert adventure"
-  
-  team:
-    member1:
-      name: "Ahmed Ben Ali"
-      role: "Founder & Desert Guide"
-      description: "Born and raised in Douz, Ahmed has been exploring the Sahara for over 20 years. His deep knowledge of the desert and his passion for sharing it with others is the heart of Les Baroudeurs du Désert."
-    member2:
-      name: "Mohamed El Khadra"
-      role: "Senior Guide"
-      description: "With 15 years of experience, Mohamed knows every dune and oasis of the Tunisian Sahara. His calm demeanor and storytelling skills make every journey unforgettable."
-    member3:
-      name: "Laila Ben Amor"
-      role: "Cultural Guide"
-      description: "Laila brings the traditions of Tunisia to life. Her knowledge of Berber culture, local cuisine, and traditional crafts adds a unique dimension to every tour."
-    member4:
-      name: "Karim El Mansour"
-      role: "4x4 Driver & Mechanic"
-      description: "Karim's expertise behind the wheel and his mechanical skills ensure safe and comfortable journeys across the most remote desert tracks."
-  
-  values_title: "Our Values"
-  values_subtitle: "The principles that guide everything we do"
-  
+
+  # Hero
+  hero_title: "About Us"
+  hero_subtitle: "More than a trip, an adventure to live."
+  hero_text: "Baroudeurs du Désert invites you to discover authentic landscapes, endless horizons and unforgettable experiences in the heart of the desert."
+  hero_button: "Discover our adventures"
+
+  # Our Story
+  story_label: "Our Story"
+  story_title: "A passion for adventure and the desert"
+  story_p1: "Baroudeurs du Désert was born from a passion: showing the desert differently."
+  story_p2: "We create authentic experiences for travelers seeking adventure, change of scenery and encounters."
+  story_p3: "From endless dunes to hidden oases, through traditional villages and wild landscapes, every tour is designed to let you live a unique adventure."
+  story_objective: "Our goal?"
+  story_tagline: "Take you where memories begin."
+
+  # Values
+  values_subtitle: "Our Values"
+  values_title: "What drives us every day"
   values:
     authenticity:
       title: "Authenticity"
-      description: "We offer genuine experiences that reflect the true culture and spirit of Tunisia. No tourist traps, just real connections with people and places."
+      text: "We let you discover the desert, its landscapes, traditions and people in an authentic way."
+    adventure:
+      title: "Adventure"
+      text: "Excursions, treks and tours designed for lovers of discovery and unique experiences."
+    proximity:
+      title: "Proximity"
+      text: "A passionate team available to accompany you before, during and after your trip."
     safety:
       title: "Safety"
-      description: "Your safety is our priority. Our guides are trained professionals, our vehicles are well-maintained, and we follow strict safety protocols on every tour."
-    respect:
-      title: "Respect for Local Communities"
-      description: "We work hand in hand with local communities, ensuring that tourism benefits the people who call the desert home. We respect their traditions and way of life."
-    sustainability:
-      title: "Responsible Tourism"
-      description: "We are committed to protecting the fragile desert ecosystem. We minimize our environmental impact, support conservation efforts, and promote sustainable travel practices."
-  
-  responsible_title: "Our Responsible Tourism Approach"
-  responsible_text: "At Les Baroudeurs du Désert, we believe that travel should do good. Our responsible tourism approach includes:"
-  responsible_items:
-    item1: "Working with local guides and drivers"
-    item2: "Supporting local businesses and artisans"
-    item3: "Minimizing waste and environmental impact"
-    item4: "Respecting wildlife and natural habitats"
-    item5: "Promoting cultural exchange and understanding"
-    item6: "Giving back to local communities"
-  
-  gallery_title: "Our Gallery"
-  gallery_subtitle: "Moments from our desert adventures"
-  
-  cta_title: "Ready to Explore the Desert?"
-  cta_text: "Join us for an unforgettable adventure in the Tunisian Sahara"
-  cta_button: "Book Your Adventure"
+      text: "Experienced local partners and carefully organized tours to travel with peace of mind."
+
+  # Why
+  why_title: "Why choose Baroudeurs du Désert?"
+  why_item1: "Authentic experiences"
+  why_item2: "Local guides and partners"
+  why_item3: "Tours adapted to all travelers"
+  why_item4: "Small groups for a more human experience"
+  why_item5: "Exceptional landscapes"
+  why_item6: "Personalized assistance and support"
+
+  # Emotional
+  emotional_quote: "The desert is not just visited... it is felt."
+  emotional_question: "Ready to live your next adventure?"
+  emotional_button: "Discover our tours"
 
 blog_page:
   title: "Our Blog"
@@ -388,3 +366,24 @@ tips:
     title: "Rise Of Design Thinking Solving Strategy"
     author: "Dale V. Hornback"
     date: "November 23, 2022"
+
+
+detail_page:
+  itinerary_title: "Full Itinerary"
+  included_title: "Included"
+  excluded_title: "Not Included"
+  book_now: "Book Now"
+  other_circuits: "Other Amazing Circuits Tours"
+  day: "Day"
+  gallery_title: "Photo Gallery"
+  trending_places: "Trending Places"
+  find_availability_1: "Find Best"
+  find_availability_2: "Circuit Availability"
+  check_in: "Check In"
+  check_out: "Check Out"
+  guest: "Guest"
+  full_name: "Full Name"
+  your_email: "Your Email"
+  select_date: "Select a date"
+  number_of_people: "Number of people"
+  check_availability: "Check Availability"

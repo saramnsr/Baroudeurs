@@ -3,99 +3,114 @@
 {% block title %}contact us{% endblock %}
 
 {% block body %}
-        <section class="contact-bg-section bg_cover pt-100 pb-50" style="background-image: url('{{ asset('assets/images/bg/contact-bg-1.png') }}');">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xl-7 col-lg-12">
-                        <div class="contact-content-box mb-50">
-                            <div class="section-title mb-45 wow fadeInUp">
-                                <span class="sub-title"><span class="number">01</span>{{ 'contact.subtitle'|trans }}</span>
-                                <h2>{{ 'contact.title'|trans }} <span class="thin">{{ 'contact.title2'|trans }}</span></h2>
+    <!--====== Start Page Banner ======-->
+    <section class="page-banner-section" style="background-image: url('{{ asset('assets/images/bg/cta-bg-2.jpg') }}');">
+        <div class="container">
+            <div class="page-banner-content text-center">
+                <h1 class="page-title">Contact Us</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="{{ path('app_font_index') }}">Home</a></li>
+                    <li><span class="separator"><i class="fas fa-chevron-right"></i></span></li>
+                    <li class="active">Contact Us</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--====== End Page Banner ======-->
+
+    <section class="contact-bg-section bg_cover pt-100 pb-50" style="background-image: url('{{ asset('assets/images/bg/contact-bg-1.png') }}'); background-size: cover; background-position: center;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-7 col-lg-12">
+                    <div class="contact-content-box mb-50">
+                        <div class="section-title mb-45 wow fadeInUp">
+                            <span class="sub-title"><span class="number">01</span>{{ 'contact.subtitle'|trans }}</span>
+                            <h2>{{ 'contact.title'|trans }} <span class="thin">{{ 'contact.title2'|trans }}</span></h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="contact-icon-box mb-50 wow fadeInDown">
+                                    <div class="icon">
+                                        <i class="fal fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h4 class="title">{{ 'contact.locations'|trans }}</h4>
+                                        <p>532 Douz, Kebili
+                                            Sud Tunisien, Tunisie</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="contact-icon-box mb-50 wow fadeInDown">
-                                        <div class="icon">
-                                            <i class="fal fa-map-marker-alt"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h4 class="title">{{ 'contact.locations'|trans }}</h4>
-                                            <p>532 Douz, Kebili
-                                                Sud Tunisien, Tunisie</p>
-                                        </div>
+                            <div class="col-md-6">
+                                <div class="contact-icon-box mb-50 wow fadeInDown">
+                                    <div class="icon">
+                                        <i class="fal fa-envelope-open"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h4 class="title">{{ 'contact.email'|trans }}</h4>
+                                        <p><a href="mailto:contact@baroudeursdedesert.com">contact@baroudeursdedesert.com</a></p>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="contact-icon-box mb-50 wow fadeInDown">
-                                        <div class="icon">
-                                            <i class="fal fa-envelope-open"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h4 class="title">{{ 'contact.email'|trans }}</h4>
-                                            <p><a href="mailto:contact@baroudeursdedesert.com">contact@baroudeursdedesert.com</a></p>
-                                        </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contact-icon-box mb-50 wow fadeInDown">
+                                    <div class="icon">
+                                        <i class="fal fa-phone"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h4 class="title">{{ 'contact.hotline'|trans }}</h4>
+                                        <p><a href="tel:+21624777232">+216 24 777 232</a></p>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="contact-icon-box mb-50 wow fadeInDown">
-                                        <div class="icon">
-                                            <i class="fal fa-phone"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h4 class="title">{{ 'contact.hotline'|trans }}</h4>
-                                            <p><a href="tel:+21624777232">+216 24 777 232</a></p>
-                                        </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contact-icon-box mb-50 wow fadeInDown">
+                                    <div class="icon">
+                                        <i class="fal fa-link"></i>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="contact-icon-box mb-50 wow fadeInDown">
-                                        <div class="icon">
-                                            <i class="fal fa-link"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h4 class="title">{{ 'contact.follow'|trans }}</h4>
-                                            <p><a href="https://www.facebook.com/share/1HsRYiq9J7/" target="_blank" rel="noopener noreferrer"> Facebook </a> 
-                                            <br> <a href="https://www.instagram.com/baroudeurs_de_desert" target="_blank" rel="noopener noreferrer"> Instagram </a></p>
-                                        </div>
+                                    <div class="text">
+                                        <h4 class="title">{{ 'contact.follow'|trans }}</h4>
+                                        <p><a href="https://www.facebook.com/share/1HsRYiq9J7/" target="_blank" rel="noopener noreferrer"> Facebook </a> 
+                                        <br> <a href="https://www.instagram.com/baroudeurs_de_desert" target="_blank" rel="noopener noreferrer"> Instagram </a></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-5 col-lg-12">
-                        <div class="contact-form-wrapper mb-50">
-                            <h3 class="title">{{ 'contact.form_title'|trans }}</h3> 
-                            <p>{{ 'contact.form_description'|trans }}</p> 
-                        <form class="contact-form" action="{{ path('app_contact_submit') }}" method="POST">
-                                <div class="form_group"> 
-                                    <input type="text" class="form_control" placeholder="{{ 'contact.name_placeholder'|trans }}" name="name" required> 
-                                </div> 
-                                <div class="form_group"> 
-                                    <input type="email" class="form_control" placeholder="{{ 'contact.email_placeholder'|trans }}" name="email" required> 
-                                </div> 
-                                <div class="form_group"> 
-                                    <textarea class="form_control" placeholder="{{ 'contact.message_placeholder'|trans }}" name="message" required></textarea> 
-                                </div> 
-                                <div class="form_group"> 
-                                    <button type="submit" class="main-btn btn-green"> {{ 'contact.send'|trans }} 
-                                        <i class="far fa-angle-double-right"></i> 
-                                    </button> 
-                                </div> 
-                            </form>
-                        </div>
+                </div>
+                <div class="col-xl-5 col-lg-12">
+                    <div class="contact-form-wrapper mb-50">
+                        <h3 class="title">{{ 'contact.form_title'|trans }}</h3> 
+                        <p>{{ 'contact.form_description'|trans }}</p> 
+                    <form class="contact-form" action="{{ path('app_contact_submit') }}" method="POST">
+                            <div class="form_group"> 
+                                <input type="text" class="form_control" placeholder="{{ 'contact.name_placeholder'|trans }}" name="name" required> 
+                            </div> 
+                            <div class="form_group"> 
+                                <input type="email" class="form_control" placeholder="{{ 'contact.email_placeholder'|trans }}" name="email" required> 
+                            </div> 
+                            <div class="form_group"> 
+                                <textarea class="form_control" placeholder="{{ 'contact.message_placeholder'|trans }}" name="message" required></textarea> 
+                            </div> 
+                            <div class="form_group"> 
+                                <button type="submit" class="main-btn btn-green"> {{ 'contact.send'|trans }} 
+                                    <i class="far fa-angle-double-right"></i> 
+                                </button> 
+                            </div> 
+                        </form>
                     </div>
                 </div>
             </div>
-        </section><!--====== End Contact Section ======-->
-        
-        <!--====== Start Contact Map Section ======-->
-        <section class="contact-page-map pb-100 wow fadeInUp">
-            <div class="container-fluid">
-                <!--=== Map Box ===-->
-                <div class="map-box">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.6551773219867!2d9.024935199999998!3d33.4582892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x125687d99a800d97%3A0x8c91e1f02ca73b46!2sBaroudeurs%20de%20d%C3%A9sert!5e0!3m2!1sfr!2stn!4v1788255717514!5m2!1sfr!2stn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                </div>
+        </div>
+    </section><!--====== End Contact Section ======-->
+    
+    <!--====== Start Contact Map Section ======-->
+    <section class="contact-page-map pb-100 wow fadeInUp">
+        <div class="container-fluid">
+            <!--=== Map Box ===-->
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.6551773219867!2d9.024935199999998!3d33.4582892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x125687d99a800d97%3A0x8c91e1f02ca73b46!2sBaroudeurs%20de%20d%C3%A9sert!5e0!3m2!1sfr!2stn!4v1788255717514!5m2!1sfr!2stn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
             </div>
-        </section>
-        <!--====== End Contact Map Section ======-->
+        </div>
+    </section>
+    <!--====== End Contact Map Section ======-->
 {% endblock %}
