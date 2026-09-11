@@ -10,6 +10,7 @@ use App\Repository\ProgrammeRepository;
 use App\Repository\TestimonialRepository;
 use App\Repository\QuoteRepository;
 use App\Repository\CircuitRepository;
+use App\Repository\ExcursionRepository;
 use App\Entity\Testimonial;
 use App\Entity\Quote;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,17 +24,20 @@ class FontController extends AbstractController
     private TestimonialRepository $testimonialRepository;
     private QuoteRepository $quoteRepository;
     private CircuitRepository $circuitRepository;
+    private ExcursionRepository $excursionRepository;
 
     public function __construct(
         ProgrammeRepository $programmeRepository, 
         TestimonialRepository $testimonialRepository,
         QuoteRepository $quoteRepository,
-        CircuitRepository $circuitRepository
+        CircuitRepository $circuitRepository,
+        ExcursionRepository $excursionRepository
     ) {
         $this->programmeRepository = $programmeRepository;
         $this->testimonialRepository = $testimonialRepository;
         $this->quoteRepository = $quoteRepository;
         $this->circuitRepository = $circuitRepository;
+        $this->excursionRepository = $excursionRepository;
     }
 
     /**
@@ -587,6 +591,18 @@ public function circuits(): Response
     return $this->render('font/circuits.html.twig', [
         'circuits' => $circuits,
         'programmes' => $programmes,
+    ]);
+}
+
+/**
+ * @Route("/excursions", name="app_font_excursions")
+ */
+public function excursions(): Response
+{
+    $excursions = $this->excursionRepository->findAllOrdered();
+
+    return $this->render('font/excursions.html.twig', [
+        'excursions' => $excursions,
     ]);
 }
 

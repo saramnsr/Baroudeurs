@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Excursions - Baroudeurs du Désert{% endblock %}
+
+{% block body %}
+
+    <!--====== Start Page Banner ======-->
+    <section class="page-banner-section" style="background-image: url('{{ asset('assets/images/bg/page-bg-1.jpg') }}');">
+        <div class="container">
+            <div class="page-banner-content text-center">
+                <h1 class="page-title">Excursions</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="{{ path('app_font_index') }}">Home</a></li>
+                    <li><span class="separator"><i class="fas fa-chevron-right"></i></span></li>
+                    <li class="active">Excursions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--====== End Page Banner ======-->
+
+    <!--====== Start Excursions Zigzag Section ======-->
+    <section class="excursions-zigzag-section pt-100 pb-100">
+        <div class="excursions-zigzag-wrapper">
+            {% for excursion in excursions %}
+                <div class="excursion-zigzag-item {{ loop.index is odd ? 'excursion-normal' : 'excursion-reverse' }}">
+                    <div class="excursion-zigzag-image">
+                        <img src="{{ excursion.image }}" alt="{{ excursion.getTitle(app.request.locale) }}">
+                    </div>
+                    <div class="excursion-zigzag-card">
+                        <span class="excursion-zigzag-number">{{ '%02d'|format(loop.index) }}</span>
+                        {% if excursion.getDuration(app.request.locale) %}
+                            <span class="excursion-zigzag-duration">{{ excursion.getDuration(app.request.locale) }}</span>
+                        {% endif %}
+                        <div class="excursion-zigzag-title-row">
+                            <span class="excursion-zigzag-line"></span>
+                            <h3 class="excursion-zigzag-title">{{ excursion.getTitle(app.request.locale) }}</h3>
+                        </div>
+                        <p class="excursion-zigzag-desc">{{ excursion.getDescription(app.request.locale) }}</p>
+<div class="excursion-zigzag-features">
+    {% for item in excursion.getIncluded(app.request.locale)|slice(0, 3) %}
+        <div class="excursion-feature">
+            <i class="{{ ['fas fa-utensils', 'fas fa-campground', 'fas fa-shuttle-van'][loop.index0 % 3] }}"></i>
+            <span>{{ item }}</span>
+        </div>
+    {% endfor %}
+</div>
+<a href="{{ path('app_font_quote') }}" class="excursion-zigzag-btn">
+    {{ 'circuits_page.more_details'|trans }} <i class="fas fa-angle-double-right"></i>
+</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <!--====== End Excursions Zigzag Section ======-->
+
+{% endblock %}

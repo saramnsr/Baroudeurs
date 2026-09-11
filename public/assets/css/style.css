@@ -8845,3 +8845,198 @@ footer.footer-default .footer-newsletter.pt-80 {
   padding: 30px 55px !important;
   right: 100px !important;
 }
+
+
+/* ===== Excursions Zigzag Section ===== */
+.excursions-zigzag-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.excursion-zigzag-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  min-height: 600px;
+}
+.excursion-zigzag-item:last-child {
+  margin-bottom: 0;
+}
+
+.excursion-normal {
+  flex-direction: row;
+}
+.excursion-reverse {
+  flex-direction: row-reverse;
+}
+
+.excursion-zigzag-image {
+  width: 65%;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+.excursion-zigzag-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.excursion-zigzag-card {
+  width: 42%;
+  background-color: #F7F6F3;
+  padding: 55px 60px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.excursion-normal .excursion-zigzag-card {
+  margin-left: -180px;
+}
+.excursion-reverse .excursion-zigzag-card {
+  margin-right: -180px;
+}
+
+.excursion-zigzag-number {
+  font-size: 15px;
+  font-weight: 700;
+  color: #63AC45;
+  position: absolute;
+  top: 50px;
+  left: 60px;
+}
+
+.excursion-zigzag-duration {
+  display: inline-block;
+  color: #63AC45;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+  margin-top: 25px;
+}
+
+.excursion-zigzag-title-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.excursion-zigzag-line {
+  display: inline-block;
+  width: 35px;
+  height: 2px;
+  background-color: #1C231F;
+  flex-shrink: 0;
+}
+
+.excursion-zigzag-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #1C231F;
+  margin: 0;
+}
+
+.excursion-zigzag-desc {
+  color: #6b6b6b;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.excursion-zigzag-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.excursion-feature {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  background-color: transparent;
+  border-radius: 0;
+  border-top: none;
+  padding: 0;
+  box-shadow: none;
+  transition: none;
+}
+
+.excursion-feature:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.excursion-feature i {
+  color: #63AC45;
+  font-size: 15px;
+  margin-bottom: 0;
+  margin-right: 10px;
+  width: 18px;
+  flex-shrink: 0;
+}
+
+.excursion-feature span {
+  color: #1C231F;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.excursion-zigzag-btn {
+  display: inline-block;
+  background-color: #F7921E;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  padding: 14px 30px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-top: 25px;
+  transition: background-color 0.3s ease;
+}
+.excursion-zigzag-btn:hover {
+  background-color: #e08316;
+}
+.excursion-zigzag-btn i {
+  margin-left: 6px;
+}
+
+@media (max-width: 991px) {
+  .excursion-zigzag-item,
+  .excursion-normal,
+  .excursion-reverse {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .excursion-zigzag-image,
+  .excursion-zigzag-card {
+    width: 100%;
+  }
+  .excursion-zigzag-image img {
+    height: 320px;
+  }
+  .excursion-zigzag-card {
+    padding: 40px 30px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .excursion-zigzag-number {
+    position: static;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .excursion-zigzag-features {
+    justify-content: flex-start;
+  }
+}
