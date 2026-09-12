@@ -387,3 +387,6 @@ detail_page:
   select_date: "Select a date"
   number_of_people: "Number of people"
   check_availability: "Check Availability"
+  other_excursions: "Other Amazing Excursions"
+  testimonial_title: "What Travelers Say"
+  included_options_title: "What's Included"

@@ -25,7 +25,7 @@
                                     <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
                                     <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
                                     <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
-                                        <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                        <a href="{{ path('app_font_circuits') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
                                         <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
                                     <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
                                     <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
                                     <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
-                                        <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                        <a href="{{ path('app_font_circuits') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
                                         <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                     <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
                                     <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
                                     <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
-                                        <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                        <a href="{{ path('app_font_circuits') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
                                         <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@
                                     <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
                                     <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
                                     <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
-                                        <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                        <a href="{{ path('app_font_circuits') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
                                         <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                     <h1 data-animation="fadeInUp" data-delay=".6s">{{ 'hero.main_title'|trans }}</h1>
                                     <p class="text-white" data-animation="fadeInUp" data-delay=".7s">{{ 'hero.main_subtitle'|trans }}</p>
                                     <div class="hero-button" data-animation="fadeInDown" data-delay=".8s">
-                                        <a href="{{ path('programmes') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
+                                        <a href="{{ path('app_font_circuits') }}" class="main-btn btn-yellow">{{ 'hero.btn1'|trans }}<i class="far fa-angle-double-right"></i></a>
                                         <a href="{{ path('app_font_contact') }}" class="main-btn btn-link">{{ 'hero.btn2'|trans }}<i class="far fa-angle-double-right"></i></a>
                                     </div>
                                 </div>
@@ -262,8 +262,8 @@
 
             <div class="row mt-4">
                 <div class="col-12 text-center">
-                    <a href="{{ path('programmes') }}" class="main-btn btn-green">
-                        {{ 'program.view_all'|trans }}
+                    <a href="{{ path('app_font_circuits') }}" class="main-btn btn-green">
+                        View our tours
                     </a>
                 </div>
             </div>
@@ -289,7 +289,7 @@
 
             <div class="excursion-grid">
                 {% for excursion in featuredExcursions %}
-                    <a href="{{ path('programme_detail', {'id': excursion.id}) }}" class="excursion-card {{ loop.index <= 2 ? 'excursion-card-large' : 'excursion-card-small' }}">
+                    <a href="{{ path('app_font_detail', {'type': 'excursion', 'id': excursion.id}) }}" class="excursion-card {{ loop.index <= 2 ? 'excursion-card-large' : 'excursion-card-small' }}">
                         <img class="excursion-card-bg"
                              src="{{ excursion.image starts with 'http' ? excursion.image : asset('assets/images/' ~ excursion.image) }}"
                              alt=""
@@ -308,10 +308,10 @@
                             </h3>
                             <span class="excursion-card-subtitle">
                                 <i class="far fa-clock"></i>
-                                {% if locale == 'fr' %}{{ excursion.dureeFr }}
-                                {% elseif locale == 'ar' %}{{ excursion.dureeAr }}
-                                {% elseif locale == 'it' %}{{ excursion.dureeIt }}
-                                {% else %}{{ excursion.dureeEn }}
+                                {% if locale == 'fr' %}{{ excursion.durationFr }}
+                                {% elseif locale == 'ar' %}{{ excursion.durationAr }}
+                                {% elseif locale == 'it' %}{{ excursion.durationIt }}
+                                {% else %}{{ excursion.durationEn }}
                                 {% endif %}
                             </span>
                         </div>
@@ -735,9 +735,9 @@
                     </div>
                 </div>
                 <div class="col-lg-4 text-lg-end text-start mt-30 mt-lg-0">
-                    <!-- Request a free quote → Quote page -->
-                    <a href="{{ path('app_font_quote') }}" class="main-btn btn-yellow">
-                        {{ 'devis.button'|trans }}
+                    <!-- Contact us → Contact page -->
+                    <a href="{{ path('app_font_contact') }}" class="main-btn btn-yellow">
+                        Contact us
                         <i class="far fa-angle-double-right"></i>
                     </a>
                 </div>
@@ -838,4 +838,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 {% endblock %}
-

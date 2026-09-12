@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'nav.services'|trans }} - Baroudeurs du Désert{% endblock %}
+
+{% block body %}
+
+    <!--====== Start Page Banner ======-->
+    <section class="page-banner-section" style="background-image: url('{{ asset('assets/images/bg/bg-4.jpg') }}');">
+        <div class="container">
+            <div class="page-banner-content text-center">
+                <h1 class="page-title">{{ 'nav.services'|trans }}</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="{{ path('app_font_index') }}">{{ 'nav.home'|trans }}</a></li>
+                    <li><span class="separator"><i class="fas fa-chevron-right"></i></span></li>
+                    <li class="active">{{ 'nav.services'|trans }}</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Wavy bottom -->
+        <div class="banner-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,40 C240,120 480,0 720,60 C960,120 1200,20 1440,70 L1440,120 L0,120 Z" fill="#ffffff"/>
+            </svg>
+        </div>
+    </section>
+    <!--====== End Page Banner ======-->
+
+    <!--====== Start Partners Section ======-->
+    <section class="partners-section pt-100 pb-100">
+        <div class="container">
+
+            <!-- Divider line on top -->
+            <div class="partners-divider"></div>
+
+            <div class="row justify-content-center mb-50">
+                <div class="col-lg-8 text-center">
+                    <div class="section-title">
+                        <h2>{{ 'services_page.partners_title'|trans }}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="partners-logos">
+                <div class="partner-logo">
+                    <img src="{{ asset('assets/images/partners/partner-1.png') }}" alt="Partner 1">
+                </div>
+                <div class="partner-logo">
+                    <img src="{{ asset('assets/images/partners/partner-2.png') }}" alt="Partner 2">
+                </div>
+                <div class="partner-logo">
+                    <img src="{{ asset('assets/images/partners/partner-3.png') }}" alt="Partner 3">
+                </div>
+                <div class="partner-logo">
+                    <img src="{{ asset('assets/images/partners/partner-4.png') }}" alt="Partner 4">
+                </div>
+                <div class="partner-logo">
+                    <img src="{{ asset('assets/images/partners/partner-5.png') }}" alt="Partner 5">
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--====== End Partners Section ======-->
+
+    <style>
+        /* Banner wave positioning */
+        .page-banner-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .banner-wave {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            line-height: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .banner-wave svg {
+            display: block;
+            width: 100%;
+            height: 80px;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            background-color: #ffffff;
+        }
+        .partners-divider {
+            height: 1px;
+            background-color: #e5e5e5;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+        .partners-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .partner-logo {
+            flex: 1 1 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 140px;
+        }
+        .partner-logo img {
+            max-width: 140px;
+            max-height: 70px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: grayscale(0%);
+            transition: all 0.3s ease;
+        }
+        .partner-logo img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 767px) {
+            .partners-logos {
+                gap: 30px;
+            }
+            .partner-logo {
+                flex: 0 0 40%;
+            }
+        }
+    </style>
+
+{% endblock %}

@@ -225,6 +225,9 @@ detail_page:
   select_date: "اختر تاريخًا"
   number_of_people: "عدد الأشخاص"
   check_availability: "تحقق من التوفر"
+  other_excursions: "رحلات نهارية أخرى رائعة"
+  testimonial_title: "آراء المسافرين"
+  included_options_title: "ما يشمله العرض"
 
 
   
@@ -386,3 +389,8 @@ tips:
     title: "صعود التفكير التصميمي كاستراتيجية حل"
     author: "دايل ف. هورنباك"
     date: "23 نوفمبر 2022"
+
+
+
+services_page:
+    partners_title: "شركاؤنا"

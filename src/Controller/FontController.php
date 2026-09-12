@@ -47,7 +47,12 @@ class FontController extends AbstractController
     {
         $programmes = $this->programmeRepository->findAll();
         $featuredProgrammes = $this->programmeRepository->findFeatured(5);
-        $featuredExcursions = $this->programmeRepository->findBy(['type' => 'Excursion Vedette'], null, 5);
+
+        // Featured excursions on the homepage must come from the real
+        // Excursion entity (same table used by /excursions and the detail
+        // page), not from Programme — otherwise the ids won't resolve
+        // in FontController::detail().
+        $featuredExcursions = array_slice($this->excursionRepository->findAllOrdered(), 0, 5);
 
         return $this->render('font/index.html.twig', [
             'programmes' => $programmes,
@@ -699,5 +704,14 @@ public function submitCircuitBooking(Request $request): Response
     }
 
     return $this->redirectToRoute('app_font_detail', ['type' => 'circuit', 'id' => $circuitId]);
+}
+
+
+/**
+ * @Route("/services", name="app_font_services")
+ */
+public function services(): Response
+{
+    return $this->render('font/services.html.twig');
 }
 }

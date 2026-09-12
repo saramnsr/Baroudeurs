@@ -227,6 +227,9 @@ detail_page:
   select_date: "Seleziona una data"
   number_of_people: "Numero di persone"
   check_availability: "Verifica Disponibilità"
+  other_excursions: "Altre Fantastiche Escursioni"
+  testimonial_title: "Cosa Dicono i Viaggiatori"
+  included_options_title: "Cosa è incluso"
 
 testimonials_page:
   breadcrumb_home: "Home"
@@ -385,3 +388,9 @@ tips:
     title: "L'Ascesa del Design Thinking Come Strategia"
     author: "Dale V. Hornback"
     date: "23 Novembre, 2022"
+
+
+
+
+services_page:
+    partners_title: "I Nostri Partner"

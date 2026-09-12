@@ -5,10 +5,151 @@
 {% block body %}
 
     <style>
-      .header-navigation.transparent-header .main-menu ul li a,
-      .header-navigation.transparent-header .site-branding,
-      .header-navigation.transparent-header .lang-dropdown select {
-        color: #1C231F !important;
+      html {
+        scroll-behavior: smooth;
+      }
+      .detail-gallery-section {
+        padding-top: 200px !important;
+        padding-bottom: 100px !important;
+        background-color: #1C231F !important;
+        position: relative;
+        overflow: hidden;
+      }
+      .detail-gallery-section::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-color: #ffffff;
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C200,110 400,0 600,50 C800,100 1000,10 1200,60 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C200,110 400,0 600,50 C800,100 1000,10 1200,60 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        z-index: 4;
+      }
+      .detail-gallery-img {
+        position: relative;
+        overflow: visible;
+      }
+      .detail-gallery-wave {
+        position: absolute;
+        width: 260px;
+        z-index: 3;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .detail-gallery-wave.wave-left {
+        left: -120px;
+        top: -60px;
+        bottom: 120px;
+      }
+      .detail-gallery-wave.wave-right {
+        right: -120px;
+        top: 120px;
+        bottom: -60px;
+      }
+      .detail-gallery-wave svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .sidebar-testimonial {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .sidebar-testimonial-title {
+        margin-bottom: 12px;
+      }
+      .sidebar-testimonial-comment {
+        color: #4a4a4a;
+        font-size: 13px;
+        line-height: 1.6;
+        font-style: italic;
+        margin-bottom: 12px;
+      }
+      .sidebar-testimonial-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .sidebar-testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .sidebar-testimonial-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+      .sidebar-testimonial-author strong {
+        display: block;
+        color: #1C231F;
+        font-size: 14px;
+      }
+      .sidebar-testimonial-author span {
+        color: #6b6b6b;
+        font-size: 12px;
+      }
+      .sidebar-testimonial-stars i {
+        color: #F7921E;
+        font-size: 13px;
+        margin-left: 2px;
+      }
+      .detail-itinerary-summary {
+        color: #6b6b6b;
+        font-size: 15px;
+        line-height: 1.8;
+        margin-bottom: 25px;
+      }
+      .circuit-booking-section {
+        background-color: #63AC45;
+        padding: 60px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .circuit-booking-section::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: 8%;
+        width: 320px;
+        height: 320px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 320'%3E%3Ccircle cx='160' cy='160' r='150' fill='none' stroke='%2363AC45' stroke-width='11'/%3E%3Ccircle cx='160' cy='160' r='115' fill='none' stroke='%23F7921E' stroke-width='9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .circuit-booking-section::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: 8%;
+        width: 320px;
+        height: 320px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 320'%3E%3Ccircle cx='160' cy='160' r='150' fill='none' stroke='%2363AC45' stroke-width='11'/%3E%3Ccircle cx='160' cy='160' r='115' fill='none' stroke='%23F7921E' stroke-width='9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .circuit-booking-card {
+        position: relative;
+        z-index: 3;
+      }
+      .mini-calendar-table td[data-date] {
+        cursor: pointer;
+      }
+      .sidebar-book-btn:hover {
+        color: #fff !important;
       }
     </style>
 
@@ -20,12 +161,28 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <div class="detail-gallery-img">
-                        <img src="{{ gallery[0] is defined ? gallery[0] : item.image }}" alt="{{ item.getTitle(app.request.locale) }}">
+                        <img src="{{ gallery[0] is defined ? gallery[0].url : item.image }}" alt="{{ item.getTitle(app.request.locale) }}">
+                        <div class="detail-gallery-wave wave-left">
+                            <svg viewBox="0 0 260 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                <path d="M-120,0 C120,150 40,300 140,450 C240,600 -40,750 80,900"
+                                      fill="none" stroke="#F7921E" stroke-width="3"/>
+                                <path d="M-120,80 C120,180 240,320 120,460 C40,560 260,720 100,900"
+                                      fill="none" stroke="#63AC45" stroke-width="3"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="detail-gallery-img">
-                        <img src="{{ gallery[1] is defined ? gallery[1] : item.image }}" alt="{{ item.getTitle(app.request.locale) }}">
+                        <img src="{{ gallery[1] is defined ? gallery[1].url : item.image }}" alt="{{ item.getTitle(app.request.locale) }}">
+                        <div class="detail-gallery-wave wave-right">
+                            <svg viewBox="0 0 260 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                <path d="M380,0 C140,150 220,300 120,450 C20,600 300,750 180,900"
+                                      fill="none" stroke="#F7921E" stroke-width="3"/>
+                                <path d="M380,80 C140,180 20,320 140,460 C220,560 0,720 160,900"
+                                      fill="none" stroke="#63AC45" stroke-width="3"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,6 +204,9 @@
                     {% endif %}
 
                     <h3 class="detail-section-title">{{ 'detail_page.itinerary_title'|trans }}</h3>
+                    {% if item.getItinerarySummary(app.request.locale) %}
+                        <p class="detail-itinerary-summary">{{ item.getItinerarySummary(app.request.locale) }}</p>
+                    {% endif %}
                     <div class="detail-itinerary-accordion">
                         {% set details = item.getItineraryDetail(app.request.locale) %}
                         {% for day in item.getItinerary(app.request.locale) %}
@@ -64,7 +224,7 @@
                     </div>
 
                     {% if item.getIncluded(app.request.locale)|length > 0 or item.getExcluded(app.request.locale)|length > 0 %}
-                        <h3 class="detail-section-title">{{ 'detail_page.included_title'|trans }}</h3>
+                        <h3 class="detail-section-title">{{ 'detail_page.included_options_title'|trans }}</h3>
                         <div class="equipment-table-wrap {{ item.getExcluded(app.request.locale)|length == 0 ? 'single-col' : '' }}">
                             <div class="equipment-col">
                                 <div class="equipment-col-header">{{ 'detail_page.included_title'|trans }}</div>
@@ -112,11 +272,51 @@
                                     <tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td class="muted">30</td><td class="muted">31</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
-                                    <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td class="today">11</td><td>12</td></tr>
-                                    <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
-                                    <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
-                                    <tr><td>27</td><td>28</td><td>29</td><td>30</td><td class="muted">1</td><td class="muted">2</td><td class="muted">3</td></tr>
+                                    <tr>
+                                        <td class="muted" data-date="2026-08-30">30</td>
+                                        <td class="muted" data-date="2026-08-31">31</td>
+                                        <td data-date="2026-09-01">1</td>
+                                        <td data-date="2026-09-02">2</td>
+                                        <td data-date="2026-09-03">3</td>
+                                        <td data-date="2026-09-04">4</td>
+                                        <td data-date="2026-09-05">5</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-date="2026-09-06">6</td>
+                                        <td data-date="2026-09-07">7</td>
+                                        <td data-date="2026-09-08">8</td>
+                                        <td data-date="2026-09-09">9</td>
+                                        <td data-date="2026-09-10">10</td>
+                                        <td data-date="2026-09-11">11</td>
+                                        <td data-date="2026-09-12">12</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-date="2026-09-13">13</td>
+                                        <td data-date="2026-09-14">14</td>
+                                        <td data-date="2026-09-15">15</td>
+                                        <td data-date="2026-09-16">16</td>
+                                        <td data-date="2026-09-17">17</td>
+                                        <td data-date="2026-09-18">18</td>
+                                        <td data-date="2026-09-19">19</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-date="2026-09-20">20</td>
+                                        <td data-date="2026-09-21">21</td>
+                                        <td data-date="2026-09-22">22</td>
+                                        <td data-date="2026-09-23">23</td>
+                                        <td data-date="2026-09-24">24</td>
+                                        <td data-date="2026-09-25">25</td>
+                                        <td data-date="2026-09-26">26</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-date="2026-09-27">27</td>
+                                        <td data-date="2026-09-28">28</td>
+                                        <td data-date="2026-09-29">29</td>
+                                        <td data-date="2026-09-30">30</td>
+                                        <td class="muted" data-date="2026-10-01">1</td>
+                                        <td class="muted" data-date="2026-10-02">2</td>
+                                        <td class="muted" data-date="2026-10-03">3</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -124,7 +324,7 @@
                         <div class="sidebar-trending">
                             <h4>{{ 'detail_page.trending_places'|trans }}</h4>
                             <div class="sidebar-trending-img">
-                                <img src="{{ gallery[0] is defined ? gallery[0] : item.image }}" alt="{{ item.getTitle(app.request.locale) }}">
+                                <img src="{{ gallery[0] is defined ? gallery[0].url : item.image }}" alt="{{ item.getTitle(app.request.locale) }}">
                                 <div class="sidebar-trending-caption">
                                     <strong>{{ item.getTitle(app.request.locale) }}</strong>
                                     <span><i class="fas fa-map-marker-alt"></i> Tunisia</span>
@@ -132,9 +332,32 @@
                             </div>
                         </div>
 
-                        <a href="{{ path('app_font_quote') }}" class="sidebar-book-btn">
+                        <a href="#availability-section" class="sidebar-book-btn" id="sidebarBookNowBtn">
                             {{ 'detail_page.book_now'|trans }} <i class="fas fa-angle-double-right"></i>
                         </a>
+
+                        {% if item.getReviewName() %}
+                            <div class="sidebar-trending">
+                                <h4>{{ 'detail_page.testimonial_title'|trans }}</h4>
+                                <div class="sidebar-testimonial" style="border-top: none; padding-top: 0; margin-top: 0;">
+                                    <p class="sidebar-testimonial-comment">"{{ item.getReviewComment(app.request.locale) }}"</p>
+                                    <div class="sidebar-testimonial-footer">
+                                        <div class="sidebar-testimonial-author">
+                                            <img src="{{ asset('assets/images/about/' ~ item.getReviewAvatar()) }}" alt="{{ item.getReviewName() }}" class="sidebar-testimonial-avatar">
+                                            <div>
+                                                <strong>{{ item.getReviewName() }}</strong>
+                                                <span>{{ item.getReviewCountry() }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="sidebar-testimonial-stars">
+                                            {% for i in 1..5 %}
+                                                <i class="fas fa-star{{ i > item.getReviewRating() ? '-o' : '' }}"></i>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -148,18 +371,12 @@
             <div class="detail-scroll-gallery-track">
                 {% for img in gallery|slice(2) %}
                     <div class="scroll-gallery-item">
-                        <img src="{{ img }}" alt="{{ item.getTitle(app.request.locale) }}">
-                        <div class="scroll-gallery-hover">
-                            <span>{{ item.getTitle(app.request.locale) }}</span>
-                        </div>
+                        <img src="{{ img.url }}" alt="{{ item.getTitle(app.request.locale) }}">
                     </div>
                 {% endfor %}
                 {% for img in gallery|slice(2) %}
                     <div class="scroll-gallery-item">
-                        <img src="{{ img }}" alt="{{ item.getTitle(app.request.locale) }}">
-                        <div class="scroll-gallery-hover">
-                            <span>{{ item.getTitle(app.request.locale) }}</span>
-                        </div>
+                        <img src="{{ img.url }}" alt="{{ item.getTitle(app.request.locale) }}">
                     </div>
                 {% endfor %}
             </div>
@@ -167,103 +384,142 @@
         <!--====== End Auto-Scroll Gallery ======-->
     {% endif %}
 
-    {% if item.getClosing(app.request.locale) %}
-     <!--====== Start Circuit Booking Card ======-->
-<section class="circuit-booking-section">
-    <div class="container">
-        <div class="circuit-booking-card">
-            <h3 class="circuit-booking-title">
-                {{ 'detail_page.find_availability_1'|trans }} <span class="thin">{{ 'detail_page.find_availability_2'|trans }}</span>
-            </h3>
-            <form method="post" action="{{ path('app_circuit_booking_submit') }}" class="row g-4 align-items-end">
-                <input type="hidden" name="circuitId" value="{{ item.id }}">
-                <input type="hidden" name="circuitTitle" value="{{ item.getTitle(app.request.locale) }}">
+    <!--====== Start Circuit Booking Card ======-->
+    <section class="circuit-booking-section" id="availability-section" style="background-image: url('{{ asset('assets/images/bg/cta-bg-1.png') }}');">
+        <div class="container">
+            <div class="circuit-booking-card">
+                <h3 class="circuit-booking-title">
+                    {{ 'detail_page.find_availability_1'|trans }} <span class="thin">{{ 'detail_page.find_availability_2'|trans }}</span>
+                </h3>
+                <form method="post" action="{{ path('app_circuit_booking_submit') }}" class="row g-4 align-items-end">
+                    <input type="hidden" name="circuitId" value="{{ item.id }}">
+                    <input type="hidden" name="circuitTitle" value="{{ item.getTitle(app.request.locale) }}">
 
-                <div class="col-md-6">
-                    <div class="booking-field">
-                        <span>{{ 'detail_page.check_in'|trans }}</span>
-                        <input type="text" class="booking-input datepicker" name="checkIn" placeholder="{{ 'detail_page.select_date'|trans }}" required>
-                        <i class="far fa-calendar-alt booking-field-icon"></i>
+                    <div class="col-md-6">
+                        <div class="booking-field">
+                            <span>{{ 'detail_page.check_in'|trans }}</span>
+                            <input type="text" class="booking-input datepicker" id="circuitCheckInInput" name="checkIn" placeholder="{{ 'detail_page.select_date'|trans }}" required>
+                            <i class="far fa-calendar-alt booking-field-icon"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="booking-field">
-                        <span>{{ 'detail_page.check_out'|trans }}</span>
-                        <input type="text" class="booking-input datepicker" name="checkOut" placeholder="{{ 'detail_page.select_date'|trans }}" required>
-                        <i class="far fa-calendar-alt booking-field-icon"></i>
+                    <div class="col-md-6">
+                        <div class="booking-field">
+                            <span>{{ 'detail_page.check_out'|trans }}</span>
+                            <input type="text" class="booking-input datepicker" name="checkOut" placeholder="{{ 'detail_page.select_date'|trans }}" required>
+                            <i class="far fa-calendar-alt booking-field-icon"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="booking-field">
-                        <span>{{ 'detail_page.guest'|trans }}</span>
-                        <input type="number" min="1" class="booking-input" name="guests" placeholder="{{ 'detail_page.number_of_people'|trans }}" required>
-                        <i class="fas fa-user booking-field-icon"></i>
+                    <div class="col-md-6">
+                        <div class="booking-field">
+                            <span>{{ 'detail_page.guest'|trans }}</span>
+                            <input type="number" min="1" class="booking-input" name="guests" placeholder="{{ 'detail_page.number_of_people'|trans }}" required>
+                            <i class="fas fa-user booking-field-icon"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="booking-field">
-                        <span>{{ 'detail_page.full_name'|trans }}</span>
-                        <input type="text" class="booking-input" name="name" placeholder="{{ 'detail_page.full_name'|trans }}" required>
+                    <div class="col-md-6">
+                        <div class="booking-field">
+                            <span>{{ 'detail_page.full_name'|trans }}</span>
+                            <input type="text" class="booking-input" name="name" placeholder="{{ 'detail_page.full_name'|trans }}" required>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="booking-field">
-                        <span>{{ 'detail_page.your_email'|trans }}</span>
-                        <input type="email" class="booking-input" name="email" placeholder="{{ 'detail_page.your_email'|trans }}" required>
+                    <div class="col-md-12">
+                        <div class="booking-field">
+                            <span>{{ 'detail_page.your_email'|trans }}</span>
+                            <input type="email" class="booking-input" name="email" placeholder="{{ 'detail_page.your_email'|trans }}" required>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <button type="submit" class="booking-submit-btn">
-                        {{ 'detail_page.check_availability'|trans }} <i class="far fa-angle-double-right"></i>
-                    </button>
-                </div>
-            </form>
+                    <div class="col-md-12">
+                        <button type="submit" class="booking-submit-btn">
+                            {{ 'detail_page.check_availability'|trans }} <i class="far fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</section>
-<!--====== End Circuit Booking Card ======-->
-    {% endif %}
+    </section>
+    <!--====== End Circuit Booking Card ======-->
 
     <!--====== Start Related Circuits ======-->
     <section class="related-circuits-section pt-100 pb-100">
         <div class="container">
             <div class="row justify-content-center mb-50">
                 <div class="col-lg-6 text-center">
-                    <h2 class="related-title">{{ 'detail_page.other_circuits'|trans }}</h2>
+                    <h2 class="related-title">{{ (type == 'excursion' ? 'detail_page.other_excursions' : 'detail_page.other_circuits')|trans }}</h2>
                 </div>
             </div>
-            <div class="row">
-                {% for related in circuits|default([])|slice(0, 4) %}
-                    {% if related.id != item.id %}
-                        <div class="col-lg-4 col-md-6 mb-40">
-                            <div class="related-card">
-                                <div class="related-card-image">
-                                    <img src="{{ related.image starts with 'http' ? related.image : asset('assets/images/' ~ related.image) }}" alt="{{ related.getTitle(app.request.locale) }}">
-                                </div>
-                                <div class="related-card-content">
-                                    <div class="related-card-title-row">
-                                        <span class="related-card-line"></span>
-                                        <h4>{{ related.getTitle(app.request.locale) }}</h4>
-                                    </div>
-                                    <p>{{ related.getDescription(app.request.locale) }}</p>
-                                    <div class="related-card-bottom">
-                                        <div class="related-card-icons">
-                                            {% for icon in related.icons|slice(0, 4) %}
-                                                <i class="{{ icon }}"></i>
-                                            {% endfor %}
-                                        </div>
-                                        <a href="{{ path('app_font_detail', {type: 'circuit', id: related.id}) }}" class="related-card-btn">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+<div class="row">
+    {% set shown = 0 %}
+    {% for related in circuits|default([]) %}
+        {% if related.id != item.id and shown < 3 %}
+            <div class="col-lg-4 col-md-6 mb-40">
+                <div class="related-card">
+                    <div class="related-card-image">
+                        <img src="{{ related.image starts with 'http' ? related.image : asset('assets/images/' ~ related.image) }}" alt="{{ related.getTitle(app.request.locale) }}">
+                    </div>
+                    <div class="related-card-content">
+                        <div class="related-card-title-row">
+                            <span class="related-card-line"></span>
+                            <h4>{{ related.getTitle(app.request.locale) }}</h4>
                         </div>
-                    {% endif %}
-                {% endfor %}
+                        <p>{{ related.getDescription(app.request.locale) }}</p>
+                        <div class="related-card-bottom">
+                            <div class="related-card-icons">
+                                {% for icon in related.icons|slice(0, 4) %}
+                                    <i class="{{ icon }}"></i>
+                                {% endfor %}
+                            </div>
+                            <a href="{{ path('app_font_detail', {type: type, id: related.id}) }}" class="related-card-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            {% set shown = shown + 1 %}
+        {% endif %}
+    {% endfor %}
+</div>
         </div>
     </section>
     <!--====== End Related Circuits ======-->
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var checkInInput = document.getElementById('circuitCheckInInput');
+
+            document.querySelectorAll('.mini-calendar-table td[data-date]').forEach(function (cell) {
+                cell.addEventListener('click', function () {
+                    var iso = cell.getAttribute('data-date');
+                    var parts = iso.split('-');
+                    var formatted = parts[2] + '/' + parts[1] + '/' + parts[0];
+
+                    if (checkInInput) {
+                        checkInInput.value = formatted;
+                        checkInInput.dispatchEvent(new Event('input', { bubbles: true }));
+                        checkInInput.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+
+                    document.querySelectorAll('.mini-calendar-table td.today').forEach(function (el) {
+                        el.classList.remove('today');
+                    });
+                    cell.classList.add('today');
+                });
+            });
+
+            var bookNowBtn = document.getElementById('sidebarBookNowBtn');
+            if (bookNowBtn) {
+                bookNowBtn.addEventListener('click', function (e) {
+                    var target = document.getElementById('availability-section');
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+        });
+    </script>
 {% endblock %}

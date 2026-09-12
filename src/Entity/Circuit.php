@@ -17,84 +17,43 @@ class Circuit
      */
     private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /** @ORM\Column(type="string", length=255) */
     private string $image;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /** @ORM\Column(type="string", length=255) */
     private string $titleFr;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /** @ORM\Column(type="string", length=255) */
     private string $titleEn;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /** @ORM\Column(type="string", length=255) */
     private string $titleAr;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /** @ORM\Column(type="string", length=255) */
     private string $titleIt;
 
-    /**
-     * @ORM\Column(type="text")
-     */
+    /** @ORM\Column(type="text") */
     private string $descriptionFr;
-
-    /**
-     * @ORM\Column(type="text")
-     */
+    /** @ORM\Column(type="text") */
     private string $descriptionEn;
-
-    /**
-     * @ORM\Column(type="text")
-     */
+    /** @ORM\Column(type="text") */
     private string $descriptionAr;
-
-    /**
-     * @ORM\Column(type="text")
-     */
+    /** @ORM\Column(type="text") */
     private string $descriptionIt;
 
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
+    /** @ORM\Column(type="string", length=100, nullable=true) */
     private ?string $durationFr = null;
-
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
+    /** @ORM\Column(type="string", length=100, nullable=true) */
     private ?string $durationEn = null;
-
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
+    /** @ORM\Column(type="string", length=100, nullable=true) */
     private ?string $durationAr = null;
-
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
+    /** @ORM\Column(type="string", length=100, nullable=true) */
     private ?string $durationIt = null;
 
-    /**
-     * @ORM\Column(type="json")
-     */
+    /** @ORM\Column(type="json") */
     private array $icons = [];
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    /** @ORM\Column(type="integer") */
     private int $position = 0;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    /** @ORM\Column(type="text", nullable=true) */
     private ?string $introFr = null;
     /** @ORM\Column(type="text", nullable=true) */
     private ?string $introEn = null;
@@ -111,6 +70,15 @@ class Circuit
     private ?string $fullDescriptionAr = null;
     /** @ORM\Column(type="text", nullable=true) */
     private ?string $fullDescriptionIt = null;
+
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $itinerarySummaryFr = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $itinerarySummaryEn = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $itinerarySummaryAr = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $itinerarySummaryIt = null;
 
     /** @ORM\Column(type="json") */
     private array $itineraryFr = [];
@@ -153,7 +121,10 @@ class Circuit
     /** @ORM\Column(type="json") */
     private array $excludedIcons = [];
 
-    /** @ORM\Column(type="json") */
+    /**
+     * Array of ['url' => string, 'title' => string]
+     * @ORM\Column(type="json")
+     */
     private array $galleryImages = [];
 
     /** @ORM\Column(type="text", nullable=true) */
@@ -165,56 +136,54 @@ class Circuit
     /** @ORM\Column(type="text", nullable=true) */
     private ?string $closingIt = null;
 
+    // ==== Sidebar review card ====
+    /** @ORM\Column(type="string", length=255, nullable=true) */
+    private ?string $reviewAvatar = null;
+    /** @ORM\Column(type="string", length=255, nullable=true) */
+    private ?string $reviewName = null;
+    /** @ORM\Column(type="string", length=255, nullable=true) */
+    private ?string $reviewCountry = null;
+    /** @ORM\Column(type="integer", nullable=true) */
+    private ?int $reviewRating = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $reviewCommentFr = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $reviewCommentEn = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $reviewCommentAr = null;
+    /** @ORM\Column(type="text", nullable=true) */
+    private ?string $reviewCommentIt = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
-    public function getImage(): string
-    {
-        return $this->image;
-    }
+    public function getId(): ?int { return $this->id; }
 
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-        return $this;
-    }
+    public function getImage(): string { return $this->image; }
+    public function setImage(string $image): self { $this->image = $image; return $this; }
 
     public function getTitleFr(): string { return $this->titleFr; }
     public function setTitleFr(string $v): self { $this->titleFr = $v; return $this; }
-
     public function getTitleEn(): string { return $this->titleEn; }
     public function setTitleEn(string $v): self { $this->titleEn = $v; return $this; }
-
     public function getTitleAr(): string { return $this->titleAr; }
     public function setTitleAr(string $v): self { $this->titleAr = $v; return $this; }
-
     public function getTitleIt(): string { return $this->titleIt; }
     public function setTitleIt(string $v): self { $this->titleIt = $v; return $this; }
 
     public function getDescriptionFr(): string { return $this->descriptionFr; }
     public function setDescriptionFr(string $v): self { $this->descriptionFr = $v; return $this; }
-
     public function getDescriptionEn(): string { return $this->descriptionEn; }
     public function setDescriptionEn(string $v): self { $this->descriptionEn = $v; return $this; }
-
     public function getDescriptionAr(): string { return $this->descriptionAr; }
     public function setDescriptionAr(string $v): self { $this->descriptionAr = $v; return $this; }
-
     public function getDescriptionIt(): string { return $this->descriptionIt; }
     public function setDescriptionIt(string $v): self { $this->descriptionIt = $v; return $this; }
 
     public function getDurationFr(): ?string { return $this->durationFr; }
     public function setDurationFr(?string $v): self { $this->durationFr = $v; return $this; }
-
     public function getDurationEn(): ?string { return $this->durationEn; }
     public function setDurationEn(?string $v): self { $this->durationEn = $v; return $this; }
-
     public function getDurationAr(): ?string { return $this->durationAr; }
     public function setDurationAr(?string $v): self { $this->durationAr = $v; return $this; }
-
     public function getDurationIt(): ?string { return $this->durationIt; }
     public function setDurationIt(?string $v): self { $this->durationIt = $v; return $this; }
 
@@ -224,14 +193,10 @@ class Circuit
     public function getPosition(): int { return $this->position; }
     public function setPosition(int $position): self { $this->position = $position; return $this; }
 
-    // ==== Locale-aware convenience getters, used directly in Twig ====
-
     public function getTitle(string $locale): string
     {
         return match ($locale) {
-            'fr' => $this->titleFr,
-            'ar' => $this->titleAr,
-            'it' => $this->titleIt,
+            'fr' => $this->titleFr, 'ar' => $this->titleAr, 'it' => $this->titleIt,
             default => $this->titleEn,
         };
     }
@@ -239,9 +204,7 @@ class Circuit
     public function getDescription(string $locale): string
     {
         return match ($locale) {
-            'fr' => $this->descriptionFr,
-            'ar' => $this->descriptionAr,
-            'it' => $this->descriptionIt,
+            'fr' => $this->descriptionFr, 'ar' => $this->descriptionAr, 'it' => $this->descriptionIt,
             default => $this->descriptionEn,
         };
     }
@@ -249,9 +212,7 @@ class Circuit
     public function getDuration(string $locale): ?string
     {
         return match ($locale) {
-            'fr' => $this->durationFr,
-            'ar' => $this->durationAr,
-            'it' => $this->durationIt,
+            'fr' => $this->durationFr, 'ar' => $this->durationAr, 'it' => $this->durationIt,
             default => $this->durationEn,
         };
     }
@@ -273,6 +234,15 @@ class Circuit
     public function setFullDescriptionAr(?string $v): self { $this->fullDescriptionAr = $v; return $this; }
     public function getFullDescriptionIt(): ?string { return $this->fullDescriptionIt; }
     public function setFullDescriptionIt(?string $v): self { $this->fullDescriptionIt = $v; return $this; }
+
+    public function getItinerarySummaryFr(): ?string { return $this->itinerarySummaryFr; }
+    public function setItinerarySummaryFr(?string $v): self { $this->itinerarySummaryFr = $v; return $this; }
+    public function getItinerarySummaryEn(): ?string { return $this->itinerarySummaryEn; }
+    public function setItinerarySummaryEn(?string $v): self { $this->itinerarySummaryEn = $v; return $this; }
+    public function getItinerarySummaryAr(): ?string { return $this->itinerarySummaryAr; }
+    public function setItinerarySummaryAr(?string $v): self { $this->itinerarySummaryAr = $v; return $this; }
+    public function getItinerarySummaryIt(): ?string { return $this->itinerarySummaryIt; }
+    public function setItinerarySummaryIt(?string $v): self { $this->itinerarySummaryIt = $v; return $this; }
 
     public function getItineraryFr(): array { return $this->itineraryFr; }
     public function setItineraryFr(array $v): self { $this->itineraryFr = $v; return $this; }
@@ -327,7 +297,31 @@ class Circuit
     public function getClosingIt(): ?string { return $this->closingIt; }
     public function setClosingIt(?string $v): self { $this->closingIt = $v; return $this; }
 
-    // locale-aware getters
+    public function getReviewAvatar(): ?string { return $this->reviewAvatar; }
+    public function setReviewAvatar(?string $v): self { $this->reviewAvatar = $v; return $this; }
+    public function getReviewName(): ?string { return $this->reviewName; }
+    public function setReviewName(?string $v): self { $this->reviewName = $v; return $this; }
+    public function getReviewCountry(): ?string { return $this->reviewCountry; }
+    public function setReviewCountry(?string $v): self { $this->reviewCountry = $v; return $this; }
+    public function getReviewRating(): ?int { return $this->reviewRating; }
+    public function setReviewRating(?int $v): self { $this->reviewRating = $v; return $this; }
+    public function getReviewCommentFr(): ?string { return $this->reviewCommentFr; }
+    public function setReviewCommentFr(?string $v): self { $this->reviewCommentFr = $v; return $this; }
+    public function getReviewCommentEn(): ?string { return $this->reviewCommentEn; }
+    public function setReviewCommentEn(?string $v): self { $this->reviewCommentEn = $v; return $this; }
+    public function getReviewCommentAr(): ?string { return $this->reviewCommentAr; }
+    public function setReviewCommentAr(?string $v): self { $this->reviewCommentAr = $v; return $this; }
+    public function getReviewCommentIt(): ?string { return $this->reviewCommentIt; }
+    public function setReviewCommentIt(?string $v): self { $this->reviewCommentIt = $v; return $this; }
+
+    public function getReviewComment(string $locale): ?string
+    {
+        return match ($locale) {
+            'fr' => $this->reviewCommentFr, 'ar' => $this->reviewCommentAr, 'it' => $this->reviewCommentIt,
+            default => $this->reviewCommentEn,
+        };
+    }
+
     public function getIntro(string $locale): ?string
     {
         return match ($locale) {
@@ -340,6 +334,13 @@ class Circuit
         return match ($locale) {
             'fr' => $this->fullDescriptionFr, 'ar' => $this->fullDescriptionAr, 'it' => $this->fullDescriptionIt,
             default => $this->fullDescriptionEn,
+        };
+    }
+    public function getItinerarySummary(string $locale): ?string
+    {
+        return match ($locale) {
+            'fr' => $this->itinerarySummaryFr, 'ar' => $this->itinerarySummaryAr, 'it' => $this->itinerarySummaryIt,
+            default => $this->itinerarySummaryEn,
         };
     }
     public function getItinerary(string $locale): array

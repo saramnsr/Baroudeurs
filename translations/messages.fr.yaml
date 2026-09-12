@@ -385,3 +385,11 @@ detail_page:
   select_date: "Sélectionnez une date"
   number_of_people: "Nombre de personnes"
   check_availability: "Vérifier la Disponibilité"
+  other_excursions: "D'Autres Excursions Formidables"
+  testimonial_title: "Avis des Voyageurs"
+  included_options_title: "Ce qui est inclus"
+
+
+
+services_page:
+    partners_title: "Nos Partenaires"

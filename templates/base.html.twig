@@ -6,7 +6,7 @@
         
         {% block stylesheets %}
         <!--====== Favicon Icon ======-->
-        <link class="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/png">
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
         <!--====== Flaticon css ======-->
         <link rel="stylesheet" href="{{ asset('assets/fonts/flaticon/flaticon.css') }}">
         <!--====== FontAwesome css ======-->
@@ -29,6 +29,25 @@
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
         <link rel="preconnect" href="https://res.cloudinary.com">
+
+        <!--====== Preloader Color Override ======-->
+        <style>
+            /* White background for the preloader */
+            .preloader {
+                background-color: #ffffff !important;
+            }
+            /* Orange for the loading animation */
+            .preloader .loader .pre-box,
+            .preloader .loader .pre-shadow {
+                background-color: #F7921E !important;
+            }
+            /* In case the loader uses borders or pseudo-elements */
+            .preloader .loader::before,
+            .preloader .loader::after {
+                background-color: #F7921E !important;
+                border-color: #F7921E !important;
+            }
+        </style>
         {% endblock %}
     </head>
     <body>
@@ -95,7 +114,7 @@
                                     <li class="menu-item"><a href="{{ path('app_font_about') }}">{{ 'nav.about'|trans }}</a></li>
                                     <li class="menu-item"><a href="{{ path('app_font_circuits') }}">{{ 'nav.circuits'|trans }}</a></li>
                                     <li class="menu-item"><a href="{{ path('app_font_excursions') }}">{{ 'nav.excursions'|trans }}</a></li>
-                                    <li class="menu-item"><a href="#">{{ 'nav.services'|trans }}</a></li>
+                                    <li class="menu-item"><a href="{{ path('app_font_services') }}">{{ 'nav.services'|trans }}</a></li>
                                     <li class="menu-item"><a href="{{ path('app_font_blog') }}">{{ 'nav.blog'|trans }}</a></li>
                                     <li class="menu-item"><a href="{{ path('app_font_contact') }}">{{ 'nav.contact'|trans }}</a></li>
                                 </ul>
@@ -112,10 +131,10 @@
                             </div>
                             <div class="lang-dropdown">
                                 <select onchange="location = this.value;">
-                                    <option value="{{ path('change_language', {'locale': 'en'}) }}">EN</option>
-                                    <option value="{{ path('change_language', {'locale': 'fr'}) }}">FR</option>
-                                    <option value="{{ path('change_language', {'locale': 'ar'}) }}">AR</option>
-                                    <option value="{{ path('change_language', {'locale': 'it'}) }}">IT</option>
+                                    <option value="{{ path('change_language', {'locale': 'en'}) }}">English</option>
+                                    <option value="{{ path('change_language', {'locale': 'fr'}) }}">Français</option>
+                                    <option value="{{ path('change_language', {'locale': 'ar'}) }}">العربية</option>
+                                    <option value="{{ path('change_language', {'locale': 'it'}) }}">Italiano</option>
                                 </select>
                             </div>
                             <div class="navbar-toggler">
