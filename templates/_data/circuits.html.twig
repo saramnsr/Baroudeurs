@@ -1,0 +1,781 @@
+    {% set circuitData = [
+        {
+            id: 1,
+            image: 'Circuits/circuit desert.jpg',
+            title: { fr: 'Circuit Désert 8 Jours - Douz à Tembaïne', en: '8-Day Desert Circuit - Douz to Tembaïne', ar: 'رحلة الصحراء 8 أيام - من دوز إلى تمباين', it: 'Circuito nel Deserto 8 Giorni - Douz a Tembaïne' },
+            description: {
+                fr: "Traversez des dunes infinies en 4x4, de Douz à Tembaïne, avec des nuits sous les étoiles. Baignez-vous dans la source chaude de Huidat Riched et découvrez l'oasis de Ksar Ghilane.",
+                en: 'Cross endless dunes by 4x4 from Douz to Tembaïne, camping under the stars. Bathe in the hot spring of Huidat Riched and discover the oasis of Ksar Ghilane.',
+                ar: 'اعبر الكثبان اللامتناهية بسيارة الدفع الرباعي من دوز إلى تمباين، مع المبيت تحت النجوم. استحم في ينبوع هويدات ريشد الحار واكتشف واحة قصر غيلان.',
+                it: "Attraversa dune infinite in 4x4, da Douz a Tembaïne, con notti sotto le stelle. Fai il bagno nella sorgente termale di Huidat Riched e scopri l'oasi di Ksar Ghilane."
+            },
+            duration: { fr: '8 jours / 7 nuits', en: '8 days / 7 nights', ar: '8 أيام / 7 ليال', it: '8 giorni / 7 notti' },
+            icons: ['flaticon-van', 'flaticon-tent-1', 'flaticon-eat', 'flaticon-sea-waves'],
+            intro: {
+                fr: "Nous vous proposons à titre d'exemple ci-dessous un type de circuit et excursion 4x4 dans le désert. Lors de notre premier contact, nous pouvons vous donner le type de circuit le mieux adapté à vos besoins, allant d'une nuit jusqu'à 15 jours.",
+                en: 'As an example, we present below a type of 4x4 desert circuit and excursion. During our first contact, we can suggest the type of circuit best suited to your needs, ranging from one night up to 15 days.',
+                ar: 'نقدم لكم أدناه، على سبيل المثال، نوعًا من رحلات وجولات الدفع الرباعي في الصحراء. عند أول اتصال بنا، يمكننا تحديد نوع الرحلة الأنسب لاحتياجاتكم، والتي تتراوح من ليلة واحدة إلى 15 يومًا.',
+                it: 'Vi proponiamo di seguito, a titolo di esempio, un tipo di circuito ed escursione in 4x4 nel deserto. Al nostro primo contatto, possiamo indicarvi il tipo di circuito più adatto alle vostre esigenze, da una notte fino a 15 giorni.'
+            },
+            fullDescription: {
+                fr: "Un circuit de 8 jours à travers le Sahara tunisien, de Douz à Tembaïne. Traversez des dunes infinies, baignez-vous dans la source chaude de Huidat Riched et dominez le désert depuis la montagne rocheuse d'El Mida. Découvrez l'oasis de Ksar Ghilane et la piscine d'eau chaude d'Elwat Sbat avant le retour vers Douz, Djerba ou Tozeur.",
+                en: 'An 8-day circuit through the Tunisian Sahara, from Douz to Tembaïne. Cross endless dunes, bathe in the hot spring of Huidat Riched, and overlook the desert from the rocky mountain of El Mida. Discover the oasis of Ksar Ghilane and the hot water pool of Elwat Sbat before returning to Douz, Djerba, or Tozeur.',
+                ar: 'رحلة لمدة 8 أيام عبر الصحراء التونسية، من دوز إلى تمباين. اعبر الكثبان اللامتناهية، واستحم في ينبوع هويدات ريشد الحار، وأشرف على الصحراء من جبل الميدة الصخري. اكتشف واحة قصر غيلان ومسبح علوة سبات قبل العودة إلى دوز أو جربة أو توزر.',
+                it: "Un circuito di 8 giorni nel Sahara tunisino, da Douz a Tembaïne. Attraversa dune infinite, fai il bagno nella sorgente termale di Huidat Riched e domina il deserto dalla montagna rocciosa di El Mida. Scopri l'oasi di Ksar Ghilane e la piscina calda di Elwat Sbat prima di tornare a Douz, Djerba o Tozeur."
+            },
+            itinerarySummary: {
+                fr: "Ce circuit de 8 jours relie Douz à Tembaïne à travers des dunes infinies, avec des étapes à Huidat Riched, El Mida, Ksar Ghilane et Elwat Sbat. Chaque jour combine marche dans le désert, découverte de sites isolés et nuits sous les étoiles. Le circuit se termine par un retour progressif vers Douz, Djerba ou Tozeur.",
+                en: 'This 8-day circuit links Douz to Tembaïne across endless dunes, with stops at Huidat Riched, El Mida, Ksar Ghilane, and Elwat Sbat. Each day combines walking through the desert, discovering isolated sites, and nights under the stars. The circuit ends with a gradual return to Douz, Djerba, or Tozeur.',
+                ar: 'تربط هذه الرحلة التي تستغرق 8 أيام بين دوز وتمباين عبر كثبان لا نهائية، مع محطات في هويدات ريشد والميدة وقصر غيلان وعلوة سبات. يجمع كل يوم بين المشي في الصحراء واكتشاف مواقع معزولة والمبيت تحت النجوم. تنتهي الرحلة بعودة تدريجية إلى دوز أو جربة أو توزر.',
+                it: 'Questo circuito di 8 giorni collega Douz a Tembaïne attraverso dune infinite, con tappe a Huidat Riched, El Mida, Ksar Ghilane ed Elwat Sbat. Ogni giorno unisce camminate nel deserto, scoperta di siti isolati e notti sotto le stelle. Il circuito termina con un ritorno graduale verso Douz, Djerba o Tozeur.'
+            },
+            itinerary: {
+                fr: ['Accueil et transfert à Douz', 'Marché de Douz et route vers Tembaïne', 'Dunes et source chaude de Huidat Riched', "Montagne rocheuse d'El Mida", 'Oasis de Ksar Ghilane', "Elwat Sbat et piscine d'eau chaude", 'Retour en 4x4', "Transfert à l'aéroport"],
+                en: ['Arrival and transfer to Douz', 'Douz market and drive to Tembaïne', 'Dunes and Huidat Riched hot spring', 'Rocky mountain of El Mida', 'Ksar Ghilane oasis', 'Elwat Sbat and hot water pool', 'Return by 4x4', 'Airport transfer'],
+                ar: ['الوصول والنقل إلى دوز', 'سوق دوز والتوجه نحو تمباين', 'الكثبان وينبوع هويدات ريشد الحار', 'جبل الميدة الصخري', 'واحة قصر غيلان', 'علوة سبات ومسبح المياه الحارة', 'العودة بسيارة الدفع الرباعي', 'النقل إلى المطار'],
+                it: ['Arrivo e trasferimento a Douz', 'Mercato di Douz e viaggio verso Tembaïne', 'Dune e sorgente termale di Huidat Riched', 'Montagna rocciosa di El Mida', "Oasi di Ksar Ghilane", 'Elwat Sbat e piscina di acqua calda', 'Ritorno in 4x4', 'Trasferimento in aeroporto']
+            },
+            itineraryDetail: {
+                fr: [
+                    "Accueil et assistance à l'aéroport de Djerba ou de Tozeur, transfert à l'hôtel *** à Douz.",
+                    "Le matin, visite du marché de Douz. Départ avec (4×4) vers « Tembaïne », dîner et logement. « Tembaïne » est un lieu de passage traditionnel tant pour les excursions en dromadaires que pour celles en 4×4 et en moto. Vous pourrez parfois ne pas y être seuls mais ça vaut la peine, c'est un très beau site avec des montagnes d'où l'on domine la région et un puits très profond où vous rencontrerez souvent des nomades.",
+                    "Marche au milieu des dunes qui s'étalent à l'infini jusqu'à « Huidat Riched », dont la source chaude au milieu des grandes dunes offre une occasion de baignade inoubliable. Où nous pourrons aussi rêver dans le désert sous les étoiles et la lune.",
+                    "La caravane se déplace vers « El Mida ». Des cordons de dunes, des vallées pour rejoindre « El Mida » (gour signifie montagne). Du haut de cette petite montagne rocheuse vous aurez l'impression de dominer le Sahara ! Il y a aussi un puit où s'abreuvent les troupeaux et près duquel vivent souvent des familles nomades.",
+                    "Après avoir parcouru une cinquantaine de kilomètres de pistes, quel spectacle : à la porte du Grand Sud Tunisien, sur l'arête Est du Grand Erg Oriental, s'étend l'oasis de « Ksar Ghilane ». La plus méridionale des Oasis de Tunisie, elle est parcourue de séguias alimentés par une source thermale.",
+                    "Puis, nous continuons notre circuit vers « Elwat Sbat » à quelques kilomètres qui présente l'avantage d'être isolé, beaucoup moins couru que Ksar Ghilane et offre même une petite piscine d'eau chaude. Nous nous installerons là-bas pour passer notre soirée.",
+                    "Retour en 4×4 à l'hôtel*** à Douz, Djerba ou à Tozeur.",
+                    "Transfert à l'aéroport à Djerba ou à Tozeur."
+                ],
+                en: [
+                    "Welcome and assistance at Djerba or Tozeur airport, transfer to the hotel in Douz.",
+                    "In the morning, visit the Douz market. Departure by 4x4 towards 'Tembaïne', dinner and accommodation. 'Tembaïne' is a traditional crossing point for both camel and 4x4/motorbike excursions. You may sometimes share it with others, but it's worth it — a beautiful site with mountains overlooking the region and a very deep well where you will often meet nomads.",
+                    "Walk among dunes stretching endlessly to 'Huidat Riched', whose hot spring amid the great dunes offers an unforgettable swimming opportunity. Where we can also dream in the desert under the stars and the moon.",
+                    "The caravan moves towards 'El Mida'. Rows of dunes and valleys lead to 'El Mida' ('gour' means mountain). From the top of this small rocky mountain, you'll feel like you're overlooking the Sahara! There is also a well where herds drink and where nomadic families often live nearby.",
+                    "After covering about fifty kilometers of tracks, what a sight: at the gateway to the Great Tunisian South, on the eastern ridge of the Grand Erg Oriental, lies the oasis of 'Ksar Ghilane'. The southernmost oasis in Tunisia, crossed by irrigation channels fed by a thermal spring.",
+                    "We then continue our circuit towards 'Elwat Sbat' a few kilometers away, which has the advantage of being isolated, much less visited than Ksar Ghilane, and even offers a small hot water pool. We will settle there for the evening.",
+                    "Return by 4x4 to the hotel in Douz, Djerba, or Tozeur.",
+                    "Transfer to the airport in Djerba or Tozeur."
+                ],
+                ar: [
+                    "الاستقبال والمساعدة في مطار جربة أو توزر، والنقل إلى الفندق في دوز.",
+                    "في الصباح، زيارة سوق دوز. الانطلاق بسيارات الدفع الرباعي نحو 'تمباين'، العشاء والمبيت. 'تمباين' هو معبر تقليدي لكل من رحلات الجمال والدفع الرباعي والدراجات النارية. قد لا تكونون وحدكم أحيانًا لكن الأمر يستحق العناء، فهو موقع جميل بجباله المطلة على المنطقة وبئر عميق جدًا حيث ستلتقون غالبًا بالبدو الرحل.",
+                    "المشي وسط الكثبان الممتدة إلى ما لا نهاية وصولًا إلى 'هويدات ريشد'، حيث يوفر ينبوعها الحار وسط الكثبان الكبيرة فرصة سباحة لا تُنسى. حيث يمكننا أيضًا الحلم في الصحراء تحت النجوم والقمر.",
+                    "تتحرك القافلة نحو 'الميدة'. سلاسل من الكثبان والوديان للوصول إلى 'الميدة' (كلمة 'قور' تعني الجبل). من قمة هذا الجبل الصخري الصغير، ستشعرون وكأنكم تسيطرون على الصحراء الكبرى! يوجد أيضًا بئر تشرب منه القطعان وغالبًا ما تعيش بالقرب منه عائلات بدوية.",
+                    "بعد قطع نحو خمسين كيلومترًا من المسالك، يا له من منظر: عند بوابة الجنوب التونسي الكبير، على الحافة الشرقية للعرق الشرقي الكبير، تمتد واحة 'قصر غيلان'. أقصى واحة جنوبية في تونس، تعبرها سواقي تغذيها ينابيع حرارية.",
+                    "نواصل بعدها جولتنا نحو 'علوة سبات' على بعد بضعة كيلومترات، الذي يتميز بكونه معزولًا وأقل ازدحامًا بكثير من قصر غيلان، بل ويوفر مسبحًا صغيرًا من المياه الحارة. سنستقر هناك لقضاء أمسيتنا.",
+                    "العودة بسيارة الدفع الرباعي إلى الفندق في دوز أو جربة أو توزر.",
+                    "النقل إلى المطار في جربة أو توزر."
+                ],
+                it: [
+                    "Accoglienza e assistenza all'aeroporto di Djerba o Tozeur, trasferimento all'hotel a Douz.",
+                    "Al mattino, visita al mercato di Douz. Partenza in 4x4 verso 'Tembaïne', cena e pernottamento. 'Tembaïne' è un luogo di passaggio tradizionale sia per le escursioni in dromedario che in 4x4 e in moto. A volte potreste non essere soli, ma ne vale la pena: un sito bellissimo con montagne da cui si domina la regione e un pozzo molto profondo dove spesso si incontrano i nomadi.",
+                    "Camminata tra le dune che si estendono all'infinito fino a 'Huidat Riched', la cui sorgente termale tra le grandi dune offre un'occasione di bagno indimenticabile. Dove possiamo anche sognare nel deserto sotto le stelle e la luna.",
+                    "La carovana si sposta verso 'El Mida'. Cordoni di dune e vallate per raggiungere 'El Mida' ('gour' significa montagna). Dalla cima di questa piccola montagna rocciosa avrete l'impressione di dominare il Sahara! C'è anche un pozzo dove si abbeverano le mandrie e vicino al quale spesso vivono famiglie nomadi.",
+                    "Dopo aver percorso una cinquantina di chilometri di piste, che spettacolo: alla porta del Grande Sud Tunisino, sul crinale orientale del Grande Erg Orientale, si estende l'oasi di 'Ksar Ghilane'. La più meridionale delle oasi della Tunisia, attraversata da canali alimentati da una sorgente termale.",
+                    "Proseguiamo poi il nostro circuito verso 'Elwat Sbat', a pochi chilometri di distanza, che presenta il vantaggio di essere isolato, molto meno frequentato di Ksar Ghilane, e offre persino una piccola piscina di acqua calda. Ci fermeremo lì per trascorrere la serata.",
+                    "Ritorno in 4x4 all'hotel a Douz, Djerba o Tozeur.",
+                    "Trasferimento all'aeroporto di Djerba o Tozeur."
+                ]
+            },
+            included: {
+                fr: ['Alimentation', "Transfert de l'aéroport à l'hôtel et de retour", "Hébergement à l'hôtel à Djerba et à Douz", 'Matelas ou sac de couchage', 'Couverture', 'Tente', 'Autorisation'],
+                en: ['Meals', 'Airport-to-hotel transfer and return', 'Hotel accommodation in Djerba and Douz', 'Mattress or sleeping bag', 'Blanket', 'Tent', 'Permit'],
+                ar: ['الطعام', 'النقل من المطار إلى الفندق والعودة', 'الإقامة في الفندق بجربة ودوز', 'مرتبة أو كيس نوم', 'بطانية', 'خيمة', 'تصريح'],
+                it: ['Vitto', 'Trasferimento aeroporto-hotel e ritorno', 'Alloggio in hotel a Djerba e Douz', 'Materasso o sacco a pelo', 'Coperta', 'Tenda', 'Permesso']
+            },
+            includedIcons: ['eat', 'van', 'cottage', 'bed', 'blanket', 'tent-1', 'draw-check-mark'],
+            excluded: { fr: [], en: [], ar: [], it: [] },
+            excludedIcons: [],
+            closing: {
+                fr: "A ce propos, nous sommes ravis de porter à votre connaissance que notre agence de voyages se spécialise dans l'organisation de plusieurs activités touristiques ayant l'attention de concrétiser votre séjour et de réaliser votre voyage d'aventures Tunisie et spécialement au Sahara de Douz.",
+                en: 'We are delighted to let you know that our travel agency specializes in organizing a variety of tourist activities, dedicated to making your stay a reality and fulfilling your Tunisian adventure, especially in the Douz Sahara.',
+                ar: 'يسرنا أن نعلمكم أن وكالتنا للأسفار متخصصة في تنظيم عدة أنشطة سياحية تهتم بتجسيد إقامتكم وتحقيق رحلة مغامرتكم في تونس، وخاصة في صحراء دوز.',
+                it: "Siamo lieti di informarvi che la nostra agenzia di viaggi è specializzata nell'organizzazione di diverse attività turistiche, con l'obiettivo di concretizzare il vostro soggiorno e realizzare il vostro viaggio d'avventura in Tunisia, in particolare nel Sahara di Douz."
+            },
+            gallery: [
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788609964/baroudeurs/service/details/Circuit/3.jpg', title: 'Circuit' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788609943/baroudeurs/service/Douz.jpg', title: 'Douz' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788605419/baroudeurs/service/Desert%20Rose.jpg', title: 'Desert Rose' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788559533/5_skoo9g.jpg', title: 'Desert Outskirts' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788560647/6_k3qr6o.jpg', title: 'Sahara Trails' }
+            ],
+            review: {
+                avatar: 't-1.jpg', name: 'Thomas Berger', country: 'Germany', rating: 5,
+                comment: {
+                    fr: 'Huit jours inoubliables dans le Sahara. Les dunes, les sources chaudes et les nuits sous les étoiles ont rendu ce voyage vraiment spécial.',
+                    en: 'An unforgettable 8 days in the Sahara. The dunes, the hot springs, and the nights under the stars made this trip truly special.',
+                    ar: 'ثمانية أيام لا تُنسى في الصحراء الكبرى. الكثبان والينابيع الحارة والليالي تحت النجوم جعلت هذه الرحلة مميزة حقًا.',
+                    it: 'Otto giorni indimenticabili nel Sahara. Le dune, le sorgenti termali e le notti sotto le stelle hanno reso questo viaggio davvero speciale.'
+                }
+            }
+        },
+        {
+            id: 2,
+            image: 'Excursions/BAROUDEURS DE DESERT 15JR DROMADAIRE.jpg',
+            title: { fr: 'Mirage du Désert - 8 Jours / 7 Nuits', en: 'Mirage du Désert - 8 Days / 7 Nights', ar: 'سراب الصحراء - 8 أيام / 7 ليال', it: 'Miraggio del Deserto - 8 Giorni / 7 Notti' },
+            description: {
+                fr: "Un tour complet du sud tunisien : Djerba, Tataouine, Ksar Ghilane, Douz, les oasis de Tozeur, le mythique train Lézard Rouge et le village troglodyte de Matmata. Pension complète et hôtels 3* tout au long du parcours.",
+                en: 'A complete tour of southern Tunisia: Djerba, Tataouine, Ksar Ghilane, Douz, the oases of Tozeur, the legendary Red Lizard train, and the troglodyte village of Matmata. Full board and 3-star hotels throughout.',
+                ar: 'جولة كاملة في جنوب تونس: جربة وتطاوين وقصر غيلان ودوز وواحات توزر وقطار السحلية الحمراء الأسطوري وقرية مطماطة الكهفية. إقامة كاملة وفنادق 3 نجوم طوال الرحلة.',
+                it: 'Un tour completo del sud della Tunisia: Djerba, Tataouine, Ksar Ghilane, Douz, le oasi di Tozeur, il leggendario treno Lucertola Rossa e il villaggio trogloditico di Matmata. Pensione completa e hotel 3 stelle lungo tutto il percorso.'
+            },
+            duration: { fr: '8 jours / 7 nuits', en: '8 days / 7 nights', ar: '8 أيام / 7 ليال', it: '8 giorni / 7 notti' },
+            icons: ['flaticon-cottage', 'flaticon-van', 'flaticon-hiking-2'],
+            intro: {
+                fr: 'Mirage du Désert : Une aventure inoubliable de 8 jours / 7 nuits.',
+                en: 'Mirage du Désert: An unforgettable 8-day / 7-night adventure.',
+                ar: 'سراب الصحراء: مغامرة لا تُنسى لمدة 8 أيام / 7 ليال.',
+                it: "Miraggio del Deserto: Un'avventura indimenticabile di 8 giorni / 7 notti."
+            },
+            fullDescription: {
+                fr: "Un tour de 8 jours à travers le sud tunisien. De Djerba à Tataouine et Ksar Ghilane, puis Douz, Nefta et Tozeur, découvrez oasis de montagne, dunes et roses des sables. Voyagez à bord du train Lézard Rouge, explorez l'architecture troglodytique de Matmata et le village de Toujane avant le retour à Djerba.",
+                en: 'An 8-day tour through southern Tunisia. From Djerba to Tataouine and Ksar Ghilane, then Douz, Nefta, and Tozeur, discover mountain oases, dunes, and desert roses. Travel aboard the Red Lizard train, explore the troglodyte architecture of Matmata and the village of Toujane before returning to Djerba.',
+                ar: 'جولة لمدة 8 أيام عبر جنوب تونس. من جربة إلى تطاوين وقصر غيلان، ثم دوز ونفطة وتوزر، اكتشف واحات الجبال والكثبان وورود الرمال. سافر على متن قطار السحلية الحمراء، واستكشف الهندسة الكهفية لمطماطة وقرية توجان قبل العودة إلى جربة.',
+                it: "Un tour di 8 giorni nel sud della Tunisia. Da Djerba a Tataouine e Ksar Ghilane, poi Douz, Nefta e Tozeur, scopri oasi di montagna, dune e rose del deserto. Viaggia a bordo del treno Lucertola Rossa, esplora l'architettura trogloditica di Matmata e il villaggio di Toujane prima di tornare a Djerba."
+            },
+            itinerarySummary: {
+                fr: "Ce tour de 8 jours part de Djerba pour traverser Tataouine, Chenini et Ksar Ghilane, puis Douz, Nefta et Tozeur. Il se poursuit à travers les oasis de montagne, le train Lézard Rouge, le Chott El Jerid et les villages troglodytes de Matmata et Toujane, avant de revenir à Djerba.",
+                en: 'This 8-day tour moves from Djerba through Tataouine, Chenini, and Ksar Ghilane, then on to Douz, Nefta, and Tozeur. It continues through the mountain oases, the Red Lizard train, Chott El Jerid, and the troglodyte villages of Matmata and Toujane, before returning to Djerba.',
+                ar: 'تنطلق هذه الجولة التي تستغرق 8 أيام من جربة عبر تطاوين وشنيني وقصر غيلان، ثم دوز ونفطة وتوزر. تتواصل عبر واحات الجبال وقطار السحلية الحمراء وشط الجريد وقريتي مطماطة وتوجان الكهفيتين، قبل العودة إلى جربة.',
+                it: 'Questo tour di 8 giorni parte da Djerba attraversando Tataouine, Chenini e Ksar Ghilane, poi Douz, Nefta e Tozeur. Prosegue attraverso le oasi di montagna, il treno Lucertola Rossa, il Chott El Jerid e i villaggi trogloditici di Matmata e Toujane, prima di tornare a Djerba.'
+            },
+            itinerary: {
+                fr: ['Arrivée à Djerba', 'Tataouine, Chenini et Ksar Ghilane', 'Ksar Ghilane à Douz', 'Douz, Nefta et Tozeur', 'Oasis de montagne', 'Lézard Rouge et Matmata', 'Matmata, Toujane et Djerba', 'Départ'],
+                en: ['Arrival in Djerba', 'Tataouine, Chenini and Ksar Ghilane', 'Ksar Ghilane to Douz', 'Douz, Nefta and Tozeur', 'Mountain oases', 'Red Lizard train and Matmata', 'Matmata, Toujane and Djerba', 'Departure'],
+                ar: ['الوصول إلى جربة', 'تطاوين وشنيني وقصر غيلان', 'قصر غيلان إلى دوز', 'دوز ونفطة وتوزر', 'واحات الجبل', 'قطار السحلية الحمراء ومطماطة', 'مطماطة وتوجان وجربة', 'المغادرة'],
+                it: ['Arrivo a Djerba', 'Tataouine, Chenini e Ksar Ghilane', 'Da Ksar Ghilane a Douz', 'Douz, Nefta e Tozeur', 'Oasi di montagna', 'Treno Lucertola Rossa e Matmata', 'Matmata, Toujane e Djerba', 'Partenza']
+            },
+            itineraryDetail: {
+                fr: [
+                    "Bienvenue au cœur de la Tunisie ! Vous serez chaleureusement accueilli à l'aéroport de Djerba, puis transféré vers un hôtel 3* confortable où vous passerez une première nuit en demi-pension. Un moment parfait pour vous détendre et vous imprégner des premiers charmes de l'île.",
+                    "L'évasion commence. Après un petit déjeuner énergisant, votre aventure prend son envol. En empruntant la célèbre chaussée romaine, nous vous emmènerons à Tataouine. En chemin, nous nous arrêterons à des endroits enchanteurs, avec une visite incontournable du Ksar Hadada, un lieu mythique où ont été tournées des scènes de Star Wars. Ensuite, découvrez l'authentique marché de Tataouine avant de savourer un déjeuner traditionnel. L'après-midi sera consacré à la découverte du village berbère de Chenini, un véritable bijou troglodyte perché dans les montagnes. Enfin, cap sur Ksar Ghilane, aux portes du désert. Vous y profiterez de ses sources d'eau chaude et, pourquoi pas, d'une balade inoubliable à dos de dromadaire avant de dîner sous un ciel étoilé, au cœur de la majesté du Sahara.",
+                    "La porte du désert. Départ pour Douz, la porte du désert, où vous pourrez flâner dans le marché local et découvrir ses oasis. L'après-midi, optez pour une nouvelle randonnée à dos de dromadaire ou offrez-vous un moment de détente dans un hammam traditionnel (en option). Vous passerez la nuit à l'hôtel, à Douz, dans un cadre typiquement tunisien.",
+                    "Escapade vers les oasis secrètes. Nous partons tôt pour Nefta, en traversant des paysages spectaculaires. À Nefta, flânez dans la « corbeille de palmiers » et laissez-vous envoûter par les palmiers centenaires. Après un déjeuner savoureux, nous poursuivrons vers Tozeur, célèbre pour son architecture en briques et ses maisons chaleureuses au cœur du désert. Nuit à l'hôtel 3*.",
+                    "La magie des montagnes. Aujourd'hui, nous explorerons les trois magnifiques oasis de montagne : Chebika, Tamerza et Mides. Ces paysages fascinants vous couperont le souffle. L'après-midi, vous découvrirez le processus de fabrication traditionnelle de briques à Tozeur, une démonstration passionnante. Dîner et nuit à l'hôtel.",
+                    "Un voyage à travers le temps. Prenez place à bord du mythique Lézard Rouge, un train d'époque, et laissez-vous transporter à travers les gorges de Selja. Une pause au Chott El Jerid vous permettra d'admirer les mirages et les roses des sables, phénomène unique au monde. Après avoir visité les dunes pétrifiées de Bechri, direction Tamezret, un village berbère pittoresque, avant d'arriver à Matmata, où vous passerez la nuit dans un hôtel au confort chaleureux.",
+                    "Un retour aux sources. Découvrez l'incroyable architecture troglodytique de Matmata, où les habitants se sont adaptés à la chaleur en creusant leurs habitations sous terre. Continuez votre exploration avec une visite du village de Toujane, où les montagnes semblent se fondre dans les habitations. Sur le chemin du retour à Djerba, nous ferons une halte au village des potiers de Guellala, avant de vous offrir un déjeuner à Houmt Souk. Vous aurez aussi l'opportunité de rapporter un souvenir artisanal de l'île, que ce soit des tapis ou des objets d'artisanat locaux.",
+                    "À bientôt, la magie du désert ! Après un dernier petit déjeuner à Djerba, transfert vers l'aéroport pour votre vol de retour, le cœur rempli de souvenirs inoubliables de ce voyage au cœur du désert tunisien."
+                ],
+                en: [
+                    "Welcome to the heart of Tunisia! You'll be warmly welcomed at Djerba airport, then transferred to a comfortable 3-star hotel where you'll spend your first night on half-board. A perfect moment to relax and soak up the island's first charms.",
+                    "The escape begins. After an energizing breakfast, your adventure takes flight. Taking the famous Roman causeway, we'll bring you to Tataouine. Along the way, we'll stop at enchanting spots, with a must-see visit to Ksar Hadada, a legendary place where scenes from Star Wars were filmed. Next, discover the authentic Tataouine market before enjoying a traditional lunch. The afternoon will be devoted to exploring the Berber village of Chenini, a true troglodyte gem perched in the mountains. Finally, head to Ksar Ghilane, at the desert's edge. There you'll enjoy its hot springs and, why not, an unforgettable camel ride before dining under a starry sky, in the heart of the Sahara's majesty.",
+                    "The gateway to the desert. Departure for Douz, the gateway to the desert, where you can stroll through the local market and discover its oases. In the afternoon, choose another camel ride or treat yourself to a relaxing moment in a traditional hammam (optional). You'll spend the night at the hotel in Douz, in a typically Tunisian setting.",
+                    "Escape to secret oases. We leave early for Nefta, crossing spectacular landscapes. In Nefta, wander through the 'basket of palm trees' and let yourself be captivated by the century-old palms. After a tasty lunch, we continue to Tozeur, famous for its brick architecture and warm houses at the heart of the desert. Night at the 3-star hotel.",
+                    "The magic of the mountains. Today, we'll explore the three magnificent mountain oases: Chebika, Tamerza, and Mides. These fascinating landscapes will take your breath away. In the afternoon, you'll discover the traditional brick-making process in Tozeur, a fascinating demonstration. Dinner and night at the hotel.",
+                    "A journey through time. Board the legendary Red Lizard, a vintage train, and let yourself be carried through the Selja gorges. A stop at Chott El Jerid will let you admire the mirages and desert roses, a phenomenon unique in the world. After visiting the petrified dunes of Bechri, we head to Tamezret, a picturesque Berber village, before arriving in Matmata, where you'll spend the night in a warmly comfortable hotel.",
+                    "A return to the roots. Discover the incredible troglodyte architecture of Matmata, where the inhabitants adapted to the heat by digging their homes underground. Continue your exploration with a visit to the village of Toujane, where the mountains seem to blend into the dwellings. On the way back to Djerba, we'll stop at the potters' village of Guellala, before treating you to lunch in Houmt Souk. You'll also have the opportunity to bring back a handcrafted souvenir from the island, whether carpets or local craft items.",
+                    "See you soon, magic of the desert! After one last breakfast in Djerba, transfer to the airport for your return flight, your heart full of unforgettable memories of this journey into the Tunisian desert."
+                ],
+                ar: [
+                    "مرحبًا بكم في قلب تونس! سيتم استقبالكم بحرارة في مطار جربة، ثم نقلكم إلى فندق مريح 3 نجوم حيث ستقضون ليلتكم الأولى بنظام نصف إقامة. لحظة مثالية للاسترخاء والانغماس في سحر الجزيرة الأول.",
+                    "تبدأ الهروب. بعد فطور منشط، تنطلق مغامرتكم. بسلوك الطريق الروماني الشهير، سنأخذكم إلى تطاوين. في الطريق، سنتوقف في أماكن ساحرة، مع زيارة لا بد منها لقصر حدادة، وهو موقع أسطوري تم فيه تصوير مشاهد من ستار وورز. بعدها، اكتشفوا سوق تطاوين الأصيل قبل تناول غداء تقليدي. سيُخصص بعد الظهر لاكتشاف قرية شنيني الأمازيغية، وهي جوهرة كهفية حقيقية تتربع على الجبال. أخيرًا، التوجه نحو قصر غيلان، على أبواب الصحراء. ستستمتعون هناك بينابيعها الحارة، ولم لا، بجولة لا تُنسى على ظهر الجمل قبل تناول العشاء تحت سماء مرصعة بالنجوم، في قلب عظمة الصحراء.",
+                    "بوابة الصحراء. الانطلاق نحو دوز، بوابة الصحراء، حيث يمكنكم التجول في السوق المحلي واكتشاف واحاتها. بعد الظهر، اختاروا جولة أخرى على ظهر الجمل أو امنحوا أنفسكم لحظة استرخاء في حمام تقليدي (اختياري). ستقضون الليلة في الفندق بدوز، في أجواء تونسية أصيلة.",
+                    "هروب نحو الواحات السرية. ننطلق باكرًا نحو نفطة، عبر مناظر طبيعية مذهلة. في نفطة، تجولوا في 'سلة النخيل' ودعوا أنفسكم تنبهرون بالنخيل المعمر. بعد غداء لذيذ، سنواصل نحو توزر، المشهورة بهندستها المعمارية من الطوب ومنازلها الدافئة في قلب الصحراء. ليلة في فندق 3 نجوم.",
+                    "سحر الجبال. اليوم، سنستكشف الواحات الجبلية الثلاث الرائعة: شبيقة وتمغزة وميدس. ستأخذ هذه المناظر الساحرة أنفاسكم. بعد الظهر، ستكتشفون طريقة صنع الطوب التقليدية في توزر، وهو عرض مثير. العشاء والمبيت في الفندق.",
+                    "رحلة عبر الزمن. اصعدوا على متن قطار السحلية الحمراء الأسطوري، وهو قطار قديم، ودعوا أنفسكم تنتقلون عبر أخاديد سلجة. سيتيح لكم التوقف عند شط الجريد الإعجاب بالسراب وورود الرمال، وهي ظاهرة فريدة في العالم. بعد زيارة الكثبان المتحجرة في بشري، التوجه نحو تمزرط، وهي قرية أمازيغية جميلة، قبل الوصول إلى مطماطة، حيث ستقضون الليلة في فندق دافئ ومريح.",
+                    "عودة إلى الجذور. اكتشفوا الهندسة الكهفية المذهلة لمطماطة، حيث تكيف السكان مع الحرارة بحفر مساكنهم تحت الأرض. واصلوا استكشافكم بزيارة قرية توجان، حيث تبدو الجبال وكأنها تندمج مع المساكن. في طريق العودة إلى جربة، سنتوقف في قرية الفخارين بقلالة، قبل تقديم غداء لكم في حومة السوق. ستتاح لكم أيضًا فرصة اقتناء تذكار حرفي من الجزيرة، سواء كان سجادًا أو منتجات حرفية محلية.",
+                    "إلى اللقاء، سحر الصحراء! بعد فطور أخير في جربة، النقل إلى المطار لرحلة عودتكم، وقلوبكم مليئة بذكريات لا تُنسى من هذه الرحلة في قلب الصحراء التونسية."
+                ],
+                it: [
+                    "Benvenuti nel cuore della Tunisia! Sarete accolti calorosamente all'aeroporto di Djerba, poi trasferiti in un confortevole hotel 3 stelle dove trascorrerete la prima notte in mezza pensione. Un momento perfetto per rilassarvi e assaporare i primi fascini dell'isola.",
+                    "L'evasione inizia. Dopo una colazione energizzante, la vostra avventura prende il volo. Percorrendo la famosa strada romana, vi porteremo a Tataouine. Lungo il percorso, ci fermeremo in luoghi incantevoli, con una visita imperdibile a Ksar Hadada, un luogo leggendario dove sono state girate scene di Star Wars. Poi, scoprite l'autentico mercato di Tataouine prima di gustare un pranzo tradizionale. Il pomeriggio sarà dedicato alla scoperta del villaggio berbero di Chenini, un vero gioiello trogloditico arroccato sulle montagne. Infine, rotta su Ksar Ghilane, alle porte del deserto. Qui potrete godervi le sue sorgenti termali e, perché no, un'indimenticabile passeggiata in dromedario prima di cenare sotto un cielo stellato, nel cuore della maestosità del Sahara.",
+                    "La porta del deserto. Partenza per Douz, la porta del deserto, dove potrete passeggiare nel mercato locale e scoprire le sue oasi. Nel pomeriggio, optate per un'altra escursione in dromedario o concedetevi un momento di relax in un hammam tradizionale (opzionale). Trascorrerete la notte in hotel a Douz, in un'ambientazione tipicamente tunisina.",
+                    "Fuga verso le oasi segrete. Partiamo presto per Nefta, attraversando paesaggi spettacolari. A Nefta, passeggiate nel 'cesto di palme' e lasciatevi incantare dalle palme secolari. Dopo un pranzo gustoso, proseguiremo verso Tozeur, famosa per la sua architettura in mattoni e le sue calde case nel cuore del deserto. Notte in hotel 3 stelle.",
+                    "La magia delle montagne. Oggi esploreremo le tre magnifiche oasi di montagna: Chebika, Tamerza e Mides. Questi paesaggi affascinanti vi toglieranno il fiato. Nel pomeriggio, scoprirete il tradizionale processo di fabbricazione dei mattoni a Tozeur, una dimostrazione appassionante. Cena e notte in hotel.",
+                    "Un viaggio nel tempo. Salite a bordo del leggendario Lucertola Rossa, un treno d'epoca, e lasciatevi trasportare attraverso le gole di Selja. Una sosta al Chott El Jerid vi permetterà di ammirare i miraggi e le rose del deserto, un fenomeno unico al mondo. Dopo aver visitato le dune pietrificate di Bechri, direzione Tamezret, un pittoresco villaggio berbero, prima di arrivare a Matmata, dove trascorrerete la notte in un hotel dal confort caloroso.",
+                    "Un ritorno alle origini. Scoprite l'incredibile architettura trogloditica di Matmata, dove gli abitanti si sono adattati al caldo scavando le loro abitazioni sottoterra. Continuate la vostra esplorazione con una visita al villaggio di Toujane, dove le montagne sembrano fondersi con le abitazioni. Sulla via del ritorno a Djerba, faremo una sosta al villaggio dei vasai di Guellala, prima di offrirvi un pranzo a Houmt Souk. Avrete anche l'opportunità di portare a casa un souvenir artigianale dell'isola, che si tratti di tappeti o oggetti di artigianato locale.",
+                    "A presto, magia del deserto! Dopo un'ultima colazione a Djerba, trasferimento in aeroporto per il volo di ritorno, con il cuore pieno di ricordi indimenticabili di questo viaggio nel cuore del deserto tunisino."
+                ]
+            },
+            included: {
+                fr: ['Pension complète (petits déjeuners, déjeuners, dîners)', 'Hébergement en hôtels 3* tout au long du parcours', 'Visites guidées des principaux sites touristiques', 'Transports en véhicules confortables'],
+                en: ['Full board (breakfasts, lunches, dinners)', '3-star hotel accommodation throughout the trip', 'Guided tours of the main tourist sites', 'Transport in comfortable vehicles'],
+                ar: ['إقامة كاملة (فطور، غداء، عشاء)', 'الإقامة في فنادق 3 نجوم طوال الرحلة', 'جولات مرشدة إلى المواقع السياحية الرئيسية', 'النقل بمركبات مريحة'],
+                it: ['Pensione completa (colazioni, pranzi, cene)', 'Alloggio in hotel 3 stelle per tutto il percorso', 'Visite guidate ai principali siti turistici', 'Trasporti in veicoli confortevoli']
+            },
+            includedIcons: ['eat', 'cottage', 'hiking', 'van'],
+            excluded: {
+                fr: ['Boissons aux repas', 'Pourboires'],
+                en: ['Drinks with meals', 'Tips'],
+                ar: ['المشروبات مع الوجبات', 'البقشيش'],
+                it: ['Bevande ai pasti', 'Mance']
+            },
+            excludedIcons: ['pot', 'draw-check-mark'],
+            closing: {
+                fr: "Laissez-vous envoûter par le charme du désert et partez à la découverte de ses merveilles avec ce programme qui combine aventure, authenticité et détente !",
+                en: 'Let yourself be captivated by the charm of the desert and set off to discover its wonders with this program combining adventure, authenticity, and relaxation!',
+                ar: 'دعوا أنفسكم تنبهرون بسحر الصحراء وانطلقوا لاكتشاف عجائبها مع هذا البرنامج الذي يجمع بين المغامرة والأصالة والاسترخاء!',
+                it: "Lasciatevi incantare dal fascino del deserto e partite alla scoperta delle sue meraviglie con questo programma che unisce avventura, autenticità e relax!"
+            },
+            gallery: [
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788608078/baroudeurs/service/details/Charm/6.jpg', title: 'Charm' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788607595/baroudeurs/service/details/Endless/2.jpg', title: 'Endless' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788605755/baroudeurs/service/details/Rose/4.jpg', title: 'Rose' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788559711/8_gyuz3p.jpg', title: 'Golden Dunes' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788608876/baroudeurs/service/details/Circuit/6.jpg', title: 'Circuit' }
+            ],
+            review: {
+                avatar: 't-7.jpg', name: 'Laura Rossi', country: 'Italy', rating: 5,
+                comment: {
+                    fr: 'Huit jours incroyables à travers le sud tunisien. Le train Lézard Rouge et les villages troglodytes étaient uniques en leur genre.',
+                    en: "Eight incredible days across southern Tunisia. The Red Lizard train and the troglodyte villages were unlike anything I've experienced.",
+                    ar: 'ثمانية أيام رائعة عبر جنوب تونس. كان قطار السحلية الحمراء والقرى الكهفية تجربة لا مثيل لها.',
+                    it: "Otto giorni incredibili nel sud della Tunisia. Il treno Lucertola Rossa e i villaggi trogloditici sono stati un'esperienza unica."
+                }
+            }
+        },
+        {
+            id: 3,
+            image: 'https://res.cloudinary.com/dy13axswo/image/upload/v1789040783/baroudeurs/excursions/kuw674phwztv921qnwzv.jpg',
+            title: { fr: 'Appel du Désert', en: 'Call of the Desert', ar: 'نداء الصحراء', it: 'Richiamo del Deserto' },
+            description: {
+                fr: "Une immersion de 3 jours dans les dunes dorées, de Benwia à Leegtaaya, à dos de dromadaire. Nuits sous tente bédouine, couchers et levers de soleil sur le désert, et dîners traditionnels au coin du feu.",
+                en: 'A 3-day immersion in golden dunes, from Benwia to Leegtaaya, by camel. Nights under a Bedouin tent, desert sunrises and sunsets, and traditional campfire dinners.',
+                ar: 'انغماس لمدة 3 أيام في الكثبان الذهبية، من بنويا إلى ليقطاية، على ظهر الجمل. ليالٍ تحت خيمة بدوية، وشروق وغروب الشمس في الصحراء، وعشاءات تقليدية حول النار.',
+                it: "Un'immersione di 3 giorni tra le dune dorate, da Benwia a Leegtaaya, in dromedario. Notti sotto la tenda beduina, albe e tramonti nel deserto, e cene tradizionali intorno al fuoco."
+            },
+            duration: { fr: '3 jours / 2 nuits', en: '3 days / 2 nights', ar: '3 أيام / ليلتان', it: '3 giorni / 2 notti' },
+            icons: ['fas fa-campground', 'fas fa-fire', 'fas fa-moon', 'fas fa-utensils'],
+            intro: {
+                fr: 'Appel du désert : 3 jours / 2 nuits – Une immersion dans les dunes dorées du Sahara.',
+                en: 'Call of the Desert: 3 days / 2 nights – An immersion in the golden dunes of the Sahara.',
+                ar: 'نداء الصحراء: 3 أيام / ليلتان – انغماس في الكثبان الذهبية للصحراء الكبرى.',
+                it: "Richiamo del Deserto: 3 giorni / 2 notti – Un'immersione nelle dune dorate del Sahara."
+            },
+            fullDescription: {
+                fr: "Un séjour de 3 jours et 2 nuits à dos de dromadaire, de Douz à Benwia puis Leegtaaya, avant de revenir à Douz. Chaque étape combine marche dans les dunes dorées, repas pris en plein désert, et nuits sous tente bédouine au son du silence du Sahara.",
+                en: 'A 3-day, 2-night camel trek from Douz to Benwia and then Leegtaaya, before returning to Douz. Each stage combines walking through golden dunes, meals taken in the open desert, and nights under a Bedouin tent amid the silence of the Sahara.',
+                ar: 'رحلة لمدة 3 أيام وليلتين على ظهر الجمل، من دوز إلى بنويا ثم ليقطاية، قبل العودة إلى دوز. تجمع كل مرحلة بين المشي في الكثبان الذهبية وتناول الوجبات في قلب الصحراء والمبيت تحت خيمة بدوية وسط صمت الصحراء الكبرى.',
+                it: 'Un viaggio di 3 giorni e 2 notti in dromedario da Douz a Benwia e poi a Leegtaaya, prima di tornare a Douz. Ogni tappa unisce camminate tra le dune dorate, pasti consumati nel deserto aperto e notti sotto la tenda beduina nel silenzio del Sahara.'
+            },
+            itinerarySummary: {
+                fr: "Ce circuit de 3 jours relie Douz à Benwia puis Leegtaaya, avant de revenir à Douz. Chaque jour offre une marche à dos de dromadaire à travers les dunes dorées, des repas pris en plein désert et des nuits sous tente bédouine.",
+                en: 'This 3-day circuit links Douz to Benwia and then Leegtaaya, before returning to Douz. Each day offers a camel trek through golden dunes, meals in the open desert, and nights under a Bedouin tent.',
+                ar: 'تربط هذه الرحلة التي تستغرق 3 أيام بين دوز وبنويا ثم ليقطاية، قبل العودة إلى دوز. يوفر كل يوم رحلة على ظهر الجمل عبر الكثبان الذهبية ووجبات في قلب الصحراء ومبيتًا تحت خيمة بدوية.',
+                it: 'Questo circuito di 3 giorni collega Douz a Benwia e poi a Leegtaaya, prima di tornare a Douz. Ogni giorno offre una camminata in dromedario tra le dune dorate, pasti nel deserto aperto e notti sotto la tenda beduina.'
+            },
+            itinerary: {
+                fr: ['Douz - Benwia', 'Benwia - Leegtaaya', 'Leegtaaya - Douz'],
+                en: ['Douz - Benwia', 'Benwia - Leegtaaya', 'Leegtaaya - Douz'],
+                ar: ['دوز - بنويا', 'بنويا - ليقطاية', 'ليقطاية - دوز'],
+                it: ['Douz - Benwia', 'Benwia - Leegtaaya', 'Leegtaaya - Douz']
+            },
+            itineraryDetail: {
+                fr: [
+                    "À votre arrivée à Douz, après un délicieux petit déjeuner, vous commencerez votre aventure saharienne en direction de Benwia, un lieu isolé et préservé du désert. Vous traverserez des paysages à couper le souffle, où les dunes dorées se mêlent à l'horizon infini. Le déjeuner sera pris au cœur des dunes, offrant une vue splendide sur la vastitude du Sahara. Le soir venu, vous installerez votre bivouac sous les étoiles et dégusterez un dîner traditionnel préparé par les bédouins. Nuit sous tente bédouine, en parfaite harmonie avec la tranquillité du désert.",
+                    "Réveil à l'aube pour profiter d'un lever du soleil spectaculaire sur les dunes du Sahara. Après un petit déjeuner chaleureux, vous prendrez la direction de Leegtaaya, un endroit magnifique et encore sauvage, où la beauté des paysages vous laissera sans voix. Le déjeuner sera à nouveau pris en plein désert, entre dunes et silence. En soirée, dîner autour du feu et nuit sous tente bédouine, une nouvelle occasion de vous immerger dans l'authenticité de la vie nomade.",
+                    "Tôt le matin, vous serez réveillé par un lever de soleil magique sur le désert, un moment unique à capturer. Après le petit déjeuner, vous entamerez votre retour vers Douz, avec un dernier déjeuner dans le calme des dunes. Ce sera une fin mémorable pour cette aventure, avant de retourner à Douz pour conclure cette évasion au cœur du Sahara."
+                ],
+                en: [
+                    "Upon arrival in Douz, after a delicious breakfast, you will begin your Saharan adventure heading towards Benwia, an isolated and unspoiled desert location. You will cross breathtaking landscapes where golden dunes blend into the infinite horizon. Lunch will be enjoyed in the heart of the dunes, offering a splendid view over the vastness of the Sahara. In the evening, you will set up your bivouac under the stars and enjoy a traditional dinner prepared by the Bedouins. Night under a Bedouin tent, in perfect harmony with the tranquility of the desert.",
+                    "Wake up at dawn to enjoy a spectacular sunrise over the dunes of the Sahara. After a warm breakfast, you will head towards Leegtaaya, a magnificent and still-wild place, where the beauty of the landscapes will leave you speechless. Lunch will once again be enjoyed in the open desert, among dunes and silence. In the evening, dinner around the fire and a night under a Bedouin tent, another opportunity to immerse yourself in the authenticity of nomadic life.",
+                    "Early in the morning, you will be woken by a magical sunrise over the desert, a unique moment to capture. After breakfast, you will begin your return to Douz, with a final lunch in the calm of the dunes. This will be a memorable end to this adventure, before returning to Douz to conclude this escape into the heart of the Sahara."
+                ],
+                ar: [
+                    "عند وصولكم إلى دوز، وبعد فطور شهي، ستبدأون مغامرتكم الصحراوية باتجاه بنويا، وهو موقع صحراوي معزول وبكر. ستعبرون مناظر طبيعية خلابة حيث تمتزج الكثبان الذهبية بالأفق اللامتناهي. سيُقدَّم الغداء في قلب الكثبان، مع منظر رائع على اتساع الصحراء الكبرى. مساءً، ستنصبون مخيمكم تحت النجوم وتتذوقون عشاءً تقليديًا يعده البدو. المبيت تحت خيمة بدوية، في انسجام تام مع هدوء الصحراء.",
+                    "الاستيقاظ عند الفجر للاستمتاع بشروق شمس رائع فوق كثبان الصحراء الكبرى. بعد فطور دافئ، ستتوجهون نحو ليقطاية، وهو مكان جميل وما زال بريًا، حيث سيترككم جمال المناظر الطبيعية بلا كلام. سيُقدَّم الغداء مجددًا في قلب الصحراء، بين الكثبان والصمت. مساءً، عشاء حول النار ومبيت تحت خيمة بدوية، فرصة أخرى للانغماس في أصالة الحياة البدوية.",
+                    "في الصباح الباكر، ستوقظكم شروق شمس ساحر فوق الصحراء، لحظة فريدة تستحق التقاطها. بعد الفطور، ستبدأون رحلة العودة إلى دوز، مع غداء أخير في هدوء الكثبان. ستكون هذه نهاية لا تُنسى لهذه المغامرة، قبل العودة إلى دوز لإنهاء هذا الهروب في قلب الصحراء الكبرى."
+                ],
+                it: [
+                    "Al vostro arrivo a Douz, dopo una deliziosa colazione, inizierete la vostra avventura sahariana in direzione di Benwia, un luogo isolato e incontaminato del deserto. Attraverserete paesaggi mozzafiato dove le dune dorate si fondono con l'orizzonte infinito. Il pranzo sarà consumato nel cuore delle dune, offrendo una vista splendida sull'immensità del Sahara. La sera, allestirete il vostro bivacco sotto le stelle e gusterete una cena tradizionale preparata dai beduini. Notte sotto la tenda beduina, in perfetta armonia con la tranquillità del deserto.",
+                    "Sveglia all'alba per godere di un'alba spettacolare sulle dune del Sahara. Dopo una calorosa colazione, vi dirigerete verso Leegtaaya, un luogo magnifico e ancora selvaggio, dove la bellezza dei paesaggi vi lascerà senza parole. Il pranzo sarà nuovamente consumato nel deserto aperto, tra dune e silenzio. La sera, cena intorno al fuoco e notte sotto la tenda beduina, un'altra occasione per immergervi nell'autenticità della vita nomade.",
+                    "Al mattino presto, sarete svegliati da un'alba magica sul deserto, un momento unico da catturare. Dopo la colazione, inizierete il vostro ritorno verso Douz, con un ultimo pranzo nella calma delle dune. Sarà una fine memorabile per questa avventura, prima di tornare a Douz per concludere questa fuga nel cuore del Sahara."
+                ]
+            },
+            included: {
+                fr: ["Pension complète durant toute l'escapade", 'Hébergement en bivouac sous tente bédouine', 'Repas typiques préparés par les bédouins'],
+                en: ['Full board throughout the trip', 'Bedouin tent bivouac accommodation', 'Traditional meals prepared by the Bedouins'],
+                ar: ['إقامة كاملة طوال الرحلة', 'الإقامة في مخيم تحت خيمة بدوية', 'وجبات تقليدية يعدها البدو'],
+                it: ['Pensione completa durante tutto il viaggio', 'Alloggio in bivacco sotto tenda beduina', 'Pasti tradizionali preparati dai beduini']
+            },
+            includedIcons: ['tent-1', 'cottage', 'eat'],
+            excluded: { fr: ['Pourboires'], en: ['Tips'], ar: ['البقشيش'], it: ['Mance'] },
+            excludedIcons: ['draw-check-mark'],
+            closing: {
+                fr: "Ce séjour de 3 jours est l'idéal pour ceux qui veulent plonger au cœur du Sahara en toute simplicité et tranquillité. Une immersion parfaite dans les paysages mythiques du désert tunisien, avec des repas authentiques et des nuits à la belle étoile.",
+                en: 'This 3-day stay is ideal for those who want to dive into the heart of the Sahara in complete simplicity and tranquility. A perfect immersion in the mythical landscapes of the Tunisian desert, with authentic meals and nights under the stars.',
+                ar: 'تُعد هذه الإقامة لمدة 3 أيام مثالية لمن يرغب في الانغماس في قلب الصحراء الكبرى ببساطة وهدوء تامين. انغماس مثالي في المناظر الطبيعية الأسطورية للصحراء التونسية، مع وجبات أصيلة وليالٍ تحت النجوم.',
+                it: "Questo soggiorno di 3 giorni è ideale per chi desidera immergersi nel cuore del Sahara in totale semplicità e tranquillità. Un'immersione perfetta nei paesaggi mitici del deserto tunisino, con pasti autentici e notti sotto le stelle."
+            },
+            gallery: [
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788559711/8_gyuz3p.jpg', title: 'Desert Outskirts' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788559477/7_mcl3tr.jpg', title: 'Sahara Trails' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788560647/6_k3qr6o.jpg', title: 'Golden Horizon' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788605761/baroudeurs/service/details/Rose/5.jpg', title: 'Rose' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788607759/baroudeurs/service/details/Endless/5.jpg', title: 'Endless' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788609239/baroudeurs/service/details/Baroudeurs/4.jpg', title: 'Baroudeurs' }
+            ],
+            review: {
+                avatar: 't-2.jpg', name: 'Marie Dubois', country: 'France', rating: 5,
+                comment: {
+                    fr: 'Trois jours parfaits pour découvrir le Sahara. Les nuits sous tente bédouine et les couchers de soleil sur les dunes resteront gravés dans ma mémoire.',
+                    en: 'Three perfect days to discover the Sahara. The nights under the Bedouin tent and the sunsets over the dunes will stay etched in my memory.',
+                    ar: 'ثلاثة أيام مثالية لاكتشاف الصحراء الكبرى. ستبقى الليالي تحت الخيمة البدوية وغروب الشمس فوق الكثبان محفورة في ذاكرتي.',
+                    it: 'Tre giorni perfetti per scoprire il Sahara. Le notti sotto la tenda beduina e i tramonti sulle dune resteranno impressi nella mia memoria.'
+                }
+            }
+        },
+        {
+            id: 4,
+            image: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788609904/baroudeurs/service/details/Temba%C3%AFne/6.jpg',
+            title: { fr: 'Baroudeurs de Désert - 15 Jours', en: 'Desert Baroudeurs - 15 Days', ar: 'بارودور الصحراء - 15 يومًا', it: 'Baroudeurs del Deserto - 15 Giorni' },
+            description: {
+                fr: "Une grande traversée de 15 jours à dos de dromadaire, de Bir Abdallah à El Mellaha, à travers dunes, montagnes de sable et puits isolés. Une aventure humaine et spirituelle loin de toute civilisation.",
+                en: 'A great 15-day camel crossing, from Bir Abdallah to El Mellaha, through dunes, sand mountains, and remote wells. A human and spiritual adventure far from civilization.',
+                ar: 'عبور كبير لمدة 15 يومًا على ظهر الجمل، من بئر عبد الله إلى الملاحة، عبر الكثبان وجبال الرمل والآبار النائية. مغامرة إنسانية وروحية بعيدًا عن الحضارة.',
+                it: "Un grande attraversamento di 15 giorni in dromedario, da Bir Abdallah a El Mellaha, tra dune, montagne di sabbia e pozzi remoti. Un'avventura umana e spirituale lontano dalla civiltà."
+            },
+            duration: { fr: '15 jours / 14 nuits', en: '15 days / 14 nights', ar: '15 يومًا / 14 ليلة', it: '15 giorni / 14 notti' },
+            icons: ['fas fa-campground', 'fas fa-mountain', 'fas fa-moon', 'fas fa-fire'],
+            intro: {
+                fr: 'Baroudeurs de Désert : 15 jours / 14 nuits – Un voyage inoubliable au cœur du Sahara tunisien.',
+                en: 'Desert Baroudeurs: 15 days / 14 nights – An unforgettable journey into the heart of the Tunisian Sahara.',
+                ar: 'بارودور الصحراء: 15 يومًا / 14 ليلة – رحلة لا تُنسى في قلب الصحراء التونسية الكبرى.',
+                it: 'Baroudeurs del Deserto: 15 giorni / 14 notti – Un viaggio indimenticabile nel cuore del Sahara tunisino.'
+            },
+            fullDescription: {
+                fr: "Un grand voyage de 15 jours à dos de dromadaire, de Bir Abdallah à El Mellaha, en passant par de nombreux sites isolés du désert. Chaque jour amène son lot de nouveaux paysages, de puits cachés et de montagnes de sable, avant un retour progressif vers Djerba ou Tozeur.",
+                en: 'A great 15-day camel journey from Bir Abdallah to El Mellaha, passing through numerous isolated desert sites. Each day brings new landscapes, hidden wells, and sand mountains, before a gradual return to Djerba or Tozeur.',
+                ar: 'رحلة كبيرة لمدة 15 يومًا على ظهر الجمل، من بئر عبد الله إلى الملاحة، مرورًا بالعديد من المواقع الصحراوية المعزولة. يجلب كل يوم مناظر طبيعية جديدة وآبارًا مخفية وجبال رمل، قبل العودة التدريجية إلى جربة أو توزر.',
+                it: 'Un grande viaggio di 15 giorni in dromedario da Bir Abdallah a El Mellaha, attraversando numerosi siti isolati del deserto. Ogni giorno porta nuovi paesaggi, pozzi nascosti e montagne di sabbia, prima di un ritorno graduale a Djerba o Tozeur.'
+            },
+            itinerarySummary: {
+                fr: "Ce périple de 15 jours relie Bir Abdallah à El Mellaha à travers une quinzaine de sites isolés du désert : Joua Moussa, Tembaine, Rebig Hammami, Trefissa, Lahwidhat et bien d'autres. Chaque étape combine marche à dos de dromadaire, découverte de puits et montagnes de sable, et nuits sous tente bédouine, avant le retour vers Djerba ou Tozeur.",
+                en: 'This 15-day journey links Bir Abdallah to El Mellaha through around fifteen isolated desert sites: Joua Moussa, Tembaine, Rebig Hammami, Trefissa, Lahwidhat and many more. Each stage combines camel trekking, discovering wells and sand mountains, and nights under Bedouin tents, before returning to Djerba or Tozeur.',
+                ar: 'تربط هذه الرحلة التي تستغرق 15 يومًا بين بئر عبد الله والملاحة عبر نحو خمسة عشر موقعًا صحراويًا معزولاً: جوا موسى وتمباين وربيق حمامي وتريفيسا ولاهويضات وغيرها الكثير. تجمع كل مرحلة بين المشي على ظهر الجمل واكتشاف الآبار وجبال الرمل والمبيت تحت خيام بدوية، قبل العودة إلى جربة أو توزر.',
+                it: 'Questo viaggio di 15 giorni collega Bir Abdallah a El Mellaha attraverso una quindicina di siti isolati del deserto: Joua Moussa, Tembaine, Rebig Hammami, Trefissa, Lahwidhat e molti altri. Ogni tappa unisce trekking in dromedario, scoperta di pozzi e montagne di sabbia, e notti sotto tende beduine, prima di tornare a Djerba o Tozeur.'
+            },
+            itinerary: {
+                fr: ['Djerba/Tozeur - Bir Abdallah', 'Bir Abdallah - Joua Moussa', 'Joua Moussa - Tembaine', 'Tembaine - Rebig Hammami', 'Rebig Hammami - Trefissa', 'Trefissa - Lahwidhat', 'Lahwidhat - Dakanis Sghar', 'Dakanis Sghar - Gour Kleb', 'Gour Kleb - El Mida', 'El Mida - Garat Abderrahim', 'Garat Abderrahim - Dhraa Chiaba', 'Dhraa Chiaba - Bir El Haj', 'Bir El Haj - El Mellaha', 'El Mellaha - Douz - Djerba/Tozeur', 'Djerba/Tozeur - Aéroport'],
+                en: ['Djerba/Tozeur - Bir Abdallah', 'Bir Abdallah - Joua Moussa', 'Joua Moussa - Tembaine', 'Tembaine - Rebig Hammami', 'Rebig Hammami - Trefissa', 'Trefissa - Lahwidhat', 'Lahwidhat - Dakanis Sghar', 'Dakanis Sghar - Gour Kleb', 'Gour Kleb - El Mida', 'El Mida - Garat Abderrahim', 'Garat Abderrahim - Dhraa Chiaba', 'Dhraa Chiaba - Bir El Haj', 'Bir El Haj - El Mellaha', 'El Mellaha - Douz - Djerba/Tozeur', 'Djerba/Tozeur - Airport'],
+                ar: ['جربة/توزر - بئر عبد الله', 'بئر عبد الله - جوا موسى', 'جوا موسى - تمباين', 'تمباين - ربيق حمامي', 'ربيق حمامي - تريفيسا', 'تريفيسا - لاهويضات', 'لاهويضات - دكانيس صغار', 'دكانيس صغار - قور كلاب', 'قور كلاب - الميدة', 'الميدة - قارة عبد الرحيم', 'قارة عبد الرحيم - ضراع شعبة', 'ضراع شعبة - بئر الحاج', 'بئر الحاج - الملاحة', 'الملاحة - دوز - جربة/توزر', 'جربة/توزر - المطار'],
+                it: ['Djerba/Tozeur - Bir Abdallah', 'Bir Abdallah - Joua Moussa', 'Joua Moussa - Tembaine', 'Tembaine - Rebig Hammami', 'Rebig Hammami - Trefissa', 'Trefissa - Lahwidhat', 'Lahwidhat - Dakanis Sghar', 'Dakanis Sghar - Gour Kleb', 'Gour Kleb - El Mida', 'El Mida - Garat Abderrahim', 'Garat Abderrahim - Dhraa Chiaba', 'Dhraa Chiaba - Bir El Haj', 'Bir El Haj - El Mellaha', 'El Mellaha - Douz - Djerba/Tozeur', 'Djerba/Tozeur - Aeroporto']
+            },
+            itineraryDetail: {
+                fr: [
+                    "Dès votre arrivée à l'aéroport de Djerba ou Tozeur, notre équipe vous accueille chaleureusement et vous accompagne vers le bivouac d'El Bir Abdallah. Après un premier contact avec les chameliers, vous vous installerez dans un cadre authentique, où le calme du désert vous enveloppe. Le dîner, préparé par les bédouins, sera l'occasion de découvrir les saveurs locales sous les étoiles. Nuit sous tente bédouine.",
+                    "Après un petit déjeuner traditionnel avec du pain de sable tout juste sorti du feu, vous vous enfoncerez au cœur du désert, traversant les dunes majestueuses en direction de Joua Moussa. Le déjeuner sera pris au milieu des sables, dans un cadre idyllique. La soirée se terminera avec un dîner au bivouac et une nuit sous la tente bédouine, bercée par les murmures du vent dans les dunes.",
+                    "Après un petit déjeuner au bivouac, vous continuerez votre expédition vers Tembaine, une montagne au milieu des dunes. Le paysage à couper le souffle vous accompagnera tout au long de la journée, avec un déjeuner dans les paysages fascinants du désert. Dîner et nuit sous tente bédouine.",
+                    "Réveil matinal pour admirer le lever du soleil sur l'immensité du désert. Après un petit déjeuner aux saveurs locales, vous prendrez la direction de Rebig Hammami, en traversant un paysage de dunes dorées. Vous déjeunerez dans cet endroit magique avant de repartir vers votre bivouac pour une soirée traditionnelle sous les étoiles. Nuit sous la tente.",
+                    "Après un réveil au cœur du désert, vous partirez en direction de Trefissa, un endroit magique entouré de dunes. Le déjeuner se déroulera dans cet environnement hors du temps, et le dîner préparé par les bédouins sera une nouvelle occasion de goûter aux saveurs authentiques du désert. Nuit sous la tente bédouine.",
+                    "Après un petit déjeuner savoureux, départ pour Lahwidhat, où vous découvrirez une source d'eau chaude en plein cœur du désert. Un déjeuner au milieu des dunes vous permettra de savourer cette aventure unique. Dîner et nuit sous tente bédouine.",
+                    "Ce matin, vous partirez pour Dakanis Sghar, une montagne de sable au panorama impressionnant. Le paysage qui vous entoure est à couper le souffle, parfait pour une pause photo et un déjeuner au cœur du désert. Le soir, dîner au bivouac et nuit sous tente.",
+                    "Réveil au lever du soleil pour prendre la route vers Gour Kleb, une autre montagne ensablée. Ce sera une journée de calme et de beauté, avec un déjeuner en pleine nature. Dîner au bivouac, nuit sous la tente bédouine.",
+                    "Direction El Mida, un autre site unique du désert, où les montagnes de sable et les paysages se transforment au fil de la journée. Vous déjeunerez en plein désert, un moment rare pour profiter pleinement de l'ambiance sereine. Le dîner sous les étoiles et la nuit sous la tente viendront clore cette journée de pure aventure.",
+                    "Réveil matinal pour admirer le lever du soleil sur Garat Abderrahim, une montagne ensablée aux formes étonnantes. Après le déjeuner, vous passerez une autre soirée magique au bivouac, bercée par le vent du désert. Nuit sous tente bédouine.",
+                    "Après un petit déjeuner savoureux, départ pour Dhraa Chiaba, un lieu reculé où le désert révèle toute sa splendeur. Le déjeuner dans ce cadre exceptionnel sera une occasion de se ressourcer. Dîner au bivouac et nuit sous tente.",
+                    "En matinée, départ pour Bir El Haj, un puits d'eau caché dans les dunes. Le désert vous livre ici ses secrets, entre silence et splendeur naturelle. Le déjeuner sera pris dans ce cadre isolé, loin du monde. Dîner et nuit sous tente.",
+                    "Après un bon petit déjeuner, direction El Mellaha, en traversant de belles dunes. Ce sera une journée de contemplation et de tranquillité, avec un déjeuner en pleine nature. Dîner et nuit sous la tente, toujours sous le ciel étoilé.",
+                    "Réveil aux premières lueurs de l'aube, puis départ pour Douz, la porte du désert. Après un déjeuner en plein désert, vous rejoindrez Djerba ou Tozeur pour un dîner bien mérité à l'hôtel et une nuit de repos.",
+                    "Après un dernier petit déjeuner, vous serez transféré à l'aéroport pour votre vol de retour, emportant avec vous des souvenirs inoubliables du Sahara."
+                ],
+                en: [
+                    "As soon as you arrive at Djerba or Tozeur airport, our team welcomes you warmly and takes you to the El Bir Abdallah bivouac. After a first meeting with the camel guides, you'll settle into an authentic setting, wrapped in the calm of the desert. Dinner, prepared by the Bedouins, will be a chance to discover local flavors under the stars. Night under a Bedouin tent.",
+                    "After a traditional breakfast with sand bread fresh from the fire, you'll head deep into the desert, crossing majestic dunes towards Joua Moussa. Lunch will be enjoyed amid the sands, in an idyllic setting. The evening will end with dinner at the bivouac and a night under the Bedouin tent, lulled by the whispers of the wind in the dunes.",
+                    "After breakfast at the bivouac, you'll continue your expedition towards Tembaine, a mountain amid the dunes. The breathtaking scenery will accompany you throughout the day, with lunch amid the fascinating desert landscapes. Dinner and night under a Bedouin tent.",
+                    "Early wake-up to admire the sunrise over the vastness of the desert. After a breakfast of local flavors, you'll head towards Rebig Hammami, crossing a landscape of golden dunes. You'll have lunch in this magical place before heading back to your bivouac for a traditional evening under the stars. Night under the tent.",
+                    "After waking up in the heart of the desert, you'll head towards Trefissa, a magical place surrounded by dunes. Lunch will take place in this timeless environment, and dinner prepared by the Bedouins will be another chance to taste the authentic flavors of the desert. Night under a Bedouin tent.",
+                    "After a tasty breakfast, departure for Lahwidhat, where you'll discover a hot spring in the heart of the desert. Lunch amid the dunes will let you savor this unique adventure. Dinner and night under a Bedouin tent.",
+                    "This morning, you'll head to Dakanis Sghar, a sand mountain with an impressive panorama. The scenery around you is breathtaking, perfect for a photo stop and lunch in the heart of the desert. In the evening, dinner at the bivouac and night under the tent.",
+                    "Wake up at sunrise to hit the road towards Gour Kleb, another sand-covered mountain. It will be a day of calm and beauty, with lunch in nature. Dinner at the bivouac, night under the Bedouin tent.",
+                    "Onward to El Mida, another unique desert site, where the sand mountains and landscapes transform over the course of the day. You'll have lunch in the open desert, a rare moment to fully enjoy the serene atmosphere. Dinner under the stars and the night under the tent will close this day of pure adventure.",
+                    "Early wake-up to admire the sunrise over Garat Abderrahim, a sand-covered mountain with astonishing shapes. After lunch, you'll spend another magical evening at the bivouac, lulled by the desert wind. Night under a Bedouin tent.",
+                    "After a tasty breakfast, departure for Dhraa Chiaba, a remote place where the desert reveals all its splendor. Lunch in this exceptional setting will be a chance to recharge. Dinner at the bivouac and night under the tent.",
+                    "In the morning, departure for Bir El Haj, a well hidden in the dunes. Here the desert reveals its secrets, between silence and natural splendor. Lunch will be taken in this isolated setting, far from the world. Dinner and night under the tent.",
+                    "After a good breakfast, onward to El Mellaha, crossing beautiful dunes. It will be a day of contemplation and tranquility, with lunch in nature. Dinner and night under the tent, always beneath the starry sky.",
+                    "Wake up at the first light of dawn, then departure for Douz, the gateway to the desert. After lunch in the open desert, you'll reach Djerba or Tozeur for a well-deserved dinner at the hotel and a restful night.",
+                    "After one last breakfast, you'll be transferred to the airport for your return flight, taking with you unforgettable memories of the Sahara."
+                ],
+                ar: [
+                    "بمجرد وصولكم إلى مطار جربة أو توزر، يستقبلكم فريقنا بحرارة ويرافقكم إلى مخيم بئر عبد الله. بعد أول لقاء مع الجمالة، ستستقرون في أجواء أصيلة يلفكم فيها هدوء الصحراء. سيكون العشاء، الذي يعده البدو، فرصة لاكتشاف النكهات المحلية تحت النجوم. المبيت تحت خيمة بدوية.",
+                    "بعد فطور تقليدي بخبز الرمل الطازج المخبوز على النار، ستتوغلون في قلب الصحراء، عابرين الكثبان الشامخة نحو جوا موسى. سيُقدَّم الغداء وسط الرمال، في أجواء مثالية. تنتهي الأمسية بعشاء في المخيم ومبيت تحت الخيمة البدوية، مع همسات الريح بين الكثبان.",
+                    "بعد فطور في المخيم، ستواصلون رحلتكم نحو تمباين، وهو جبل وسط الكثبان. سترافقكم المناظر الطبيعية الخلابة طوال اليوم، مع غداء في مناظر الصحراء الساحرة. عشاء ومبيت تحت خيمة بدوية.",
+                    "استيقاظ مبكر للاستمتاع بشروق الشمس فوق اتساع الصحراء. بعد فطور بنكهات محلية، ستتوجهون نحو ربيق حمامي، عابرين مناظر من الكثبان الذهبية. ستتناولون الغداء في هذا المكان الساحر قبل العودة إلى مخيمكم لأمسية تقليدية تحت النجوم. المبيت تحت الخيمة.",
+                    "بعد استيقاظ في قلب الصحراء، ستتوجهون نحو تريفيسا، وهو مكان ساحر محاط بالكثبان. سيكون الغداء في هذه الأجواء الخالدة، وسيكون العشاء الذي يعده البدو فرصة أخرى لتذوق نكهات الصحراء الأصيلة. المبيت تحت خيمة بدوية.",
+                    "بعد فطور شهي، الانطلاق نحو لاهويضات، حيث ستكتشفون ينبوعًا حارًا في قلب الصحراء. سيتيح لكم الغداء وسط الكثبان الاستمتاع بهذه المغامرة الفريدة. عشاء ومبيت تحت خيمة بدوية.",
+                    "هذا الصباح، ستتوجهون نحو دكانيس صغار، وهو جبل رملي ذو منظر بانورامي مذهل. المناظر المحيطة بكم خلابة، مثالية لوقفة تصوير وغداء في قلب الصحراء. مساءً، عشاء في المخيم ومبيت تحت الخيمة.",
+                    "الاستيقاظ عند شروق الشمس لسلوك الطريق نحو قور كلاب، وهو جبل رملي آخر. سيكون يومًا من الهدوء والجمال، مع غداء في الطبيعة. عشاء في المخيم، مبيت تحت خيمة بدوية.",
+                    "التوجه نحو الميدة، وهو موقع صحراوي فريد آخر، حيث تتحول جبال الرمل والمناظر الطبيعية على مدار اليوم. ستتناولون الغداء في قلب الصحراء، لحظة نادرة للاستمتاع الكامل بالأجواء الهادئة. سيختتم العشاء تحت النجوم والمبيت تحت الخيمة هذا اليوم من المغامرة الخالصة.",
+                    "استيقاظ مبكر للاستمتاع بشروق الشمس فوق قارة عبد الرحيم، وهو جبل رملي ذو أشكال مدهشة. بعد الغداء، ستقضون أمسية ساحرة أخرى في المخيم، مع نسمات رياح الصحراء. المبيت تحت خيمة بدوية.",
+                    "بعد فطور شهي، الانطلاق نحو ضراع شعبة، وهو مكان نائي حيث تكشف الصحراء عن كل روعتها. سيكون الغداء في هذه الأجواء الاستثنائية فرصة لاستعادة النشاط. عشاء في المخيم ومبيت تحت الخيمة.",
+                    "صباحًا، الانطلاق نحو بئر الحاج، وهو بئر مخفي بين الكثبان. تكشف الصحراء هنا عن أسرارها، بين الصمت والروعة الطبيعية. سيُقدَّم الغداء في هذه الأجواء المعزولة، بعيدًا عن العالم. عشاء ومبيت تحت الخيمة.",
+                    "بعد فطور جيد، التوجه نحو الملاحة، عبر كثبان جميلة. سيكون يومًا للتأمل والهدوء، مع غداء في الطبيعة. عشاء ومبيت تحت الخيمة، دائمًا تحت سماء مرصعة بالنجوم.",
+                    "الاستيقاظ مع أولى بشائر الفجر، ثم الانطلاق نحو دوز، بوابة الصحراء. بعد غداء في قلب الصحراء، ستصلون إلى جربة أو توزر لتناول عشاء تستحقونه في الفندق ومبيت مريح.",
+                    "بعد فطور أخير، سيتم نقلكم إلى المطار لرحلة عودتكم، حاملين معكم ذكريات لا تُنسى من الصحراء الكبرى."
+                ],
+                it: [
+                    "Non appena arrivate all'aeroporto di Djerba o Tozeur, il nostro team vi accoglie calorosamente e vi accompagna al bivacco di El Bir Abdallah. Dopo un primo incontro con i cammellieri, vi sistemerete in un ambiente autentico, avvolti dalla calma del deserto. La cena, preparata dai beduini, sarà l'occasione per scoprire i sapori locali sotto le stelle. Notte sotto la tenda beduina.",
+                    "Dopo una colazione tradizionale con pane di sabbia appena sfornato, vi addentrerete nel cuore del deserto, attraversando dune maestose verso Joua Moussa. Il pranzo sarà consumato tra le sabbie, in un ambiente idilliaco. La serata si concluderà con una cena al bivacco e una notte sotto la tenda beduina, cullati dai sussurri del vento tra le dune.",
+                    "Dopo la colazione al bivacco, proseguirete la vostra spedizione verso Tembaine, una montagna in mezzo alle dune. Il paesaggio mozzafiato vi accompagnerà per tutta la giornata, con il pranzo tra gli affascinanti paesaggi del deserto. Cena e notte sotto la tenda beduina.",
+                    "Sveglia mattutina per ammirare l'alba sull'immensità del deserto. Dopo una colazione dai sapori locali, vi dirigerete verso Rebig Hammami, attraversando un paesaggio di dune dorate. Pranzerete in questo luogo magico prima di tornare al vostro bivacco per una serata tradizionale sotto le stelle. Notte sotto la tenda.",
+                    "Dopo un risveglio nel cuore del deserto, vi dirigerete verso Trefissa, un luogo magico circondato da dune. Il pranzo si svolgerà in questo ambiente senza tempo, e la cena preparata dai beduini sarà un'altra occasione per assaporare i gusti autentici del deserto. Notte sotto la tenda beduina.",
+                    "Dopo una gustosa colazione, partenza per Lahwidhat, dove scoprirete una sorgente termale nel cuore del deserto. Un pranzo tra le dune vi permetterà di assaporare questa avventura unica. Cena e notte sotto la tenda beduina.",
+                    "Questa mattina, vi dirigerete verso Dakanis Sghar, una montagna di sabbia dal panorama impressionante. Il paesaggio che vi circonda è mozzafiato, perfetto per una sosta fotografica e un pranzo nel cuore del deserto. La sera, cena al bivacco e notte sotto la tenda.",
+                    "Sveglia all'alba per mettersi in viaggio verso Gour Kleb, un'altra montagna sabbiosa. Sarà una giornata di calma e bellezza, con il pranzo nella natura. Cena al bivacco, notte sotto la tenda beduina.",
+                    "Direzione El Mida, un altro sito unico del deserto, dove le montagne di sabbia e i paesaggi si trasformano nel corso della giornata. Pranzerete nel deserto aperto, un momento raro per godere appieno dell'atmosfera serena. La cena sotto le stelle e la notte sotto la tenda concluderanno questa giornata di pura avventura.",
+                    "Sveglia mattutina per ammirare l'alba su Garat Abderrahim, una montagna sabbiosa dalle forme sorprendenti. Dopo il pranzo, trascorrerete un'altra serata magica al bivacco, cullati dal vento del deserto. Notte sotto la tenda beduina.",
+                    "Dopo una gustosa colazione, partenza per Dhraa Chiaba, un luogo remoto dove il deserto rivela tutto il suo splendore. Il pranzo in questo ambiente eccezionale sarà un'occasione per ricaricarsi. Cena al bivacco e notte sotto la tenda.",
+                    "Al mattino, partenza per Bir El Haj, un pozzo nascosto tra le dune. Qui il deserto vi svela i suoi segreti, tra silenzio e splendore naturale. Il pranzo sarà consumato in questo ambiente isolato, lontano dal mondo. Cena e notte sotto la tenda.",
+                    "Dopo una buona colazione, direzione El Mellaha, attraversando belle dune. Sarà una giornata di contemplazione e tranquillità, con il pranzo nella natura. Cena e notte sotto la tenda, sempre sotto il cielo stellato.",
+                    "Sveglia ai primi bagliori dell'alba, poi partenza per Douz, la porta del deserto. Dopo il pranzo nel deserto aperto, raggiungerete Djerba o Tozeur per una cena meritata in hotel e una notte di riposo.",
+                    "Dopo un'ultima colazione, sarete trasferiti in aeroporto per il volo di ritorno, portando con voi ricordi indimenticabili del Sahara."
+                ]
+            },
+            included: {
+                fr: ['Pension complète tout au long du séjour', 'Hébergement en bivouac sous tente bédouine', 'Dîners typiques préparés par des bédouins', 'Transports et assistance durant tout le séjour'],
+                en: ['Full board throughout the stay', 'Bedouin tent bivouac accommodation', 'Traditional dinners prepared by the Bedouins', 'Transport and assistance throughout the stay'],
+                ar: ['إقامة كاملة طوال فترة الإقامة', 'الإقامة في مخيم تحت خيمة بدوية', 'عشاءات تقليدية يعدها البدو', 'النقل والمساعدة طوال فترة الإقامة'],
+                it: ['Pensione completa per tutto il soggiorno', 'Alloggio in bivacco sotto tenda beduina', 'Cene tradizionali preparate dai beduini', 'Trasporti e assistenza per tutto il soggiorno']
+            },
+            includedIcons: ['eat', 'tent-1', 'campfire', 'van'],
+            excluded: {
+                fr: ['Boissons dans les hôtels et restaurants', 'Pourboires'],
+                en: ['Drinks in hotels and restaurants', 'Tips'],
+                ar: ['المشروبات في الفنادق والمطاعم', 'البقشيش'],
+                it: ['Bevande in hotel e ristoranti', 'Mance']
+            },
+            excludedIcons: ['pot', 'draw-check-mark'],
+            closing: {
+                fr: "Ce voyage est fait pour ceux qui rêvent de s'évader totalement et de vivre l'immensité du désert tunisien à son apogée. Un périple authentique, où chaque journée vous emmène un peu plus loin dans la magie du Sahara. Au-delà des paysages époustouflants, vous plongerez dans une expérience humaine et spirituelle unique, loin de la civilisation. Préparez-vous à vivre l'aventure d'une vie !",
+                en: 'This journey is made for those who dream of escaping completely and experiencing the immensity of the Tunisian desert at its peak. An authentic journey, where each day takes you a little further into the magic of the Sahara. Beyond the breathtaking landscapes, you will dive into a unique human and spiritual experience, far from civilization. Get ready to live the adventure of a lifetime!',
+                ar: 'هذه الرحلة مخصصة لمن يحلم بالهروب التام وعيش اتساع الصحراء التونسية في أوجها. رحلة أصيلة، حيث يأخذكم كل يوم إلى أبعد قليلاً في سحر الصحراء الكبرى. وبعيدًا عن المناظر الطبيعية الخلابة، ستنغمسون في تجربة إنسانية وروحية فريدة، بعيدًا عن الحضارة. استعدوا لعيش مغامرة العمر!',
+                it: "Questo viaggio è fatto per chi sogna di evadere completamente e vivere l'immensità del deserto tunisino al suo apice. Un percorso autentico, dove ogni giorno vi porta un po' più lontano nella magia del Sahara. Oltre ai paesaggi mozzafiato, vi immergerete in un'esperienza umana e spirituale unica, lontano dalla civiltà. Preparatevi a vivere l'avventura di una vita!"
+            },
+            gallery: [
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788608967/baroudeurs/service/details/Baroudeurs/2.jpg', title: 'Baroudeurs' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788608874/baroudeurs/service/details/Circuit/5.jpg', title: 'Circuit' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788607904/baroudeurs/service/details/Charm/1.jpg', title: 'Charm' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788607644/baroudeurs/service/details/Endless/3.jpg', title: 'Endless' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788606078/baroudeurs/service/details/Mirage/5.jpg', title: 'Mirage' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788605752/baroudeurs/service/details/Rose/3.jpg', title: 'Rose' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788605761/baroudeurs/service/details/Rose/5.jpg', title: 'Rose' }
+            ],
+            review: {
+                avatar: 't-4.jpg', name: 'Hans Weber', country: 'Germany', rating: 5,
+                comment: {
+                    fr: "Quinze jours qui ont changé ma perception du désert. Chaque site avait sa propre magie, et les chameliers étaient d'une gentillesse incroyable.",
+                    en: 'Fifteen days that changed my perception of the desert. Every site had its own magic, and the camel guides were incredibly kind.',
+                    ar: 'خمسة عشر يومًا غيّرت نظرتي إلى الصحراء. كان لكل موقع سحره الخاص، وكان الجمالة لطفاء بشكل لا يصدق.',
+                    it: 'Quindici giorni che hanno cambiato la mia percezione del deserto. Ogni sito aveva la sua magia, e i cammellieri erano incredibilmente gentili.'
+                }
+            }
+        },
+        {
+            id: 5,
+            image: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788607644/baroudeurs/service/details/Endless/3.jpg',
+            title: { fr: 'Charme du Désert - 2 Jours', en: 'Desert Charm - 2 Days', ar: 'سحر الصحراء - يومان', it: 'Fascino del Deserto - 2 Giorni' },
+            description: {
+                fr: "Une escapade courte et magique de Douz à Dhirat Aicha, avec un lever de soleil spectaculaire sur les dunes. Nuit sous tente bédouine et dîner traditionnel autour du feu.",
+                en: 'A short, magical getaway from Douz to Dhirat Aicha, with a spectacular sunrise over the dunes. Night under a Bedouin tent and traditional campfire dinner.',
+                ar: 'رحلة قصيرة وساحرة من دوز إلى ذراع عيشة، مع شروق شمس رائع فوق الكثبان. ليلة تحت خيمة بدوية وعشاء تقليدي حول النار.',
+                it: "Una fuga breve e magica da Douz a Dhirat Aicha, con un'alba spettacolare sulle dune. Notte sotto la tenda beduina e cena tradizionale intorno al fuoco."
+            },
+            duration: { fr: '2 jours / 1 nuit', en: '2 days / 1 night', ar: 'يومان / ليلة واحدة', it: '2 giorni / 1 notte' },
+            icons: ['fas fa-campground', 'fas fa-sun', 'fas fa-fire', 'fas fa-utensils'],
+            intro: {
+                fr: 'Charme du désert : 2 jours / 1 nuit – Une escapade magique au cœur du Sahara.',
+                en: 'Desert Charm: 2 days / 1 night – A magical getaway in the heart of the Sahara.',
+                ar: 'سحر الصحراء: يومان / ليلة واحدة – رحلة ساحرة في قلب الصحراء الكبرى.',
+                it: 'Fascino del Deserto: 2 giorni / 1 notte – Una fuga magica nel cuore del Sahara.'
+            },
+            fullDescription: {
+                fr: "Une escapade de 2 jours et 1 nuit de Douz à Dhirat Aicha et retour, idéale pour une immersion rapide dans le désert. Repas en pleine nature, dîner autour du feu et nuit sous tente bédouine composent cette parenthèse hors du temps.",
+                en: 'A 2-day, 1-night getaway from Douz to Dhirat Aicha and back, ideal for a quick immersion in the desert. Meals in the open air, a dinner around the fire, and a night under a Bedouin tent make up this timeless break.',
+                ar: 'رحلة لمدة يومين وليلة واحدة من دوز إلى ذراع عيشة والعودة، مثالية لانغماس سريع في الصحراء. تتكون هذه الاستراحة الخالدة من وجبات في الطبيعة وعشاء حول النار ومبيت تحت خيمة بدوية.',
+                it: "Una fuga di 2 giorni e 1 notte da Douz a Dhirat Aicha e ritorno, ideale per un'immersione rapida nel deserto. Pasti all'aperto, una cena intorno al fuoco e una notte sotto la tenda beduina compongono questa pausa senza tempo."
+            },
+            itinerarySummary: {
+                fr: "Ce court séjour relie Douz à Dhirat Aicha, avec une nuit sous tente bédouine et un retour à Douz le lendemain. Idéal pour ceux qui cherchent une immersion rapide dans le désert tunisien.",
+                en: 'This short stay links Douz to Dhirat Aicha, with a night under a Bedouin tent and a return to Douz the next day. Ideal for those seeking a quick immersion in the Tunisian desert.',
+                ar: 'تربط هذه الإقامة القصيرة بين دوز وذراع عيشة، مع مبيت تحت خيمة بدوية والعودة إلى دوز في اليوم التالي. مثالية لمن يبحث عن انغماس سريع في الصحراء التونسية.',
+                it: "Questo breve soggiorno collega Douz a Dhirat Aicha, con una notte sotto la tenda beduina e il ritorno a Douz il giorno successivo. Ideale per chi cerca un'immersione rapida nel deserto tunisino."
+            },
+            itinerary: {
+                fr: ['Douz - Dhirat Aicha', 'Dhirat Aicha - Douz'],
+                en: ['Douz - Dhirat Aicha', 'Dhirat Aicha - Douz'],
+                ar: ['دوز - ذراع عيشة', 'ذراع عيشة - دوز'],
+                it: ['Douz - Dhirat Aicha', 'Dhirat Aicha - Douz']
+            },
+            itineraryDetail: {
+                fr: [
+                    "Dès votre arrivée à Douz, un petit déjeuner savoureux vous attend, préparé avec soin pour bien commencer la journée. Ensuite, votre aventure dans le désert commence avec un trajet vers Dhirat Aicha, un lieu de tranquillité absolue au cœur des dunes dorées. Le déjeuner se déroulera en pleine nature, offrant une vue à couper le souffle sur les paysages désertiques. En soirée, vous profiterez d'un dîner traditionnel autour du feu, avant de passer la nuit dans le confort de votre bivouac sous les étoiles, dans une ambiance authentique. Nuit sous tente bédouine.",
+                    "Réveil aux premières lueurs du matin, pour assister à un lever de soleil spectaculaire sur l'immensité du désert. Après un petit déjeuner au bivouac, vous reprendrez la route vers Douz, la \"porte du désert\". Le déjeuner se déroulera à nouveau en pleine nature, dans ce décor unique de dunes infinies. Après cette dernière étape, vous serez transféré à Douz pour la fin de cette escapade inoubliable."
+                ],
+                en: [
+                    "Upon arrival in Douz, a tasty breakfast awaits you, carefully prepared to start the day well. Then your desert adventure begins with a drive to Dhirat Aicha, a place of absolute tranquility in the heart of the golden dunes. Lunch will take place in the open air, offering a breathtaking view of the desert landscapes. In the evening, you'll enjoy a traditional dinner around the fire, before spending the night in the comfort of your bivouac under the stars, in an authentic atmosphere. Night under a Bedouin tent.",
+                    "Wake up at first light to witness a spectacular sunrise over the vastness of the desert. After breakfast at the bivouac, you'll head back towards Douz, the \"gateway to the desert\". Lunch will once again take place in the open air, in this unique setting of endless dunes. After this final stage, you'll be transferred to Douz for the end of this unforgettable getaway."
+                ],
+                ar: [
+                    "عند وصولكم إلى دوز، ينتظركم فطور شهي، أُعد بعناية لبدء اليوم على أحسن وجه. بعدها، تبدأ مغامرتكم الصحراوية برحلة نحو ذراع عيشة، وهو مكان هادئ تمامًا في قلب الكثبان الذهبية. سيُقدَّم الغداء في الطبيعة، مع منظر خلاب على المناظر الصحراوية. مساءً، ستستمتعون بعشاء تقليدي حول النار، قبل قضاء الليلة في راحة مخيمكم تحت النجوم، في أجواء أصيلة. المبيت تحت خيمة بدوية.",
+                    "الاستيقاظ عند أولى بشائر الصباح، لمشاهدة شروق شمس رائع فوق اتساع الصحراء. بعد فطور في المخيم، ستعودون على الطريق نحو دوز، \"بوابة الصحراء\". سيُقدَّم الغداء مجددًا في الطبيعة، في هذا الديكور الفريد من الكثبان اللانهائية. بعد هذه المرحلة الأخيرة، سيتم نقلكم إلى دوز لإنهاء هذه الرحلة التي لا تُنسى."
+                ],
+                it: [
+                    "Al vostro arrivo a Douz, vi aspetta una gustosa colazione, preparata con cura per iniziare bene la giornata. Poi la vostra avventura nel deserto inizia con un tragitto verso Dhirat Aicha, un luogo di assoluta tranquillità nel cuore delle dune dorate. Il pranzo si svolgerà all'aperto, offrendo una vista mozzafiato sui paesaggi desertici. La sera, gusterete una cena tradizionale intorno al fuoco, prima di trascorrere la notte nel comfort del vostro bivacco sotto le stelle, in un'atmosfera autentica. Notte sotto la tenda beduina.",
+                    "Sveglia ai primi bagliori del mattino, per assistere a un'alba spettacolare sull'immensità del deserto. Dopo la colazione al bivacco, riprenderete la strada verso Douz, la \"porta del deserto\". Il pranzo si svolgerà di nuovo all'aperto, in questo scenario unico di dune infinite. Dopo quest'ultima tappa, sarete trasferiti a Douz per la fine di questa fuga indimenticabile."
+                ]
+            },
+            included: {
+                fr: ['Pension complète durant tout le séjour', 'Hébergement en bivouac sous tente bédouine', 'Repas typiques préparés par les bédouins'],
+                en: ['Full board throughout the stay', 'Bedouin tent bivouac accommodation', 'Traditional meals prepared by the Bedouins'],
+                ar: ['إقامة كاملة طوال فترة الإقامة', 'الإقامة في مخيم تحت خيمة بدوية', 'وجبات تقليدية يعدها البدو'],
+                it: ['Pensione completa per tutto il soggiorno', 'Alloggio in bivacco sotto tenda beduina', 'Pasti tradizionali preparati dai beduini']
+            },
+            includedIcons: ['tent-1', 'cottage', 'eat'],
+            excluded: { fr: ['Pourboires'], en: ['Tips'], ar: ['البقشيش'], it: ['Mance'] },
+            excludedIcons: ['draw-check-mark'],
+            closing: {
+                fr: "Un séjour court mais intense, idéal pour ceux qui cherchent à s'évader et à découvrir la magie du désert tunisien en toute simplicité. Une immersion dans un monde où le temps semble s'arrêter, un moment parfait pour se ressourcer et se reconnecter avec la nature.",
+                en: 'A short but intense stay, ideal for those looking to escape and discover the magic of the Tunisian desert in complete simplicity. An immersion in a world where time seems to stand still, a perfect moment to recharge and reconnect with nature.',
+                ar: 'إقامة قصيرة لكن مكثفة، مثالية لمن يبحث عن الهروب واكتشاف سحر الصحراء التونسية ببساطة تامة. انغماس في عالم يبدو فيه الزمن متوقفًا، لحظة مثالية لاستعادة النشاط وإعادة التواصل مع الطبيعة.',
+                it: "Un soggiorno breve ma intenso, ideale per chi cerca di evadere e scoprire la magia del deserto tunisino in tutta semplicità. Un'immersione in un mondo dove il tempo sembra fermarsi, un momento perfetto per ricaricarsi e riconnettersi con la natura."
+            },
+            gallery: [
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788560663/1_xloiai.jpg', title: 'Desert Path' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788559522/7_axyvup.jpg', title: 'Dune Whispers' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788606531/baroudeurs/service/details/Temba%C3%AFne/4.jpg', title: 'Tembaïne' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788606117/baroudeurs/service/details/Temba%C3%AFne/1.jpg', title: 'Tembaïne' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788607767/baroudeurs/service/details/Endless/6.jpg', title: 'Endless' }
+            ],
+            review: {
+                avatar: 't-6.jpg', name: 'Elena Popescu', country: 'Romania', rating: 4,
+                comment: {
+                    fr: 'Deux jours parfaits pour un premier contact avec le désert. Le lever de soleil sur les dunes était à couper le souffle.',
+                    en: 'Two perfect days for a first contact with the desert. The sunrise over the dunes was breathtaking.',
+                    ar: 'يومان مثاليان للتعرف على الصحراء لأول مرة. كان شروق الشمس فوق الكثبان خلابًا.',
+                    it: "Due giorni perfetti per un primo contatto con il deserto. L'alba sulle dune era mozzafiato."
+                }
+            }
+        },
+        {
+            id: 6,
+            image: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788608071/baroudeurs/service/details/Charm/3.jpg',
+            title: { fr: 'Désert Infini - 8 Jours', en: 'Endless Desert - 8 Days', ar: 'الصحراء اللانهائية - 8 أيام', it: 'Deserto Infinito - 8 Giorni' },
+            description: {
+                fr: "8 jours à dos de dromadaire de El Mellaha à Ksar Ghilane, entre dunes infinies et oasis mythique aux sources chaudes. Une immersion totale dans le silence et la beauté du Sahara.",
+                en: '8 days by camel from El Mellaha to Ksar Ghilane, between endless dunes and the mythical hot-spring oasis. A total immersion in the silence and beauty of the Sahara.',
+                ar: '8 أيام على ظهر الجمل من الملاحة إلى قصر غيلان، بين الكثبان اللانهائية والواحة الأسطورية ذات الينابيع الحارة. انغماس كامل في صمت وجمال الصحراء الكبرى.',
+                it: "8 giorni in dromedario da El Mellaha a Ksar Ghilane, tra dune infinite e l'oasi mitica dalle sorgenti termali. Un'immersione totale nel silenzio e nella bellezza del Sahara."
+            },
+            duration: { fr: '8 jours / 7 nuits', en: '8 days / 7 nights', ar: '8 أيام / 7 ليال', it: '8 giorni / 7 notti' },
+            icons: ['fas fa-campground', 'fas fa-swimming-pool', 'fas fa-fire', 'fas fa-moon'],
+            intro: {
+                fr: 'Désert Infini : 8 jours / 7 nuits – Aventure et sérénité au cœur du Sahara tunisien.',
+                en: 'Endless Desert: 8 days / 7 nights – Adventure and serenity in the heart of the Tunisian Sahara.',
+                ar: 'الصحراء اللانهائية: 8 أيام / 7 ليال – مغامرة وسكينة في قلب الصحراء التونسية.',
+                it: 'Deserto Infinito: 8 giorni / 7 notti – Avventura e serenità nel cuore del Sahara tunisino.'
+            },
+            fullDescription: {
+                fr: "Un voyage de 8 jours à dos de dromadaire, de Djerba ou Tozeur jusqu'à El Mellaha, Le Meezil, Bir El Haj, Hgif El Boum, Dakhla et enfin l'oasis mythique de Ksar Ghilane. Chaque étape combine marche dans les dunes, bivouacs sous tente bédouine et repas préparés par les bédouins, avant un retour progressif vers Djerba ou Tozeur.",
+                en: 'An 8-day camel journey from Djerba or Tozeur to El Mellaha, Le Meezil, Bir El Haj, Hgif El Boum, Dakhla, and finally the mythical oasis of Ksar Ghilane. Each stage combines walking through the dunes, bivouacs under Bedouin tents, and meals prepared by the Bedouins, before a gradual return to Djerba or Tozeur.',
+                ar: 'رحلة لمدة 8 أيام على ظهر الجمل، من جربة أو توزر إلى الملاحة والميزيل وبئر الحاج وحقيف البوم والدخلة وأخيرًا واحة قصر غيلان الأسطورية. تجمع كل مرحلة بين المشي في الكثبان والمبيت في مخيمات تحت خيام بدوية ووجبات يعدها البدو، قبل العودة التدريجية إلى جربة أو توزر.',
+                it: "Un viaggio di 8 giorni in dromedario, da Djerba o Tozeur a El Mellaha, Le Meezil, Bir El Haj, Hgif El Boum, Dakhla e infine l'oasi mitica di Ksar Ghilane. Ogni tappa unisce camminate tra le dune, bivacchi sotto tende beduine e pasti preparati dai beduini, prima di un ritorno graduale a Djerba o Tozeur."
+            },
+            itinerarySummary: {
+                fr: "Ce circuit de 8 jours relie Djerba ou Tozeur à El Mellaha, puis Le Meezil, Bir El Haj, Hgif El Boum, Dakhla et Ksar Ghilane, avant de repartir. Chaque jour combine trek à dos de dromadaire, découverte de puits et d'oasis, et nuits sous tente bédouine.",
+                en: 'This 8-day circuit links Djerba or Tozeur to El Mellaha, then Le Meezil, Bir El Haj, Hgif El Boum, Dakhla, and Ksar Ghilane, before heading back. Each day combines camel trekking, discovering wells and oases, and nights under a Bedouin tent.',
+                ar: 'تربط هذه الرحلة التي تستغرق 8 أيام بين جربة أو توزر والملاحة، ثم الميزيل وبئر الحاج وحقيف البوم والدخلة وقصر غيلان، قبل العودة. يجمع كل يوم بين رحلة على ظهر الجمل واكتشاف الآبار والواحات ومبيت تحت خيمة بدوية.',
+                it: 'Questo circuito di 8 giorni collega Djerba o Tozeur a El Mellaha, poi Le Meezil, Bir El Haj, Hgif El Boum, Dakhla e Ksar Ghilane, prima di tornare. Ogni giorno unisce trekking in dromedario, scoperta di pozzi e oasi, e notti sotto la tenda beduina.'
+            },
+            itinerary: {
+                fr: ['Djerba/Tozeur - Douz - El Mellaha', 'El Mellaha - Le Meezil', 'Le Meezil - Bir El Haj', 'Bir El Haj - Hgif El Boum', 'Hgif El Boum - Dakhla', 'Dakhla - Ksar Ghilane', 'Ksar Ghilane - Djerba/Tozeur', 'Djerba/Tozeur - Aéroport'],
+                en: ['Djerba/Tozeur - Douz - El Mellaha', 'El Mellaha - Le Meezil', 'Le Meezil - Bir El Haj', 'Bir El Haj - Hgif El Boum', 'Hgif El Boum - Dakhla', 'Dakhla - Ksar Ghilane', 'Ksar Ghilane - Djerba/Tozeur', 'Djerba/Tozeur - Airport'],
+                ar: ['جربة/توزر - دوز - الملاحة', 'الملاحة - الميزيل', 'الميزيل - بئر الحاج', 'بئر الحاج - حقيف البوم', 'حقيف البوم - الدخلة', 'الدخلة - قصر غيلان', 'قصر غيلان - جربة/توزر', 'جربة/توزر - المطار'],
+                it: ['Djerba/Tozeur - Douz - El Mellaha', 'El Mellaha - Le Meezil', 'Le Meezil - Bir El Haj', 'Bir El Haj - Hgif El Boum', 'Hgif El Boum - Dakhla', 'Dakhla - Ksar Ghilane', 'Ksar Ghilane - Djerba/Tozeur', 'Djerba/Tozeur - Aeroporto']
+            },
+            itineraryDetail: {
+                fr: [
+                    "À votre arrivée à l'aéroport de Djerba ou Tozeur, un accueil chaleureux vous attend avant un transfert vers El Mellaha, en passant par Douz, la célèbre porte du désert. Vous aurez votre premier contact avec l'univers des chameliers, avant de vous installer dans votre bivouac. Dîner au coin du feu, sous un ciel étoilé, et nuit dans une tente bédouine, pour une expérience authentique au cœur du Sahara.",
+                    "Après un petit déjeuner savoureux, vous partez pour Le Meezil, en traversant les magnifiques dunes de sable qui ondulent à perte de vue. Le déjeuner sera pris en plein désert, un moment unique pour savourer la tranquillité du lieu. Le soir, un dîner traditionnel préparé par les bédouins vous attend avant une nouvelle nuit sous les étoiles dans votre bivouac.",
+                    "Le matin, après une nuit réparatrice sous un ciel sans nuages, vous prendrez la route de Bir El Haj, un lieu secret où se cache un puits d'eau au cœur du désert. Le déjeuner sera pris au milieu des dunes, dans un paysage spectaculaire. Après cette journée de dépaysement total, dîner sous les étoiles et nuit dans votre bivouac.",
+                    "Réveillez-vous tôt pour observer l'un des plus beaux levers de soleil du monde. Ensuite, vous partirez vers Hgif El Boum, un autre lieu magique aux paysages de dunes sans fin. Vous déjeunerez en plein désert, avant de vous installer pour la nuit dans un bivouac confortable sous la tente bédouine, avec un dîner aux saveurs locales.",
+                    "Petit déjeuner au bivouac, puis départ vers Dakhla, un endroit où les dunes se mêlent à l'horizon. Profitez d'un déjeuner dans ce décor à couper le souffle, avant de continuer à explorer ce monde infini de sable et de silence. Le soir, dîner et nuit sous la tente bédouine, une expérience purement saharienne.",
+                    "Ce matin, après le petit déjeuner, vous partirez en direction de Ksar Ghilane, une oasis mythique aux sources d'eau chaude. Ce lieu, qui marque la limite entre le monde romain et les tribus bédouines du désert, est un symbole fort de l'histoire de la région. Déjeuner dans cet environnement magnifique, puis retour au bivouac pour un dîner traditionnel préparé par les bédouins. Nuit sous la tente bédouine.",
+                    "Réveillez-vous tôt pour un dernier moment magique dans le désert, avec une baignade relaxante dans les sources d'eau chaude de Ksar Ghilane. Après un déjeuner tranquille, vous repartirez vers Djerba ou Tozeur. Vous serez transféré à votre hôtel pour un dîner et une nuit bien méritée, après cette aventure hors du commun.",
+                    "Après un dernier petit déjeuner, transfert à l'aéroport pour votre vol de retour, la tête pleine de souvenirs inoubliables et d'images gravées dans votre mémoire."
+                ],
+                en: [
+                    "Upon arrival at Djerba or Tozeur airport, a warm welcome awaits you before a transfer to El Mellaha, passing through Douz, the famous gateway to the desert. You'll have your first contact with the world of camel guides before settling into your bivouac. Dinner by the fire, under a starry sky, and a night in a Bedouin tent, for an authentic experience in the heart of the Sahara.",
+                    "After a tasty breakfast, you'll head to Le Meezil, crossing magnificent sand dunes that ripple as far as the eye can see. Lunch will be taken in the open desert, a unique moment to savor the tranquility of the place. In the evening, a traditional dinner prepared by the Bedouins awaits before another night under the stars in your bivouac.",
+                    "In the morning, after a restorative night under a cloudless sky, you'll head to Bir El Haj, a secret place where a water well hides in the heart of the desert. Lunch will be taken amid the dunes, in a spectacular landscape. After this day of total escape, dinner under the stars and a night in your bivouac.",
+                    "Wake up early to observe one of the world's most beautiful sunrises. Then you'll head towards Hgif El Boum, another magical place with endless dune landscapes. You'll have lunch in the open desert, before settling in for the night in a comfortable bivouac under the Bedouin tent, with a dinner of local flavors.",
+                    "Breakfast at the bivouac, then departure towards Dakhla, a place where the dunes merge with the horizon. Enjoy lunch in this breathtaking setting, before continuing to explore this infinite world of sand and silence. In the evening, dinner and night under the Bedouin tent, a purely Saharan experience.",
+                    "This morning, after breakfast, you'll head towards Ksar Ghilane, a mythical oasis with hot springs. This place, which marks the boundary between the Roman world and the desert Bedouin tribes, is a strong symbol of the region's history. Lunch in this magnificent setting, then back to the bivouac for a traditional dinner prepared by the Bedouins. Night under the Bedouin tent.",
+                    "Wake up early for one last magical moment in the desert, with a relaxing swim in the hot springs of Ksar Ghilane. After a quiet lunch, you'll head back towards Djerba or Tozeur. You'll be transferred to your hotel for a well-deserved dinner and night, after this extraordinary adventure.",
+                    "After one last breakfast, transfer to the airport for your return flight, your head full of unforgettable memories and images etched in your mind."
+                ],
+                ar: [
+                    "عند وصولكم إلى مطار جربة أو توزر، يترقبكم استقبال حار قبل النقل إلى الملاحة، مرورًا بدوز، بوابة الصحراء الشهيرة. سيكون لكم أول لقاء مع عالم الجمالة، قبل الاستقرار في مخيمكم. عشاء بجانب النار، تحت سماء مرصعة بالنجوم، ومبيت في خيمة بدوية، لتجربة أصيلة في قلب الصحراء الكبرى.",
+                    "بعد فطور شهي، ستتوجهون نحو الميزيل، عابرين كثبانًا رملية رائعة تتموج على مد البصر. سيُقدَّم الغداء في قلب الصحراء، لحظة فريدة للاستمتاع بهدوء المكان. مساءً، ينتظركم عشاء تقليدي يعده البدو قبل ليلة أخرى تحت النجوم في مخيمكم.",
+                    "في الصباح، بعد ليلة من الراحة تحت سماء صافية، ستتوجهون نحو بئر الحاج، وهو مكان سري يخفي بئر ماء في قلب الصحراء. سيُقدَّم الغداء وسط الكثبان، في منظر طبيعي مذهل. بعد يوم من الابتعاد الكامل، عشاء تحت النجوم ومبيت في مخيمكم.",
+                    "استيقظوا مبكرًا لمشاهدة أحد أجمل شروق الشمس في العالم. بعدها، ستتوجهون نحو حقيف البوم، وهو مكان ساحر آخر بمناظر كثبان لا نهاية لها. ستتناولون الغداء في قلب الصحراء، قبل الاستقرار لليلة في مخيم مريح تحت الخيمة البدوية، مع عشاء بنكهات محلية.",
+                    "فطور في المخيم، ثم الانطلاق نحو الدخلة، وهو مكان تمتزج فيه الكثبان بالأفق. استمتعوا بغداء في هذا المشهد الخلاب، قبل مواصلة استكشاف هذا العالم اللانهائي من الرمال والصمت. مساءً، عشاء ومبيت تحت الخيمة البدوية، تجربة صحراوية خالصة.",
+                    "هذا الصباح، بعد الفطور، ستتوجهون نحو قصر غيلان، وهي واحة أسطورية بينابيع مياه حارة. هذا المكان، الذي يمثل الحد الفاصل بين العالم الروماني وقبائل البدو الصحراوية، رمز قوي لتاريخ المنطقة. غداء في هذه الأجواء الرائعة، ثم العودة إلى المخيم لتناول عشاء تقليدي يعده البدو. المبيت تحت خيمة بدوية.",
+                    "استيقظوا مبكرًا للاستمتاع بلحظة سحرية أخيرة في الصحراء، مع سباحة مريحة في الينابيع الحارة لقصر غيلان. بعد غداء هادئ، ستتوجهون نحو جربة أو توزر. سيتم نقلكم إلى فندقكم لتناول عشاء ومبيت تستحقونهما، بعد هذه المغامرة الاستثنائية.",
+                    "بعد فطور أخير، النقل إلى المطار لرحلة عودتكم، برأس مليء بذكريات لا تُنسى وصور محفورة في ذاكرتكم."
+                ],
+                it: [
+                    "Al vostro arrivo all'aeroporto di Djerba o Tozeur, vi attende una calorosa accoglienza prima di un trasferimento a El Mellaha, passando per Douz, la famosa porta del deserto. Avrete il vostro primo contatto con il mondo dei cammellieri, prima di sistemarvi nel vostro bivacco. Cena accanto al fuoco, sotto un cielo stellato, e notte in una tenda beduina, per un'esperienza autentica nel cuore del Sahara.",
+                    "Dopo una gustosa colazione, partirete per Le Meezil, attraversando magnifiche dune di sabbia che ondeggiano a perdita d'occhio. Il pranzo sarà consumato nel deserto aperto, un momento unico per assaporare la tranquillità del luogo. La sera, vi attende una cena tradizionale preparata dai beduini prima di un'altra notte sotto le stelle nel vostro bivacco.",
+                    "Al mattino, dopo una notte ristoratrice sotto un cielo senza nuvole, vi dirigerete verso Bir El Haj, un luogo segreto dove si nasconde un pozzo d'acqua nel cuore del deserto. Il pranzo sarà consumato tra le dune, in un paesaggio spettacolare. Dopo questa giornata di totale evasione, cena sotto le stelle e notte nel vostro bivacco.",
+                    "Svegliatevi presto per osservare una delle più belle albe al mondo. Poi vi dirigerete verso Hgif El Boum, un altro luogo magico dai paesaggi di dune senza fine. Pranzerete nel deserto aperto, prima di sistemarvi per la notte in un comodo bivacco sotto la tenda beduina, con una cena dai sapori locali.",
+                    "Colazione al bivacco, poi partenza verso Dakhla, un luogo dove le dune si fondono con l'orizzonte. Godetevi un pranzo in questo scenario mozzafiato, prima di continuare a esplorare questo mondo infinito di sabbia e silenzio. La sera, cena e notte sotto la tenda beduina, un'esperienza puramente sahariana.",
+                    "Questa mattina, dopo la colazione, vi dirigerete verso Ksar Ghilane, un'oasi mitica con sorgenti termali. Questo luogo, che segna il confine tra il mondo romano e le tribù beduine del deserto, è un forte simbolo della storia della regione. Pranzo in questo magnifico ambiente, poi ritorno al bivacco per una cena tradizionale preparata dai beduini. Notte sotto la tenda beduina.",
+                    "Svegliatevi presto per un ultimo momento magico nel deserto, con un bagno rilassante nelle sorgenti termali di Ksar Ghilane. Dopo un pranzo tranquillo, ripartirete verso Djerba o Tozeur. Sarete trasferiti al vostro hotel per una cena e una notte meritate, dopo questa straordinaria avventura.",
+                    "Dopo un'ultima colazione, trasferimento in aeroporto per il volo di ritorno, con la testa piena di ricordi indimenticabili e immagini impresse nella memoria."
+                ]
+            },
+            included: {
+                fr: ['Pension complète durant tout le séjour', 'Hébergement en bivouac sous tente bédouine', 'Dîners traditionnels préparés par des bédouins (chorba, couscous, etc.)', 'Transports et assistance tout au long de votre voyage'],
+                en: ['Full board throughout the stay', 'Bedouin tent bivouac accommodation', 'Traditional dinners prepared by the Bedouins (chorba, couscous, etc.)', 'Transport and assistance throughout your trip'],
+                ar: ['إقامة كاملة طوال فترة الإقامة', 'الإقامة في مخيم تحت خيمة بدوية', 'عشاءات تقليدية يعدها البدو (شوربة، كسكسي، إلخ)', 'النقل والمساعدة طوال رحلتكم'],
+                it: ['Pensione completa per tutto il soggiorno', 'Alloggio in bivacco sotto tenda beduina', 'Cene tradizionali preparate dai beduini (chorba, couscous, ecc.)', 'Trasporti e assistenza per tutto il vostro viaggio']
+            },
+            includedIcons: ['eat', 'tent-1', 'campfire', 'van'],
+            excluded: {
+                fr: ['Boissons dans les hôtels et restaurants', 'Pourboires'],
+                en: ['Drinks in hotels and restaurants', 'Tips'],
+                ar: ['المشروبات في الفنادق والمطاعم', 'البقشيش'],
+                it: ['Bevande in hotel e ristoranti', 'Mance']
+            },
+            excludedIcons: ['pot', 'draw-check-mark'],
+            closing: {
+                fr: "Venez vivre l'expérience ultime au cœur du désert tunisien, un voyage où chaque instant vous rapprochera un peu plus de la nature pure et du silence majestueux des dunes. Une aventure à la fois authentique, apaisante et pleine de découvertes, pour un dépaysement total.",
+                en: 'Come experience the ultimate journey in the heart of the Tunisian desert, a trip where every moment brings you a little closer to pure nature and the majestic silence of the dunes. An adventure that is both authentic, soothing, and full of discoveries, for a total change of scenery.',
+                ar: 'تعالوا لعيش التجربة المثلى في قلب الصحراء التونسية، رحلة تقربكم في كل لحظة أكثر من الطبيعة الخالصة والصمت المهيب للكثبان. مغامرة أصيلة ومهدئة ومليئة بالاكتشافات، لتغيير كامل في الأجواء.',
+                it: "Venite a vivere l'esperienza definitiva nel cuore del deserto tunisino, un viaggio in cui ogni momento vi avvicina un po' di più alla natura pura e al silenzio maestoso delle dune. Un'avventura al tempo stesso autentica, rilassante e piena di scoperte, per un cambio di scenario totale."
+            },
+            gallery: [
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788607759/baroudeurs/service/details/Endless/5.jpg', title: 'Endless' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788606830/baroudeurs/service/Call%20of%20the%20Desert.jpg', title: 'Call of the Desert' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788606088/baroudeurs/service/details/Mirage/7.jpg', title: 'Mirage' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788559494/2_tjxcd9.jpg', title: 'Desert Silence' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788608078/baroudeurs/service/details/Charm/6.jpg', title: 'Charm' }
+            ],
+            review: {
+                avatar: 't-8.jpg', name: 'Carlos Mendez', country: 'Spain', rating: 5,
+                comment: {
+                    fr: 'Huit jours magiques. Se baigner dans les sources chaudes de Ksar Ghilane après une semaine de trek à dos de dromadaire était inoubliable.',
+                    en: 'Eight magical days. Swimming in the hot springs of Ksar Ghilane after a week of camel trekking was unforgettable.',
+                    ar: 'ثمانية أيام سحرية. كانت السباحة في الينابيع الحارة لقصر غيلان بعد أسبوع من الرحلة على ظهر الجمل تجربة لا تُنسى.',
+                    it: 'Otto giorni magici. Fare il bagno nelle sorgenti termali di Ksar Ghilane dopo una settimana di trekking in dromedario è stato indimenticabile.'
+                }
+            }
+        },
+        {
+            id: 7,
+            image: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788609877/baroudeurs/service/details/Mirage/3.jpg',
+            title: { fr: 'Rose de Sables - 8 Jours', en: 'Desert Rose - 8 Days', ar: 'وردة الرمال - 8 أيام', it: 'Rosa del Deserto - 8 Giorni' },
+            description: {
+                fr: "8 jours à la recherche des célèbres roses de sable, de El Bidha à El Khaltaya, à dos de dromadaire. Rencontres avec les chameliers et nuits sous tente bédouine au cœur du désert.",
+                en: '8 days in search of the famous desert roses, from El Bidha to El Khaltaya, by camel. Encounters with camel guides and nights under a Bedouin tent deep in the desert.',
+                ar: '8 أيام بحثًا عن ورود الرمال الشهيرة، من البيضاء إلى الخلطية، على ظهر الجمل. لقاءات مع الجمالة وليالٍ تحت خيمة بدوية في قلب الصحراء.',
+                it: '8 giorni alla ricerca delle famose rose del deserto, da El Bidha a El Khaltaya, in dromedario. Incontri con i cammellieri e notti sotto la tenda beduina nel cuore del deserto.'
+            },
+            duration: { fr: '8 jours / 7 nuits', en: '8 days / 7 nights', ar: '8 أيام / 7 ليال', it: '8 giorni / 7 notti' },
+            icons: ['fas fa-campground', 'fas fa-gem', 'fas fa-fire', 'fas fa-moon'],
+            intro: {
+                fr: 'Rose de Sables : 8 jours / 7 nuits – À la découverte du désert tunisien.',
+                en: 'Desert Rose: 8 days / 7 nights – Discovering the Tunisian desert.',
+                ar: 'وردة الرمال: 8 أيام / 7 ليال – اكتشاف الصحراء التونسية.',
+                it: 'Rosa del Deserto: 8 giorni / 7 notti – Alla scoperta del deserto tunisino.'
+            },
+            fullDescription: {
+                fr: "Un périple de 8 jours à dos de dromadaire, de Djerba ou Tozeur à El Bidha, Om Hinda, El Khaltaya, Bir El Ghar, Ain Mansour et Dhirat Aicha, à la recherche des célèbres roses de sable. Chaque jour est ponctué de rencontres avec les chameliers, de repas préparés au feu de bois et de nuits sous tente bédouine.",
+                en: 'An 8-day camel journey from Djerba or Tozeur to El Bidha, Om Hinda, El Khaltaya, Bir El Ghar, Ain Mansour, and Dhirat Aicha, in search of the famous desert roses. Each day is punctuated by encounters with camel guides, meals prepared over a wood fire, and nights under a Bedouin tent.',
+                ar: 'رحلة لمدة 8 أيام على ظهر الجمل، من جربة أو توزر إلى البيضاء وأم هندة والخلطية وبئر الغار وعين منصور وذراع عيشة، بحثًا عن ورود الرمال الشهيرة. يتخلل كل يوم لقاءات مع الجمالة ووجبات تُعد على نار الحطب ومبيت تحت خيمة بدوية.',
+                it: 'Un percorso di 8 giorni in dromedario, da Djerba o Tozeur a El Bidha, Om Hinda, El Khaltaya, Bir El Ghar, Ain Mansour e Dhirat Aicha, alla ricerca delle famose rose del deserto. Ogni giorno è scandito da incontri con i cammellieri, pasti preparati sul fuoco di legna e notti sotto la tenda beduina.'
+            },
+            itinerarySummary: {
+                fr: "Ce circuit de 8 jours relie Djerba ou Tozeur à El Bidha, puis Om Hinda, El Khaltaya, Bir El Ghar, Ain Mansour et Dhirat Aicha, à la recherche des roses de sable. Chaque jour combine trek à dos de dromadaire, rencontres avec les chameliers et nuits sous tente bédouine.",
+                en: 'This 8-day circuit links Djerba or Tozeur to El Bidha, then Om Hinda, El Khaltaya, Bir El Ghar, Ain Mansour, and Dhirat Aicha, in search of desert roses. Each day combines camel trekking, encounters with camel guides, and nights under a Bedouin tent.',
+                ar: 'تربط هذه الرحلة التي تستغرق 8 أيام بين جربة أو توزر والبيضاء، ثم أم هندة والخلطية وبئر الغار وعين منصور وذراع عيشة، بحثًا عن ورود الرمال. يجمع كل يوم بين رحلة على ظهر الجمل ولقاءات مع الجمالة ومبيت تحت خيمة بدوية.',
+                it: 'Questo circuito di 8 giorni collega Djerba o Tozeur a El Bidha, poi Om Hinda, El Khaltaya, Bir El Ghar, Ain Mansour e Dhirat Aicha, alla ricerca delle rose del deserto. Ogni giorno unisce trekking in dromedario, incontri con i cammellieri e notti sotto la tenda beduina.'
+            },
+            itinerary: {
+                fr: ['Djerba/Tozeur - El Bidha', 'El Bidha - Om Hinda', 'Om Hinda - El Khaltaya', 'El Khaltaya - Bir El Ghar', 'Bir El Ghar - Ain Mansour', 'Ain Mansour - Dhirat Aicha', 'Dhirat Aicha - Douz - Djerba/Tozeur', 'Djerba/Tozeur - Aéroport'],
+                en: ['Djerba/Tozeur - El Bidha', 'El Bidha - Om Hinda', 'Om Hinda - El Khaltaya', 'El Khaltaya - Bir El Ghar', 'Bir El Ghar - Ain Mansour', 'Ain Mansour - Dhirat Aicha', 'Dhirat Aicha - Douz - Djerba/Tozeur', 'Djerba/Tozeur - Airport'],
+                ar: ['جربة/توزر - البيضاء', 'البيضاء - أم هندة', 'أم هندة - الخلطية', 'الخلطية - بئر الغار', 'بئر الغار - عين منصور', 'عين منصور - ذراع عيشة', 'ذراع عيشة - دوز - جربة/توزر', 'جربة/توزر - المطار'],
+                it: ['Djerba/Tozeur - El Bidha', 'El Bidha - Om Hinda', 'Om Hinda - El Khaltaya', 'El Khaltaya - Bir El Ghar', 'Bir El Ghar - Ain Mansour', 'Ain Mansour - Dhirat Aicha', 'Dhirat Aicha - Douz - Djerba/Tozeur', 'Djerba/Tozeur - Aeroporto']
+            },
+            itineraryDetail: {
+                fr: [
+                    "Dès votre arrivée à l'aéroport de Djerba ou Tozeur, un accueil chaleureux vous attend avant un transfert vers le bivouac d'El Bidha. Là, vous ferez connaissance avec vos chameliers et vous vous immergerez dans l'ambiance authentique du désert. Le soir venu, un dîner traditionnel vous sera servi autour du feu, sous un ciel étoilé, dans un bivouac typique où vous passerez la nuit sous une tente bédouine.",
+                    "Après un petit déjeuner copieux, vous prendrez la direction d'Om Hinda, où vous partagerez un repas convivial à l'ombre des palmiers sauvages. Vous visiterez également un marabout et découvrirez un village ensablé, témoin du passage du temps. Le soir, un dîner traditionnel et une nouvelle nuit dans le calme du désert vous attendent sous les étoiles.",
+                    "Ce matin, après un petit déjeuner réconfortant, vous partirez en direction d'El Khaltaya. Une nouvelle journée s'annonce à dos de dromadaire, où vous aurez l'occasion de chercher les célèbres roses de sable, ces formations minérales rares et fascinantes. Le repas du midi sera préparé au feu de bois, et la soirée se terminera par un dîner sous les étoiles, avant de passer une nouvelle nuit sous la tente bédouine.",
+                    "Après un petit déjeuner au bivouac, vous partirez vers Bir El Ghar, un puits d'eau au cœur du désert, en traversant le majestueux Chott Hajria. Ce trajet sera l'occasion de chercher à nouveau les roses de sable tout en vous émerveillant devant les paysages à couper le souffle des dunes dorées. Le déjeuner sera pris dans ce cadre idyllique, avant de repartir pour une soirée tranquille et un dîner sous la tente.",
+                    "Réveillez-vous au rythme du désert et, après un petit déjeuner simple mais délicieux, vous reprendrez la route en direction d'Ain Mansour. Vous passerez la journée à admirer les paysages fascinants du désert tout en avançant à dos de dromadaire. Ce soir, un nouveau dîner traditionnel vous attend, pour une soirée paisible sous le ciel étoilé.",
+                    "Petit déjeuner matinal avec du pain de sable fraîchement cuit, puis départ pour Dhirat Aicha. Accompagné de vos chameliers et cuisiniers locaux, vous traverserez des dunes majestueuses, à la recherche de nouveaux horizons. Le déjeuner sera servi dans ce cadre grandiose avant de continuer votre chemin vers Dhirat Aicha, un lieu où le silence et la beauté du désert vous couperont le souffle. Dîner et nuit au bivouac, sous la tente bédouine.",
+                    "Réveillez-vous tôt pour admirer l'un des plus beaux levers de soleil que vous n'avez jamais vus. Après un délicieux petit déjeuner, vous ferez route vers Djerba ou Tozeur, en passant par Douz, la porte du désert. Vous serez transféré à votre hôtel pour un dîner bien mérité et une nuit reposante.",
+                    "Après un dernier petit déjeuner, transfert à l'aéroport pour prendre votre vol de retour, la tête pleine de souvenirs inoubliables et le cœur empli de la magie du désert tunisien."
+                ],
+                en: [
+                    "As soon as you arrive at Djerba or Tozeur airport, a warm welcome awaits you before a transfer to the El Bidha bivouac. There, you'll meet your camel guides and immerse yourself in the authentic atmosphere of the desert. In the evening, a traditional dinner will be served around the fire, under a starry sky, in a typical bivouac where you'll spend the night under a Bedouin tent.",
+                    "After a hearty breakfast, you'll head towards Om Hinda, where you'll share a convivial meal in the shade of wild palm trees. You'll also visit a marabout and discover a sand-covered village, a witness to the passage of time. In the evening, a traditional dinner and another night in the calm of the desert await you under the stars.",
+                    "This morning, after a comforting breakfast, you'll head towards El Khaltaya. A new day awaits on camelback, where you'll have the chance to search for the famous desert roses, these rare and fascinating mineral formations. Lunch will be prepared over a wood fire, and the evening will end with dinner under the stars, before spending another night under the Bedouin tent.",
+                    "After breakfast at the bivouac, you'll head towards Bir El Ghar, a water well in the heart of the desert, crossing the majestic Chott Hajria. This journey will be an opportunity to search for desert roses again while marveling at the breathtaking landscapes of golden dunes. Lunch will be taken in this idyllic setting, before setting off for a quiet evening and dinner under the tent.",
+                    "Wake up to the rhythm of the desert and, after a simple but delicious breakfast, you'll hit the road again towards Ain Mansour. You'll spend the day admiring the fascinating desert landscapes while advancing on camelback. Tonight, another traditional dinner awaits you, for a peaceful evening under the starry sky.",
+                    "Early breakfast with freshly baked sand bread, then departure for Dhirat Aicha. Accompanied by your camel guides and local cooks, you'll cross majestic dunes, in search of new horizons. Lunch will be served in this grand setting before continuing your way towards Dhirat Aicha, a place where the silence and beauty of the desert will take your breath away. Dinner and night at the bivouac, under the Bedouin tent.",
+                    "Wake up early to admire one of the most beautiful sunrises you've ever seen. After a delicious breakfast, you'll head towards Djerba or Tozeur, passing through Douz, the gateway to the desert. You'll be transferred to your hotel for a well-deserved dinner and a restful night.",
+                    "After one last breakfast, transfer to the airport to take your return flight, your head full of unforgettable memories and your heart filled with the magic of the Tunisian desert."
+                ],
+                ar: [
+                    "بمجرد وصولكم إلى مطار جربة أو توزر، يترقبكم استقبال حار قبل النقل إلى مخيم البيضاء. هناك، ستتعرفون على الجمالة وتنغمسون في الأجواء الأصيلة للصحراء. مساءً، سيُقدَّم عشاء تقليدي حول النار، تحت سماء مرصعة بالنجوم، في مخيم نموذجي حيث ستقضون الليلة تحت خيمة بدوية.",
+                    "بعد فطور دسم، ستتوجهون نحو أم هندة، حيث ستتشاركون وجبة ودية في ظل نخيل بري. ستزورون أيضًا مرابطًا وتكتشفون قرية مغطاة بالرمال، شاهدة على مرور الزمن. مساءً، ينتظركم عشاء تقليدي وليلة أخرى في هدوء الصحراء تحت النجوم.",
+                    "هذا الصباح، بعد فطور مريح، ستتوجهون نحو الخلطية. يوم جديد ينتظركم على ظهر الجمل، حيث ستتاح لكم الفرصة للبحث عن ورود الرمال الشهيرة، وهي تكوينات معدنية نادرة وساحرة. سيُحضَّر غداء الظهيرة على نار الحطب، وتنتهي الأمسية بعشاء تحت النجوم، قبل قضاء ليلة أخرى تحت الخيمة البدوية.",
+                    "بعد فطور في المخيم، ستتوجهون نحو بئر الغار، وهو بئر ماء في قلب الصحراء، عابرين شط حجرية المهيب. ستكون هذه الرحلة فرصة للبحث مجددًا عن ورود الرمال بينما تنبهرون بالمناظر الخلابة للكثبان الذهبية. سيُقدَّم الغداء في هذا المشهد المثالي، قبل الانطلاق لأمسية هادئة وعشاء تحت الخيمة.",
+                    "استيقظوا على إيقاع الصحراء، وبعد فطور بسيط لكنه لذيذ، ستعودون إلى الطريق نحو عين منصور. ستقضون اليوم في الإعجاب بالمناظر الصحراوية الساحرة أثناء التقدم على ظهر الجمل. الليلة، ينتظركم عشاء تقليدي آخر، لأمسية هادئة تحت سماء مرصعة بالنجوم.",
+                    "فطور صباحي بخبز الرمل الطازج، ثم الانطلاق نحو ذراع عيشة. برفقة الجمالة والطهاة المحليين، ستعبرون كثبانًا شامخة، بحثًا عن آفاق جديدة. سيُقدَّم الغداء في هذا المشهد المهيب قبل مواصلة الطريق نحو ذراع عيشة، وهو مكان سيأخذ صمت وجمال الصحراء فيه أنفاسكم. عشاء ومبيت في المخيم، تحت الخيمة البدوية.",
+                    "استيقظوا مبكرًا للإعجاب بأحد أجمل شروق الشمس الذي رأيتموه على الإطلاق. بعد فطور لذيذ، ستسلكون الطريق نحو جربة أو توزر، مرورًا بدوز، بوابة الصحراء. سيتم نقلكم إلى فندقكم لتناول عشاء تستحقونه ومبيت مريح.",
+                    "بعد فطور أخير، النقل إلى المطار لأخذ رحلة عودتكم، برأس مليء بذكريات لا تُنسى وقلب مفعم بسحر الصحراء التونسية."
+                ],
+                it: [
+                    "Non appena arrivate all'aeroporto di Djerba o Tozeur, vi attende una calorosa accoglienza prima di un trasferimento al bivacco di El Bidha. Lì, farete conoscenza con i vostri cammellieri e vi immergerete nell'atmosfera autentica del deserto. La sera, vi sarà servita una cena tradizionale intorno al fuoco, sotto un cielo stellato, in un tipico bivacco dove trascorrerete la notte sotto una tenda beduina.",
+                    "Dopo un'abbondante colazione, vi dirigerete verso Om Hinda, dove condividerete un pasto conviviale all'ombra di palme selvatiche. Visiterete anche un marabutto e scoprirete un villaggio sabbioso, testimone del passare del tempo. La sera, vi attendono una cena tradizionale e un'altra notte nella calma del deserto sotto le stelle.",
+                    "Questa mattina, dopo una colazione confortante, vi dirigerete verso El Khaltaya. Vi attende una nuova giornata in dromedario, dove avrete l'occasione di cercare le famose rose del deserto, queste rare e affascinanti formazioni minerali. Il pasto di mezzogiorno sarà preparato sul fuoco di legna, e la serata si concluderà con una cena sotto le stelle, prima di trascorrere un'altra notte sotto la tenda beduina.",
+                    "Dopo la colazione al bivacco, vi dirigerete verso Bir El Ghar, un pozzo d'acqua nel cuore del deserto, attraversando il maestoso Chott Hajria. Questo tragitto sarà l'occasione per cercare di nuovo le rose del deserto mentre vi meraviglierete davanti ai paesaggi mozzafiato delle dune dorate. Il pranzo sarà consumato in questo ambiente idilliaco, prima di ripartire per una serata tranquilla e una cena sotto la tenda.",
+                    "Svegliatevi al ritmo del deserto e, dopo una colazione semplice ma deliziosa, riprenderete la strada verso Ain Mansour. Trascorrerete la giornata ad ammirare gli affascinanti paesaggi del deserto avanzando in dromedario. Questa sera, vi attende un'altra cena tradizionale, per una serata pacifica sotto il cielo stellato.",
+                    "Colazione mattutina con pane di sabbia appena cotto, poi partenza per Dhirat Aicha. Accompagnati dai vostri cammellieri e cuochi locali, attraverserete dune maestose, alla ricerca di nuovi orizzonti. Il pranzo sarà servito in questo ambiente grandioso prima di continuare il vostro cammino verso Dhirat Aicha, un luogo dove il silenzio e la bellezza del deserto vi toglieranno il fiato. Cena e notte al bivacco, sotto la tenda beduina.",
+                    "Svegliatevi presto per ammirare una delle più belle albe che abbiate mai visto. Dopo una deliziosa colazione, vi dirigerete verso Djerba o Tozeur, passando per Douz, la porta del deserto. Sarete trasferiti al vostro hotel per una cena meritata e una notte riposante.",
+                    "Dopo un'ultima colazione, trasferimento in aeroporto per prendere il volo di ritorno, con la testa piena di ricordi indimenticabili e il cuore colmo della magia del deserto tunisino."
+                ]
+            },
+            included: {
+                fr: ['Pension complète tout au long du séjour', 'Hébergement en bivouac sous tente bédouine', 'Dîners préparés par des bédouins, avec des plats traditionnels (chorba, couscous, etc.)', 'Transports et assistance tout au long du voyage'],
+                en: ['Full board throughout the stay', 'Bedouin tent bivouac accommodation', 'Dinners prepared by the Bedouins, with traditional dishes (chorba, couscous, etc.)', 'Transport and assistance throughout the trip'],
+                ar: ['إقامة كاملة طوال فترة الإقامة', 'الإقامة في مخيم تحت خيمة بدوية', 'عشاءات يعدها البدو، بأطباق تقليدية (شوربة، كسكسي، إلخ)', 'النقل والمساعدة طوال الرحلة'],
+                it: ['Pensione completa per tutto il soggiorno', 'Alloggio in bivacco sotto tenda beduina', 'Cene preparate dai beduini, con piatti tradizionali (chorba, couscous, ecc.)', 'Trasporti e assistenza per tutto il viaggio']
+            },
+            includedIcons: ['eat', 'tent-1', 'campfire', 'van'],
+            excluded: {
+                fr: ['Boissons dans les hôtels et restaurants', 'Pourboires'],
+                en: ['Drinks in hotels and restaurants', 'Tips'],
+                ar: ['المشروبات في الفنادق والمطاعم', 'البقشيش'],
+                it: ['Bevande in hotel e ristoranti', 'Mance']
+            },
+            excludedIcons: ['pot', 'draw-check-mark'],
+            closing: {
+                fr: "Cette aventure au cœur du désert tunisien vous plonge dans un univers authentique et fascinant, entre le silence du désert, les rencontres avec les chameliers et la découverte des traditions bédouines. Parfait pour ceux qui cherchent à se ressourcer loin de l'agitation du quotidien, tout en vivant une expérience unique.",
+                en: 'This adventure in the heart of the Tunisian desert immerses you in an authentic and fascinating world, between the silence of the desert, encounters with camel guides, and the discovery of Bedouin traditions. Perfect for those looking to recharge far from the hustle and bustle of daily life, while living a unique experience.',
+                ar: 'تُغرقكم هذه المغامرة في قلب الصحراء التونسية في عالم أصيل وساحر، بين صمت الصحراء ولقاءات الجمالة واكتشاف تقاليد البدو. مثالية لمن يبحث عن استعادة النشاط بعيدًا عن صخب الحياة اليومية، مع عيش تجربة فريدة.',
+                it: "Questa avventura nel cuore del deserto tunisino vi immerge in un mondo autentico e affascinante, tra il silenzio del deserto, gli incontri con i cammellieri e la scoperta delle tradizioni beduine. Perfetta per chi cerca di ricaricarsi lontano dal trambusto quotidiano, vivendo un'esperienza unica."
+            },
+            gallery: [
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788605854/baroudeurs/service/details/Mirage/2.jpg', title: 'Mirage' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788605799/baroudeurs/service/details/Mirage/1.jpg', title: 'Mirage' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788606072/baroudeurs/service/details/Mirage/4.jpg', title: 'Mirage' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788605763/baroudeurs/service/Mirage.jpg', title: 'Mirage' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788560813/1_k85ekq.jpg', title: 'Desert Wanderer' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788559477/7_mcl3tr.jpg', title: 'Sand Journey' },
+                { url: 'https://res.cloudinary.com/dy13axswo/image/upload/v1788605419/baroudeurs/service/Desert%20Rose.jpg', title: 'Desert Rose' }
+            ],
+            review: {
+                avatar: 't-9.jpg', name: 'Anna Kowalski', country: 'Poland', rating: 5,
+                comment: {
+                    fr: 'Trouver ma première rose de sable a été un moment magique. Une aventure authentique du début à la fin, avec des chameliers extraordinaires.',
+                    en: 'Finding my first desert rose was a magical moment. An authentic adventure from start to finish, with extraordinary camel guides.',
+                    ar: 'كان العثور على أول وردة رمل لي لحظة سحرية. مغامرة أصيلة من البداية إلى النهاية، مع جمالة استثنائيين.',
+                    it: "Trovare la mia prima rosa del deserto è stato un momento magico. Un'avventura autentica dall'inizio alla fine, con cammellieri straordinari."
+                }
+            }
+        }
+    ] %}

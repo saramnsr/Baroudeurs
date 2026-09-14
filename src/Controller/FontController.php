@@ -618,26 +618,13 @@ public function excursions(): Response
  */
 public function detail(string $type, int $id): Response
 {
-    if ($type === 'circuit') {
-        $item = $this->circuitRepository->find($id);
-        $related = $this->circuitRepository->findAllOrdered();
-    } else {
-        $item = $this->excursionRepository->find($id);
-        $related = $this->excursionRepository->findAllOrdered();
-    }
-
-    if (!$item) {
-        throw $this->createNotFoundException('Item not found');
-    }
-
+    // Purely frontend: the detail template holds all the data itself,
+    // keyed by type + id. No DB lookup, no repository, no 404.
     return $this->render('font/detail.html.twig', [
         'type' => $type,
-        'item' => $item,
-        'circuits' => $related,
+        'id'   => $id,
     ]);
 }
-
-
 
 /**
  * @Route("/circuit/booking/submit", name="app_circuit_booking_submit", methods={"POST"})

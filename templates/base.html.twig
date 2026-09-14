@@ -47,6 +47,97 @@
                 background-color: #F7921E !important;
                 border-color: #F7921E !important;
             }
+
+            /* ===== Fixed/scrolled header: white background, black text =====
+               Forced with !important because the header carries other
+               theme classes (transparent-header, navigation-white) whose
+               own rules would otherwise win. The scroll script below adds
+               both "scrolled" and "sticky" once the user scrolls past the
+               top, which is what triggers this block. */
+            header.header-area .header-navigation.scrolled,
+            header.header-area .header-navigation.sticky {
+                background-color: #ffffff !important;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08) !important;
+            }
+            header.header-area .header-navigation.scrolled .main-menu ul > li > a,
+            header.header-area .header-navigation.sticky .main-menu ul > li > a {
+                color: #1C231F !important;
+            }
+            header.header-area .header-navigation.scrolled .main-menu ul > li > a .dd-trigger,
+            header.header-area .header-navigation.sticky .main-menu ul > li > a .dd-trigger {
+                color: #1C231F !important;
+            }
+            header.header-area .header-navigation.scrolled .main-menu ul > li:hover > a,
+            header.header-area .header-navigation.sticky .main-menu ul > li:hover > a {
+                color: #8FAB45 !important;
+            }
+            header.header-area .header-navigation.scrolled .nav-right-item .nice-select,
+            header.header-area .header-navigation.sticky .nav-right-item .nice-select,
+            header.header-area .header-navigation.scrolled .nav-right-item .nice-select .current,
+            header.header-area .header-navigation.sticky .nav-right-item .nice-select .current {
+                color: #1C231F !important;
+            }
+            header.header-area .header-navigation.scrolled .navbar-toggler,
+            header.header-area .header-navigation.sticky .navbar-toggler {
+                border-color: rgba(0, 0, 0, 0.15) !important;
+            }
+            header.header-area .header-navigation.scrolled .navbar-toggler span,
+            header.header-area .header-navigation.sticky .navbar-toggler span {
+                background-color: #1C231F !important;
+            }
+
+            /* ===== Circuits / Excursions nav dropdowns =====
+               The theme's base CSS has a generic rule
+               ".main-menu ul > li { display: inline-block }" that also
+               matches these li's since they sit under ".main-menu ul"
+               too (nested). Every property below is forced with
+               !important specifically to beat that rule and guarantee
+               a plain white panel with one name per line. */
+            .header-navigation .main-menu ul > li.menu-item-has-children > a .dd-trigger {
+                margin-inline-start: 6px;
+                font-size: 12px;
+            }
+            .header-navigation .main-menu ul.sub-menu {
+                display: block !important;
+                background-color: #ffffff !important;
+                min-width: 300px;
+                width: max-content;
+                max-width: 360px;
+                max-height: 360px;
+                overflow-y: auto;
+                padding: 8px 0 !important;
+                margin: 0 !important;
+                border-radius: 8px !important;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18) !important;
+                list-style: none !important;
+            }
+            .header-navigation .main-menu ul.sub-menu > li {
+                display: block !important;
+                float: none !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                list-style: none !important;
+            }
+            .header-navigation .main-menu ul.sub-menu > li > a {
+                display: block !important;
+                float: none !important;
+                width: 100% !important;
+                background-color: transparent !important;
+                color: #1C231F !important;
+                font-size: 14px !important;
+                line-height: 1.4 !important;
+                white-space: normal !important;
+                padding: 12px 20px !important;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+            }
+            .header-navigation .main-menu ul.sub-menu > li:last-child > a {
+                border-bottom: none !important;
+            }
+            .header-navigation .main-menu ul.sub-menu > li > a:hover {
+                background-color: #F2F1EE !important;
+                color: #8FAB45 !important;
+            }
         </style>
         {% endblock %}
     </head>
@@ -82,6 +173,29 @@
             </div>
         </div><!--====== Search From ======-->
 
+        {# ============================================================
+           Nav dropdown data for Circuits / Excursions, hardcoded here
+           (name + id only — the full data lives in circuits.html.twig,
+           excursions.html.twig and detail.html.twig). Keep these ids in
+           sync with those files: circuitNav ids match circuitData in
+           detail.html.twig (type: 'circuit'); excursionNav ids match
+           excursionData (type: 'excursion').
+           ============================================================ #}
+        {% set navLocale = app.request.locale %}
+        {% set circuitNav = [
+            { id: 1, title: { fr: 'Circuit Désert - Douz à Tembaïne', en: 'Desert Circuit - Douz to Tembaïne', ar: 'رحلة الصحراء - من دوز إلى تمباين', it: 'Circuito nel Deserto - Douz a Tembaïne' } },
+            { id: 2, title: { fr: 'Mirage du Désert', en: 'Mirage du Désert', ar: 'سراب الصحراء', it: 'Miraggio del Deserto' } },
+            { id: 3, title: { fr: 'Appel du Désert', en: 'Call of the Desert', ar: 'نداء الصحراء', it: 'Richiamo del Deserto' } },
+            { id: 4, title: { fr: 'Baroudeurs de Désert', en: 'Desert Baroudeurs', ar: 'بارودور الصحراء', it: 'Baroudeurs del Deserto' } },
+            { id: 5, title: { fr: 'Charme du Désert', en: 'Desert Charm', ar: 'سحر الصحراء', it: 'Fascino del Deserto' } },
+            { id: 6, title: { fr: 'Désert Infini', en: 'Endless Desert', ar: 'الصحراء اللانهائية', it: 'Deserto Infinito' } },
+            { id: 7, title: { fr: 'Rose de Sables', en: 'Desert Rose', ar: 'وردة الرمال', it: 'Rosa del Deserto' } }
+        ] %}
+        {% set excursionNav = [
+            { id: 1, title: { fr: 'Excursion à Tataouine', en: 'Tataouine Excursion', ar: 'رحلة إلى تطاوين', it: 'Escursione a Tataouine' } },
+            { id: 2, title: { fr: 'Excursion à Ksar Ghilane', en: 'Ksar Ghilane Excursion', ar: 'رحلة إلى قصر غيلان', it: 'Escursione a Ksar Ghilane' } }
+        ] %}
+
         <!--====== Start Header ======-->
         <header class="header-area">
             <div class="header-navigation transparent-header navigation-white">
@@ -112,8 +226,22 @@
                                 <ul>
                                     <li class="menu-item"><a href="{{ path('app_font_index') }}">{{ 'nav.home'|trans }}</a></li>
                                     <li class="menu-item"><a href="{{ path('app_font_about') }}">{{ 'nav.about'|trans }}</a></li>
-                                    <li class="menu-item"><a href="{{ path('app_font_circuits') }}">{{ 'nav.circuits'|trans }}</a></li>
-                                    <li class="menu-item"><a href="{{ path('app_font_excursions') }}">{{ 'nav.excursions'|trans }}</a></li>
+                                    <li class="menu-item menu-item-has-children">
+                                        <a href="{{ path('app_font_circuits') }}">{{ 'nav.circuits'|trans }} <span class="dd-trigger"><i class="fas fa-angle-down"></i></span></a>
+                                        <ul class="sub-menu">
+                                            {% for c in circuitNav %}
+                                                <li><a href="{{ path('app_font_detail', {type: 'circuit', id: c.id}) }}">{{ c.title[navLocale] is defined ? c.title[navLocale] : c.title.en }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item menu-item-has-children">
+                                        <a href="{{ path('app_font_excursions') }}">{{ 'nav.excursions'|trans }} <span class="dd-trigger"><i class="fas fa-angle-down"></i></span></a>
+                                        <ul class="sub-menu">
+                                            {% for e in excursionNav %}
+                                                <li><a href="{{ path('app_font_detail', {type: 'excursion', id: e.id}) }}">{{ e.title[navLocale] is defined ? e.title[navLocale] : e.title.en }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
                                     <li class="menu-item"><a href="{{ path('app_font_services') }}">{{ 'nav.services'|trans }}</a></li>
                                     <li class="menu-item"><a href="{{ path('app_font_blog') }}">{{ 'nav.blog'|trans }}</a></li>
                                     <li class="menu-item"><a href="{{ path('app_font_contact') }}">{{ 'nav.contact'|trans }}</a></li>
@@ -129,14 +257,15 @@
                             <div class="menu-button d-xl-block d-none">
                                 <a href="{{ path('app_font_contact') }}" class="main-btn btn-green">Book now<i class="far fa-angle-double-right"></i></a>
                             </div>
-                            <div class="lang-dropdown">
-                                <select onchange="location = this.value;">
-                                    <option value="{{ path('change_language', {'locale': 'en'}) }}">English</option>
-                                    <option value="{{ path('change_language', {'locale': 'fr'}) }}">Français</option>
-                                    <option value="{{ path('change_language', {'locale': 'ar'}) }}">العربية</option>
-                                    <option value="{{ path('change_language', {'locale': 'it'}) }}">Italiano</option>
-                                </select>
-                            </div>
+<div class="lang-dropdown">
+    <span class="lang-current">{{ {'en':'English','fr':'Français','ar':'العربية','it':'Italiano'}[app.request.locale]|default('English') }} <i class="fas fa-angle-down"></i></span>
+    <ul class="lang-sub-menu">
+        <li><a href="{{ path('change_language', {'locale': 'en'}) }}">English</a></li>
+        <li><a href="{{ path('change_language', {'locale': 'fr'}) }}">Français</a></li>
+        <li><a href="{{ path('change_language', {'locale': 'ar'}) }}">العربية</a></li>
+        <li><a href="{{ path('change_language', {'locale': 'it'}) }}">Italiano</a></li>
+    </ul>
+</div>
                             <div class="navbar-toggler">
                                 <span></span>
                                 <span></span>
@@ -176,7 +305,7 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="footer-widget about-company-widget mb-40 wow fadeInDown">
-                        <a href="{{ path('app_font_index') }}" class="footer-logo"><img src="{{ asset('assets/images/logo/main-logo.png') }}" alt="Brand Logo"></a>
+                        <a href="{{ path('app_font_index') }}" class="footer-logo"><img src="{{ asset('assets/images/logo/logo.jpeg') }}" alt="Brand Logo"></a>
                         <p>Where the desert meets your spirit of adventure.</p>
                         <ul class="social-link">
                             <li><a href="https://www.facebook.com/share/1YKGE3mPCg/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a></li>
@@ -292,8 +421,10 @@
                     window.addEventListener('scroll', function () {
                         if (window.scrollY > 50) {
                             header.classList.add('scrolled');
+                            header.classList.add('sticky');
                         } else {
                             header.classList.remove('scrolled');
+                            header.classList.remove('sticky');
                         }
                     });
                 }

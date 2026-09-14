@@ -1304,6 +1304,154 @@ button {
 }
 .header-navigation.transparent-header.navigation-white.scrolled.sticky .navbar-toggler span {
   background-color: #000000 !important;
+  
+}
+
+
+
+/* Header: always white background, black text — not just after scrolling */
+header.header-area .header-navigation {
+    background-color: #ffffff !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08) !important;
+}
+header.header-area .header-navigation .main-menu ul > li > a {
+    color: #1C231F !important;
+}
+header.header-area .header-navigation .main-menu ul > li > a .dd-trigger {
+    color: #1C231F !important;
+}
+header.header-area .header-navigation .main-menu ul > li:hover > a {
+    color: #8FAB45 !important;
+}
+header.header-area .header-navigation .nav-right-item .nice-select,
+header.header-area .header-navigation .nav-right-item .nice-select .current {
+    color: #1C231F !important;
+}
+header.header-area .header-navigation .navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.15) !important;
+}
+header.header-area .header-navigation .navbar-toggler span {
+    background-color: #1C231F !important;
+}
+
+
+
+/* Make the header shorter — top-level nav links ONLY, not the dropdown items */
+header.header-area .header-navigation {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+}
+header.header-area .header-navigation .site-branding {
+    max-width: 100px !important;
+}
+header.header-area .header-navigation .main-menu > ul > li > a {
+    padding: 4px 0 !important;
+}
+
+
+/* Footer logo: little bigger */
+footer.footer-default .footer-logo img {
+    max-width: 290px !important;
+    width: 290px !important;
+    height: auto !important;
+}
+
+
+/* "Why choose us" card 2 (dark card): text and icon white */
+.why-choose-section .why-choose-card-dark .icon,
+.why-choose-section .why-choose-card-dark .icon i,
+.why-choose-section .why-choose-card-dark h5.title,
+.why-choose-section .why-choose-card-dark p {
+    color: #ffffff !important;
+}
+
+/* Language switcher: hover-revealed list, matching the other nav dropdowns */
+.lang-dropdown {
+    position: relative;
+    cursor: pointer;
+}
+.lang-dropdown .lang-current {
+    color: #1C231F !important;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.lang-dropdown .lang-current i {
+    font-size: 12px;
+    color: #1C231F !important;
+}
+.lang-dropdown .lang-sub-menu {
+    position: absolute;
+    top: 130%;
+    right: 0;
+    background-color: #ffffff !important;
+    min-width: 160px;
+    padding: 8px 0 !important;
+    margin: 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18) !important;
+    list-style: none !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-out 0s;
+    z-index: 999;
+}
+.lang-dropdown:hover .lang-sub-menu {
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+}
+.lang-dropdown .lang-sub-menu li {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+.lang-dropdown .lang-sub-menu li a {
+    display: block !important;
+    width: 100% !important;
+    color: #1C231F !important;
+    background-color: transparent !important;
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+}
+.lang-dropdown .lang-sub-menu li a:hover {
+    background-color: #F2F1EE !important;
+    color: #8FAB45 !important;
+}
+
+
+
+/* Excursion grid: collapse to fit only the 2 cards we actually have */
+.excursions-section .excursion-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: none !important;
+    grid-template-areas: none !important;
+    gap: 24px !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+.excursions-section .excursion-card,
+.excursions-section .excursion-card-large,
+.excursions-section .excursion-card-small {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    height: 380px !important;
+}
+
+@media (max-width: 767px) {
+    .excursions-section .excursion-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.excursions-section {
+    padding-bottom: 0 !important;
+}
+.why-choose-section {
+    margin-top: 90px !important;
 }
 
 /* Header Sticky */

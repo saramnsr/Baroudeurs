@@ -4,6 +4,216 @@
 
 {% block body %}
 
+    {# ============================================================
+       Circuit data, hardcoded directly here. Purely frontend.
+       This array holds 7 items (ids 1-7). It must stay separate
+       from the Excursion data in excursions.html.twig and
+       detail.html.twig's excursionData — ids are not shared across
+       the two, and links below use type: 'circuit'.
+       To edit a circuit: change the values below.
+       To add one: copy a whole { ... } block, append it, and give
+       it the next unused id (also add it to detail.html.twig's
+       circuitData so its detail page works).
+       ============================================================ #}
+    {% set locale = app.request.locale %}
+    {% set circuits = [
+        {
+            id: 1,
+            image: "Circuits/circuit desert.jpg",
+            title: {
+                fr: "Circuit Désert 8 Jours - Douz à Tembaïne",
+                en: "8-Day Desert Circuit - Douz to Tembaïne",
+                ar: "رحلة الصحراء 8 أيام - من دوز إلى تمباين",
+                it: "Circuito nel Deserto 8 Giorni - Douz a Tembaïne"
+            },
+            description: {
+                fr: "Traversez des dunes infinies en 4x4, de Douz à Tembaïne, avec des nuits sous les étoiles. Baignez-vous dans la source chaude de Huidat Riched et découvrez l'oasis de Ksar Ghilane.",
+                en: "Cross endless dunes by 4x4 from Douz to Tembaïne, camping under the stars. Bathe in the hot spring of Huidat Riched and discover the oasis of Ksar Ghilane.",
+                ar: "اعبر الكثبان اللامتناهية بسيارة الدفع الرباعي من دوز إلى تمباين، مع المبيت تحت النجوم. استحم في ينبوع هويدات ريشد الحار واكتشف واحة قصر غيلان.",
+                it: "Attraversa dune infinite in 4x4, da Douz a Tembaïne, con notti sotto le stelle. Fai il bagno nella sorgente termale di Huidat Riched e scopri l'oasi di Ksar Ghilane."
+            },
+            duration: {
+                fr: "8 jours / 7 nuits",
+                en: "8 days / 7 nights",
+                ar: "8 أيام / 7 ليال",
+                it: "8 giorni / 7 notti"
+            },
+            icons: [
+                "flaticon-van",
+                "flaticon-tent-1",
+                "flaticon-eat",
+                "flaticon-sea-waves"
+            ]
+        },
+        {
+            id: 2,
+            image: "Excursions/BAROUDEURS DE DESERT 15JR DROMADAIRE.jpg",
+            title: {
+                fr: "Mirage du Désert - 8 Jours / 7 Nuits",
+                en: "Mirage du Désert - 8 Days / 7 Nights",
+                ar: "سراب الصحراء - 8 أيام / 7 ليال",
+                it: "Miraggio del Deserto - 8 Giorni / 7 Notti"
+            },
+            description: {
+                fr: "Un tour complet du sud tunisien : Djerba, Tataouine, Ksar Ghilane, Douz, les oasis de Tozeur, le mythique train Lézard Rouge et le village troglodyte de Matmata. Pension complète et hôtels 3* tout au long du parcours.",
+                en: "A complete tour of southern Tunisia: Djerba, Tataouine, Ksar Ghilane, Douz, the oases of Tozeur, the legendary Red Lizard train, and the troglodyte village of Matmata. Full board and 3-star hotels throughout.",
+                ar: "جولة كاملة في جنوب تونس: جربة وتطاوين وقصر غيلان ودوز وواحات توزر وقطار السحلية الحمراء الأسطوري وقرية مطماطة الكهفية. إقامة كاملة وفنادق 3 نجوم طوال الرحلة.",
+                it: "Un tour completo del sud della Tunisia: Djerba, Tataouine, Ksar Ghilane, Douz, le oasi di Tozeur, il leggendario treno Lucertola Rossa e il villaggio trogloditico di Matmata. Pensione completa e hotel 3 stelle lungo tutto il percorso."
+            },
+            duration: {
+                fr: "8 jours / 7 nuits",
+                en: "8 days / 7 nights",
+                ar: "8 أيام / 7 ليال",
+                it: "8 giorni / 7 notti"
+            },
+            icons: [
+                "flaticon-cottage",
+                "flaticon-van",
+                "flaticon-hiking-2"
+            ]
+        },
+        {
+            id: 3,
+            image: "https://res.cloudinary.com/dy13axswo/image/upload/v1789040783/baroudeurs/excursions/kuw674phwztv921qnwzv.jpg",
+            title: {
+                fr: "Appel du Désert",
+                en: "Call of the Desert",
+                ar: "نداء الصحراء",
+                it: "Richiamo del Deserto"
+            },
+            description: {
+                fr: "Une immersion de 3 jours dans les dunes dorées, de Benwia à Leegtaaya, à dos de dromadaire. Nuits sous tente bédouine, couchers et levers de soleil sur le désert, et dîners traditionnels au coin du feu.",
+                en: "A 3-day immersion in golden dunes, from Benwia to Leegtaaya, by camel. Nights under a Bedouin tent, desert sunrises and sunsets, and traditional campfire dinners.",
+                ar: "انغماس لمدة 3 أيام في الكثبان الذهبية، من بنويا إلى ليقطاية، على ظهر الجمل. ليالٍ تحت خيمة بدوية، وشروق وغروب الشمس في الصحراء، وعشاءات تقليدية حول النار.",
+                it: "Un'immersione di 3 giorni tra le dune dorate, da Benwia a Leegtaaya, in dromedario. Notti sotto la tenda beduina, albe e tramonti nel deserto, e cene tradizionali intorno al fuoco."
+            },
+            duration: {
+                fr: "3 jours / 2 nuits",
+                en: "3 days / 2 nights",
+                ar: "3 أيام / ليلتان",
+                it: "3 giorni / 2 notti"
+            },
+            icons: [
+                "fas fa-campground",
+                "fas fa-fire",
+                "fas fa-moon",
+                "fas fa-utensils"
+            ]
+        },
+        {
+            id: 4,
+            image: "https://res.cloudinary.com/dy13axswo/image/upload/v1788609904/baroudeurs/service/details/Temba%C3%AFne/6.jpg",
+            title: {
+                fr: "Baroudeurs de Désert - 15 Jours",
+                en: "Desert Baroudeurs - 15 Days",
+                ar: "بارودور الصحراء - 15 يومًا",
+                it: "Baroudeurs del Deserto - 15 Giorni"
+            },
+            description: {
+                fr: "Une grande traversée de 15 jours à dos de dromadaire, de Bir Abdallah à El Mellaha, à travers dunes, montagnes de sable et puits isolés. Une aventure humaine et spirituelle loin de toute civilisation.",
+                en: "A great 15-day camel crossing, from Bir Abdallah to El Mellaha, through dunes, sand mountains, and remote wells. A human and spiritual adventure far from civilization.",
+                ar: "عبور كبير لمدة 15 يومًا على ظهر الجمل، من بئر عبد الله إلى الملاحة، عبر الكثبان وجبال الرمل والآبار النائية. مغامرة إنسانية وروحية بعيدًا عن الحضارة.",
+                it: "Un grande attraversamento di 15 giorni in dromedario, da Bir Abdallah a El Mellaha, tra dune, montagne di sabbia e pozzi remoti. Un'avventura umana e spirituale lontano dalla civiltà."
+            },
+            duration: {
+                fr: "15 jours / 14 nuits",
+                en: "15 days / 14 nights",
+                ar: "15 يومًا / 14 ليلة",
+                it: "15 giorni / 14 notti"
+            },
+            icons: [
+                "fas fa-campground",
+                "fas fa-mountain",
+                "fas fa-moon",
+                "fas fa-fire"
+            ]
+        },
+        {
+            id: 5,
+            image: "https://res.cloudinary.com/dy13axswo/image/upload/v1788607644/baroudeurs/service/details/Endless/3.jpg",
+            title: {
+                fr: "Charme du Désert - 2 Jours",
+                en: "Desert Charm - 2 Days",
+                ar: "سحر الصحراء - يومان",
+                it: "Fascino del Deserto - 2 Giorni"
+            },
+            description: {
+                fr: "Une escapade courte et magique de Douz à Dhirat Aicha, avec un lever de soleil spectaculaire sur les dunes. Nuit sous tente bédouine et dîner traditionnel autour du feu.",
+                en: "A short, magical getaway from Douz to Dhirat Aicha, with a spectacular sunrise over the dunes. Night under a Bedouin tent and traditional campfire dinner.",
+                ar: "رحلة قصيرة وساحرة من دوز إلى ذراع عيشة، مع شروق شمس رائع فوق الكثبان. ليلة تحت خيمة بدوية وعشاء تقليدي حول النار.",
+                it: "Una fuga breve e magica da Douz a Dhirat Aicha, con un'alba spettacolare sulle dune. Notte sotto la tenda beduina e cena tradizionale intorno al fuoco."
+            },
+            duration: {
+                fr: "2 jours / 1 nuit",
+                en: "2 days / 1 night",
+                ar: "يومان / ليلة واحدة",
+                it: "2 giorni / 1 notte"
+            },
+            icons: [
+                "fas fa-campground",
+                "fas fa-sun",
+                "fas fa-fire",
+                "fas fa-utensils"
+            ]
+        },
+        {
+            id: 6,
+            image: "https://res.cloudinary.com/dy13axswo/image/upload/v1788608071/baroudeurs/service/details/Charm/3.jpg",
+            title: {
+                fr: "Désert Infini - 8 Jours",
+                en: "Endless Desert - 8 Days",
+                ar: "الصحراء اللانهائية - 8 أيام",
+                it: "Deserto Infinito - 8 Giorni"
+            },
+            description: {
+                fr: "8 jours à dos de dromadaire de El Mellaha à Ksar Ghilane, entre dunes infinies et oasis mythique aux sources chaudes. Une immersion totale dans le silence et la beauté du Sahara.",
+                en: "8 days by camel from El Mellaha to Ksar Ghilane, between endless dunes and the mythical hot-spring oasis. A total immersion in the silence and beauty of the Sahara.",
+                ar: "8 أيام على ظهر الجمل من الملاحة إلى قصر غيلان، بين الكثبان اللانهائية والواحة الأسطورية ذات الينابيع الحارة. انغماس كامل في صمت وجمال الصحراء الكبرى.",
+                it: "8 giorni in dromedario da El Mellaha a Ksar Ghilane, tra dune infinite e l'oasi mitica dalle sorgenti termali. Un'immersione totale nel silenzio e nella bellezza del Sahara."
+            },
+            duration: {
+                fr: "8 jours / 7 nuits",
+                en: "8 days / 7 nights",
+                ar: "8 أيام / 7 ليال",
+                it: "8 giorni / 7 notti"
+            },
+            icons: [
+                "fas fa-campground",
+                "fas fa-swimming-pool",
+                "fas fa-fire",
+                "fas fa-moon"
+            ]
+        },
+        {
+            id: 7,
+            image: "https://res.cloudinary.com/dy13axswo/image/upload/v1788609877/baroudeurs/service/details/Mirage/3.jpg",
+            title: {
+                fr: "Rose de Sables - 8 Jours",
+                en: "Desert Rose - 8 Days",
+                ar: "وردة الرمال - 8 أيام",
+                it: "Rosa del Deserto - 8 Giorni"
+            },
+            description: {
+                fr: "8 jours à la recherche des célèbres roses de sable, de El Bidha à El Khaltaya, à dos de dromadaire. Rencontres avec les chameliers et nuits sous tente bédouine au cœur du désert.",
+                en: "8 days in search of the famous desert roses, from El Bidha to El Khaltaya, by camel. Encounters with camel guides and nights under a Bedouin tent deep in the desert.",
+                ar: "8 أيام بحثًا عن ورود الرمال الشهيرة، من البيضاء إلى الخلطية، على ظهر الجمل. لقاءات مع الجمالة وليالٍ تحت خيمة بدوية في قلب الصحراء.",
+                it: "8 giorni alla ricerca delle famose rose del deserto, da El Bidha a El Khaltaya, in dromedario. Incontri con i cammellieri e notti sotto la tenda beduina nel cuore del deserto."
+            },
+            duration: {
+                fr: "8 jours / 7 nuits",
+                en: "8 days / 7 nights",
+                ar: "8 أيام / 7 ليال",
+                it: "8 giorni / 7 notti"
+            },
+            icons: [
+                "fas fa-campground",
+                "fas fa-gem",
+                "fas fa-fire",
+                "fas fa-moon"
+            ]
+        }
+    ] %}
+
     <!--====== Start Page Banner ======-->
     <section class="page-banner-section" style="background-image: url('{{ asset('assets/images/bg/bg-c.webp') }}');">
         <div class="container">
@@ -80,22 +290,25 @@
     <!--====== Start Circuits List Section ======-->
     <section class="circuits-list-section pt-100 pb-100">
         <div class="circuits-wrapper">
-           {% for circuit in circuits %}
+    {% for circuit in circuits %}
+    {% set title = circuit.title[locale] is defined ? circuit.title[locale] : circuit.title.en %}
+    {% set description = circuit.description[locale] is defined ? circuit.description[locale] : circuit.description.en %}
+    {% set duration = circuit.duration[locale] is defined ? circuit.duration[locale] : circuit.duration.en %}
     <div class="circuit-item {{ loop.index is odd ? 'circuit-normal' : 'circuit-reverse' }} wow {{ loop.index is odd ? 'fadeInLeft' : 'fadeInRight' }}" data-wow-delay="0.1s">
         <div class="circuit-media">
             <div class="circuit-image">
-                <img src="{{ circuit.image starts with 'http' ? circuit.image : asset('assets/images/' ~ circuit.image) }}" alt="{{ circuit.getTitle(app.request.locale) }}">
+                <img src="{{ circuit.image starts with 'http' ? circuit.image : asset('assets/images/' ~ circuit.image) }}" alt="{{ title }}">
             </div>
             <div class="circuit-content">
                 <div class="circuit-title-row">
                     <span class="circuit-line"></span>
-                    <h3 class="circuit-title">{{ circuit.getTitle(app.request.locale) }}</h3>
+                    <h3 class="circuit-title">{{ title }}</h3>
                 </div>
-                <p class="circuit-desc">{{ circuit.getDescription(app.request.locale) }}</p>
+                <p class="circuit-desc">{{ description }}</p>
                 <div class="circuit-bottom-row">
                     <div class="circuit-meta">
-                        {% if circuit.getDuration(app.request.locale) %}
-                            <span class="circuit-icon" title="{{ circuit.getDuration(app.request.locale) }}"><i class="fas fa-calendar-alt"></i></span>
+                        {% if duration %}
+                            <span class="circuit-icon" title="{{ duration }}"><i class="fas fa-calendar-alt"></i></span>
                         {% endif %}
                         {% for icon in circuit.icons %}
                             <span class="circuit-icon"><i class="{{ icon }}"></i></span>
@@ -108,7 +321,7 @@
             </div>
         </div>
     </div>
-{% endfor %}
+    {% endfor %}
         </div>
     </section>
     <!--====== End Circuits List Section ======-->
