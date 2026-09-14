@@ -360,13 +360,14 @@ gallery_showcase:
   title: "Cosa Offriamo"
   title2: "Per Ogni Avventura"
   category: "Viaggi & Campeggio"
-  item1: "Campeggio in Tenda Classico"
-  item2: "Campeggio di Coppia"
-  item3: "Cabina Safari"
-  item4: "Campeggio in Tenda Familiare"
-  item5: "Campeggio sull'Albero"
-  item6: "Cabina Doppia di Lusso"
-
+  item1: "Abitazioni Trogloditiche"
+  item2: "Star Wars"
+  item3: "Set nel Deserto"
+  item4: "Safari nel Deserto"
+  item5: "Villaggio di Montagna"
+  item6: "Dune di Sabbia"
+  item7: "Oasi del Deserto"
+  item8: "Mercato Tradizionale"
 
 tips:
   subtitle: "News & Blog"

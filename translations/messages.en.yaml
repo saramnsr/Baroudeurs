@@ -337,12 +337,14 @@ gallery_showcase:
   title: "What We Offer"
   title2: "For Every Adventure"
   category: "Travel & Camping"
-  item1: "Classic Tent Camping"
-  item2: "Couple Camping"
-  item3: "Safari Cabin"
-  item4: "Family Tent Camping"
-  item5: "Tree House Camping"
-  item6: "Luxury Double Cabin"
+  item1: "Troglodyte Dwellings"
+  item2: "Star Wars"
+  item3: "Desert Set"
+  item4: "Desert Safari"
+  item5: "Mountain Village"
+  item6: "Sand Dunes"
+  item7: "Desert Oasis"
+  item8: "Traditional Market"
 
 
 
@@ -390,3 +392,8 @@ detail_page:
   other_excursions: "Other Amazing Excursions"
   testimonial_title: "What Travelers Say"
   included_options_title: "What's Included"
+
+
+
+services_page:
+    partners_title: "Our Partners"

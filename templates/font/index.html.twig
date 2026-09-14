@@ -16,7 +16,7 @@
             <div class="hero-slider-one">
                 <!--====== Single Slider 1 ======-->
                 <div class="single-slider p-r z-1" data-title={{ 'hero.sub'|trans }}>
-                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-slider-one.jpg') }});"></div>
+                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/bg/bg7.jpg') }});"></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
@@ -35,7 +35,7 @@
                 </div>
                 <!--====== Single Slider 2 ======-->
                 <div class="single-slider p-r z-1" data-title={{ 'hero.adv'|trans }}>
-                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-slider-two.jpg') }});"></div>
+                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/bg/bg2.webp') }});"></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
@@ -54,7 +54,7 @@
                 </div>
                 <!--====== Single Slider 3 ======-->
                 <div class="single-slider p-r z-1" data-title={{ 'hero.sub'|trans }}>
-                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-slider-three.jpg') }});"></div>
+                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/bg/bg12.jpg') }});"></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
@@ -73,7 +73,7 @@
                 </div>
                 <!--====== Single Slider 4 ======-->
                 <div class="single-slider p-r z-1" data-title={{ 'hero.adv'|trans }}>
-                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-two_slider-1.jpg') }});"></div>
+                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/bg/bg5.jpg') }});"></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
@@ -92,7 +92,7 @@
                 </div>
                 <!--====== Single Slider 5 ======-->
                 <div class="single-slider p-r z-1" data-title={{ 'hero.sub'|trans }}>
-                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/hero/hero-two_slider-2.jpg') }});"></div>
+                    <div class="image-layer bg_cover" style="background-image: url({{ asset('assets/images/bg/bg11.jpg') }});"></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
@@ -411,10 +411,10 @@
                 <div class="col-lg-6">
                     <div class="about-image-duo mb-50 wow fadeInRight">
                         <div class="about-image-duo-main">
-                            <img src="{{ asset('assets/images/about/about-1.jpg') }}" alt="About Baroudeurs">
+                            <img src="{{ asset('assets/images/bg/bg6.jpg') }}" alt="About Baroudeurs">
                         </div>
                         <div class="about-image-duo-secondary">
-                            <img src="{{ asset('assets/images/about/about-3.jpg') }}" alt="About Baroudeurs">
+                            <img src="{{ asset('assets/images/bg/bg13.jpg') }}" alt="About Baroudeurs">
                         </div>
                         <div class="about-image-duo-badge">
     <i class="flaticon-tent-5"></i>
@@ -501,77 +501,45 @@
             </div>
         </div>
     </section><!--====== End Fun Section ======-->
-      <!--====== Start Gallery Section ======-->
-    <section class="gallery-section pt-90 pb-90">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-7 col-lg-10">
-                    <div class="section-title text-center mb-50 wow fadeInDown">
-                        <span class="sub-title">
-                            <span class="number">02</span>{{ 'gallery_showcase.subtitle'|trans }}
-                        </span>
-                        <h2>
-                            <a href="{{ path('programmes') }}">
-                                {{ 'gallery_showcase.title'|trans }}
-                                <span class="thin">{{ 'gallery_showcase.title2'|trans }}</span>
-                            </a>
-                        </h2>
+<!--====== Start Gallery Section ======-->
+<section class="gallery-section pt-90 pb-90">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-10">
+                <div class="section-title text-center mb-50 wow fadeInDown">
+                    <span class="sub-title">
+                        <span class="number">02</span>{{ 'gallery_showcase.subtitle'|trans }}
+                    </span>
+                    <h2>
+                        <a href="{{ path('programmes') }}">
+                            {{ 'gallery_showcase.title'|trans }}
+                            <span class="thin">{{ 'gallery_showcase.title2'|trans }}</span>
+                        </a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="showcase-slider-outer">
+        <div class="showcase-slider-track">
+            {% set showcase_images = ['service11','service12','service13','service17','service16','service14','service15','service10'] %}
+            {% for i in 1..2 %}
+                {% for img in showcase_images %}
+                <div class="showcase-card">
+                    <img src="{{ asset('assets/images/service/' ~ img ~ '.jpg') }}" alt="{{ ('gallery_showcase.item' ~ loop.index)|trans }}" loading="lazy" width="600" height="400">
+                    <div class="showcase-overlay"></div>
+                    <div class="showcase-tags">
+                        <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
+                        <span class="showcase-tag-title">{{ ('gallery_showcase.item' ~ loop.index)|trans }}</span>
                     </div>
                 </div>
-            </div>
+                {% endfor %}
+            {% endfor %}
         </div>
-
-        <div class="showcase-slider">
-            <div class="showcase-card">
-                <img src="{{ asset('assets/images/service/service-12.jpg') }}" alt="{{ 'gallery_showcase.item1'|trans }}">
-                <div class="showcase-overlay"></div>
-                <div class="showcase-tags">
-                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
-                    <span class="showcase-tag-title">{{ 'gallery_showcase.item1'|trans }}</span>
-                </div>
-            </div>
-            <div class="showcase-card">
-                <img src="{{ asset('assets/images/service/service-15.jpg') }}" alt="{{ 'gallery_showcase.item2'|trans }}">
-                <div class="showcase-overlay"></div>
-                <div class="showcase-tags">
-                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
-                    <span class="showcase-tag-title">{{ 'gallery_showcase.item2'|trans }}</span>
-                </div>
-            </div>
-            <div class="showcase-card">
-                <img src="{{ asset('assets/images/service/service-14.jpg') }}" alt="{{ 'gallery_showcase.item3'|trans }}">
-                <div class="showcase-overlay"></div>
-                <div class="showcase-tags">
-                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
-                    <span class="showcase-tag-title">{{ 'gallery_showcase.item3'|trans }}</span>
-                </div>
-            </div>
-            <div class="showcase-card">
-                <img src="{{ asset('assets/images/service/s-2.jpg') }}" alt="{{ 'gallery_showcase.item4'|trans }}">
-                <div class="showcase-overlay"></div>
-                <div class="showcase-tags">
-                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
-                    <span class="showcase-tag-title">{{ 'gallery_showcase.item4'|trans }}</span>
-                </div>
-            </div>
-            <div class="showcase-card">
-                <img src="{{ asset('assets/images/service/ad-banner.jpg') }}" alt="{{ 'gallery_showcase.item5'|trans }}">
-                <div class="showcase-overlay"></div>
-                <div class="showcase-tags">
-                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
-                    <span class="showcase-tag-title">{{ 'gallery_showcase.item5'|trans }}</span>
-                </div>
-            </div>
-            <div class="showcase-card">
-                <img src="{{ asset('assets/images/service/service-13.jpg') }}" alt="{{ 'gallery_showcase.item6'|trans }}">
-                <div class="showcase-overlay"></div>
-                <div class="showcase-tags">
-                    <span class="showcase-tag-category">{{ 'gallery_showcase.category'|trans }}</span>
-                    <span class="showcase-tag-title">{{ 'gallery_showcase.item6'|trans }}</span>
-                </div>
-            </div>
-        </div>
-    </section><!--====== End Gallery Section ======-->
+    </div>
+</section>
+<!--====== End Gallery Section ======-->
 <!--====== Start Testimonial Section ======-->
 <section class="testimonial-section pt-100 pb-100 bg_cover" style="background-color: #1C231F; background-image: url('{{ asset('assets/images/bg/testimonial-bg-1.png') }}');">
     <div class="container">

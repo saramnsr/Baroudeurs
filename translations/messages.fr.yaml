@@ -331,18 +331,19 @@ circuit_showcase:
     title: "Excursion à Tataouine"
     desc: "Marché local, village troglodyte de Chenini et décor de Star Wars au ksar Hadada."
 
-
 gallery_showcase:
   subtitle: "Nos Services"
   title: "Ce Que Nous Offrons"
   title2: "Pour Chaque Aventure"
   category: "Voyage & Camping"
-  item1: "Camping Tente Classique"
-  item2: "Camping en Couple"
-  item3: "Cabane Safari"
-  item4: "Camping Tente Familiale"
-  item5: "Camping Cabane dans l'Arbre"
-  item6: "Cabine Double de Luxe"
+  item1: "Habitations Troglodytes"
+  item2: "Star Wars"
+  item3: "Décor du Désert"
+  item4: "Safari dans le Désert"
+  item5: "Village de Montagne"
+  item6: "Dunes de Sable"
+  item7: "Oasis du Désert"
+  item8: "Marché Traditionnel"
 
 
 tips:

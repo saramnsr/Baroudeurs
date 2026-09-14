@@ -1287,18 +1287,23 @@ button {
 .navigation-white.header-navigation .navbar-toggler span {
   background-color: #E8D0A8;
 }
-.navigation-white.header-navigation.sticky {
-  background-color: #3B281C;
+.header-navigation.transparent-header.navigation-white.scrolled.sticky {
+  background-color: #FFFFFF !important;
 }
-.navigation-white.header-navigation.sticky .site-branding .brand-logo {
-  padding: 0;
-  background-color: transparent;
+.header-navigation.transparent-header.navigation-white.scrolled.sticky .main-menu ul > li > a {
+  color: #000000 !important;
 }
-.navigation-white.header-navigation.sticky .navbar-toggler {
-  border-color: rgba(232, 208, 168, 0.8);
+.header-navigation.transparent-header.navigation-white.scrolled.sticky .main-menu ul > li:hover > a {
+  color: #8FAB45 !important;
 }
-.navigation-white.header-navigation.sticky .navbar-toggler span {
-  background-color: #E8D0A8;
+.header-navigation.transparent-header.navigation-white.scrolled.sticky .nav-right-item .nice-select .current {
+  color: #000000 !important;
+}
+.header-navigation.transparent-header.navigation-white.scrolled.sticky .navbar-toggler {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+.header-navigation.transparent-header.navigation-white.scrolled.sticky .navbar-toggler span {
+  background-color: #000000 !important;
 }
 
 /* Header Sticky */
@@ -5017,7 +5022,7 @@ form.contact-form textarea.form_control {
   position: relative;
 }
 .page-banner-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -5635,10 +5640,7 @@ form.contact-form textarea.form_control {
  /* ===== Added for Circuits Vedettes cards (homepage) ===== */
 
 /* Keep real uploaded photos cropped consistently instead of stretching */
-.single-service-item .img-holder img {
-  height: 260px;
-  object-fit: cover;
-}
+
 
 /* Duration + price shown as small pill badges instead of plain middle-dot text */
 .single-service-item .text .tour-meta-list {
@@ -6292,28 +6294,9 @@ form.contact-form textarea.form_control {
 }
 
 
-.detail-content-section {
-  background-color: #FFF8ED;
-  padding: 80px 0;
-}
-.detail-section-heading {
-  font-size: 30px;
-  font-weight: 700;
-  color: #3B281C;
-  margin-bottom: 30px;
-  position: relative;
-  padding-bottom: 15px;
-}
-.detail-section-heading:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 70px;
-  height: 4px;
-  background-color: #C96B3C;
-  border-radius: 2px;
-}
+
+
+
 .detail-itinerary-card {
   background-color: #FFFFFF;
   padding: 45px;
@@ -6321,12 +6304,7 @@ form.contact-form textarea.form_control {
   box-shadow: 0px 10px 60px rgba(59, 40, 28, 0.08);
 }
 @media (max-width: 575px) { .detail-itinerary-card { padding: 25px; } }
-.detail-itinerary-text {
-  white-space: pre-line;
-  font-size: 17px;
-  line-height: 32px;
-  color: #5B4636;
-}
+
 
 .detail-cta-section {
   position: relative;
@@ -6408,39 +6386,22 @@ form.contact-form textarea.form_control {
 /* ===== Testimonials Page ===== */
 
 /* Space out star icons */
-.ratings li {
-  margin-right: 3px;
-}
-.ratings li:last-child {
-  margin-right: 0;
-}
+
+
 
 /* Center the section-heading underline bar when the heading itself is centered */
-.detail-section-heading.text-center {
-  display: inline-block;
-  left: 50%;
-  position: relative;
-  transform: translateX(-50%);
-}
-.detail-section-heading.text-center:after {
-  left: 50%;
-  transform: translateX(-50%);
-}
+
+
 
 /* Subtle hover lift on testimonial cards in the mosaic grid */
-.detail-review-card {
-  transition: transform 0.3s ease-out 0s, box-shadow 0.3s ease-out 0s;
-}
+
 .detail-review-card:hover {
   transform: translateY(-6px);
   box-shadow: 0px 15px 60px rgba(59, 40, 28, 0.15) !important;
 }
 
 /* Video testimonial panel readability */
-.detail-gallery-panel p {
-  line-height: 26px;
-  font-size: 15px;
-}
+
 
 /* Rating system with stars */
 .ratings i.fa-star {
@@ -6521,7 +6482,7 @@ input:focus, textarea:focus {
 
 /* Review form with background image */
 .review-form-wrapper {
-  background-image: url('../images/bg/contact-bg-1.png');
+  background-image: url("../images/bg/contact-bg-1.png");
   background-size: cover;
   background-position: center;
   padding: 50px;
@@ -7537,11 +7498,7 @@ input:focus, textarea:focus {
   transform: none;
   box-shadow: none;
 }
-.circuit-card-img {
-  border-radius: 16px;
-  overflow: hidden;
-  height: 260px;
-}
+
 .circuit-card-body {
   padding: 20px 0 0;
   background-color: transparent;
@@ -7692,10 +7649,7 @@ input:focus, textarea:focus {
   background-color: #63AC45;
   color: #FFFFFF;
 }
-.excursion-card:hover .excursion-discover-btn {
-  background-color: #1C231F;
-  color: #FFFFFF;
-}
+
 
 
 /* ===== Bigger circuit cards + text ===== */
@@ -7813,10 +7767,7 @@ input:focus, textarea:focus {
   display: inline-block;
 }
 
-.circuit-card:hover .circuit-hover-arrow {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
+
 
 
 .circuits-section .section-title h2 a {
@@ -8006,13 +7957,8 @@ input:focus, textarea:focus {
     margin-top: 0;
   }
 }/* Card 2 — white icon + text (reaffirm) */
-.why-choose-card-dark .icon i {
-  color: #FFFFFF !important;
-}
-.why-choose-card-dark .title,
-.why-choose-card-dark p {
-  color: #FFFFFF !important;
-}
+
+
 
 /* Icons slightly bigger, no card size change */
 .why-choose-card .icon i {
@@ -8449,15 +8395,8 @@ input:focus, textarea:focus {
   overflow: hidden;
   scroll-snap-align: start;
 }
-.showcase-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.showcase-card:hover img {
-  transform: scale(1.08);
-}
+
+
 
 .showcase-overlay {
   position: absolute;
@@ -8486,13 +8425,7 @@ input:focus, textarea:focus {
   opacity: 1;
 }
 
-.showcase-tag-category {
-  background-color: #FFFFFF;
-  color: #1C231F;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 6px 14px;
-}
+
 .showcase-tag-title {
   background-color: #63AC45;
   color: #FFFFFF;
@@ -8502,13 +8435,8 @@ input:focus, textarea:focus {
   margin-left: 35px; /* staggered forward compared to the category tag above it */
 }
 
-.gallery-section .section-title h2 a {
-  color: #1C231F;
-  transition: color 0.3s ease-out 0s;
-}
-.gallery-section .section-title h2 a:hover {
-  color: #63AC45;
-}
+
+
 
 @media (max-width: 575px) {
   .showcase-card {
@@ -8596,30 +8524,15 @@ input:focus, textarea:focus {
 }/* ===== Gallery Showcase — round 3: staircase tags, touching, taller cards ===== */
 
 /* Taller cards */
-.showcase-card {
-  height: 520px;
-}
-@media (max-width: 575px) {
-  .showcase-card {
-    height: 420px;
-  }
-}
+
+
 
 /* Tags container — centered, staircase step, no gap between the two pills */
-.showcase-tags {
-  gap: 0;
-  align-items: center;
-}
 
-.showcase-tag-title {
-  align-self: center;
-}
+
+
 
 .showcase-tag-category {
-  align-self: center;
-  margin-left: 30px;
-  margin-top: -1px;
-}.showcase-tag-category {
   margin-left: 15px;
 }/* Force center + autoplay scroll */
 .showcase-tags {
@@ -8922,8 +8835,6 @@ input:focus, textarea:focus {
     min-height: 320px;
     padding: 30px 25px;
   }
-}.tips-section {
-  background-color: #FFFFFF;
 }/* ===== Devis CTA Section ===== */
 .devis-cta-section {
   background-color: #FFFFFF;
@@ -10019,4 +9930,29 @@ footer.footer-default .footer-newsletter.pt-80 {
   background-color: #56983c;
 }.detail-hero-meta li {
   color: #E8D0A8 !important;   /* ← change to #FFFFFF */
+}
+
+
+.showcase-slider-outer {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+.showcase-slider-track {
+  display: flex;
+  width: max-content;
+  animation: showcase-scroll 40s linear infinite;
+}
+.showcase-slider-track:hover {
+  animation-play-state: paused;
+}
+.showcase-card {
+  flex: 0 0 auto;
+  width: 320px;
+  margin-right: 20px;
+  position: relative;
+}
+@keyframes showcase-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
