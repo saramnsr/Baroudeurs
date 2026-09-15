@@ -252,13 +252,11 @@ about_page:
   title: "Qui sommes-nous ?"
   breadcrumb_home: "Accueil"
 
-  # Hero
   hero_title: "Qui sommes-nous ?"
   hero_subtitle: "Plus qu'un voyage, une aventure à vivre."
   hero_text: "Baroudeurs du Désert vous invite à découvrir des paysages authentiques, des horizons infinis et des expériences inoubliables au cœur du désert."
   hero_button: "Découvrir nos aventures"
 
-  # Notre histoire
   story_label: "Notre Histoire"
   story_title: "Une passion pour l'aventure et le désert"
   story_p1: "Baroudeurs du Désert est né d'une passion : celle de faire découvrir le désert autrement."
@@ -267,7 +265,6 @@ about_page:
   story_objective: "Notre objectif ?"
   story_tagline: "Vous emmener là où les souvenirs commencent."
 
-  # Nos valeurs
   values_subtitle: "Nos valeurs"
   values_title: "Ce qui nous anime au quotidien"
   values:
@@ -284,7 +281,6 @@ about_page:
       title: "Sécurité"
       text: "Des partenaires locaux expérimentés et des circuits organisés avec soin pour voyager en toute sérénité."
 
-  # Pourquoi
   why_title: "Pourquoi choisir Baroudeurs du Désert ?"
   why_item1: "Des expériences authentiques"
   why_item2: "Des guides et partenaires locaux"
@@ -293,7 +289,6 @@ about_page:
   why_item5: "Des paysages exceptionnels"
   why_item6: "Une assistance et un accompagnement personnalisé"
 
-  # Émotion
   emotional_quote: "Le désert ne se visite pas seulement... il se ressent."
   emotional_question: "Prêt à vivre votre prochaine aventure ?"
   emotional_button: "Découvrir nos circuits"
@@ -391,6 +386,92 @@ detail_page:
   included_options_title: "Ce qui est inclus"
 
 
+{
+    "services_page": {
+        "hero_title_line1": "Tout ce qu'il faut",
+        "hero_title_line2": "pour partir plus loin.",
+        "hero_subtitle": "Du premier transfert au dernier coucher de soleil, nous organisons les détails qui transforment un voyage dans le Sud tunisien en véritable aventure.",
+        "hero_cta": "Découvrir nos services",
 
-services_page:
-    partners_title: "Nos Partenaires"
+        "engagement_label": "NOTRE ENGAGEMENT",
+        "engagement_title": "L'aventure, sans les contraintes.",
+        "engagement_text1": "Vous rêvez du désert. Nous nous occupons du reste. Transport, hébergement, bivouac, accompagnement, véhicules, transferts...",
+        "engagement_text2": "Notre rôle est de créer les conditions parfaites pour que vous puissiez simplement profiter du voyage.",
+        "playground_note": "Le Sud tunisien, notre terrain de jeu",
+
+        "services_label": "NOS SERVICES",
+        "services_title": "Des prestations sur mesure, pour une expérience unique.",
+
+        "service1_title": "CIRCUITS 4×4",
+        "service1_subtitle": "Le désert grandeur nature",
+        "service1_text": "Découvrez les dunes, les oasis, les pistes oubliées et les paysages sauvages du Sud tunisien à bord de nos 4×4.",
+
+        "service2_title": "TREKS & RANDONNÉES",
+        "service2_subtitle": "Marcher au rythme du désert",
+        "service2_text": "Des itinéraires pour découvrir le Sahara autrement : randonnée, trek et immersion dans les paysages du Grand Erg Oriental.",
+        "service2_extra": "De quelques heures à plusieurs jours",
+
+        "service3_title": "MÉHARÉE",
+        "service3_subtitle": "Le désert d'autrefois",
+        "service3_text": "Prenez le temps de ralentir. Traversez les dunes à dos de dromadaire et vivez une véritable expérience saharienne.",
+
+        "service4_title": "QUAD & AVENTURE",
+        "service4_subtitle": "Plus de sensations. Plus de liberté.",
+        "service4_text": "Pour ceux qui veulent ajouter un peu d'adrénaline à leur aventure : pistes, dunes et grands espaces en quad.",
+
+        "service5_title": "CIRCUITS CULTURELS",
+        "service5_subtitle": "Du désert aux villages berbères",
+        "service5_text": "Explorez l'autre visage de la Tunisie : Matmata, Tataouine, Douiret, Guermassa, ksour, oasis et villages traditionnels.",
+        "service5_extra": "Un voyage entre paysages, histoire et rencontres",
+
+        "service6_title": "VOYAGES SUR MESURE",
+        "service6_subtitle": "Votre voyage. Votre rythme.",
+        "service6_text": "Vous avez une idée précise ? Nous construisons votre itinéraire selon vos envies, la durée de votre séjour, votre budget et votre façon de voyager.",
+        "service6_extra": "Solo · Couple · Famille · Groupe · Entreprise",
+
+        "discover": "Découvrir",
+        "live_experience": "Vivre l'expérience",
+        "go_adventure": "Partir à l'aventure",
+        "discover_south": "Découvrir le Sud",
+        "create_trip": "Créer mon voyage",
+
+        "your_adventure": "VOTRE AVENTURE",
+        "travel_styles_title": "Comment voulez-vous vivre le désert ?",
+        "style_slowly": "LENTEMENT",
+        "style_slowly_desc": "Dromadaire · bivouac · coucher de soleil",
+        "style_freely": "LIBREMENT",
+        "style_freely_desc": "4×4 · pistes · oasis · grands espaces",
+        "style_intensely": "INTENSÉMENT",
+        "style_intensely_desc": "Trek · dunes · plusieurs jours",
+        "style_sensations": "AVEC DES SENSATIONS",
+        "style_sensations_desc": "Quad · aventure · raid",
+        "style_family": "EN FAMILLE",
+        "style_family_desc": "Circuits adaptés · découvertes · confort",
+        "style_custom": "À VOTRE IMAGE",
+        "style_custom_desc": "Voyage entièrement sur mesure",
+
+        "immersive_title_line1": "Plus qu'un voyage.",
+        "immersive_title_line2": "Une histoire à raconter.",
+        "immersive_text": "Nuit sous les étoiles · bivouac · cuisine locale · rencontres · dunes · silence",
+
+        "playground_label": "NOTRE TERRAIN DE JEU",
+        "playground_title": "Du Nord au grand Sud",
+        "playground_text": "Des portes de la Tunisie aux profondeurs du Sahara, nous vous emmenons là où commence l'aventure.",
+
+        "why_us_label": "POURQUOI PARTIR AVEC NOUS ?",
+        "why_us_title": "Pourquoi choisir Baroudeurs du Désert ?",
+        "why1_title": "EXPERTISE LOCALE",
+        "why1_text": "Connaissance du terrain et des itinéraires du Sud tunisien.",
+        "why2_title": "EXPÉRIENCES AUTHENTIQUES",
+        "why2_text": "Rencontres, paysages et moments loin des circuits classiques.",
+        "why3_title": "VOYAGE FLEXIBLE",
+        "why3_text": "Des programmes adaptés aux envies et au rythme de chaque voyageur.",
+        "why4_title": "UNE ÉQUIPE À VOS CÔTÉS",
+        "why4_text": "De la préparation au retour, nous vous accompagnons.",
+
+        "cta_title_line1": "Et si votre prochaine",
+        "cta_title_line2": "aventure commençait ici ?",
+        "cta_text": "Construisons ensemble votre voyage dans le Sud tunisien.",
+        "cta_button": "PARLER DE MON PROJET"
+    }
+}

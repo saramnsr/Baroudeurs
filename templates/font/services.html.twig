@@ -4,130 +4,466 @@
 
 {% block body %}
 
-    <!--====== Start Page Banner ======-->
-    <section class="page-banner-section" style="background-image: url('{{ asset('assets/images/bg/bg-4.jpg') }}');">
-        <div class="container">
-            <div class="page-banner-content text-center">
-                <h1 class="page-title">{{ 'nav.services'|trans }}</h1>
-                <ul class="page-breadcrumb">
-                    <li><a href="{{ path('app_font_index') }}">{{ 'nav.home'|trans }}</a></li>
-                    <li><span class="separator"><i class="fas fa-chevron-right"></i></span></li>
-                    <li class="active">{{ 'nav.services'|trans }}</li>
-                </ul>
-            </div>
+<!--====== Start Hero ======-->
+<section class="services-hero" id="servicesHero">
+    <div class="services-hero-slides">
+        <div class="services-hero-slide active" style="background-image: url('{{ asset('assets/images/service/new-service/hero1.jpg') }}');"></div>
+        <div class="services-hero-slide" style="background-image: url('{{ asset('assets/images/service/new-service/hero2.jpg') }}');"></div>
+    </div>
+    <div class="services-hero-overlay"></div>
+
+    <div class="container" style="position: relative; z-index: 3;">
+        <div class="services-hero-content text-start">
+            <span class="services-hero-label">
+                <span class="label-line"></span>
+                {{ 'nav.services'|trans|upper }}
+            </span>
+            <h1 class="services-hero-title">
+                {{ 'services_page.hero_title_line1'|trans }}<br>
+                {{ 'services_page.hero_title_line2'|trans }}
+            </h1>
+            <p class="services-hero-text">{{ 'services_page.hero_subtitle'|trans }}</p>
+            <a href="#services" class="services-hero-btn">
+                {{ 'services_page.hero_cta'|trans }}
+                <i class="fas fa-arrow-down"></i>
+            </a>
         </div>
-        <!-- Wavy bottom -->
-        <div class="banner-wave">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,40 C240,120 480,0 720,60 C960,120 1200,20 1440,70 L1440,120 L0,120 Z" fill="#ffffff"/>
-            </svg>
+
+        <div class="services-hero-locations">
+            <a href="#playground" class="services-hero-location">Douz</a>
+            <a href="#playground" class="services-hero-location">Sahara</a>
+            <a href="#playground" class="services-hero-location">Djerba</a>
+            <a href="#playground" class="services-hero-location">Tozeur</a>
+            <a href="#playground" class="services-hero-location">Ksar Ghilane</a>
+            <a href="#playground" class="services-hero-location">Tataouine</a>
         </div>
-    </section>
-    <!--====== End Page Banner ======-->
+    </div>
 
-    <!--====== Start Partners Section ======-->
-    <section class="partners-section pt-100 pb-100">
-        <div class="container">
+    <!-- Wavy bottom -->
+    <div class="services-hero-wave">
+        <svg viewBox="0 0 1440 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,70 C240,120 480,20 720,60 C960,100 1200,130 1440,70 L1440,140 L0,140 Z" fill="#F6F2E9"></path>
+        </svg>
+    </div>
+</section>
+<!--====== End Hero ======-->
 
-            <!-- Divider line on top -->
-            <div class="partners-divider"></div>
+<!--====== Start Engagement ======-->
+<section class="services-engagement pt-100">
+    <div class="container">
+        <div class="row align-items-center">
 
-            <div class="row justify-content-center mb-50">
-                <div class="col-lg-8 text-center">
-                    <div class="section-title">
-                        <h2>{{ 'services_page.partners_title'|trans }}</h2>
+            <!-- Left: Image with decorative corner arcs -->
+            <div class="col-lg-6 mb-30">
+                <div class="services-engagement-image-wrap wow fadeInLeft">
+                    <div class="services-engagement-image">
+                        <svg class="services-deco-line services-deco-line-orange services-deco-tl-1" viewBox="0 0 34 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M2,6 Q9,1 17,6 T32,6" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="services-deco-line services-deco-line-orange services-deco-tl-2" viewBox="0 0 34 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M2,6 Q9,1 17,6 T32,6" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="services-deco-line services-deco-line-green services-deco-tl-3" viewBox="0 0 34 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M2,6 Q9,1 17,6 T32,6" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+                        </svg>
+
+                        <img src="{{ asset('assets/images/service/new-service/Une bande immersive1.jpg') }}"
+                             alt="{{ 'services_page.engagement_title'|trans }}" loading="lazy">
+
+                        <span class="services-deco-dot services-deco-tr-1"></span>
+                        <span class="services-deco-dot services-deco-tr-2"></span>
+                        <span class="services-deco-dot services-deco-tr-3"></span>
+
+                        <span class="services-deco-dot services-deco-bl-1"></span>
+                        <span class="services-deco-dot services-deco-bl-2"></span>
+                        <span class="services-deco-dot services-deco-bl-3"></span>
+
+                        <svg class="services-deco-line services-deco-line-orange services-deco-br-1" viewBox="0 0 34 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M2,6 Q9,1 17,6 T32,6" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="services-deco-line services-deco-line-orange services-deco-br-2" viewBox="0 0 34 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M2,6 Q9,1 17,6 T32,6" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="services-deco-line services-deco-line-green services-deco-br-3" viewBox="0 0 34 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M2,6 Q9,1 17,6 T32,6" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+                        </svg>
                     </div>
                 </div>
             </div>
 
-            <div class="partners-logos">
-                <div class="partner-logo">
-                    <img src="{{ asset('assets/images/partners/partner-1.png') }}" alt="Partner 1">
-                </div>
-                <div class="partner-logo">
-                    <img src="{{ asset('assets/images/partners/partner-2.png') }}" alt="Partner 2">
-                </div>
-                <div class="partner-logo">
-                    <img src="{{ asset('assets/images/partners/partner-3.png') }}" alt="Partner 3">
-                </div>
-                <div class="partner-logo">
-                    <img src="{{ asset('assets/images/partners/partner-4.png') }}" alt="Partner 4">
-                </div>
-                <div class="partner-logo">
-                    <img src="{{ asset('assets/images/partners/partner-5.png') }}" alt="Partner 5">
+            <!-- Right: Text -->
+            <div class="col-lg-6 mb-30">
+                <div class="services-engagement-content wow fadeInRight">
+                    <span class="services-section-label">
+                        <span class="label-line"></span>
+                        {{ 'services_page.engagement_label'|trans }}
+                    </span>
+
+                    <h2 class="services-section-title">{{ 'services_page.engagement_title'|trans }}</h2>
+
+                    <p>{{ 'services_page.engagement_text1'|trans }}</p>
+                    <p>{{ 'services_page.engagement_text2'|trans }}</p>
                 </div>
             </div>
 
         </div>
-    </section>
-    <!--====== End Partners Section ======-->
+    </div>
 
-    <style>
-        /* Banner wave positioning */
-        .page-banner-section {
-            position: relative;
-            overflow: hidden;
-        }
-        .banner-wave {
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            line-height: 0;
-            z-index: 2;
-            pointer-events: none;
-        }
-        .banner-wave svg {
-            display: block;
-            width: 100%;
-            height: 80px;
-        }
+    <!-- Handwriting note -->
+    <div class="services-playground-note">
+        <img src="{{ asset('assets/images/service/new-service/mountain.png') }}"
+             alt="" class="services-playground-note-icon" aria-hidden="true">
+        <p class="services-playground-note-text">{{ 'services_page.playground_note'|trans }}</p>
+    </div>
 
-        /* Partners Section */
-        .partners-section {
-            background-color: #ffffff;
-        }
-        .partners-divider {
-            height: 1px;
-            background-color: #e5e5e5;
-            width: 100%;
-            margin-bottom: 60px;
-        }
-        .partners-logos {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-        .partner-logo {
-            flex: 1 1 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 140px;
-        }
-        .partner-logo img {
-            max-width: 140px;
-            max-height: 70px;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            filter: grayscale(0%);
-            transition: all 0.3s ease;
-        }
-        .partner-logo img:hover {
-            transform: scale(1.05);
-        }
+    <!-- Full-width desert strip along the bottom of the section -->
+    <div class="services-engagement-bottom-image">
+        <img src="{{ asset('assets/images/service/new-service/desret.jpg') }}" alt="" loading="lazy">
+    </div>
+</section>
+<!--====== End Engagement ======-->
 
-        @media (max-width: 767px) {
-            .partners-logos {
-                gap: 30px;
-            }
-            .partner-logo {
-                flex: 0 0 40%;
-            }
-        }
-    </style>
+<!--====== Start Services Grid ======-->
+<section class="services-grid pt-80 pb-80" id="services">
+    <div class="container">
+        <div class="row mb-50 justify-content-center">
+            <div class="col-lg-8 text-center wow fadeInDown">
+                <span class="services-section-label">
+                    <span class="label-line"></span>
+                    {{ 'services_page.services_label'|trans }}
+                </span>
+                <h2 class="services-section-title services-section-title-center">
+                    {{ 'services_page.services_title'|trans }}
+                </h2>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {# Service 1 — 4x4 #}
+            <div class="col-lg-4 col-md-6">
+                <article class="services-card-dark wow fadeInUp">
+                    <img src="{{ asset('assets/images/service/new-service/CIRCUITS 4×4.jpg') }}" alt="4x4 Circuits" class="services-card-dark-bg" loading="lazy">
+                    <div class="services-card-dark-overlay"></div>
+                    <div class="services-card-dark-content">
+                        <span class="services-card-dark-number">01</span>
+                        <h3>{{ 'services_page.service1_title'|trans }}</h3>
+                        <p class="services-card-dark-sub">{{ 'services_page.service1_subtitle'|trans }}</p>
+                        <p class="services-card-dark-text">{{ 'services_page.service1_text'|trans }}</p>
+                        <a href="#" class="services-card-dark-link">{{ 'services_page.discover'|trans }} →</a>
+                    </div>
+                </article>
+            </div>
+
+            {# Service 2 — Treks #}
+            <div class="col-lg-4 col-md-6">
+                <article class="services-card-dark wow fadeInUp" data-wow-delay="0.15s">
+                    <img src="{{ asset('assets/images/service/new-service/TREKS & RANDONNÉES.jpg') }}" alt="Treks" class="services-card-dark-bg" loading="lazy">
+                    <div class="services-card-dark-overlay"></div>
+                    <div class="services-card-dark-content">
+                        <span class="services-card-dark-number">02</span>
+                        <h3>{{ 'services_page.service2_title'|trans }}</h3>
+                        <p class="services-card-dark-sub">{{ 'services_page.service2_subtitle'|trans }}</p>
+                        <p class="services-card-dark-text">{{ 'services_page.service2_text'|trans }}</p>
+                        <a href="#" class="services-card-dark-link">{{ 'services_page.discover'|trans }} →</a>
+                    </div>
+                </article>
+            </div>
+
+            {# Service 3 — Camel #}
+            <div class="col-lg-4 col-md-6">
+                <article class="services-card-dark wow fadeInUp" data-wow-delay="0.3s">
+                    <img src="{{ asset('assets/images/service/new-service/RANDONNÉES À DROMADAIRE1.jpg') }}" alt="Camel Trekking" class="services-card-dark-bg" loading="lazy">
+                    <div class="services-card-dark-overlay"></div>
+                    <div class="services-card-dark-content">
+                        <span class="services-card-dark-number">03</span>
+                        <h3>{{ 'services_page.service3_title'|trans }}</h3>
+                        <p class="services-card-dark-sub">{{ 'services_page.service3_subtitle'|trans }}</p>
+                        <p class="services-card-dark-text">{{ 'services_page.service3_text'|trans }}</p>
+                        <a href="#" class="services-card-dark-link">{{ 'services_page.live_experience'|trans }} →</a>
+                    </div>
+                </article>
+            </div>
+
+            {# Service 4 — Quad #}
+            <div class="col-lg-4 col-md-6">
+                <article class="services-card-dark wow fadeInUp">
+                    <img src="{{ asset('assets/images/service/new-service/QUAD & AVENTURE.jpg') }}" alt="Quad & Adventure" class="services-card-dark-bg" loading="lazy">
+                    <div class="services-card-dark-overlay"></div>
+                    <div class="services-card-dark-content">
+                        <span class="services-card-dark-number">04</span>
+                        <h3>{{ 'services_page.service4_title'|trans }}</h3>
+                        <p class="services-card-dark-sub">{{ 'services_page.service4_subtitle'|trans }}</p>
+                        <p class="services-card-dark-text">{{ 'services_page.service4_text'|trans }}</p>
+                        <a href="#" class="services-card-dark-link">{{ 'services_page.go_adventure'|trans }} →</a>
+                    </div>
+                </article>
+            </div>
+
+            {# Service 5 — Cultural #}
+            <div class="col-lg-4 col-md-6">
+                <article class="services-card-dark wow fadeInUp" data-wow-delay="0.15s">
+                    <img src="{{ asset('assets/images/service/new-service/CIRCUITS CULTURELS.jpg') }}" alt="Cultural Tours" class="services-card-dark-bg" loading="lazy">
+                    <div class="services-card-dark-overlay"></div>
+                    <div class="services-card-dark-content">
+                        <span class="services-card-dark-number">05</span>
+                        <h3>{{ 'services_page.service5_title'|trans }}</h3>
+                        <p class="services-card-dark-sub">{{ 'services_page.service5_subtitle'|trans }}</p>
+                        <p class="services-card-dark-text">{{ 'services_page.service5_text'|trans }}</p>
+                        <a href="#" class="services-card-dark-link">{{ 'services_page.discover_south'|trans }} →</a>
+                    </div>
+                </article>
+            </div>
+
+            {# Service 6 — Tailor-made #}
+            <div class="col-lg-4 col-md-6">
+                <article class="services-card-dark wow fadeInUp" data-wow-delay="0.3s">
+                    <img src="{{ asset('assets/images/service/new-service/hero1.jpg') }}" alt="Tailor-made Trips" class="services-card-dark-bg" loading="lazy">
+                    <div class="services-card-dark-overlay"></div>
+                    <div class="services-card-dark-content">
+                        <span class="services-card-dark-number">06</span>
+                        <h3>{{ 'services_page.service6_title'|trans }}</h3>
+                        <p class="services-card-dark-sub">{{ 'services_page.service6_subtitle'|trans }}</p>
+                        <p class="services-card-dark-text">{{ 'services_page.service6_text'|trans }}</p>
+                        <a href="#" class="services-card-dark-link">{{ 'services_page.create_trip'|trans }} →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== End Services Grid ======-->
+
+<!--====== Start Travel Styles ======-->
+<section class="services-styles">
+    <div class="services-styles-photo">
+        <img src="{{ asset('assets/images/service/new-service/RANDONNÉES À DROMADAIRE2.jpg') }}" alt="" loading="lazy">
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+        <div class="row mb-50">
+            <div class="col-lg-8 wow fadeInDown">
+                <span class="services-section-label">
+                    <span class="label-line"></span>
+                    {{ 'services_page.your_adventure'|trans }}
+                </span>
+                <h2 class="services-section-title services-title-xl">{{ 'services_page.travel_styles_title'|trans }}</h2>
+            </div>
+        </div>
+
+        <div class="services-styles-grid">
+            <div class="services-style-item wow fadeInUp">
+                <div class="services-style-icon">
+                    <svg viewBox="0 0 64 64" width="34" height="34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M6 46c2-7 6-11 11-11h3l4-11c1-3 4-5 7-5s6 2 7 5l2 6h6c4 0 7 3 8 7l1 4h3a3 3 0 0 1 0 6h-4l-2 5M17 46l-2 6M39 46l-2 6M15 30c0-3 2-5 5-5"
+                              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h4>{{ 'services_page.style_slowly'|trans }}</h4>
+                <p>{{ 'services_page.style_slowly_desc'|trans }}</p>
+            </div>
+            <div class="services-style-item wow fadeInUp" data-wow-delay="0.1s">
+                <div class="services-style-icon"><i class="flaticon-van"></i></div>
+                <h4>{{ 'services_page.style_freely'|trans }}</h4>
+                <p>{{ 'services_page.style_freely_desc'|trans }}</p>
+            </div>
+            <div class="services-style-item wow fadeInUp" data-wow-delay="0.2s">
+                <div class="services-style-icon"><i class="flaticon-hiking-1"></i></div>
+                <h4>{{ 'services_page.style_intensely'|trans }}</h4>
+                <p>{{ 'services_page.style_intensely_desc'|trans }}</p>
+            </div>
+            <div class="services-style-item wow fadeInUp" data-wow-delay="0.3s">
+                <div class="services-style-icon"><i class="flaticon-bicycle"></i></div>
+                <h4>{{ 'services_page.style_sensations'|trans }}</h4>
+                <p>{{ 'services_page.style_sensations_desc'|trans }}</p>
+            </div>
+            <div class="services-style-item wow fadeInUp" data-wow-delay="0.4s">
+                <div class="services-style-icon"><i class="flaticon-camping"></i></div>
+                <h4>{{ 'services_page.style_family'|trans }}</h4>
+                <p>{{ 'services_page.style_family_desc'|trans }}</p>
+            </div>
+            <div class="services-style-item wow fadeInUp" data-wow-delay="0.5s">
+                <div class="services-style-icon"><i class="flaticon-quotation"></i></div>
+                <h4>{{ 'services_page.style_custom'|trans }}</h4>
+                <p>{{ 'services_page.style_custom_desc'|trans }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== End Travel Styles ======-->
+
+<!--====== Start Immersive Band ======-->
+<section class="services-immersive-split">
+    <div class="container-fluid px-0">
+        <div class="row g-0 align-items-center">
+            <div class="col-lg-6">
+                <div class="services-immersive-text-col">
+                    <svg class="services-immersive-title-deco" viewBox="0 0 70 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M2,8 Q10,2 18,8 T34,8 T50,8 T66,8" fill="none" stroke="#F7921E" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+
+                    <h2 class="services-immersive-title">
+                        {{ 'services_page.immersive_title_line1'|trans }}<br>
+                        {{ 'services_page.immersive_title_line2'|trans }}
+                    </h2>
+
+                    <svg class="services-immersive-title-deco services-immersive-title-deco-bottom" viewBox="0 0 70 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M2,8 Q10,2 18,8 T34,8 T50,8 T66,8" fill="none" stroke="#63AC45" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+
+                    <div class="services-immersive-tags">
+                        {% for tag in ('services_page.immersive_text'|trans)|split('·') %}
+                            <span class="services-immersive-tag"><i class="fas fa-star"></i>{{ tag|trim }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="services-immersive-photo-col">
+                    <div class="services-immersive-photo-wrap">
+                        <div class="services-immersive-orange-box"></div>
+                        <div class="services-immersive-photo-main">
+                            <img src="{{ asset('assets/images/service/new-service/RANDONNÉES À DROMADAIRE3.jpg') }}" alt="" loading="lazy">
+                        </div>
+                        <div class="services-immersive-photo-overlap">
+                            <img src="{{ asset('assets/images/service/new-service/Une bande immersive3.jpg') }}" alt="" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== End Immersive Band ======-->
+
+<!--====== Start Playground / Route Map ======-->
+<section class="services-playground-map" style="background-image: url('{{ asset('assets/images/service/new-service/map.jpg') }}');" id="playground">
+    <div class="container">
+        <div class="services-playground-card wow fadeInRight">
+            <span class="services-section-label">
+                <span class="label-line"></span>
+                {{ 'services_page.playground_label'|trans }}
+            </span>
+            <h2 class="services-section-title">{{ 'services_page.playground_title'|trans }}</h2>
+
+            <svg class="services-playground-squiggle" viewBox="0 0 70 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M2,8 Q10,2 18,8 T34,8 T50,8 T66,8" fill="none" stroke="#63AC45" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+
+            <p>{{ 'services_page.playground_text'|trans }}</p>
+
+            <div class="services-playground-route">
+                <div class="services-route-stop"><i class="fas fa-map-marker-alt"></i><span>Tunis</span></div>
+                <div class="services-route-stop"><i class="fas fa-map-marker-alt"></i><span>Djerba</span></div>
+                <div class="services-route-stop"><i class="fas fa-map-marker-alt"></i><span>Matmata</span></div>
+                <div class="services-route-stop"><i class="fas fa-map-marker-alt"></i><span>Tataouine</span></div>
+                <div class="services-route-stop"><i class="fas fa-map-marker-alt"></i><span>Ksar Ghilane</span></div>
+                <div class="services-route-stop"><i class="fas fa-map-marker-alt"></i><span>Douz</span></div>
+                <div class="services-route-stop"><i class="fas fa-map-marker-alt"></i><span>Tembaine</span></div>
+                <div class="services-route-stop"><i class="fas fa-map-marker-alt"></i><span>Tozeur</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== End Playground / Route Map ======-->
+
+<!--====== Start Why Us ======-->
+<section class="services-why pt-80 pb-80">
+    <div class="container">
+        <div class="row justify-content-center mb-50">
+            <div class="col-lg-8 text-center wow fadeInDown">
+                <span class="services-section-label">
+                    <span class="label-line"></span>
+                    {{ 'services_page.why_us_label'|trans }}
+                </span>
+                <h2 class="services-section-title services-section-title-center">{{ 'services_page.why_us_title'|trans }}</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-30">
+                <div class="services-why-card card-beige wow fadeInUp">
+                    <div class="services-why-icon-wrap">
+                        <div class="services-why-icon icon-orange"><i class="flaticon-cottage"></i></div>
+                        <span class="services-why-number">01</span>
+                    </div>
+                    <h4>{{ 'services_page.why1_title'|trans }}</h4>
+                    <p>{{ 'services_page.why1_text'|trans }}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-30">
+                <div class="services-why-card card-green wow fadeInUp" data-wow-delay="0.15s">
+                    <div class="services-why-icon-wrap">
+                        <div class="services-why-icon icon-green"><i class="flaticon-campfire-1"></i></div>
+                        <span class="services-why-number">02</span>
+                    </div>
+                    <h4>{{ 'services_page.why2_title'|trans }}</h4>
+                    <p>{{ 'services_page.why2_text'|trans }}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-30">
+                <div class="services-why-card card-peach wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="services-why-icon-wrap">
+                        <div class="services-why-icon icon-orange-red"><i class="flaticon-hiking"></i></div>
+                        <span class="services-why-number">03</span>
+                    </div>
+                    <h4>{{ 'services_page.why3_title'|trans }}</h4>
+                    <p>{{ 'services_page.why3_text'|trans }}</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-30">
+                <div class="services-why-card card-blue wow fadeInUp" data-wow-delay="0.45s">
+                    <div class="services-why-icon-wrap">
+                        <div class="services-why-icon icon-blue"><i class="flaticon-bonfire"></i></div>
+                        <span class="services-why-number">04</span>
+                    </div>
+                    <h4>{{ 'services_page.why4_title'|trans }}</h4>
+                    <p>{{ 'services_page.why4_text'|trans }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== End Why Us ======-->
+
+<!--====== Start Final CTA ======-->
+<section class="services-cta" style="background-image: url('{{ asset('assets/images/service/new-service/Une bande immersive2.jpg') }}');">
+    <div class="services-cta-wave">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,50 C240,90 480,10 720,50 C960,90 1200,10 1440,50 L1440,0 L0,0 Z" fill="#ffffff"></path>
+        </svg>
+    </div>
+
+    <div class="services-cta-overlay"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+        <div class="services-cta-content text-start">
+            <h2 class="services-cta-title">
+                {{ 'services_page.cta_title_line1'|trans }}<br>
+                <span class="services-cta-title-nowrap">{{ 'services_page.cta_title_line2'|trans }}</span>
+            </h2>
+            <p class="services-cta-text">{{ 'services_page.cta_text'|trans }}</p>
+            <a href="{{ path('app_font_index') }}#contact" class="services-cta-btn">
+                <i class="fas fa-comments"></i>
+                {{ 'services_page.cta_button'|trans }}
+            </a>
+        </div>
+    </div>
+</section>
+<!--====== End Final CTA ======-->
+
+{# Rotating hero background #}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var slides = document.querySelectorAll('.services-hero-slide');
+    if (!slides.length) return;
+    var i = 0;
+    setInterval(function () {
+        slides[i].classList.remove('active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('active');
+    }, 6000);
+});
+</script>
 
 {% endblock %}

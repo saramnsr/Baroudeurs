@@ -391,7 +391,92 @@ tips:
     date: "23 Novembre, 2022"
 
 
+{
+    "services_page": {
+        "hero_title_line1": "Tutto ciò che serve",
+        "hero_title_line2": "per andare più lontano.",
+        "hero_subtitle": "Dal primo trasferimento all'ultimo tramonto, organizziamo tutti i dettagli che trasformano un viaggio nel sud della Tunisia in una vera avventura.",
+        "hero_cta": "Scopri i nostri servizi",
 
+        "engagement_label": "IL NOSTRO IMPEGNO",
+        "engagement_title": "L'avventura, senza vincoli.",
+        "engagement_text1": "Sogni il deserto. Al resto pensiamo noi. Trasporti, alloggio, bivacco, accompagnamento, veicoli, trasferimenti...",
+        "engagement_text2": "Il nostro ruolo è creare le condizioni perfette perché tu possa semplicemente goderti il viaggio.",
+        "playground_note": "Il Sud tunisino, il nostro terreno di gioco",
 
-services_page:
-    partners_title: "I Nostri Partner"
+        "services_label": "I NOSTRI SERVIZI",
+        "services_title": "Servizi su misura, per un'esperienza unica.",
+
+        "service1_title": "CIRCUITI 4×4",
+        "service1_subtitle": "Il deserto a grandezza naturale",
+        "service1_text": "Scopri le dune, le oasi, le piste dimenticate e i paesaggi selvaggi del sud della Tunisia a bordo dei nostri 4×4.",
+
+        "service2_title": "TREKKING & ESCURSIONI",
+        "service2_subtitle": "Camminare al ritmo del deserto",
+        "service2_text": "Itinerari per scoprire il Sahara in modo diverso: escursioni, trekking e immersione nei paesaggi del Grand Erg Orientale.",
+        "service2_extra": "Da poche ore a più giorni",
+
+        "service3_title": "TREKKING IN DROMEDARIO",
+        "service3_subtitle": "Il deserto come un tempo",
+        "service3_text": "Prenditi il tempo per rallentare. Attraversa le dune in groppa a un dromedario e vivi una vera esperienza sahariana.",
+
+        "service4_title": "QUAD & AVVENTURA",
+        "service4_subtitle": "Più sensazioni. Più libertà.",
+        "service4_text": "Per chi vuole aggiungere un po' di adrenalina alla propria avventura: piste, dune e grandi spazi in quad.",
+
+        "service5_title": "TOUR CULTURALI",
+        "service5_subtitle": "Dal deserto ai villaggi berberi",
+        "service5_text": "Esplora l'altra faccia della Tunisia: Matmata, Tataouine, Douiret, Guermassa, ksour, oasi e villaggi tradizionali.",
+        "service5_extra": "Un viaggio tra paesaggi, storia e incontri",
+
+        "service6_title": "VIAGGI SU MISURA",
+        "service6_subtitle": "Il tuo viaggio. Il tuo ritmo.",
+        "service6_text": "Hai un'idea precisa? Costruiamo il tuo itinerario secondo i tuoi desideri, la durata del soggiorno, il budget e il tuo modo di viaggiare.",
+        "service6_extra": "Solo · Coppia · Famiglia · Gruppo · Azienda",
+
+        "discover": "Scopri",
+        "live_experience": "Vivi l'esperienza",
+        "go_adventure": "Parti all'avventura",
+        "discover_south": "Scopri il Sud",
+        "create_trip": "Crea il mio viaggio",
+
+        "your_adventure": "LA TUA AVVENTURA",
+        "travel_styles_title": "Come vuoi vivere il deserto?",
+        "style_slowly": "LENTAMENTE",
+        "style_slowly_desc": "Dromedario · bivacco · tramonto",
+        "style_freely": "LIBERAMENTE",
+        "style_freely_desc": "4×4 · piste · oasi · grandi spazi",
+        "style_intensely": "INTENSAMENTE",
+        "style_intensely_desc": "Trekking · dune · più giorni",
+        "style_sensations": "CON SENSAZIONI",
+        "style_sensations_desc": "Quad · avventura · raid",
+        "style_family": "IN FAMIGLIA",
+        "style_family_desc": "Tour adatti · scoperte · comfort",
+        "style_custom": "A TUA IMMAGINE",
+        "style_custom_desc": "Viaggio completamente su misura",
+
+        "immersive_title_line1": "Più di un viaggio.",
+        "immersive_title_line2": "Una storia da raccontare.",
+        "immersive_text": "Notte sotto le stelle · bivacco · cucina locale · incontri · dune · silenzio",
+
+        "playground_label": "IL NOSTRO TERRENO DI GIOCO",
+        "playground_title": "Dal Nord al profondo Sud",
+        "playground_text": "Dalle porte della Tunisia alle profondità del Sahara, ti portiamo dove inizia l'avventura.",
+
+        "why_us_label": "PERCHÉ PARTIRE CON NOI?",
+        "why_us_title": "Perché scegliere Baroudeurs du Désert?",
+        "why1_title": "COMPETENZA LOCALE",
+        "why1_text": "Conoscenza del territorio e degli itinerari del sud della Tunisia.",
+        "why2_title": "ESPERIENZE AUTENTICHE",
+        "why2_text": "Incontri, paesaggi e momenti lontani dai circuiti classici.",
+        "why3_title": "VIAGGIO FLESSIBILE",
+        "why3_text": "Programmi adattati ai desideri e al ritmo di ogni viaggiatore.",
+        "why4_title": "UNA SQUADRA AL TUO FIANCO",
+        "why4_text": "Dalla preparazione al ritorno, ti accompagniamo.",
+
+        "cta_title_line1": "E se la tua prossima",
+        "cta_title_line2": "avventura iniziasse qui?",
+        "cta_text": "Costruiamo insieme il tuo viaggio nel sud della Tunisia.",
+        "cta_button": "PARLIAMO DEL MIO PROGETTO"
+    }
+}

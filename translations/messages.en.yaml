@@ -7,7 +7,6 @@ nav:
   blog: "Blog"
   contact: "Contact"
 
-
 hero:
   title: "Desert Trips"
   sub: "Explore the Sahara"
@@ -31,19 +30,15 @@ program:
   sud:
     title: "Southern Tunisia Tour"
     desc: "4 days / 3 nights – Oases, desert, Berber villages and Djerba."
-
   starwars:
     title: "Star Wars Tour"
     desc: "3 days / 2 nights – Discover the legendary filming locations in Tunisia."
-
   transfer:
     title: "Transfer Service"
     desc: "Private transfers from Djerba, Tozeur, Monastir and Tunis."
-
   mirage:
     title: "Desert Mirage"
     desc: "8 days / 7 nights – A complete adventure through the Tunisian Sahara."
-
   view_all: "View All Programs"
   price_from: "from"
   price_on_request: "Price on request"
@@ -78,7 +73,6 @@ video:
   title: "Discover the Beauty of the Tunisian Sahara"
   button: "Watch Video"
 
-
 counter:
   travelers: "Happy Travelers"
   tours: "Desert Tours"
@@ -94,15 +88,12 @@ choose:
   subtitle: "Why Choose Us"
   title: "Why Travelers Choose"
   title2: "Baroudeurs de Désert"
-
   item1:
     title: "Best Value"
     desc: "Enjoy unforgettable desert adventures at competitive prices."
-
   item2:
     title: "Experienced Local Guides"
     desc: "Our professional guides ensure a safe and authentic Sahara experience."
-
   item3:
     title: "Authentic Desert Experience"
     desc: "Discover dunes, oases, camel rides, and traditional desert camps."
@@ -158,12 +149,10 @@ testimonial:
   subtitle: "Testimonials"
   title: "What Our Travelers"
   title2: "Say About Us"
-
   client1:
     name: "Emily Johnson"
     country: "United Kingdom"
     comment: "An unforgettable experience! The camel ride, the desert camp, and the hospitality were outstanding."
-
   client2:
     name: "Marco Rossi"
     country: "Italy"
@@ -206,15 +195,12 @@ circuits_page:
   intro_highlight: "desert, oasis, Berber villages, cultural heritage..."
   more_details: "More Details"
 
-
-
 testimonials_page:
   breadcrumb_home: "Home"
   title: "Testimonials"
   intro: "Real stories from travelers who lived the Sahara with us."
   video_title: "Watch Their Story"
   leave_review: "Leave Your Review"
-
 
 quote_page:
   title: "Request a Quote"
@@ -251,14 +237,10 @@ about_page:
   hero_label: "About Us"
   title: "About Us"
   breadcrumb_home: "Home"
-
-  # Hero
   hero_title: "About Us"
   hero_subtitle: "More than a trip, an adventure to live."
   hero_text: "Baroudeurs du Désert invites you to discover authentic landscapes, endless horizons and unforgettable experiences in the heart of the desert."
   hero_button: "Discover our adventures"
-
-  # Our Story
   story_label: "Our Story"
   story_title: "A passion for adventure and the desert"
   story_p1: "Baroudeurs du Désert was born from a passion: showing the desert differently."
@@ -266,8 +248,6 @@ about_page:
   story_p3: "From endless dunes to hidden oases, through traditional villages and wild landscapes, every tour is designed to let you live a unique adventure."
   story_objective: "Our goal?"
   story_tagline: "Take you where memories begin."
-
-  # Values
   values_subtitle: "Our Values"
   values_title: "What drives us every day"
   values:
@@ -283,8 +263,6 @@ about_page:
     safety:
       title: "Safety"
       text: "Experienced local partners and carefully organized tours to travel with peace of mind."
-
-  # Why
   why_title: "Why choose Baroudeurs du Désert?"
   why_item1: "Authentic experiences"
   why_item2: "Local guides and partners"
@@ -292,8 +270,6 @@ about_page:
   why_item4: "Small groups for a more human experience"
   why_item5: "Exceptional landscapes"
   why_item6: "Personalized assistance and support"
-
-  # Emotional
   emotional_quote: "The desert is not just visited... it is felt."
   emotional_question: "Ready to live your next adventure?"
   emotional_button: "Discover our tours"
@@ -331,7 +307,6 @@ circuit_showcase:
     title: "Tataouine Excursion"
     desc: "Local market, the troglodyte village of Chenini, and the Star Wars set at Ksar Hadada."
 
-
 gallery_showcase:
   subtitle: "Our Services"
   title: "What We Offer"
@@ -345,8 +320,6 @@ gallery_showcase:
   item6: "Sand Dunes"
   item7: "Desert Oasis"
   item8: "Traditional Market"
-
-
 
 tips:
   subtitle: "News & Blog"
@@ -368,7 +341,6 @@ tips:
     title: "Rise Of Design Thinking Solving Strategy"
     author: "Dale V. Hornback"
     date: "November 23, 2022"
-
 
 detail_page:
   itinerary_title: "Full Itinerary"
@@ -393,7 +365,92 @@ detail_page:
   testimonial_title: "What Travelers Say"
   included_options_title: "What's Included"
 
-
-
+# ============================================================
+# SERVICES PAGE — single block, do not duplicate
+# ============================================================
 services_page:
-    partners_title: "Our Partners"
+    hero_title_line1: "Everything you need"
+    hero_title_line2: "to go further."
+    hero_subtitle: "From the first transfer to the last sunset, we organise all the details that turn a trip to southern Tunisia into a real adventure."
+    hero_cta: "Discover our services"
+
+    engagement_label: "OUR COMMITMENT"
+    engagement_title: "Adventure, without the constraints."
+    engagement_text1: "You dream of the desert. We take care of the rest. Transport, accommodation, bivouac, guidance, vehicles, transfers..."
+    engagement_text2: "Our role is to create the perfect conditions so you can simply enjoy the journey."
+    playground_note: "Southern Tunisia, our playground"
+
+    services_label: "OUR SERVICES"
+    services_title: "Tailor-made services, for a unique experience."
+
+    service1_title: "4x4 CIRCUITS"
+    service1_subtitle: "The life-size desert"
+    service1_text: "Discover the dunes, oases, forgotten tracks and wild landscapes of southern Tunisia aboard our 4x4s."
+
+    service2_title: "TREKS & HIKES"
+    service2_subtitle: "Walking to the rhythm of the desert"
+    service2_text: "Itineraries to discover the Sahara in a different way: hiking, trekking and immersion in the landscapes of the Grand Erg Oriental."
+    service2_extra: "From a few hours to several days"
+
+    service3_title: "CAMEL TREKKING"
+    service3_subtitle: "The desert as in the past"
+    service3_text: "Take some time to slow down. Cross the dunes on the back of a camel and enjoy a true Saharan experience."
+
+    service4_title: "QUAD & ADVENTURE"
+    service4_subtitle: "More sensations. More freedom."
+    service4_text: "For those who want to put a little adrenaline into their adventure: tracks, dunes and wide open spaces on a quad."
+
+    service5_title: "CULTURAL TOURS"
+    service5_subtitle: "From the desert to the Berber villages"
+    service5_text: "Explore another side of Tunisia: Matmata, Tataouine, Douiret, Guermassa, ksour, oases and traditional villages."
+    service5_extra: "A journey between landscapes, history and encounters"
+
+    service6_title: "TAILOR-MADE TRIPS"
+    service6_subtitle: "Your journey. Your pace."
+    service6_text: "Do you have a specific idea? We build your itinerary according to your desires, the length of your stay, your budget and your way of travelling."
+    service6_extra: "Solo · Couple · Family · Group · Company"
+
+    discover: "Discover"
+    live_experience: "Live the experience"
+    go_adventure: "Go on an adventure"
+    discover_south: "Discover the South"
+    create_trip: "Create my trip"
+
+    your_adventure: "YOUR ADVENTURE"
+    travel_styles_title: "How do you want to live the desert?"
+    style_slowly: "SLOWLY"
+    style_slowly_desc: "Camel · bivouac · sunset"
+    style_freely: "FREELY"
+    style_freely_desc: "4x4 · slopes · oasis · wide open spaces"
+    style_intensely: "INTENSELY"
+    style_intensely_desc: "Trek · dunes · multiple days"
+    style_sensations: "WITH SENSATIONS"
+    style_sensations_desc: "Quad biking · adventure · raid"
+    style_family: "FAMILY"
+    style_family_desc: "Adapted tours · discoveries · comfort"
+    style_custom: "IN YOUR IMAGE"
+    style_custom_desc: "Fully tailor-made trip"
+
+    immersive_title_line1: "More than a journey."
+    immersive_title_line2: "A story to tell."
+    immersive_text: "Night under the stars · bivouac · local cuisine · meetings · dunes · silence"
+
+    playground_label: "OUR PLAYGROUND"
+    playground_title: "From North to Deep South"
+    playground_text: "From the gates of Tunisia to the depths of the Sahara, we take you where the adventure begins."
+
+    why_us_label: "WHY GO WITH US?"
+    why_us_title: "Why choose Baroudeurs du Désert?"
+    why1_title: "LOCAL EXPERTISE"
+    why1_text: "Knowledge of the terrain and itineraries of southern Tunisia."
+    why2_title: "AUTHENTIC EXPERIENCES"
+    why2_text: "Encounters, landscapes and moments far from the classic circuits."
+    why3_title: "FLEXIBLE TRAVEL"
+    why3_text: "Programs adapted to the desires and pace of each traveler."
+    why4_title: "A TEAM AT YOUR SIDE"
+    why4_text: "From preparation to return, we support you."
+
+    cta_title_line1: "And if your next"
+    cta_title_line2: "adventure began here?"
+    cta_text: "Let's build your trip to southern Tunisia together."
+    cta_button: "TALK ABOUT MY PROJECT"
