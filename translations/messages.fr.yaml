@@ -1,440 +1,424 @@
-nav:
-  home: "Accueil"
-  about: "Qui sommes-nous ?"
-  circuits: "Circuits"
-  excursions: "Excursions"
-  services: "Services"
-  blog: "Blog"
-  contact: "Contact"
-
-hero:
-  title: "Voyages dans le désert"
-  sub: "Explorez le Sahara"
-  btn1: "Découvrez nos voyages"
-  btn2: "Réserver maintenant"
-  agency: "Agence de voyage"
-  adv: "Aventure"
-  subtitle: "Explorer"
-  main_title: "Circuits et Excursions en Tunisie — Votre aventure commence ici !"
-  main_subtitle: "Découvrez la Tunisie autrement grâce à nos circuits privés, conçus par des guides locaux passionnés."
-
-slider:
-  title_1: "Voyages dans le désert"
-  title_2: "Tour du sud tunisien"
-
-features:
-  subtitle: "Nos programmes"
-  title: "Découvrez nos circuits les plus populaires"
-
-program:
-  sud:
-    title: "Circuit Sud Tunisien"
-    desc: "4 jours / 3 nuits – Oasis, désert, villages berbères et Djerba."
-
-  starwars:
-    title: "Star Wars Tour"
-    desc: "3 jours / 2 nuits – Découvrez les lieux de tournage mythiques en Tunisie."
-
-  transfer:
-    title: "Service de Transfert"
-    desc: "Transferts privés depuis Djerba, Tozeur, Monastir et Tunis."
-
-  mirage:
-    title: "Mirage du Désert"
-    desc: "8 jours / 7 nuits – Une aventure complète à travers le Sahara tunisien."
-
-  view_all: "Voir tous les programmes"
-  price_from: "à partir de"
-  price_on_request: "Sur devis"
-  view_circuit: "Voir le circuit"
-
-booking:
-  find: "Planifiez votre aventure dans le désert"
-  subtitle: "Réservez votre aventure"
-  title: "dans le Sahara"
-  destination: "Destination"
-  destination_placeholder: "Choisissez une destination"
-  programme: "Programme"
-  programme_placeholder: "Choisissez un circuit"
-  date: "Date"
-  date_placeholder: "Sélectionnez une date"
-  guests: "Nombre de places"
-  guests_placeholder: "Nombre de personnes"
-  button: "Vérifier la disponibilité"
-  success_message: "Votre demande a été envoyée avec succès ! Nous vous recontacterons dans les plus brefs délais."
-
-about:
-  subtitle: "À propos de nous"
-  title: "Votre partenaire de confiance"
-  title2: "pour les aventures dans le désert"
-  description: "Baroudeurs de Désert vous propose des expériences inoubliables dans le Sahara tunisien. Randonnées à dos de dromadaire, bivouacs et excursions en 4x4 pour vivre une aventure authentique."
-  item1: "Expériences authentiques dans le Sahara"
-  item2: "Guides locaux professionnels"
-  item3: "Camps confortables dans le désert"
-  button: "En savoir plus"
-
-video:
-  title: "Découvrez la beauté du Sahara tunisien"
-  button: "Voir la vidéo"
-
-counter:
-  travelers: "Voyageurs satisfaits"
-  tours: "Circuits dans le désert"
-  experience: "Années d'expérience"
-  camps: "Camps dans le désert"
-
-services:
-  subtitle: "Nos Circuits"
-  title: "Circuits"
-  title2: "avec des expériences uniques"
-
-choose:
-  subtitle: "Pourquoi nous choisir"
-  title: "Pourquoi les voyageurs choisissent"
-  title2: "Baroudeurs de Désert"
-
-  item1:
-    title: "Meilleur rapport qualité-prix"
-    desc: "Profitez d'aventures inoubliables dans le désert à des prix compétitifs."
-
-  item2:
-    title: "Guides locaux expérimentés"
-    desc: "Nos guides professionnels vous garantissent une expérience authentique et sécurisée."
-
-  item3:
-    title: "Expérience authentique du Sahara"
-    desc: "Découvrez les dunes, les oasis, les balades à dos de dromadaire et les camps traditionnels."
-
-why:
-  subtitle: "Pourquoi nous choisir"
-  title: "Pourquoi voyager avec"
-  title2: "Baroudeurs de Désert"
-  intro: "Nous croyons en des voyages sur mesure, loin des sentiers battus, guidés par des experts qui connaissent le désert comme leur propre maison."
-  check1: "Rien que vous"
-  check2: "Votre rythme"
-  check3: "Chemins rares"
-  check4: "Vraie passion"
-  button: "En savoir plus"
-  item1:
-    title: "Circuits 100 % privés"
-    desc: "Guide et véhicule dédiés, rien que pour vous."
-  item2:
-    title: "Aucun convoi, aucun groupe"
-    desc: "Votre rythme, votre liberté, votre aventure."
-  item3:
-    title: "Itinéraires authentiques"
-    desc: "Des parcours personnalisés loin des sentiers battus."
-  item4:
-    title: "Guides locaux passionnés"
-    desc: "Une expertise du terrain transmise avec passion."
-
-gallery:
-  subtitle: "Notre Galerie"
-  title: "Découvrez nos"
-  title2: "Aventures dans le désert"
-  breadcrumb_home: "Accueil"
-  video_title: "Regardez l'Aventure"
-  filter:
-    all: "Tout"
-    south: "Sud Tunisien"
-    sahara: "Sahara"
-    camp: "Campement"
-    four: "Tours 4x4"
-    oasis: "Oasis"
-    desert: "Désert"
-    douz: "Douz"
-    djerba: "Djerba"
-    bivouac: "Bivouac"
-    cuisine: "Cuisine Locale"
-    meeting: "Rencontre"
-  caption:
-    desert: "Désert du Sahara"
-    douz: "Douz, Porte du Désert"
-    djerba: "Île de Djerba"
-    oasis: "Oasis du Désert"
-    bivouac: "Campement Bédouin"
-    cuisine: "Cuisine Locale"
-    meeting: "Rencontre avec les Nomades"
-
-testimonial:
-  subtitle: "Témoignages"
-  title: "Ce que disent"
-  title2: "nos voyageurs"
-
-  client1:
-    name: "Emily Johnson"
-    country: "Royaume-Uni"
-    comment: "Une expérience inoubliable ! La balade à dos de dromadaire, le bivouac et l'accueil étaient exceptionnels."
-
-  client2:
-    name: "Marco Rossi"
-    country: "Italie"
-    comment: "Tout était parfaitement organisé. Le coucher de soleil sur les dunes était magique."
-
-devis:
-  title_normal: "Vous avez un"
-  title_bold: "voyage en tête ?"
-  text: "Nous vous accompagnons dans l'organisation de votre séjour personnalisé en Tunisie."
-  button: "Demandez un devis gratuit"
-
-contact:
-  subtitle: "Contactez-nous"
-  title: "Prêt à vivre"
-  title2: "une nouvelle aventure ?"
-  locations: "Notre agence"
-  email: "Email"
-  hotline: "Téléphone"
-  follow: "Suivez-nous"
-  form_title: "Envoyez-nous un message"
-  form_description: "Vous avez une question sur nos excursions ? Contactez-nous et notre équipe vous répondra rapidement."
-  name_placeholder: "Nom complet"
-  email_placeholder: "Adresse email"
-  message_placeholder: "Écrivez votre message..."
-  send: "Envoyer le message"
-
-circuits_page:
-  intro_main: "Nos circuits et excursions sont conçus pour vous faire vivre la Tunisie authentique :"
-  intro_highlight: "désert, oasis, villages berbères, patrimoine culturel..."
-  filter_destination: "Destination"
-  filter_all_destinations: "Toutes les destinations"
-  filter_duration: "Durée"
-  filter_all_durations: "Toutes les durées"
-  duration_1: "1 jour"
-  duration_2_3: "2-3 jours"
-  duration_4plus: "4 jours et plus"
-  filter_type: "Type"
-  filter_all_types: "Tous les types"
-  filter_button: "Filtrer"
-  see_detail: "Voir le détail"
-  more_details: "Plus de Détails"
-
-testimonials_page:
-  breadcrumb_home: "Accueil"
-  title: "Témoignages"
-  intro: "Des histoires vécues par nos voyageurs dans le Sahara."
-  video_title: "Découvrez leur histoire"
-  leave_review: "Laissez votre avis"
-
-
-quote_page:
-  title: "Demander un Devis"
-  breadcrumb_home: "Accueil"
-  intro: "Vous avez une idée de voyage ? Nous créons votre circuit sur mesure en Tunisie."
-  form_title: "Demandez votre Devis Personnalisé"
-  form_subtitle: "Remplissez le formulaire ci-dessous et nous vous répondrons sous 24 heures."
-  last_name: "Nom"
-  last_name_placeholder: "Entrez votre nom"
-  first_name: "Prénom"
-  first_name_placeholder: "Entrez votre prénom"
-  email: "Email"
-  email_placeholder: "Entrez votre adresse email"
-  telephone: "Téléphone"
-  telephone_placeholder: "Entrez votre numéro de téléphone"
-  circuit: "Circuit choisi ou souhaité"
-  circuit_select: "Sélectionnez un circuit..."
-  circuit_custom: "Circuit personnalisé (décrivez ci-dessous)"
-  departure_location: "Lieu de départ"
-  departure_location_placeholder: "D'où partez-vous ?"
-  arrival_location: "Lieu d'arrivée"
-  arrival_location_placeholder: "Où arrivez-vous ?"
-  start_date: "Date de début"
-  end_date: "Date de fin"
-  duration: "Durée (jours)"
-  duration_placeholder: "Nombre de jours"
-  participants: "Participants"
-  participants_placeholder: "Nombre de personnes"
-  specific_requests: "Demandes spécifiques"
-  specific_requests_placeholder: "Parlez-nous de vos préférences, besoins particuliers ou toute information supplémentaire..."
-  send_button: "Envoyer ma Demande"
-
-about_page:
-  hero_label: "Qui sommes-nous ?"
-  title: "Qui sommes-nous ?"
-  breadcrumb_home: "Accueil"
-
-  hero_title: "Qui sommes-nous ?"
-  hero_subtitle: "Plus qu'un voyage, une aventure à vivre."
-  hero_text: "Baroudeurs du Désert vous invite à découvrir des paysages authentiques, des horizons infinis et des expériences inoubliables au cœur du désert."
-  hero_button: "Découvrir nos aventures"
-
-  story_label: "Notre Histoire"
-  story_title: "Une passion pour l'aventure et le désert"
-  story_p1: "Baroudeurs du Désert est né d'une passion : celle de faire découvrir le désert autrement."
-  story_p2: "Nous créons des expériences authentiques pour les voyageurs en quête d'aventure, de dépaysement et de rencontres."
-  story_p3: "Des dunes infinies aux oasis cachées, en passant par les villages traditionnels et les paysages sauvages, chaque circuit est pensé pour vous faire vivre une aventure unique."
-  story_objective: "Notre objectif ?"
-  story_tagline: "Vous emmener là où les souvenirs commencent."
-
-  values_subtitle: "Nos valeurs"
-  values_title: "Ce qui nous anime au quotidien"
-  values:
-    authenticity:
-      title: "Authenticité"
-      text: "Nous vous faisons découvrir le désert, ses paysages, ses traditions et ses habitants de manière authentique."
-    adventure:
-      title: "Aventure"
-      text: "Excursions, treks et circuits pensés pour les amoureux de découverte et d'expériences uniques."
-    proximity:
-      title: "Proximité"
-      text: "Une équipe passionnée et disponible pour vous accompagner avant, pendant et après votre voyage."
-    safety:
-      title: "Sécurité"
-      text: "Des partenaires locaux expérimentés et des circuits organisés avec soin pour voyager en toute sérénité."
-
-  why_title: "Pourquoi choisir Baroudeurs du Désert ?"
-  why_item1: "Des expériences authentiques"
-  why_item2: "Des guides et partenaires locaux"
-  why_item3: "Des circuits adaptés à tous les voyageurs"
-  why_item4: "Des petits groupes pour une expérience plus humaine"
-  why_item5: "Des paysages exceptionnels"
-  why_item6: "Une assistance et un accompagnement personnalisé"
-
-  emotional_quote: "Le désert ne se visite pas seulement... il se ressent."
-  emotional_question: "Prêt à vivre votre prochaine aventure ?"
-  emotional_button: "Découvrir nos circuits"
-
-blog_page:
-  title: "Notre Blog"
-  breadcrumb_home: "Accueil"
-  subtitle: "Conseils, Guides & Histoires du Sahara"
-  posted_by: "Publié par"
-  view_circuits: "Voir Nos Circuits"
-  article1:
-    title: "Préparer votre sac pour le désert"
-    excerpt: "Préparez malin ! Nos bivouacs fournissent tous les repas (pain de sable, fromage, confiture, thé, chorba, couscous). Il vous faut juste des vêtements chauds pour les nuits fraîches, un maillot de bain pour les sources de Ksar Ghilane, des chaussures confortables, de la crème solaire et une lampe de poche."
-  article2:
-    title: "Que voir à Ksar Ghilane ?"
-    excerpt: "Découvrez l'oasis la plus méridionale de Tunisie, située aux portes du Grand Erg Oriental. Baignez-vous dans sa source thermale naturelle entourée de palmiers, explorez les ruines romaines et profitez de balades en quad ou à dos de dromadaire (en option) !"
-  article3:
-    title: "Nos recettes préférées en bivouac"
-    excerpt: "Vivez la véritable cuisine bédouine ! Regardez nos guides cuire le 'Pain de Sable' sous le feu, et savourez des dîners traditionnels de chorba, de couscous et de fruits de saison sous les étoiles."
-
-excursions:
-  subtitle: "Nos excursions"
-  title: "Nos meilleures"
-  title2: "excursions"
-  discover: "Découvrir"
-
-circuit_showcase:
-  circuit1:
-    title: "Circuit Désert Douz - Tembaïne"
-    desc: "8 jours en 4x4 entre dunes infinies, Ksar Ghilane et rencontres avec les nomades du Grand Sud."
-  circuit2:
-    title: "Excursion Nuit à Ksar Ghilane"
-    desc: "Villages berbères, marché de Tataouine et une nuit magique dans l'oasis de Ksar Ghilane."
-  circuit3:
-    title: "Excursion à Tataouine"
-    desc: "Marché local, village troglodyte de Chenini et décor de Star Wars au ksar Hadada."
-
-gallery_showcase:
-  subtitle: "Nos Services"
-  title: "Ce Que Nous Offrons"
-  title2: "Pour Chaque Aventure"
-  category: "Voyage & Camping"
-  item1: "Habitations Troglodytes"
-  item2: "Star Wars"
-  item3: "Décor du Désert"
-  item4: "Safari dans le Désert"
-  item5: "Village de Montagne"
-  item6: "Dunes de Sable"
-  item7: "Oasis du Désert"
-  item8: "Marché Traditionnel"
-
-
-tips:
-  subtitle: "Actualités & Blog"
-  title: "Lisez Chaque"
-  title2: "Article et Astuce du Blog"
-  readmore: "Lire Plus"
-  card1:
-    tag: "Camping"
-    title: "C'était Décembre 2022 Édition Desktop"
-    author: "William H. Jackson"
-    date: "23 Novembre, 2022"
-  card2:
-    tag: "Aventure"
-    title: "Construire une Tête Dynamique Avec Inter Observer"
-    author: "James D. Garcia"
-    date: "23 Novembre, 2022"
-  card3:
-    tag: "Camping"
-    title: "L'Essor de la Pensée Design Comme Stratégie"
-    author: "Dale V. Hornback"
-    date: "23 Novembre, 2022"
-
-detail_page:
-  itinerary_title: "Itinéraire Complet"
-  included_title: "Inclus"
-  excluded_title: "Non Inclus"
-  book_now: "Réserver"
-  other_circuits: "D'Autres Circuits Formidables"
-  day: "Jour"
-  gallery_title: "Galerie Photo"
-  trending_places: "Lieux Populaires"
-  find_availability_1: "Trouvez la Meilleure"
-  find_availability_2: "Disponibilité du Circuit"
-  check_in: "Arrivée"
-  check_out: "Départ"
-  guest: "Invités"
-  full_name: "Nom Complet"
-  your_email: "Votre Email"
-  select_date: "Sélectionnez une date"
-  number_of_people: "Nombre de personnes"
-  check_availability: "Vérifier la Disponibilité"
-  other_excursions: "D'Autres Excursions Formidables"
-  testimonial_title: "Avis des Voyageurs"
-  included_options_title: "Ce qui est inclus"
-
-
 {
+    "nav": {
+        "home": "Accueil",
+        "about": "Qui sommes-nous ?",
+        "circuits": "Circuits",
+        "excursions": "Excursions",
+        "services": "Services",
+        "blog": "Blog",
+        "contact": "Contact"
+    },
+    "hero": {
+        "title": "Voyages dans le désert",
+        "sub": "Explorez le Sahara",
+        "btn1": "Découvrez nos voyages",
+        "btn2": "Réserver maintenant",
+        "agency": "Agence de voyage",
+        "adv": "Aventure",
+        "subtitle": "Explorer",
+        "main_title": "Circuits et Excursions en Tunisie — Votre aventure commence ici !",
+        "main_subtitle": "Découvrez la Tunisie autrement grâce à nos circuits privés, conçus par des guides locaux passionnés.",
+        "prev_slide": "Diapositive précédente",
+        "next_slide": "Diapositive suivante"
+    },
+    "slider": {
+        "title_1": "Voyages dans le désert",
+        "title_2": "Tour du sud tunisien"
+    },
+    "features": {
+        "subtitle": "Nos programmes",
+        "title": "Découvrez nos circuits les plus populaires"
+    },
+    "program": {
+        "sud": {
+            "title": "Circuit Sud Tunisien",
+            "desc": "4 jours / 3 nuits – Oasis, désert, villages berbères et Djerba."
+        },
+        "starwars": {
+            "title": "Star Wars Tour",
+            "desc": "3 jours / 2 nuits – Découvrez les lieux de tournage mythiques en Tunisie."
+        },
+        "transfer": {
+            "title": "Service de Transfert",
+            "desc": "Transferts privés depuis Djerba, Tozeur, Monastir et Tunis."
+        },
+        "mirage": {
+            "title": "Mirage du Désert",
+            "desc": "8 jours / 7 nuits – Une aventure complète à travers le Sahara tunisien."
+        },
+        "view_all": "Voir tous les programmes",
+        "price_from": "à partir de",
+        "price_on_request": "Sur devis",
+        "view_circuit": "Voir le circuit"
+    },
+    "booking": {
+        "find": "Planifiez votre aventure dans le désert",
+        "subtitle": "Réservez votre aventure",
+        "title": "dans le Sahara",
+        "destination": "Destination",
+        "destination_placeholder": "Choisissez une destination",
+        "programme": "Programme",
+        "programme_placeholder": "Choisissez un circuit",
+        "date": "Date",
+        "date_placeholder": "Sélectionnez une date",
+        "guests": "Nombre de places",
+        "guests_placeholder": "Nombre de personnes",
+        "button": "Vérifier la disponibilité",
+        "success_message": "Votre demande a été envoyée avec succès ! Nous vous recontacterons dans les plus brefs délais."
+    },
+    "about": {
+        "subtitle": "À propos de nous",
+        "title": "Votre partenaire de confiance",
+        "title2": "pour les aventures dans le désert",
+        "description": "Baroudeurs de Désert vous propose des expériences inoubliables dans le Sahara tunisien. Randonnées à dos de dromadaire, bivouacs et excursions en 4x4 pour vivre une aventure authentique.",
+        "item1": "Expériences authentiques dans le Sahara",
+        "item2": "Guides locaux professionnels",
+        "item3": "Camps confortables dans le désert",
+        "button": "En savoir plus"
+    },
+    "video": {
+        "title": "Découvrez la beauté du Sahara tunisien",
+        "button": "Voir la vidéo"
+    },
+    "counter": {
+        "travelers": "Voyageurs satisfaits",
+        "tours": "Circuits dans le désert",
+        "experience": "Années d'expérience",
+        "camps": "Camps dans le désert"
+    },
+    "services": {
+        "subtitle": "Nos Circuits",
+        "title": "Circuits",
+        "title2": "avec des expériences uniques"
+    },
+    "choose": {
+        "subtitle": "Pourquoi nous choisir",
+        "title": "Pourquoi les voyageurs choisissent",
+        "title2": "Baroudeurs de Désert",
+        "item1": {
+            "title": "Meilleur rapport qualité-prix",
+            "desc": "Profitez d'aventures inoubliables dans le désert à des prix compétitifs."
+        },
+        "item2": {
+            "title": "Guides locaux expérimentés",
+            "desc": "Nos guides professionnels vous garantissent une expérience authentique et sécurisée."
+        },
+        "item3": {
+            "title": "Expérience authentique du Sahara",
+            "desc": "Découvrez les dunes, les oasis, les balades à dos de dromadaire et les camps traditionnels."
+        }
+    },
+    "why": {
+        "subtitle": "Pourquoi nous choisir",
+        "title": "Pourquoi voyager avec",
+        "title2": "Baroudeurs de Désert",
+        "intro": "Nous croyons en des voyages sur mesure, loin des sentiers battus, guidés par des experts qui connaissent le désert comme leur propre maison.",
+        "check1": "Rien que vous",
+        "check2": "Votre rythme",
+        "check3": "Chemins rares",
+        "check4": "Vraie passion",
+        "button": "En savoir plus",
+        "item1": {
+            "title": "Circuits 100 % privés",
+            "desc": "Guide et véhicule dédiés, rien que pour vous."
+        },
+        "item2": {
+            "title": "Aucun convoi, aucun groupe",
+            "desc": "Votre rythme, votre liberté, votre aventure."
+        },
+        "item3": {
+            "title": "Itinéraires authentiques",
+            "desc": "Des parcours personnalisés loin des sentiers battus."
+        },
+        "item4": {
+            "title": "Guides locaux passionnés",
+            "desc": "Une expertise du terrain transmise avec passion."
+        }
+    },
+    "gallery": {
+        "subtitle": "Notre Galerie",
+        "title": "Découvrez nos",
+        "title2": "Aventures dans le désert",
+        "breadcrumb_home": "Accueil",
+        "video_title": "Regardez l'Aventure",
+        "filter": {
+            "all": "Tout",
+            "south": "Sud Tunisien",
+            "sahara": "Sahara",
+            "camp": "Campement",
+            "four": "Tours 4x4",
+            "oasis": "Oasis",
+            "desert": "Désert",
+            "douz": "Douz",
+            "djerba": "Djerba",
+            "bivouac": "Bivouac",
+            "cuisine": "Cuisine Locale",
+            "meeting": "Rencontre"
+        },
+        "caption": {
+            "desert": "Désert du Sahara",
+            "douz": "Douz, Porte du Désert",
+            "djerba": "Île de Djerba",
+            "oasis": "Oasis du Désert",
+            "bivouac": "Campement Bédouin",
+            "cuisine": "Cuisine Locale",
+            "meeting": "Rencontre avec les Nomades"
+        }
+    },
+    "gallery_showcase": {
+        "subtitle": "Notre Galerie",
+        "title": "Découvrez nos",
+        "title2": "Aventures dans le désert",
+        "category": "Galerie",
+        "item1": "Désert du Sahara",
+        "item2": "Douz, Porte du Désert",
+        "item3": "Île de Djerba",
+        "item4": "Oasis du Désert",
+        "item5": "Campement Bédouin",
+        "item6": "Cuisine Locale",
+        "item7": "Rencontre avec les Nomades",
+        "item8": "Aventures dans le désert"
+    },
+    "excursions": {
+        "subtitle": "Nos Excursions",
+        "title": "Excursions",
+        "title2": "d'une journée",
+        "discover": "Découvrir"
+    },
+    "testimonial": {
+        "subtitle": "Témoignages",
+        "title": "Ce que disent",
+        "title2": "nos voyageurs",
+        "client1": {
+            "name": "Emily Johnson",
+            "country": "Royaume-Uni",
+            "comment": "Une expérience inoubliable ! La balade à dos de dromadaire, le bivouac et l'accueil étaient exceptionnels."
+        },
+        "client2": {
+            "name": "Marco Rossi",
+            "country": "Italie",
+            "comment": "Tout était parfaitement organisé. Le coucher de soleil sur les dunes était magique."
+        }
+    },
+    "tips": {
+        "subtitle": "Conseils de voyage",
+        "title": "Nos derniers",
+        "title2": "conseils de voyage",
+        "readmore": "Lire la suite",
+        "card1": {
+            "tag": "Guide",
+            "title": "Comment préparer son premier voyage dans le désert tunisien ?",
+            "author": "Ahmed Ben Salah",
+            "date": "15 mars 2026"
+        },
+        "card2": {
+            "tag": "Aventure",
+            "title": "La meilleure saison pour visiter le Sahara",
+            "author": "Sonia Trabelsi",
+            "date": "10 mars 2026"
+        },
+        "card3": {
+            "tag": "Culture",
+            "title": "Villages berbères : un voyage dans le temps",
+            "author": "Karim Mansour",
+            "date": "5 mars 2026"
+        }
+    },
+    "devis": {
+        "title_normal": "Vous avez un",
+        "title_bold": "voyage en tête ?",
+        "text": "Nous vous accompagnons dans l'organisation de votre séjour personnalisé en Tunisie.",
+        "button": "Demandez un devis gratuit"
+    },
+    "contact": {
+        "subtitle": "Contactez-nous",
+        "title": "Prêt à vivre",
+        "title2": "une nouvelle aventure ?",
+        "locations": "Notre agence",
+        "email": "Email",
+        "hotline": "Téléphone",
+        "follow": "Suivez-nous",
+        "form_title": "Envoyez-nous un message",
+        "form_description": "Vous avez une question sur nos excursions ? Contactez-nous et notre équipe vous répondra rapidement.",
+        "name_placeholder": "Nom complet",
+        "email_placeholder": "Adresse email",
+        "message_placeholder": "Écrivez votre message...",
+        "send": "Envoyer le message",
+        "button_short": "Contactez-nous"
+    },
+    "circuits_page": {
+        "intro_main": "Nos circuits et excursions sont conçus pour vous faire vivre la Tunisie authentique :",
+        "intro_highlight": "désert, oasis, villages berbères, patrimoine culturel...",
+        "filter_destination": "Destination",
+        "filter_all_destinations": "Toutes les destinations",
+        "filter_duration": "Durée",
+        "filter_all_durations": "Toutes les durées",
+        "duration_1": "1 jour",
+        "duration_2_3": "2-3 jours",
+        "duration_4plus": "4 jours et plus",
+        "filter_type": "Type",
+        "filter_all_types": "Tous les types",
+        "filter_button": "Filtrer",
+        "see_detail": "Voir le détail",
+        "more_details": "Plus de Détails",
+        "view_tours": "Voir nos circuits"
+    },
+    "detail_page": {
+        "itinerary_title": "Itinéraire complet",
+        "included_title": "Inclus",
+        "excluded_title": "Non inclus",
+        "book_now": "Réserver maintenant",
+        "other_circuits": "Autres circuits formidables",
+        "other_excursions": "Autres excursions formidables",
+        "day": "Jour",
+        "gallery_title": "Galerie photo",
+        "trending_places": "Lieux tendance",
+        "find_availability_1": "Trouvez la meilleure",
+        "find_availability_2": "disponibilité de circuit",
+        "check_in": "Arrivée",
+        "check_out": "Départ",
+        "guest": "Invités",
+        "full_name": "Nom complet",
+        "your_email": "Votre email",
+        "select_date": "Sélectionnez une date",
+        "number_of_people": "Nombre de personnes",
+        "check_availability": "Vérifier la disponibilité",
+        "testimonial_title": "Ce que disent les voyageurs",
+        "included_options_title": "Ce qui est inclus",
+        "item_not_found": "Élément introuvable",
+        "back_to_home": "Retour à l'accueil",
+        "location_tunisia": "Tunisie",
+        "calendar_month_year": "Septembre 2026",
+        "day_su": "Di",
+        "day_mo": "Lu",
+        "day_tu": "Ma",
+        "day_we": "Me",
+        "day_th": "Je",
+        "day_fr": "Ve",
+        "day_sa": "Sa"
+    },
+    "testimonials_page": {
+        "breadcrumb_home": "Accueil",
+        "title": "Témoignages",
+        "intro": "Des histoires vécues par nos voyageurs dans le Sahara.",
+        "video_title": "Découvrez leur histoire",
+        "leave_review": "Laissez votre avis"
+    },
+    "quote_page": {
+        "title": "Demander un Devis",
+        "breadcrumb_home": "Accueil",
+        "intro": "Vous avez une idée de voyage ? Nous créons votre circuit sur mesure en Tunisie.",
+        "form_title": "Demandez votre Devis Personnalisé",
+        "form_subtitle": "Remplissez le formulaire ci-dessous et nous vous répondrons sous 24 heures.",
+        "last_name": "Nom",
+        "last_name_placeholder": "Entrez votre nom",
+        "first_name": "Prénom",
+        "first_name_placeholder": "Entrez votre prénom",
+        "email": "Email",
+        "email_placeholder": "Entrez votre adresse email",
+        "telephone": "Téléphone",
+        "telephone_placeholder": "Entrez votre numéro de téléphone",
+        "circuit": "Circuit choisi ou souhaité",
+        "circuit_select": "Sélectionnez un circuit...",
+        "circuit_custom": "Circuit personnalisé (décrivez ci-dessous)",
+        "departure_location": "Lieu de départ",
+        "departure_location_placeholder": "D'où partez-vous ?",
+        "arrival_location": "Lieu d'arrivée",
+        "arrival_location_placeholder": "Où arrivez-vous ?",
+        "start_date": "Date de début",
+        "end_date": "Date de fin",
+        "duration": "Durée (jours)",
+        "duration_placeholder": "Nombre de jours",
+        "participants": "Participants",
+        "participants_placeholder": "Nombre de personnes",
+        "specific_requests": "Demandes spécifiques",
+        "specific_requests_placeholder": "Parlez-nous de vos préférences, besoins particuliers ou toute information supplémentaire...",
+        "send_button": "Envoyer ma Demande"
+    },
+    "about_page": {
+        "hero_label": "Qui sommes-nous ?",
+        "title": "Qui sommes-nous ?",
+        "breadcrumb_home": "Accueil",
+        "hero_title": "Qui sommes-nous ?",
+        "hero_subtitle": "Plus qu'un voyage, une aventure à vivre.",
+        "hero_text": "Baroudeurs du Désert vous invite à découvrir des paysages authentiques, des horizons infinis et des expériences inoubliables au cœur du désert.",
+        "hero_button": "Découvrir nos aventures",
+        "story_label": "Notre Histoire",
+        "story_title": "Une passion pour l'aventure et le désert",
+        "story_p1": "Baroudeurs du Désert est né d'une passion : celle de faire découvrir le désert autrement.",
+        "story_p2": "Nous créons des expériences authentiques pour les voyageurs en quête d'aventure, de dépaysement et de rencontres.",
+        "story_p3": "Des dunes infinies aux oasis cachées, en passant par les villages traditionnels et les paysages sauvages, chaque circuit est pensé pour vous faire vivre une aventure unique.",
+        "story_objective": "Notre objectif ?",
+        "story_tagline": "Vous emmener là où les souvenirs commencent.",
+        "values_subtitle": "Nos valeurs",
+        "values_title": "Ce qui nous anime au quotidien",
+        "values": {
+            "authenticity": {
+                "title": "Authenticité",
+                "text": "Nous vous faisons découvrir le désert, ses paysages, ses traditions et ses habitants de manière authentique."
+            },
+            "adventure": {
+                "title": "Aventure",
+                "text": "Excursions, treks et circuits pensés pour les amoureux de découverte et d'expériences uniques."
+            },
+            "proximity": {
+                "title": "Proximité",
+                "text": "Une équipe passionnée et disponible pour vous accompagner avant, pendant et après votre voyage."
+            },
+            "safety": {
+                "title": "Sécurité",
+                "text": "Des partenaires locaux expérimentés et des circuits organisés avec soin pour voyager en toute sérénité."
+            }
+        },
+        "why_title": "Pourquoi choisir Baroudeurs du Désert ?",
+        "why_item1": "Des expériences authentiques",
+        "why_item2": "Des guides et partenaires locaux",
+        "why_item3": "Des circuits adaptés à tous les voyageurs",
+        "why_item4": "Des petits groupes pour une expérience plus humaine",
+        "why_item5": "Des paysages exceptionnels",
+        "why_item6": "Une assistance et un accompagnement personnalisé",
+        "emotional_quote": "Le désert ne se visite pas seulement... il se ressent.",
+        "emotional_question": "Prêt à vivre votre prochaine aventure ?",
+        "emotional_button": "Découvrir nos circuits"
+    },
     "services_page": {
         "hero_title_line1": "Tout ce qu'il faut",
         "hero_title_line2": "pour partir plus loin.",
         "hero_subtitle": "Du premier transfert au dernier coucher de soleil, nous organisons les détails qui transforment un voyage dans le Sud tunisien en véritable aventure.",
         "hero_cta": "Découvrir nos services",
-
         "engagement_label": "NOTRE ENGAGEMENT",
         "engagement_title": "L'aventure, sans les contraintes.",
         "engagement_text1": "Vous rêvez du désert. Nous nous occupons du reste. Transport, hébergement, bivouac, accompagnement, véhicules, transferts...",
         "engagement_text2": "Notre rôle est de créer les conditions parfaites pour que vous puissiez simplement profiter du voyage.",
         "playground_note": "Le Sud tunisien, notre terrain de jeu",
-
         "services_label": "NOS SERVICES",
         "services_title": "Des prestations sur mesure, pour une expérience unique.",
-
         "service1_title": "CIRCUITS 4×4",
         "service1_subtitle": "Le désert grandeur nature",
         "service1_text": "Découvrez les dunes, les oasis, les pistes oubliées et les paysages sauvages du Sud tunisien à bord de nos 4×4.",
-
         "service2_title": "TREKS & RANDONNÉES",
         "service2_subtitle": "Marcher au rythme du désert",
         "service2_text": "Des itinéraires pour découvrir le Sahara autrement : randonnée, trek et immersion dans les paysages du Grand Erg Oriental.",
         "service2_extra": "De quelques heures à plusieurs jours",
-
         "service3_title": "MÉHARÉE",
         "service3_subtitle": "Le désert d'autrefois",
         "service3_text": "Prenez le temps de ralentir. Traversez les dunes à dos de dromadaire et vivez une véritable expérience saharienne.",
-
         "service4_title": "QUAD & AVENTURE",
         "service4_subtitle": "Plus de sensations. Plus de liberté.",
         "service4_text": "Pour ceux qui veulent ajouter un peu d'adrénaline à leur aventure : pistes, dunes et grands espaces en quad.",
-
         "service5_title": "CIRCUITS CULTURELS",
         "service5_subtitle": "Du désert aux villages berbères",
         "service5_text": "Explorez l'autre visage de la Tunisie : Matmata, Tataouine, Douiret, Guermassa, ksour, oasis et villages traditionnels.",
         "service5_extra": "Un voyage entre paysages, histoire et rencontres",
-
         "service6_title": "VOYAGES SUR MESURE",
         "service6_subtitle": "Votre voyage. Votre rythme.",
         "service6_text": "Vous avez une idée précise ? Nous construisons votre itinéraire selon vos envies, la durée de votre séjour, votre budget et votre façon de voyager.",
         "service6_extra": "Solo · Couple · Famille · Groupe · Entreprise",
-
         "discover": "Découvrir",
         "live_experience": "Vivre l'expérience",
         "go_adventure": "Partir à l'aventure",
         "discover_south": "Découvrir le Sud",
         "create_trip": "Créer mon voyage",
-
         "your_adventure": "VOTRE AVENTURE",
         "travel_styles_title": "Comment voulez-vous vivre le désert ?",
         "style_slowly": "LENTEMENT",
@@ -449,15 +433,12 @@ detail_page:
         "style_family_desc": "Circuits adaptés · découvertes · confort",
         "style_custom": "À VOTRE IMAGE",
         "style_custom_desc": "Voyage entièrement sur mesure",
-
         "immersive_title_line1": "Plus qu'un voyage.",
         "immersive_title_line2": "Une histoire à raconter.",
         "immersive_text": "Nuit sous les étoiles · bivouac · cuisine locale · rencontres · dunes · silence",
-
         "playground_label": "NOTRE TERRAIN DE JEU",
         "playground_title": "Du Nord au grand Sud",
         "playground_text": "Des portes de la Tunisie aux profondeurs du Sahara, nous vous emmenons là où commence l'aventure.",
-
         "why_us_label": "POURQUOI PARTIR AVEC NOUS ?",
         "why_us_title": "Pourquoi choisir Baroudeurs du Désert ?",
         "why1_title": "EXPERTISE LOCALE",
@@ -468,10 +449,103 @@ detail_page:
         "why3_text": "Des programmes adaptés aux envies et au rythme de chaque voyageur.",
         "why4_title": "UNE ÉQUIPE À VOS CÔTÉS",
         "why4_text": "De la préparation au retour, nous vous accompagnons.",
-
         "cta_title_line1": "Et si votre prochaine",
         "cta_title_line2": "aventure commençait ici ?",
         "cta_text": "Construisons ensemble votre voyage dans le Sud tunisien.",
         "cta_button": "PARLER DE MON PROJET"
+    },
+    "blog_page": {
+        "title": "Carnet de route",
+        "hero_eyebrow": "CARNET DE ROUTE",
+        "hero_title_line1": "Le Sud tunisien",
+        "hero_title_line2": "commence ici.",
+        "hero_text": "Guides, itinéraires, conseils pratiques et histoires de voyage pour préparer votre prochaine aventure.",
+        "hero_cta": "Tous les articles",
+        "hero_tag_douz": "DOUZ",
+        "hero_tag_sahara": "SAHARA",
+        "hero_tag_djerba": "DJERBA",
+        "hero_tag_tozeur": "TOZEUR",
+        "hero_tag_tataouine": "TATAOUINE",
+        "featured_eyebrow": "GUIDE · SAHARA",
+        "featured_title": "Comment préparer son premier voyage dans le désert tunisien ?",
+        "featured_text": "Itinéraire, durée, transport, bivouac, meilleure période… Découvrez tous nos conseils pour vivre une expérience inoubliable.",
+        "featured_cta": "Lire l'article",
+        "tab_all": "TOUS",
+        "tab_destinations": "DESTINATIONS",
+        "tab_guides": "GUIDES",
+        "tab_adventure": "AVENTURE",
+        "tab_culture": "CULTURE",
+        "tab_tips": "CONSEILS",
+        "tab_south": "SUD TUNISIEN",
+        "tag_destination": "DESTINATION",
+        "tag_adventure": "AVENTURE",
+        "tag_culture": "CULTURE",
+        "tag_tips": "CONSEILS",
+        "tag_experience": "EXPÉRIENCE",
+        "card1_title": "Que faire à Djerba avant de partir dans le désert ?",
+        "card1_text": "Un guide pour découvrir Djerba et organiser votre départ vers le Sud tunisien.",
+        "card2_title": "Ksar Ghilane",
+        "card2_text": "L'oasis au cœur du désert.",
+        "card3_title": "Randonnée à dromadaire : tout savoir avant de partir",
+        "card3_text": "Traversez les dunes dorées et vivez le désert à l'ancienne.",
+        "card4_title": "Les villages berbères du Sud tunisien",
+        "card4_text": "Découvrez une architecture ancienne, des traditions et une hospitalité chaleureuse.",
+        "card5_title": "4x4 dans le désert : guide pour débuter",
+        "card5_text": "Conseils essentiels pour votre première aventure hors-piste dans le Sahara.",
+        "card6_title": "Dormir sous les étoiles dans le Sahara",
+        "card6_text": "Une nuit magique dans un camp du désert sous un ciel infini.",
+        "read_more": "Lire",
+        "dest_eyebrow": "NOS DESTINATIONS",
+        "dest_title": "Où allons-nous ?",
+        "dest_text": "Des paysages uniques, des rencontres authentiques, une même envie : l'aventure.",
+        "dest_cta": "Découvrir toutes les destinations",
+        "dest_label_djerba": "DJERBA",
+        "dest_label_ksar_ghilane": "KSAR GHILANE",
+        "dest_label_tozeur": "TOZEUR",
+        "dest_label_tataouine": "TATAOUINE",
+        "dest_label_tembaine": "TEMBAINE",
+        "dest_label_dahar": "DAHAR",
+        "latest_eyebrow": "NOS DERNIERS RÉCITS",
+        "latest_title": "À la une",
+        "latest_view_all": "Voir tous les articles",
+        "post1_tag": "EXPÉRIENCE",
+        "post1_title": "Explorez la magie d'un bivouac saharien sous les étoiles",
+        "post1_text": "Une nuit sur le sable chaud, le regard perdu dans un ciel étoilé. La magie du bivouac saharien.",
+        "post2_tag": "AVENTURE",
+        "post2_title": "Exploration équestre dans le désert : une aventure inoubliable au cœur du Sahara",
+        "post2_text": "Au lever du soleil, le sable doré à perte de vue. Une chevauchée dans le désert silencieux.",
+        "post3_tag": "EXPÉRIENCE",
+        "post3_title": "Organisez votre propre bivouac étoilé dans le désert : une expérience inoubliable",
+        "post3_text": "Un ciel d'encre, mille étoiles, un feu qui crépite. Votre bivouac étoilé, étape par étape.",
+        "post4_tag": "CIRCUIT",
+        "post4_title": "Découvrez le circuit culturel Tozeur-Douz : une aventure privée inoubliable",
+        "post4_text": "Palmeraies, dunes infinies, histoires millénaires. Le circuit culturel Tozeur-Douz vous attend.",
+        "post5_tag": "CIRCUIT",
+        "post5_title": "Circuits privés dans le désert à Tozeur et Douz : une aventure unique",
+        "post5_text": "Le sable danse, les oasis sont secrètes, chaque instant émerveille. Un circuit privé fait pour vous.",
+        "post6_tag": "GUIDE",
+        "post6_title": "LIEUX DE TOURNAGE STAR WARS EN TUNISIE – LE GUIDE COMPLET DE TATOOINE",
+        "post6_text": "Les vrais lieux de tournage de Tatooine, leurs scènes cultes et l'héritage qu'ils portent encore.",
+        "post7_tag": "GUIDE",
+        "post7_title": "Circuit Sud Tunisien ou Désert du Sahara : le guide pour choisir votre itinéraire",
+        "post7_text": "Sud tunisien ou grand Sahara ? Comprenez les deux et choisissez l'itinéraire qui vous ressemble.",
+        "post8_tag": "GUIDE",
+        "post8_title": "Voyager en Tunisie : Nord ou Sud ? Culture ou aventure dans le désert ?",
+        "post8_text": "Carthage, Djebel Dahar, cités romaines, dunes dorées. La Tunisie, terre de contrastes.",
+        "post9_tag": "DESTINATION",
+        "post9_title": "QUE FAIRE À DJERBA ? EXCURSIONS DANS LE SUD TUNISIEN",
+        "post9_text": "Excursions d'un jour, circuits de plusieurs jours, nature, culture, aventure. Tout depuis Djerba.",
+        "newsletter_title_line1": "Gardez une place",
+        "newsletter_title_line2": "pour l'aventure.",
+        "newsletter_text": "Recevez nos idées de voyages, nos nouveaux itinéraires et nos histoires du désert.",
+        "newsletter_placeholder": "Votre adresse email",
+        "story_title_line1": "Plus qu'un voyage.",
+        "story_title_line2": "Une histoire à raconter.",
+        "story_tag1": "Nuit sous les étoiles",
+        "story_tag2": "Bivouac",
+        "story_tag3": "Cuisine locale",
+        "story_tag4": "Rencontres",
+        "story_tag5": "Dunes",
+        "story_tag6": "Silence"
     }
 }

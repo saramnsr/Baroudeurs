@@ -3,99 +3,471 @@
 {% block title %}{{ 'blog_page.title'|trans }}{% endblock %}
 
 {% block body %}
-    <!--====== Start Banner Section ======-->
-    <section class="page-banner light-red-bg pt-170 pb-170 bg_cover" style="background-image: url('{{ asset('assets/images/bg/page-bg-1.jpg') }}');">
+
+    <!--====== Start Carnet de Route Hero ======-->
+    <section class="cr-hero">
+        <div class="cr-hero-bg" style="background-image: url('{{ asset('assets/images/blog/new-blog/hero1.jpg') }}');"></div>
+        <div class="cr-hero-overlay"></div>
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="page-banner-content text-center text-white">
-                        <h1 class="page-title">{{ 'blog_page.title'|trans }}</h1>
-                        <ul class="breadcrumb-link text-white">
-                            <li><a href="{{ path('app_font_index') }}">{{ 'blog_page.breadcrumb_home'|trans }}</a></li>
-                            <li class="active">{{ 'blog_page.title'|trans }}</li>
-                        </ul>
+            <div class="cr-hero-inner">
+                <div class="cr-hero-content">
+                    <span class="cr-eyebrow cr-eyebrow--light"><i class="fas fa-minus"></i> {{ 'blog_page.hero_eyebrow'|trans }}</span>
+                    <h1 class="cr-hero-title">{{ 'blog_page.hero_title_line1'|trans }}<br>{{ 'blog_page.hero_title_line2'|trans }}</h1>
+                    <p class="cr-hero-text">{{ 'blog_page.hero_text'|trans }}</p>
+                    <a href="#cr-grid" class="cr-btn cr-btn--orange">{{ 'blog_page.hero_cta'|trans }} <i class="far fa-angle-double-right"></i></a>
+                </div>
+
+                <ul class="cr-hero-tags">
+                    <li><a href="#cr-grid" data-filter="douz">{{ 'blog_page.hero_tag_douz'|trans }}</a></li>
+                    <li><a href="#cr-grid" data-filter="sahara">{{ 'blog_page.hero_tag_sahara'|trans }}</a></li>
+                    <li><a href="#cr-grid" data-filter="djerba">{{ 'blog_page.hero_tag_djerba'|trans }}</a></li>
+                    <li><a href="#cr-grid" data-filter="tozeur">{{ 'blog_page.hero_tag_tozeur'|trans }}</a></li>
+                    <li><a href="#cr-grid" data-filter="tataouine">{{ 'blog_page.hero_tag_tataouine'|trans }}</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <svg class="cr-hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,45 L1440,90 L0,90 Z"></path>
+        </svg>
+    </section><!--====== End Carnet de Route Hero ======-->
+
+    <!--====== Start Featured Guide / Second Section ======-->
+    <section class="cr-story">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-40 mb-lg-0">
+                    <div class="cr-story-content">
+                        <span class="cr-eyebrow">{{ 'blog_page.featured_eyebrow'|trans }}</span>
+                        
+                        <h2 class="cr-title-lg">
+                            How to prepare<br>
+                            for your first trip<br>
+                            into the Tunisian desert?
+                        </h2>
+
+                        <div class="cr-story-tags">
+                            <span class="cr-pill"><i class="fas fa-route"></i> Itinerary</span>
+                            <span class="cr-pill"><i class="fas fa-clock"></i> Duration</span>
+                            <span class="cr-pill"><i class="fas fa-car"></i> Transport</span>
+                            <span class="cr-pill"><i class="fas fa-campground"></i> Bivouac</span>
+                            <span class="cr-pill"><i class="fas fa-sun"></i> Best season</span>
+                        </div>
+
+                        <a href="{{ path('app_font_index') }}" class="cr-link-arrow" style="margin-top: 25px; display: inline-flex;">
+                            {{ 'blog_page.featured_cta'|trans }} <i class="far fa-angle-double-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="cr-story-visual">
+                        <div class="cr-story-box"></div>
+
+                        <div class="cr-story-accent cr-story-accent--top">
+                            <img src="{{ asset('assets/images/blog/new-blog/section two 1.jpg') }}" alt="{{ 'blog_page.featured_title'|trans }}">
+                        </div>
+
+                        <div class="cr-story-main">
+                            <img src="{{ asset('assets/images/blog/new-blog/section two 2.jpg') }}" alt="{{ 'blog_page.featured_title'|trans }}">
+                        </div>
+
+                        <div class="cr-story-accent cr-story-accent--bottom">
+                            <img src="{{ asset('assets/images/blog/new-blog/section two 3.jpg') }}" alt="{{ 'blog_page.featured_title'|trans }}">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section><!--====== End Banner Section ======-->
+    </section><!--====== End Featured Guide / Second Section ======-->
 
-    <!--====== Start Blog Section ======-->
-    <section class="pt-80 pb-60">
+    <!--====== Start Category Tabs ======-->
+    <section class="cr-tabs-section">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center mb-50">
-                    <span style="color: #C8A97E; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 14px;">{{ 'blog_page.title'|trans }}</span>
-                    <h2 style="color: #3B281C; font-size: 36px; margin: 15px 0 10px 0;">{{ 'blog_page.subtitle'|trans }}</h2>
-                </div>
-            </div>
+            <ul class="cr-tabs" id="crTabs">
+                <li class="cr-tab active" data-tab="tous">
+                    <span class="cr-tab-icon" style="-webkit-mask-image: url('{{ asset('assets/images/blog/new-blog/icons/app.svg') }}'); mask-image: url('{{ asset('assets/images/blog/new-blog/icons/app.svg') }}');"></span>
+                    <span>{{ 'blog_page.tab_all'|trans }}</span>
+                </li>
+                <li class="cr-tab" data-tab="destinations">
+                    <span class="cr-tab-icon" style="-webkit-mask-image: url('{{ asset('assets/images/blog/new-blog/icons/DESTINATIONS.svg') }}'); mask-image: url('{{ asset('assets/images/blog/new-blog/icons/DESTINATIONS.svg') }}');"></span>
+                    <span>{{ 'blog_page.tab_destinations'|trans }}</span>
+                </li>
+                <li class="cr-tab" data-tab="guides">
+                    <span class="cr-tab-icon" style="-webkit-mask-image: url('{{ asset('assets/images/blog/new-blog/icons/GUIDES.svg') }}'); mask-image: url('{{ asset('assets/images/blog/new-blog/icons/GUIDES.svg') }}');"></span>
+                    <span>{{ 'blog_page.tab_guides'|trans }}</span>
+                </li>
+                <li class="cr-tab" data-tab="aventure">
+                    <span class="cr-tab-icon" style="-webkit-mask-image: url('{{ asset('assets/images/blog/new-blog/icons/ADVENTURE.svg') }}'); mask-image: url('{{ asset('assets/images/blog/new-blog/icons/ADVENTURE.svg') }}');"></span>
+                    <span>{{ 'blog_page.tab_adventure'|trans }}</span>
+                </li>
+                <li class="cr-tab" data-tab="culture">
+                    <span class="cr-tab-icon" style="-webkit-mask-image: url('{{ asset('assets/images/blog/new-blog/icons/CULTURE.svg') }}'); mask-image: url('{{ asset('assets/images/blog/new-blog/icons/CULTURE.svg') }}');"></span>
+                    <span>{{ 'blog_page.tab_culture'|trans }}</span>
+                </li>
+                <li class="cr-tab" data-tab="conseils">
+                    <span class="cr-tab-icon" style="-webkit-mask-image: url('{{ asset('assets/images/blog/new-blog/icons/TIPS.svg') }}'); mask-image: url('{{ asset('assets/images/blog/new-blog/icons/TIPS.svg') }}');"></span>
+                    <span>{{ 'blog_page.tab_tips'|trans }}</span>
+                </li>
+                <li class="cr-tab" data-tab="sud-tunisien">
+                    <span class="cr-tab-icon" style="-webkit-mask-image: url('{{ asset('assets/images/blog/new-blog/icons/SOUTHERN-TUNISIA.svg') }}'); mask-image: url('{{ asset('assets/images/blog/new-blog/icons/SOUTHERN-TUNISIA.svg') }}');"></span>
+                    <span>{{ 'blog_page.tab_south'|trans }}</span>
+                </li>
+            </ul>
+        </div>
+    </section><!--====== End Category Tabs ======-->
 
+    <!--====== Start Articles Grid (Bento Layout) ======-->
+    <section class="cr-grid-section" id="cr-grid">
+        <div class="container">
+            <div class="row cr-bento-grid" id="crBentoGrid">
+
+                <!-- 1. Big Wide Card (Top Left) - Djerba -->
+                <div class="col-lg-7 col-md-12 cr-bento-item" data-cat="destinations">
+                    <a href="{{ path('app_font_detail', {type: 'excursion', id: 1}) }}" class="cr-card cr-card--image">
+                        <img src="{{ asset('assets/images/blog/new-blog/Djerba.jpg') }}" alt="{{ 'blog_page.card1_title'|trans }}">
+                        <div class="cr-card-overlay">
+                            <div class="cr-card-top">
+                                <h3 class="cr-card-title">{{ 'blog_page.card1_title'|trans }}</h3>
+                            </div>
+                            <div class="cr-card-bottom">
+                                <p class="cr-card-text">{{ 'blog_page.card1_text'|trans }}</p>
+                                <span class="cr-link-arrow">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 2. Big Tall Card (Right Side, spans 2 rows) - Sleeping under the stars -->
+                <div class="col-lg-5 col-md-12 cr-bento-item cr-bento-tall" data-cat="sud-tunisien">
+                    <a href="{{ path('app_font_detail', {type: 'circuit', id: 5}) }}" class="cr-card cr-card--image">
+                        <img src="{{ asset('assets/images/blog/new-blog/sleeping.jpg') }}" alt="{{ 'blog_page.card6_title'|trans }}">
+                        <div class="cr-card-overlay">
+                            <div class="cr-card-top">
+                                <h3 class="cr-card-title">{{ 'blog_page.card6_title'|trans }}</h3>
+                            </div>
+                            <div class="cr-card-bottom">
+                                <p class="cr-card-text">{{ 'blog_page.card6_text'|trans }}</p>
+                                <span class="cr-link-arrow">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 3. Camel Trekking (Bottom Left Row 1) -->
+                <div class="col-lg-4 col-md-6 cr-bento-item" data-cat="aventure">
+                    <a href="{{ path('app_font_detail', {type: 'circuit', id: 3}) }}" class="cr-card cr-card--image">
+                        <img src="{{ asset('assets/images/blog/new-blog/Camel trekking.jpg') }}" alt="{{ 'blog_page.card3_title'|trans }}">
+                        <div class="cr-card-overlay">
+                            <div class="cr-card-top">
+                                <h3 class="cr-card-title">{{ 'blog_page.card3_title'|trans }}</h3>
+                            </div>
+                            <div class="cr-card-bottom">
+                                <p class="cr-card-text">{{ 'blog_page.card3_text'|trans }}</p>
+                                <span class="cr-link-arrow">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 4. Ksar Ghilane (Bottom Left Row 1) -->
+                <div class="col-lg-3 col-md-6 cr-bento-item" data-cat="destinations">
+                    <a href="{{ path('app_font_detail', {type: 'excursion', id: 2}) }}" class="cr-card cr-card--image">
+                        <img src="{{ asset('assets/images/blog/new-blog/Ksar Ghilane.jpg') }}" alt="{{ 'blog_page.card2_title'|trans }}">
+                        <div class="cr-card-overlay">
+                            <div class="cr-card-top">
+                                <h3 class="cr-card-title">{{ 'blog_page.card2_title'|trans }}</h3>
+                            </div>
+                            <div class="cr-card-bottom">
+                                <p class="cr-card-text">{{ 'blog_page.card2_text'|trans }}</p>
+                                <span class="cr-link-arrow">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 5. Berber Villages (Bottom Left Row 2) -->
+                <div class="col-lg-3 col-md-6 cr-bento-item" data-cat="culture">
+                    <a href="{{ path('app_font_detail', {type: 'excursion', id: 1}) }}" class="cr-card cr-card--image">
+                        <img src="{{ asset('assets/images/blog/new-blog/Berber villages.webp') }}" alt="{{ 'blog_page.card4_title'|trans }}">
+                        <div class="cr-card-overlay">
+                            <div class="cr-card-top">
+                                <h3 class="cr-card-title">{{ 'blog_page.card4_title'|trans }}</h3>
+                            </div>
+                            <div class="cr-card-bottom">
+                                <p class="cr-card-text">{{ 'blog_page.card4_text'|trans }}</p>
+                                <span class="cr-link-arrow">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 6. Beginner's Guide (Bottom Left Row 2) -->
+                <div class="col-lg-4 col-md-6 cr-bento-item" data-cat="conseils">
+                    <a href="{{ path('app_font_detail', {type: 'circuit', id: 1}) }}" class="cr-card cr-card--image">
+                        <img src="{{ asset('assets/images/blog/new-blog/beginner\'s guide.jpg') }}" alt="{{ 'blog_page.card5_title'|trans }}">
+                        <div class="cr-card-overlay">
+                            <div class="cr-card-top">
+                                <h3 class="cr-card-title">{{ 'blog_page.card5_title'|trans }}</h3>
+                            </div>
+                            <div class="cr-card-bottom">
+                                <p class="cr-card-text">{{ 'blog_page.card5_text'|trans }}</p>
+                                <span class="cr-link-arrow">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section><!--====== End Articles Grid ======-->
+
+    <!--====== Start Destinations / Full Background ======-->
+    <section class="cr-destinations">
+        <!-- Wavy Top -->
+        <svg class="cr-destinations-wave cr-destinations-wave--top" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,40 C360,90 1080,-10 1440,40 L1440,0 L0,0 Z"></path>
+        </svg>
+
+        <!-- Background Image -->
+        <div class="cr-destinations-bg" style="background-image: url('{{ asset('assets/images/blog/new-blog/DESTINATIONS.jpg') }}');"></div>
+
+        <!-- Black Haze Overlay -->
+        <div class="cr-destinations-overlay"></div>
+
+        <div class="container">
             <div class="row">
-                
-                <!-- ================= ARTICLE 1: PREPARING YOUR BAG ================= -->
-                <div class="col-lg-4 col-md-6 mb-30">
-                    <div class="blog-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0px 5px 30px rgba(59, 40, 28, 0.08); height: 100%; display: flex; flex-direction: column;">
-                        <div style="height: 220px; overflow: hidden;">
-                            <img src="https://res.cloudinary.com/dy13axswo/image/upload/w_600,h_440,c_fill,q_auto,f_auto/baroudeurs/service/details/Baroudeurs/1.jpg" alt="Preparing your bag for the desert" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
-                        </div>
-                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
-                            <p style="color: #999; font-size: 13px; margin-bottom: 10px;">{{ 'blog_page.posted_by'|trans }}: Ahmed Ben Ali | 15/01/2024</p>
-                            <h3 style="color: #3B281C; font-size: 20px; margin-bottom: 10px;">{{ 'blog_page.article1.title'|trans }}</h3>
-                            <p style="color: #5B4636; font-size: 14px; line-height: 24px; margin-bottom: 20px;">
-                                {{ 'blog_page.article1.excerpt'|trans }}
-                            </p>
-                            <div style="margin-top: auto;">
-                                <a href="{{ path('programmes') }}" class="main-btn btn-green" style="padding: 10px 25px; font-size: 14px;">
-                                    {{ 'blog_page.view_circuits'|trans }} <i class="far fa-angle-double-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-lg-7 cr-destinations-content">
+                    <span class="cr-eyebrow cr-eyebrow--light"><i class="fas fa-minus"></i> {{ 'blog_page.dest_eyebrow'|trans }}</span>
+                    <h2 class="cr-title-lg cr-title-lg--light">{{ 'blog_page.dest_title'|trans }}</h2>
+                    <p class="cr-text cr-text--light">{{ 'blog_page.dest_text'|trans }}</p>
+                    <a href="{{ path('app_font_index') }}" class="cr-btn cr-btn--orange">{{ 'blog_page.dest_cta'|trans }} <i class="far fa-angle-double-right"></i></a>
                 </div>
-
-                <!-- ================= ARTICLE 2: KSAR GHILANE ================= -->
-                <div class="col-lg-4 col-md-6 mb-30">
-                    <div class="blog-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0px 5px 30px rgba(59, 40, 28, 0.08); height: 100%; display: flex; flex-direction: column;">
-                        <div style="height: 220px; overflow: hidden;">
-                            <img src="https://res.cloudinary.com/dy13axswo/image/upload/w_600,h_440,c_fill,q_auto,f_auto/baroudeurs/service/details/Tataouine/1.jpg" alt="What to see in Ksar Ghilane?" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
-                        </div>
-                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
-                            <p style="color: #999; font-size: 13px; margin-bottom: 10px;">{{ 'blog_page.posted_by'|trans }}: Mohamed El Khadra | 10/02/2024</p>
-                            <h3 style="color: #3B281C; font-size: 20px; margin-bottom: 10px;">{{ 'blog_page.article2.title'|trans }}</h3>
-                            <p style="color: #5B4636; font-size: 14px; line-height: 24px; margin-bottom: 20px;">
-                                {{ 'blog_page.article2.excerpt'|trans }}
-                            </p>
-                            <div style="margin-top: auto;">
-                                <a href="{{ path('programmes') }}" class="main-btn btn-green" style="padding: 10px 25px; font-size: 14px;">
-                                    {{ 'blog_page.view_circuits'|trans }} <i class="far fa-angle-double-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= ARTICLE 3: RECIPES ================= -->
-                <div class="col-lg-4 col-md-6 mb-30">
-                    <div class="blog-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0px 5px 30px rgba(59, 40, 28, 0.08); height: 100%; display: flex; flex-direction: column;">
-                        <div style="height: 220px; overflow: hidden;">
-                            <img src="https://res.cloudinary.com/dy13axswo/image/upload/w_600,h_440,c_fill,q_auto,f_auto/baroudeurs/service/details/Charm/1.jpg" alt="Our favorite recipes in bivouac" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
-                        </div>
-                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
-                            <p style="color: #999; font-size: 13px; margin-bottom: 10px;">{{ 'blog_page.posted_by'|trans }}: Laila Ben Amor | 05/03/2024</p>
-                            <h3 style="color: #3B281C; font-size: 20px; margin-bottom: 10px;">{{ 'blog_page.article3.title'|trans }}</h3>
-                            <p style="color: #5B4636; font-size: 14px; line-height: 24px; margin-bottom: 20px;">
-                                {{ 'blog_page.article3.excerpt'|trans }}
-                            </p>
-                            <div style="margin-top: auto;">
-                                <a href="{{ path('programmes') }}" class="main-btn btn-green" style="padding: 10px 25px; font-size: 14px;">
-                                    {{ 'blog_page.view_circuits'|trans }} <i class="far fa-angle-double-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
-    </section><!--====== End Blog Section ======-->
+
+        <!-- Wavy Bottom -->
+        <svg class="cr-destinations-wave cr-destinations-wave--bottom" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,40 C360,-10 1080,90 1440,40 L1440,80 L0,80 Z"></path>
+        </svg>
+    </section><!--====== End Destinations / Full Background ======-->
+
+     <!--====== Start Latest Posts ======-->
+    <section class="cr-latest">
+        <div class="container">
+            <div class="row align-items-end mb-25">
+                <div class="col-md-8">
+                    <span class="cr-eyebrow"><i class="fas fa-minus"></i> {{ 'blog_page.latest_eyebrow'|trans }}</span>
+                    <h2 class="cr-title-lg">{{ 'blog_page.latest_title'|trans }}</h2>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="#cr-grid" class="cr-link-arrow">{{ 'blog_page.latest_view_all'|trans }} <i class="far fa-angle-double-right"></i></a>
+                </div>
+            </div>
+
+            <div class="cr-latest-wrap">
+                <button type="button" class="cr-latest-arrow cr-latest-arrow--prev" aria-label="{{ 'blog_page.tab_all'|trans }}"><i class="far fa-angle-left"></i></button>
+
+                <div class="cr-latest-track" id="crLatestTrack">
+                    <!-- Card 1 -->
+                    <div class="cr-latest-card">
+                        <img src="{{ asset('assets/images/blog/new-blog/1.avif') }}" alt="{{ 'blog_page.post1_title'|trans }}">
+                        <div class="cr-latest-body">
+                            <span class="cr-tag">{{ 'blog_page.post1_tag'|trans }}</span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post1_title'|trans }}</h3>
+                            <p class="cr-card-text">{{ 'blog_page.post1_text'|trans }}</p>
+                            <div class="cr-latest-meta">
+                                <span>12 avril 2025</span>
+                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="cr-latest-card">
+                        <img src="{{ asset('assets/images/blog/new-blog/2.avif') }}" alt="{{ 'blog_page.post2_title'|trans }}">
+                        <div class="cr-latest-body">
+                            <span class="cr-tag">{{ 'blog_page.post2_tag'|trans }}</span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post2_title'|trans }}</h3>
+                            <p class="cr-card-text">{{ 'blog_page.post2_text'|trans }}</p>
+                            <div class="cr-latest-meta">
+                                <span>5 avril 2025</span>
+                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="cr-latest-card">
+                        <img src="{{ asset('assets/images/blog/new-blog/3.avif') }}" alt="{{ 'blog_page.post3_title'|trans }}">
+                        <div class="cr-latest-body">
+                            <span class="cr-tag">{{ 'blog_page.post3_tag'|trans }}</span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post3_title'|trans }}</h3>
+                            <p class="cr-card-text">{{ 'blog_page.post3_text'|trans }}</p>
+                            <div class="cr-latest-meta">
+                                <span>28 mars 2025</span>
+                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="cr-latest-card">
+                        <img src="{{ asset('assets/images/blog/new-blog/4.avif') }}" alt="{{ 'blog_page.post4_title'|trans }}">
+                        <div class="cr-latest-body">
+                            <span class="cr-tag">{{ 'blog_page.post4_tag'|trans }}</span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post4_title'|trans }}</h3>
+                            <p class="cr-card-text">{{ 'blog_page.post4_text'|trans }}</p>
+                            <div class="cr-latest-meta">
+                                <span>20 mars 2025</span>
+                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="cr-latest-card">
+                        <img src="{{ asset('assets/images/blog/new-blog/5.avif') }}" alt="{{ 'blog_page.post5_title'|trans }}">
+                        <div class="cr-latest-body">
+                            <span class="cr-tag">{{ 'blog_page.post5_tag'|trans }}</span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post5_title'|trans }}</h3>
+                            <p class="cr-card-text">{{ 'blog_page.post5_text'|trans }}</p>
+                            <div class="cr-latest-meta">
+                                <span>15 mars 2025</span>
+                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="cr-latest-card">
+                        <img src="{{ asset('assets/images/blog/new-blog/6.jpg') }}" alt="{{ 'blog_page.post6_title'|trans }}">
+                        <div class="cr-latest-body">
+                            <span class="cr-tag">{{ 'blog_page.post6_tag'|trans }}</span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post6_title'|trans }}</h3>
+                            <p class="cr-card-text">{{ 'blog_page.post6_text'|trans }}</p>
+                            <div class="cr-latest-meta">
+                                <span>10 mars 2025</span>
+                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 7 -->
+                    <div class="cr-latest-card">
+                        <img src="{{ asset('assets/images/blog/new-blog/7.avif') }}" alt="{{ 'blog_page.post7_title'|trans }}">
+                        <div class="cr-latest-body">
+                            <span class="cr-tag">{{ 'blog_page.post7_tag'|trans }}</span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post7_title'|trans }}</h3>
+                            <p class="cr-card-text">{{ 'blog_page.post7_text'|trans }}</p>
+                            <div class="cr-latest-meta">
+                                <span>5 mars 2025</span>
+                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 8 -->
+                    <div class="cr-latest-card">
+                        <img src="{{ asset('assets/images/blog/new-blog/8.jpg') }}" alt="{{ 'blog_page.post8_title'|trans }}">
+                        <div class="cr-latest-body">
+                            <span class="cr-tag">{{ 'blog_page.post8_tag'|trans }}</span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post8_title'|trans }}</h3>
+                            <p class="cr-card-text">{{ 'blog_page.post8_text'|trans }}</p>
+                            <div class="cr-latest-meta">
+                                <span>28 février 2025</span>
+                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 9 -->
+                    <div class="cr-latest-card">
+                        <img src="{{ asset('assets/images/blog/new-blog/1.avif') }}" alt="{{ 'blog_page.post9_title'|trans }}">
+                        <div class="cr-latest-body">
+                            <span class="cr-tag">{{ 'blog_page.post9_tag'|trans }}</span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post9_title'|trans }}</h3>
+                            <p class="cr-card-text">{{ 'blog_page.post9_text'|trans }}</p>
+                            <div class="cr-latest-meta">
+                                <span>20 février 2025</span>
+                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="cr-latest-arrow cr-latest-arrow--next" aria-label="{{ 'blog_page.latest_view_all'|trans }}"><i class="far fa-angle-right"></i></button>
+            </div>
+        </div>
+    </section><!--====== End Latest Posts ======-->
+
+    <!--====== Start Newsletter (Background Video) ======-->
+    <section class="cr-newsletter">
+        <video class="cr-newsletter-video" autoplay muted loop playsinline>
+            <source src="{{ asset('assets/videos/video.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="cr-newsletter-overlay"></div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-25 mb-lg-0">
+                    <h2 class="cr-title-lg cr-title-lg--light">{{ 'blog_page.newsletter_title_line1'|trans }}<br>{{ 'blog_page.newsletter_title_line2'|trans }}</h2>
+                    <p class="cr-text cr-text--light">{{ 'blog_page.newsletter_text'|trans }}</p>
+                </div>
+                <div class="col-lg-5">
+                    <form class="cr-newsletter-form" action="#" method="post">
+                        <input type="email" name="newsletter_email" placeholder="{{ 'blog_page.newsletter_placeholder'|trans }}" required>
+                        <button type="submit" aria-label="{{ 'blog_page.newsletter_placeholder'|trans }}"><i class="far fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section><!--====== End Newsletter ======-->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tabs = document.querySelectorAll('.cr-tab');
+            var grid = document.getElementById('crBentoGrid');
+            var cards = document.querySelectorAll('#cr-grid .cr-bento-item');
+
+            tabs.forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    tabs.forEach(function (t) { t.classList.remove('active'); });
+                    tab.classList.add('active');
+                    var target = tab.getAttribute('data-tab');
+
+                    if (target === 'tous') {
+                        grid.classList.remove('cr-bento-filtered');
+                    } else {
+                        grid.classList.add('cr-bento-filtered');
+                    }
+
+                    cards.forEach(function (item) {
+                        var show = (target === 'tous' || item.getAttribute('data-cat') === target);
+                        item.style.display = show ? '' : 'none';
+                    });
+                });
+            });
+
+            var track = document.getElementById('crLatestTrack');
+            var prevBtn = document.querySelector('.cr-latest-arrow--prev');
+            var nextBtn = document.querySelector('.cr-latest-arrow--next');
+
+            if (track && prevBtn && nextBtn) {
+                var scrollAmount = function () {
+                    var card = track.querySelector('.cr-latest-card');
+                    return card ? card.offsetWidth + 24 : 300;
+                };
+                prevBtn.addEventListener('click', function () {
+                    track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+                });
+                nextBtn.addEventListener('click', function () {
+                    track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+
 {% endblock %}

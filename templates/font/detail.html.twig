@@ -1802,8 +1802,8 @@
     {% if item is null %}
         <section class="pt-100 pb-100">
             <div class="container text-center">
-                <h1>Item not found</h1>
-                <p><a href="{{ path('app_font_index') }}">Back to home</a></p>
+                <h1>{{ 'detail_page.item_not_found'|trans }}</h1>
+                <p><a href="{{ path('app_font_index') }}">{{ 'detail_page.back_to_home'|trans }}</a></p>
             </div>
         </section>
     {% else %}
@@ -2073,12 +2073,20 @@
                         <div class="mini-calendar">
                             <div class="mini-calendar-header">
                                 <span>&lt;</span>
-                                <span>SEPTEMBER 2026</span>
+                                <span>{{ 'detail_page.calendar_month_year'|trans }}</span>
                                 <span>&gt;</span>
                             </div>
                             <table class="mini-calendar-table">
                                 <thead>
-                                    <tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr>
+                                    <tr>
+                                        <th>{{ 'detail_page.day_su'|trans }}</th>
+                                        <th>{{ 'detail_page.day_mo'|trans }}</th>
+                                        <th>{{ 'detail_page.day_tu'|trans }}</th>
+                                        <th>{{ 'detail_page.day_we'|trans }}</th>
+                                        <th>{{ 'detail_page.day_th'|trans }}</th>
+                                        <th>{{ 'detail_page.day_fr'|trans }}</th>
+                                        <th>{{ 'detail_page.day_sa'|trans }}</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
@@ -2136,7 +2144,7 @@
                                 <img src="{{ gallery[0] is defined ? gallery[0].url : item.image }}" alt="{{ title }}">
                                 <div class="sidebar-trending-caption">
                                     <strong>{{ title }}</strong>
-                                    <span><i class="fas fa-map-marker-alt"></i> Tunisia</span>
+                                    <span><i class="fas fa-map-marker-alt"></i> {{ 'detail_page.location_tunisia'|trans }}</span>
                                 </div>
                             </div>
                         </div>

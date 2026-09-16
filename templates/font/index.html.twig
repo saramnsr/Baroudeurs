@@ -10,8 +10,8 @@
     <div class="hero-wrapper-one p-r z-1">
         <div class="hero-dots"></div>
         <div class="hero-slider-one-nav">
-            <button type="button" class="hero-nav-btn prev" aria-label="Previous slide"><i class="fal fa-chevron-left"></i></button>
-            <button type="button" class="hero-nav-btn next" aria-label="Next slide"><i class="fal fa-chevron-right"></i></button>
+            <button type="button" class="hero-nav-btn prev" aria-label="{{ 'hero.prev_slide'|trans }}"><i class="fal fa-chevron-left"></i></button>
+            <button type="button" class="hero-nav-btn next" aria-label="{{ 'hero.next_slide'|trans }}"><i class="fal fa-chevron-right"></i></button>
         </div>
         <div class="hero-slider-one">
             <!--====== Single Slider 1 ======-->
@@ -152,16 +152,6 @@
     </div><!--====== End Hero Search Form ======-->
 
       <!--====== Start Circuits Section ======-->
-    {# ============================================================
-       Featured circuits, hardcoded here — 3 of the 7 circuits from
-       circuits.html.twig / detail.html.twig's circuitData, kept in
-       sync with the SAME ids (1, 6, 7) so these cards link to the
-       correct detail pages under the current Circuits/Excursions
-       organization:
-         id1 = Circuit Désert - Douz à Tembaïne
-         id6 = Désert Infini
-         id7 = Rose de Sables
-       ============================================================ #}
     {% set featuredCircuits = [
         {
             id: 1,
@@ -261,7 +251,7 @@
             <div class="row mt-4">
                 <div class="col-12 text-center">
                     <a href="{{ path('app_font_circuits') }}" class="main-btn btn-green">
-                        View our tours
+                        {{ 'circuits_page.view_tours'|trans }}
                     </a>
                 </div>
             </div>
@@ -269,13 +259,6 @@
     </section><!--====== End Circuits Section ======-->
 
 <!--====== Start Excursions Section ======-->
-    {# ============================================================
-       Featured excursions, hardcoded here — the 2 excursions from
-       excursions.html.twig / detail.html.twig's excursionData, kept
-       in sync with the SAME ids (1, 2):
-         id1 = Excursion à Tataouine
-         id2 = Excursion à Ksar Ghilane
-       ============================================================ #}
     {% set featuredExcursions = [
         {
             id: 1,
@@ -736,7 +719,7 @@
                 <div class="col-lg-4 text-lg-end text-start mt-30 mt-lg-0">
                     <!-- Contact us → Contact page -->
                     <a href="{{ path('app_font_contact') }}" class="main-btn btn-yellow">
-                        Contact us
+                        {{ 'contact.button_short'|trans }}
                         <i class="far fa-angle-double-right"></i>
                     </a>
                 </div>
