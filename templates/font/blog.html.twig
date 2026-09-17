@@ -4,33 +4,46 @@
 
 {% block body %}
 
-    <!--====== Start Carnet de Route Hero ======-->
-    <section class="cr-hero">
-        <div class="cr-hero-bg" style="background-image: url('{{ asset('assets/images/blog/new-blog/hero1.jpg') }}');"></div>
-        <div class="cr-hero-overlay"></div>
-        <div class="container">
-            <div class="cr-hero-inner">
-                <div class="cr-hero-content">
-                    <span class="cr-eyebrow cr-eyebrow--light"><i class="fas fa-minus"></i> {{ 'blog_page.hero_eyebrow'|trans }}</span>
-                    <h1 class="cr-hero-title">{{ 'blog_page.hero_title_line1'|trans }}<br>{{ 'blog_page.hero_title_line2'|trans }}</h1>
-                    <p class="cr-hero-text">{{ 'blog_page.hero_text'|trans }}</p>
-                    <a href="#cr-grid" class="cr-btn cr-btn--orange">{{ 'blog_page.hero_cta'|trans }} <i class="far fa-angle-double-right"></i></a>
-                </div>
+<!--====== Start Carnet de Route Hero ======-->
+<section class="services-hero" id="crHero">
+    <div class="services-hero-slides">
+        <div class="services-hero-slide active" style="background-image: url('{{ asset('assets/images/blog/new-blog/hero1.jpg') }}');"></div>
+    </div>
+    <div class="services-hero-overlay"></div>
 
-                <ul class="cr-hero-tags">
-                    <li><a href="#cr-grid" data-filter="douz">{{ 'blog_page.hero_tag_douz'|trans }}</a></li>
-                    <li><a href="#cr-grid" data-filter="sahara">{{ 'blog_page.hero_tag_sahara'|trans }}</a></li>
-                    <li><a href="#cr-grid" data-filter="djerba">{{ 'blog_page.hero_tag_djerba'|trans }}</a></li>
-                    <li><a href="#cr-grid" data-filter="tozeur">{{ 'blog_page.hero_tag_tozeur'|trans }}</a></li>
-                    <li><a href="#cr-grid" data-filter="tataouine">{{ 'blog_page.hero_tag_tataouine'|trans }}</a></li>
-                </ul>
-            </div>
+    <div class="container" style="position: relative; z-index: 3;">
+        <div class="services-hero-content text-start">
+            <span class="services-hero-label">
+                <span class="label-line"></span>
+                {{ 'blog_page.hero_eyebrow'|trans|upper }}
+            </span>
+            <h1 class="services-hero-title">
+                {{ 'blog_page.hero_title_line1'|trans }}<br>
+                {{ 'blog_page.hero_title_line2'|trans }}
+            </h1>
+            <p class="services-hero-text">{{ 'blog_page.hero_text'|trans }}</p>
+            <a href="#cr-grid" class="services-hero-btn">
+                {{ 'blog_page.hero_cta'|trans }}
+                <i class="far fa-angle-double-right"></i>
+            </a>
         </div>
 
-        <svg class="cr-hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,45 L1440,90 L0,90 Z"></path>
+        <div class="services-hero-locations">
+            <a href="#cr-grid" class="services-hero-location" data-filter="douz">{{ 'blog_page.hero_tag_douz'|trans }}</a>
+            <a href="#cr-grid" class="services-hero-location" data-filter="sahara">{{ 'blog_page.hero_tag_sahara'|trans }}</a>
+            <a href="#cr-grid" class="services-hero-location" data-filter="djerba">{{ 'blog_page.hero_tag_djerba'|trans }}</a>
+            <a href="#cr-grid" class="services-hero-location" data-filter="tozeur">{{ 'blog_page.hero_tag_tozeur'|trans }}</a>
+            <a href="#cr-grid" class="services-hero-location" data-filter="tataouine">{{ 'blog_page.hero_tag_tataouine'|trans }}</a>
+        </div>
+    </div>
+
+    <div class="services-hero-wave">
+        <svg viewBox="0 0 1440 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,70 C240,120 480,20 720,60 C960,100 1200,130 1440,70 L1440,140 L0,140 Z" fill="#F6F2E9"></path>
         </svg>
-    </section><!--====== End Carnet de Route Hero ======-->
+    </div>
+</section>
+<!--====== End Carnet de Route Hero ======-->
 
     <!--====== Start Featured Guide / Second Section ======-->
     <section class="cr-story">
@@ -251,156 +264,235 @@
             <path d="M0,40 C360,-10 1080,90 1440,40 L1440,80 L0,80 Z"></path>
         </svg>
     </section><!--====== End Destinations / Full Background ======-->
-
-     <!--====== Start Latest Posts ======-->
-    <section class="cr-latest">
-        <div class="container">
-            <div class="row align-items-end mb-25">
-                <div class="col-md-8">
-                    <span class="cr-eyebrow"><i class="fas fa-minus"></i> {{ 'blog_page.latest_eyebrow'|trans }}</span>
-                    <h2 class="cr-title-lg">{{ 'blog_page.latest_title'|trans }}</h2>
-                </div>
-                <div class="col-md-4 text-md-end">
-                    <a href="#cr-grid" class="cr-link-arrow">{{ 'blog_page.latest_view_all'|trans }} <i class="far fa-angle-double-right"></i></a>
-                </div>
+<!--====== Start Latest Posts ======-->
+<section class="cr-latest">
+    <div class="container">
+        <div class="row align-items-end mb-25">
+            <div class="col-md-8">
+                <span class="cr-eyebrow"><i class="fas fa-minus"></i> {{ 'blog_page.latest_eyebrow'|trans }}</span>
+                <h2 class="cr-title-lg">{{ 'blog_page.latest_title'|trans }}</h2>
             </div>
-
-            <div class="cr-latest-wrap">
-                <button type="button" class="cr-latest-arrow cr-latest-arrow--prev" aria-label="{{ 'blog_page.tab_all'|trans }}"><i class="far fa-angle-left"></i></button>
-
-                <div class="cr-latest-track" id="crLatestTrack">
-                    <!-- Card 1 -->
-                    <div class="cr-latest-card">
-                        <img src="{{ asset('assets/images/blog/new-blog/1.avif') }}" alt="{{ 'blog_page.post1_title'|trans }}">
-                        <div class="cr-latest-body">
-                            <span class="cr-tag">{{ 'blog_page.post1_tag'|trans }}</span>
-                            <h3 class="cr-card-title">{{ 'blog_page.post1_title'|trans }}</h3>
-                            <p class="cr-card-text">{{ 'blog_page.post1_text'|trans }}</p>
-                            <div class="cr-latest-meta">
-                                <span>12 avril 2025</span>
-                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="cr-latest-card">
-                        <img src="{{ asset('assets/images/blog/new-blog/2.avif') }}" alt="{{ 'blog_page.post2_title'|trans }}">
-                        <div class="cr-latest-body">
-                            <span class="cr-tag">{{ 'blog_page.post2_tag'|trans }}</span>
-                            <h3 class="cr-card-title">{{ 'blog_page.post2_title'|trans }}</h3>
-                            <p class="cr-card-text">{{ 'blog_page.post2_text'|trans }}</p>
-                            <div class="cr-latest-meta">
-                                <span>5 avril 2025</span>
-                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="cr-latest-card">
-                        <img src="{{ asset('assets/images/blog/new-blog/3.avif') }}" alt="{{ 'blog_page.post3_title'|trans }}">
-                        <div class="cr-latest-body">
-                            <span class="cr-tag">{{ 'blog_page.post3_tag'|trans }}</span>
-                            <h3 class="cr-card-title">{{ 'blog_page.post3_title'|trans }}</h3>
-                            <p class="cr-card-text">{{ 'blog_page.post3_text'|trans }}</p>
-                            <div class="cr-latest-meta">
-                                <span>28 mars 2025</span>
-                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="cr-latest-card">
-                        <img src="{{ asset('assets/images/blog/new-blog/4.avif') }}" alt="{{ 'blog_page.post4_title'|trans }}">
-                        <div class="cr-latest-body">
-                            <span class="cr-tag">{{ 'blog_page.post4_tag'|trans }}</span>
-                            <h3 class="cr-card-title">{{ 'blog_page.post4_title'|trans }}</h3>
-                            <p class="cr-card-text">{{ 'blog_page.post4_text'|trans }}</p>
-                            <div class="cr-latest-meta">
-                                <span>20 mars 2025</span>
-                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="cr-latest-card">
-                        <img src="{{ asset('assets/images/blog/new-blog/5.avif') }}" alt="{{ 'blog_page.post5_title'|trans }}">
-                        <div class="cr-latest-body">
-                            <span class="cr-tag">{{ 'blog_page.post5_tag'|trans }}</span>
-                            <h3 class="cr-card-title">{{ 'blog_page.post5_title'|trans }}</h3>
-                            <p class="cr-card-text">{{ 'blog_page.post5_text'|trans }}</p>
-                            <div class="cr-latest-meta">
-                                <span>15 mars 2025</span>
-                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 6 -->
-                    <div class="cr-latest-card">
-                        <img src="{{ asset('assets/images/blog/new-blog/6.jpg') }}" alt="{{ 'blog_page.post6_title'|trans }}">
-                        <div class="cr-latest-body">
-                            <span class="cr-tag">{{ 'blog_page.post6_tag'|trans }}</span>
-                            <h3 class="cr-card-title">{{ 'blog_page.post6_title'|trans }}</h3>
-                            <p class="cr-card-text">{{ 'blog_page.post6_text'|trans }}</p>
-                            <div class="cr-latest-meta">
-                                <span>10 mars 2025</span>
-                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 7 -->
-                    <div class="cr-latest-card">
-                        <img src="{{ asset('assets/images/blog/new-blog/7.avif') }}" alt="{{ 'blog_page.post7_title'|trans }}">
-                        <div class="cr-latest-body">
-                            <span class="cr-tag">{{ 'blog_page.post7_tag'|trans }}</span>
-                            <h3 class="cr-card-title">{{ 'blog_page.post7_title'|trans }}</h3>
-                            <p class="cr-card-text">{{ 'blog_page.post7_text'|trans }}</p>
-                            <div class="cr-latest-meta">
-                                <span>5 mars 2025</span>
-                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 8 -->
-                    <div class="cr-latest-card">
-                        <img src="{{ asset('assets/images/blog/new-blog/8.jpg') }}" alt="{{ 'blog_page.post8_title'|trans }}">
-                        <div class="cr-latest-body">
-                            <span class="cr-tag">{{ 'blog_page.post8_tag'|trans }}</span>
-                            <h3 class="cr-card-title">{{ 'blog_page.post8_title'|trans }}</h3>
-                            <p class="cr-card-text">{{ 'blog_page.post8_text'|trans }}</p>
-                            <div class="cr-latest-meta">
-                                <span>28 février 2025</span>
-                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 9 -->
-                    <div class="cr-latest-card">
-                        <img src="{{ asset('assets/images/blog/new-blog/1.avif') }}" alt="{{ 'blog_page.post9_title'|trans }}">
-                        <div class="cr-latest-body">
-                            <span class="cr-tag">{{ 'blog_page.post9_tag'|trans }}</span>
-                            <h3 class="cr-card-title">{{ 'blog_page.post9_title'|trans }}</h3>
-                            <p class="cr-card-text">{{ 'blog_page.post9_text'|trans }}</p>
-                            <div class="cr-latest-meta">
-                                <span>20 février 2025</span>
-                                <a href="{{ path('app_font_index') }}">{{ 'blog_page.read_more'|trans }} <i class="far fa-angle-double-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="button" class="cr-latest-arrow cr-latest-arrow--next" aria-label="{{ 'blog_page.latest_view_all'|trans }}"><i class="far fa-angle-right"></i></button>
+            <div class="col-md-4 text-md-end">
+                <a href="#cr-grid" class="cr-link-arrow">{{ 'blog_page.latest_view_all'|trans }} <i class="far fa-angle-double-right"></i></a>
             </div>
         </div>
-    </section><!--====== End Latest Posts ======-->
 
+        <div class="cr-latest-wrap">
+            <button type="button" class="cr-latest-arrow cr-latest-arrow--prev" aria-label="{{ 'blog_page.tab_all'|trans }}"><i class="far fa-angle-left"></i></button>
+
+            <div class="cr-latest-track" id="crLatestTrack">
+                <!-- Card 1 -->
+                <div class="cr-latest-card">
+                    <div class="cr-latest-img-wrap">
+                        <img src="{{ asset('assets/images/blog/new-blog/1.avif') }}" alt="{{ 'blog_page.post1_title'|trans }}">
+                    </div>
+                    <div class="cr-latest-body">
+                        <div class="cr-latest-title-row">
+                            <span class="cr-latest-line"></span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post1_title'|trans }}</h3>
+                        </div>
+                        <p class="cr-card-text">{{ 'blog_page.post1_text'|trans }}</p>
+                        <div class="cr-latest-meta">
+                            <div class="cr-latest-icons">
+                                <i class="flaticon-bedding"></i>
+                                <i class="flaticon-cat"></i>
+                                <i class="flaticon-tent-1"></i>
+                                <i class="flaticon-campfire"></i>
+                            </div>
+                            <a href="{{ path('app_font_index') }}"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="cr-latest-card">
+                    <div class="cr-latest-img-wrap">
+                        <img src="{{ asset('assets/images/blog/new-blog/2.avif') }}" alt="{{ 'blog_page.post2_title'|trans }}">
+                    </div>
+                    <div class="cr-latest-body">
+                        <div class="cr-latest-title-row">
+                            <span class="cr-latest-line"></span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post2_title'|trans }}</h3>
+                        </div>
+                        <p class="cr-card-text">{{ 'blog_page.post2_text'|trans }}</p>
+                        <div class="cr-latest-meta">
+                            <div class="cr-latest-icons">
+                                <i class="flaticon-bedding"></i>
+                                <i class="flaticon-cat"></i>
+                                <i class="flaticon-tent-1"></i>
+                                <i class="flaticon-campfire"></i>
+                            </div>
+                            <a href="{{ path('app_font_index') }}"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="cr-latest-card">
+                    <div class="cr-latest-img-wrap">
+                        <img src="{{ asset('assets/images/blog/new-blog/3.avif') }}" alt="{{ 'blog_page.post3_title'|trans }}">
+                    </div>
+                    <div class="cr-latest-body">
+                        <div class="cr-latest-title-row">
+                            <span class="cr-latest-line"></span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post3_title'|trans }}</h3>
+                        </div>
+                        <p class="cr-card-text">{{ 'blog_page.post3_text'|trans }}</p>
+                        <div class="cr-latest-meta">
+                            <div class="cr-latest-icons">
+                                <i class="flaticon-bedding"></i>
+                                <i class="flaticon-cat"></i>
+                                <i class="flaticon-tent-1"></i>
+                                <i class="flaticon-campfire"></i>
+                            </div>
+                            <a href="{{ path('app_font_index') }}"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="cr-latest-card">
+                    <div class="cr-latest-img-wrap">
+                        <img src="{{ asset('assets/images/blog/new-blog/4.avif') }}" alt="{{ 'blog_page.post4_title'|trans }}">
+                    </div>
+                    <div class="cr-latest-body">
+                        <div class="cr-latest-title-row">
+                            <span class="cr-latest-line"></span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post4_title'|trans }}</h3>
+                        </div>
+                        <p class="cr-card-text">{{ 'blog_page.post4_text'|trans }}</p>
+                        <div class="cr-latest-meta">
+                            <div class="cr-latest-icons">
+                                <i class="flaticon-bedding"></i>
+                                <i class="flaticon-cat"></i>
+                                <i class="flaticon-tent-1"></i>
+                                <i class="flaticon-campfire"></i>
+                            </div>
+                            <a href="{{ path('app_font_index') }}"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="cr-latest-card">
+                    <div class="cr-latest-img-wrap">
+                        <img src="{{ asset('assets/images/blog/new-blog/5.avif') }}" alt="{{ 'blog_page.post5_title'|trans }}">
+                    </div>
+                    <div class="cr-latest-body">
+                        <div class="cr-latest-title-row">
+                            <span class="cr-latest-line"></span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post5_title'|trans }}</h3>
+                        </div>
+                        <p class="cr-card-text">{{ 'blog_page.post5_text'|trans }}</p>
+                        <div class="cr-latest-meta">
+                            <div class="cr-latest-icons">
+                                <i class="flaticon-bedding"></i>
+                                <i class="flaticon-cat"></i>
+                                <i class="flaticon-tent-1"></i>
+                                <i class="flaticon-campfire"></i>
+                            </div>
+                            <a href="{{ path('app_font_index') }}"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="cr-latest-card">
+                    <div class="cr-latest-img-wrap">
+                        <img src="{{ asset('assets/images/blog/new-blog/6.jpg') }}" alt="{{ 'blog_page.post6_title'|trans }}">
+                    </div>
+                    <div class="cr-latest-body">
+                        <div class="cr-latest-title-row">
+                            <span class="cr-latest-line"></span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post6_title'|trans }}</h3>
+                        </div>
+                        <p class="cr-card-text">{{ 'blog_page.post6_text'|trans }}</p>
+                        <div class="cr-latest-meta">
+                            <div class="cr-latest-icons">
+                                <i class="flaticon-bedding"></i>
+                                <i class="flaticon-cat"></i>
+                                <i class="flaticon-tent-1"></i>
+                                <i class="flaticon-campfire"></i>
+                            </div>
+                            <a href="{{ path('app_font_index') }}"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="cr-latest-card">
+                    <div class="cr-latest-img-wrap">
+                        <img src="{{ asset('assets/images/blog/new-blog/7.avif') }}" alt="{{ 'blog_page.post7_title'|trans }}">
+                    </div>
+                    <div class="cr-latest-body">
+                        <div class="cr-latest-title-row">
+                            <span class="cr-latest-line"></span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post7_title'|trans }}</h3>
+                        </div>
+                        <p class="cr-card-text">{{ 'blog_page.post7_text'|trans }}</p>
+                        <div class="cr-latest-meta">
+                            <div class="cr-latest-icons">
+                                <i class="flaticon-bedding"></i>
+                                <i class="flaticon-cat"></i>
+                                <i class="flaticon-tent-1"></i>
+                                <i class="flaticon-campfire"></i>
+                            </div>
+                            <a href="{{ path('app_font_index') }}"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="cr-latest-card">
+                    <div class="cr-latest-img-wrap">
+                        <img src="{{ asset('assets/images/blog/new-blog/8.jpg') }}" alt="{{ 'blog_page.post8_title'|trans }}">
+                    </div>
+                    <div class="cr-latest-body">
+                        <div class="cr-latest-title-row">
+                            <span class="cr-latest-line"></span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post8_title'|trans }}</h3>
+                        </div>
+                        <p class="cr-card-text">{{ 'blog_page.post8_text'|trans }}</p>
+                        <div class="cr-latest-meta">
+                            <div class="cr-latest-icons">
+                                <i class="flaticon-bedding"></i>
+                                <i class="flaticon-cat"></i>
+                                <i class="flaticon-tent-1"></i>
+                                <i class="flaticon-campfire"></i>
+                            </div>
+                            <a href="{{ path('app_font_index') }}"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="cr-latest-card">
+                    <div class="cr-latest-img-wrap">
+                        <img src="{{ asset('assets/images/blog/new-blog/1.avif') }}" alt="{{ 'blog_page.post9_title'|trans }}">
+                    </div>
+                    <div class="cr-latest-body">
+                        <div class="cr-latest-title-row">
+                            <span class="cr-latest-line"></span>
+                            <h3 class="cr-card-title">{{ 'blog_page.post9_title'|trans }}</h3>
+                        </div>
+                        <p class="cr-card-text">{{ 'blog_page.post9_text'|trans }}</p>
+                        <div class="cr-latest-meta">
+                            <div class="cr-latest-icons">
+                                <i class="flaticon-bedding"></i>
+                                <i class="flaticon-cat"></i>
+                                <i class="flaticon-tent-1"></i>
+                                <i class="flaticon-campfire"></i>
+                            </div>
+                            <a href="{{ path('app_font_index') }}"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="cr-latest-arrow cr-latest-arrow--next" aria-label="{{ 'blog_page.latest_view_all'|trans }}"><i class="far fa-angle-right"></i></button>
+        </div>
+    </div>
+</section><!--====== End Latest Posts ======-->
     <!--====== Start Newsletter (Background Video) ======-->
     <section class="cr-newsletter">
         <video class="cr-newsletter-video" autoplay muted loop playsinline>
