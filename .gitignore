@@ -29,3 +29,6 @@
 public/assets/videos/*.mp4
 
 public/assets/videos/*.mp4
+
+/database/*.dump
+/.env.local
