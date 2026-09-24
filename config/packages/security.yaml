@@ -1,10 +1,10 @@
 security:
-    # Hachage des mots de passe admin (bcrypt / argon2 automatique)
+    # Hachage des mots de passe admin
     encoders:
         App\Entity\Admin\User:
             algorithm: auto
 
-    # Les admins sont chargés depuis la base, par email
+    # Admins chargés depuis la base, par email
     providers:
         app_user_provider:
             entity:
@@ -15,9 +15,26 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        # Pare-feu dédié à l'admin
+        admin:
+            pattern: ^/admin
+            anonymous: lazy
+            provider: app_user_provider
+            guard:
+                authenticators:
+                    - App\Security\Admin\LoginFormAuthenticator
+            logout:
+                path: admin_logout
+                target: admin_login
+                csrf_token_generator: security.csrf.token_manager
+
         main:
             anonymous: lazy
             provider: app_user_provider
 
     access_control:
-        # Complété à l'étape 2
+        # Page de connexion : accessible à tous
+        - { path: ^/admin/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # Reste de /admin : admins uniquement
+        - { path: ^/admin, roles: ROLE_ADMIN }

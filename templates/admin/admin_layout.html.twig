@@ -1,0 +1,28 @@
+{# Mise en page admin : sidebar + contenu. Les pages admin étendent ce fichier. #}
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block body_class %}admin-body{% endblock %}
+
+{% block body %}
+    <div class="admin-shell">
+        {% include 'admin/components/sidebar.html.twig' %}
+
+        {# Fond sombre derrière le menu sur mobile #}
+        <div class="admin-overlay" data-sidebar-close hidden></div>
+
+        <div class="admin-main">
+            {# Barre du haut : visible uniquement sur mobile #}
+            <header class="admin-topbar">
+                <button type="button" class="admin-topbar__toggle" data-sidebar-toggle
+                        aria-controls="admin-sidebar" aria-expanded="false" aria-label="Ouvrir le menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <span class="admin-topbar__title">Administration</span>
+            </header>
+
+            <main id="admin-content" class="admin-content">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+{% endblock %}

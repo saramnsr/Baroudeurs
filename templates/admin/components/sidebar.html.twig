@@ -1,0 +1,68 @@
+{% set currentRoute = app.request.attributes.get('_route') ?? '' %}
+
+{# Menu de l'admin. Pour activer une page : remplacer route: null par le nom de la route #}
+{% set nav = [
+    { label: 'Tableau de bord', icon: 'fa-th-large', route: 'admin_dashboard' },
+    { label: 'Circuits', icon: 'fa-route', prefix: 'admin_circuit_', children: [
+        { label: 'Ajouter un circuit', route: null },
+        { label: 'Gérer les circuits', route: null },
+        { label: 'Corbeille', route: null }
+    ] },
+    { label: 'Excursions', icon: 'fa-compass', prefix: 'admin_excursion_', children: [
+        { label: 'Ajouter une excursion', route: null },
+        { label: 'Gérer les excursions', route: null },
+        { label: 'Corbeille', route: null }
+    ] },
+    { label: 'Messages', icon: 'fa-envelope', route: null },
+    { label: 'Services', icon: 'fa-concierge-bell', route: null }
+] %}
+
+<aside id="admin-sidebar" class="admin-sidebar" aria-label="Menu d'administration">
+    {# Logo #}
+    <div class="admin-sidebar__brand">
+        <a href="{{ path('admin_dashboard') }}">
+            <img src="{{ asset('assets/images/logo/logo-white.png') }}" alt="Baroudeurs du Désert" height="40">
+        </a>
+        <button type="button" class="admin-sidebar__close" data-sidebar-close aria-label="Fermer le menu">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    {# Navigation #}
+    <nav class="admin-nav">
+        <ul class="admin-nav__list">
+            {% for item in nav %}
+                {% if item.children is defined %}
+                    {% set isOpen = currentRoute starts with item.prefix %}
+                    <li>
+                        <details class="admin-nav__details" {% if isOpen %}open{% endif %}>
+                            <summary class="admin-nav__link{% if isOpen %} is-active{% endif %}">
+                                <i class="fas {{ item.icon }} admin-nav__icon" aria-hidden="true"></i>
+                                <span>{{ item.label }}</span>
+                                <i class="fas fa-chevron-down admin-nav__chevron" aria-hidden="true"></i>
+                            </summary>
+                            <ul class="admin-nav__sublist">
+                                {% for child in item.children %}
+                                    <li>{% include 'admin/components/nav_link.html.twig' with { item: child, currentRoute: currentRoute } only %}</li>
+                                {% endfor %}
+                            </ul>
+                        </details>
+                    </li>
+                {% else %}
+                    <li>{% include 'admin/components/nav_link.html.twig' with { item: item, currentRoute: currentRoute } only %}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+
+    {# Utilisateur connecté + déconnexion #}
+    <div class="admin-sidebar__footer">
+        {% if app.user %}
+            <span class="admin-sidebar__user">{{ app.user.email }}</span>
+        {% endif %}
+        <a class="admin-nav__link" href="{{ logout_path('admin') }}">
+            <i class="fas fa-sign-out-alt admin-nav__icon" aria-hidden="true"></i>
+            <span>Se déconnecter</span>
+        </a>
+    </div>
+</aside>

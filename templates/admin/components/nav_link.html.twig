@@ -1,0 +1,14 @@
+{# Un lien du menu. route: null = page pas encore créée (badge "Bientôt") #}
+{% if item.route %}
+    {% set active = currentRoute == item.route %}
+    <a class="admin-nav__link{% if active %} is-active{% endif %}" href="{{ path(item.route) }}"{% if active %} aria-current="page"{% endif %}>
+        {% if item.icon is defined %}<i class="fas {{ item.icon }} admin-nav__icon" aria-hidden="true"></i>{% endif %}
+        <span>{{ item.label }}</span>
+    </a>
+{% else %}
+    <span class="admin-nav__link is-disabled" aria-disabled="true">
+        {% if item.icon is defined %}<i class="fas {{ item.icon }} admin-nav__icon" aria-hidden="true"></i>{% endif %}
+        <span>{{ item.label }}</span>
+        <span class="admin-badge">Bientôt</span>
+    </span>
+{% endif %}
