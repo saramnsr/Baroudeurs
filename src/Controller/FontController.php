@@ -17,6 +17,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use App\Entity\Newsletter;
+use App\Service\CircuitNormalizer;
 
 class FontController extends AbstractController
 {
@@ -588,9 +589,10 @@ public function submitContact(Request $request): Response
 /**
  * @Route("/circuits", name="app_font_circuits")
  */
-public function circuits(): Response
+public function circuits(CircuitNormalizer $normalizer): Response
 {
-    $circuits = $this->circuitRepository->findAllOrdered();
+    // Circuits lus en base (hors corbeille), au format des templates
+    $circuits = $normalizer->normalizeAll($this->circuitRepository->findPublished());
     $programmes = $this->programmeRepository->findAll();
 
     return $this->render('font/circuits.html.twig', [
@@ -616,16 +618,29 @@ public function excursions(): Response
 /**
  * @Route("/detail/{type}/{id}", name="app_font_detail", requirements={"type"="circuit|excursion", "id"="\d+"})
  */
-public function detail(string $type, int $id): Response
+public function detail(string $type, int $id, CircuitNormalizer $normalizer): Response
 {
-    // Purely frontend: the detail template holds all the data itself,
-    // keyed by type + id. No DB lookup, no repository, no 404.
+    $item = null;
+    $relatedItems = [];
+
+    // Circuits : lus en base. Excursions : encore dans le template (migrées plus tard).
+    if ($type === 'circuit') {
+        $circuit = $this->circuitRepository->findPublishedById($id);
+        if ($circuit === null) {
+            throw $this->createNotFoundException('Circuit introuvable.');
+        }
+
+        $item = $normalizer->normalize($circuit);
+        $relatedItems = $normalizer->normalizeAll($this->circuitRepository->findRelated($circuit, 3));
+    }
+
     return $this->render('font/detail.html.twig', [
         'type' => $type,
-        'id'   => $id,
+        'id' => $id,
+        'item' => $item,
+        'relatedItems' => $relatedItems,
     ]);
 }
-
 /**
  * @Route("/circuit/booking/submit", name="app_circuit_booking_submit", methods={"POST"})
  */
