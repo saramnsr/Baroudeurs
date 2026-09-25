@@ -35,6 +35,19 @@ a { color: inherit; }
 :focus-visible { outline: 3px solid var(--adm-orange); outline-offset: 2px; }
 [hidden] { display: none !important; }
 
+/* ---------- Accessibilité ---------- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* ---------- Boutons ---------- */
 .admin-btn {
     display: inline-flex;
@@ -71,6 +84,7 @@ a { color: inherit; }
 .admin-alert--error { background: #fdecea; border-color: #f5c2bd; color: #8e2a20; }
 .admin-alert--success { background: #eaf6e4; border-color: #cde8c1; color: #2f6b1a; }
 .admin-alert--warning { background: #fff4e5; border-color: #fbd9ae; color: #8a4b00; }
+.admin-alert--info { background: #eaf1f8; border-color: #c6d9ec; color: #1f4e79; }
 
 /* ---------- Champs ---------- */
 .admin-field { margin-bottom: 18px; }
@@ -533,7 +547,6 @@ a { color: inherit; }
 /* ---------- Liste déroulante à choix multiples (inclus / non inclus) ---------- */
 .admin-multiselect { position: relative; }
 
-/* Étiquettes sélectionnées */
 .admin-multiselect__selected { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
 .admin-multiselect__selected:not(:has(.admin-chip)) { display: none; }
 .admin-multiselect__chips { display: contents; }
@@ -562,7 +575,6 @@ a { color: inherit; }
 }
 .admin-chip__remove:hover { color: var(--adm-danger); }
 
-/* Bouton d'ouverture */
 .admin-multiselect__dropdown { position: relative; }
 .admin-multiselect__toggle {
     display: flex;
@@ -586,7 +598,6 @@ a { color: inherit; }
 }
 .admin-multiselect__dropdown[open] .admin-multiselect__toggle i { transform: rotate(180deg); }
 
-/* Panneau déroulant */
 .admin-multiselect__panel {
     position: absolute;
     top: calc(100% + 6px);
@@ -631,7 +642,6 @@ a { color: inherit; }
     font-size: 16px;
 }
 
-/* Ajout d'un nouvel élément */
 .admin-multiselect__add {
     display: flex;
     gap: 8px;
@@ -708,15 +718,265 @@ a { color: inherit; }
 .admin-avatar__info .admin-btn { margin-top: 6px; }
 .admin-field.has-error .admin-avatar__circle { border-color: var(--adm-danger); }
 
-/* ---------- Boutons d'action (restent visibles) ---------- */
+/* ==========================================================
+   Note en étoiles (avis client) — SVG inline, aucune police requise
+   ========================================================== */
+
+.admin-rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+}
+.admin-rating label {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin: 0;
+    cursor: pointer;
+    background-color: var(--adm-border);
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2l2.9 6.9 7.5.6-5.7 4.9 1.7 7.3L12 17.8 5.6 21.7l1.7-7.3L1.6 9.5l7.5-.6L12 2z'/></svg>");
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2l2.9 6.9 7.5.6-5.7 4.9 1.7 7.3L12 17.8 5.6 21.7l1.7-7.3L1.6 9.5l7.5-.6L12 2z'/></svg>");
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    transition: background-color .15s ease, transform .1s ease;
+}
+.admin-rating label:hover,
+.admin-rating label:hover ~ label,
+.admin-rating input:checked ~ label {
+    background-color: var(--adm-orange);
+}
+.admin-rating label:hover {
+    transform: scale(1.12);
+}
+.admin-rating input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+}
+.admin-rating input:focus-visible ~ label {
+    outline: 3px solid var(--adm-orange);
+    outline-offset: 3px;
+}
+.admin-rating__value {
+    margin-left: 10px;
+    align-self: center;
+    color: var(--adm-muted);
+    font-size: 13px;
+    min-width: 30px;
+}
+
+/* ==========================================================
+   Boutons d'action (Annuler / Enregistrer)
+   ==========================================================
+   Statiques : juste à la fin du formulaire, défilent avec la page.
+   Aucun position: fixed / sticky, aucun fond, aucune barre flottante.
+*/
 .admin-form__actions {
-    position: sticky;
-    bottom: 0;
     display: flex;
     justify-content: flex-end;
     gap: 12px;
-    padding: 16px 0;
-    background: linear-gradient(rgba(244, 245, 242, 0), var(--adm-bg) 35%);
+    margin: 8px 0 0;
+    padding: 0;
+}
+
+/* ==========================================================
+   Page "Modifier un circuit" — grille de cartes
+   ========================================================== */
+
+.admin-page-header__row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.admin-page-header__row .admin-btn {
+    flex-shrink: 0;
+}
+
+/* ---------- État vide (aucun circuit) ---------- */
+.admin-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px;
+}
+.admin-empty__icon {
+    font-size: 48px;
+    color: var(--adm-green);
+    margin-bottom: 16px;
+    opacity: .5;
+}
+.admin-empty__title {
+    margin: 0 0 6px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--adm-text);
+}
+.admin-empty__text {
+    margin: 0 0 22px;
+    color: var(--adm-muted);
+    font-size: 14px;
+}
+
+/* ---------- Grille des cartes ---------- */
+.admin-trip-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+@media (min-width: 640px) {
+    .admin-trip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1100px) {
+    .admin-trip-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---------- Carte ---------- */
+.admin-trip-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--adm-border);
+    border-radius: var(--adm-radius);
+    background: var(--adm-surface);
+    transition: box-shadow .15s ease, transform .15s ease, border-color .15s ease;
+}
+.admin-trip-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+    border-color: var(--adm-green);
+    transform: translateY(-2px);
+}
+.admin-trip-card--trashed {
+    opacity: .92;
+    border-color: rgba(247, 146, 30, .35);
+    background: #fffaf2;
+}
+.admin-trip-card--trashed:hover {
+    border-color: var(--adm-orange);
+}
+
+/* --- Média (image + badges) --- */
+.admin-trip-card__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--adm-dark);
+}
+.admin-trip-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .35s ease;
+}
+.admin-trip-card:hover .admin-trip-card__media img {
+    transform: scale(1.04);
+}
+
+/* Voile sombre en bas de l'image pour que les badges ressortent */
+.admin-trip-card__media::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 45%;
+    background: linear-gradient(to top, rgba(28, 35, 31, .55), transparent);
+    pointer-events: none;
+}
+
+.admin-trip-card__pos,
+.admin-trip-card__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: .02em;
+}
+.admin-trip-card__pos {
+    background: rgba(28, 35, 31, .8);
+    backdrop-filter: blur(4px);
+}
+.admin-trip-card__badge {
+    background: var(--adm-orange);
+    box-shadow: 0 2px 8px rgba(247, 146, 30, .35);
+}
+
+/* --- Corps --- */
+.admin-trip-card__body {
+    flex: 1;
+    padding: 16px 18px 8px;
+}
+.admin-trip-card__title {
+    margin: 0 0 8px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--adm-dark);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.admin-trip-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 4px;
+    color: var(--adm-green-dark);
+    font-size: 13px;
+    font-weight: 600;
+}
+.admin-trip-card__meta i {
+    font-size: 12px;
+    color: var(--adm-green);
+}
+.admin-trip-card__date {
+    margin: 8px 0 0;
+    color: var(--adm-muted);
+    font-size: 12px;
+}
+
+/* --- Actions (pied de carte) --- */
+.admin-trip-card__actions {
+    display: flex;
+    gap: 8px;
+    padding: 12px 18px 16px;
+    border-top: 1px solid var(--adm-border);
+    margin-top: auto;
+    background: #fbfcfa;
+}
+.admin-trip-card--trashed .admin-trip-card__actions {
+    background: #fff6ea;
+    border-top-color: rgba(247, 146, 30, .25);
+}
+.admin-trip-card__form {
+    display: inline-flex;
+    margin: 0;
+    flex: 1;
+}
+.admin-trip-card__actions .admin-btn {
+    flex: 1;
+    justify-content: center;
+    white-space: nowrap;
+}
+.admin-trip-card__actions .admin-btn--ghost:hover {
+    border-color: var(--adm-green);
+    color: var(--adm-green-dark);
 }
 
 /* ---------- Accessibilité ---------- */

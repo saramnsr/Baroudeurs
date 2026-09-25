@@ -179,23 +179,16 @@
         </div><!--====== Search From ======-->
 
         {# ============================================================
-           Nav dropdown data for Circuits / Excursions, hardcoded here
-           (name + id only — the full data lives in circuits.html.twig,
-           excursions.html.twig and detail.html.twig). Keep these ids in
-           sync with those files: circuitNav ids match circuitData in
-           detail.html.twig (type: 'circuit'); excursionNav ids match
-           excursionData (type: 'excursion').
+           Nav dropdown data.
+
+           - circuitNav : lus en base via App\Twig\NavigationExtension
+             (nav_circuits()). Les nouveaux circuits créés depuis
+             l'admin apparaissent automatiquement ici.
+           - excursionNav : encore hardcodé (excursions pas encore
+             migrées en base). À remplacer plus tard de la même façon.
            ============================================================ #}
         {% set navLocale = app.request.locale %}
-        {% set circuitNav = [
-            { id: 1, title: { fr: 'Circuit Désert - Douz à Tembaïne', en: 'Desert Circuit - Douz to Tembaïne', ar: 'رحلة الصحراء - من دوز إلى تمباين', it: 'Circuito nel Deserto - Douz a Tembaïne' } },
-            { id: 2, title: { fr: 'Mirage du Désert', en: 'Mirage du Désert', ar: 'سراب الصحراء', it: 'Miraggio del Deserto' } },
-            { id: 3, title: { fr: 'Appel du Désert', en: 'Call of the Desert', ar: 'نداء الصحراء', it: 'Richiamo del Deserto' } },
-            { id: 4, title: { fr: 'Baroudeurs de Désert', en: 'Desert Baroudeurs', ar: 'بارودور الصحراء', it: 'Baroudeurs del Deserto' } },
-            { id: 5, title: { fr: 'Charme du Désert', en: 'Desert Charm', ar: 'سحر الصحراء', it: 'Fascino del Deserto' } },
-            { id: 6, title: { fr: 'Désert Infini', en: 'Endless Desert', ar: 'الصحراء اللانهائية', it: 'Deserto Infinito' } },
-            { id: 7, title: { fr: 'Rose de Sables', en: 'Desert Rose', ar: 'وردة الرمال', it: 'Rosa del Deserto' } }
-        ] %}
+        {% set circuitNav = nav_circuits() %}
         {% set excursionNav = [
             { id: 1, title: { fr: 'Excursion à Tataouine', en: 'Tataouine Excursion', ar: 'رحلة إلى تطاوين', it: 'Escursione a Tataouine' } },
             { id: 2, title: { fr: 'Excursion à Ksar Ghilane', en: 'Ksar Ghilane Excursion', ar: 'رحلة إلى قصر غيلان', it: 'Escursione a Ksar Ghilane' } }

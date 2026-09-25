@@ -1,0 +1,83 @@
+{% extends 'admin/admin_layout.html.twig' %}
+
+{% block title %}{{ labels.trash_title }}{% endblock %}
+
+{% block content %}
+    <div class="admin-page-header">
+        <div class="admin-page-header__row">
+            <div>
+                <h1 class="admin-page-header__title">{{ labels.trash_title }}</h1>
+                <p class="admin-page-header__subtitle">
+                    {{ items|length }} {{ items|length > 1 ? 'éléments' : 'élément' }} dans la corbeille
+                </p>
+            </div>
+            <a class="admin-btn admin-btn--ghost" href="{{ path('admin_trip_index', {type: type}) }}">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> Retour à la liste
+            </a>
+        </div>
+    </div>
+
+    {% if items|length == 0 %}
+        <div class="admin-card admin-empty">
+            <i class="fas fa-trash-alt admin-empty__icon" aria-hidden="true"></i>
+            <h2 class="admin-empty__title">La corbeille est vide</h2>
+            <p class="admin-empty__text">Les éléments supprimés apparaîtront ici.</p>
+        </div>
+    {% else %}
+        <div class="admin-trip-grid">
+            {% for item in items %}
+                <article class="admin-trip-card admin-trip-card--trashed">
+                    <div class="admin-trip-card__media">
+                        {% if item.image starts with 'http' %}
+                            <img src="{{ item.image }}" alt="{{ item.titleFr }}" loading="lazy" decoding="async">
+                        {% else %}
+                            <img src="{{ asset('assets/images/' ~ item.image) }}" alt="{{ item.titleFr }}" loading="lazy" decoding="async">
+                        {% endif %}
+                        <span class="admin-trip-card__badge">Corbeille</span>
+                    </div>
+
+                    <div class="admin-trip-card__body">
+                        <h3 class="admin-trip-card__title">{{ item.titleFr }}</h3>
+                        {% if item.durationFr %}
+                            <p class="admin-trip-card__meta">
+                                <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                {{ item.durationFr }}
+                            </p>
+                        {% endif %}
+                        {% if item.deletedAt %}
+                            <p class="admin-trip-card__date">
+                                Supprimé le {{ item.deletedAt|date('d/m/Y à H:i') }}
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    <div class="admin-trip-card__actions">
+                        <form method="post"
+                              action="{{ path('admin_trip_restore', {type: type, id: item.id}) }}"
+                              class="admin-trip-card__form"
+                              onsubmit="return confirm('Restaurer « {{ item.titleFr|e('js') }} » ?');">
+                            <input type="hidden" name="_token"
+                                   value="{{ csrf_token('admin_trip_restore_' ~ item.id) }}">
+                            <button type="submit" class="admin-btn admin-btn--ghost admin-btn--sm"
+                                    title="Restaurer">
+                                <i class="fas fa-undo" aria-hidden="true"></i> Restaurer
+                            </button>
+                        </form>
+
+                        <form method="post"
+                              action="{{ path('admin_trip_purge', {type: type, id: item.id}) }}"
+                              class="admin-trip-card__form"
+                              onsubmit="return confirm('Supprimer DÉFINITIVEMENT « {{ item.titleFr|e('js') }} » ?\n\nCette action est irréversible et supprimera aussi les images sur Cloudinary.');">
+                            <input type="hidden" name="_token"
+                                   value="{{ csrf_token('admin_trip_purge_' ~ item.id) }}">
+                            <button type="submit" class="admin-btn admin-btn--danger-ghost admin-btn--sm"
+                                    title="Supprimer définitivement">
+                                <i class="fas fa-trash-alt" aria-hidden="true"></i> Supprimer définitivement
+                            </button>
+                        </form>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

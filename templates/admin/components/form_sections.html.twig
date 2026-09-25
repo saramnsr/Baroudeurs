@@ -1,0 +1,109 @@
+{# ============================================================
+   Sections partagées entre "ajouter" et "modifier".
+
+   Attend :
+     - form                (FormView)          requis
+     - currentAvatarUrl    (string|null)       URL de la photo
+                                               client existante,
+                                               ou null
+   ============================================================ #}
+
+{# ===== Informations générales ===== #}
+<section class="admin-card">
+    <h2 class="admin-card__title">Informations générales</h2>
+    <div class="admin-form__grid admin-form__grid--2">
+        {{ form_row(form.title) }}
+        {{ form_row(form.duration) }}
+    </div>
+    {{ form_row(form.description) }}
+    {{ form_row(form.fullDescription) }}
+</section>
+
+{# ===== Itinéraire complet ===== #}
+<section class="admin-card">
+    <h2 class="admin-card__title">Itinéraire complet</h2>
+    {{ form_row(form.itinerarySummary) }}
+    {% include 'admin/components/form_collection.html.twig' with {
+        collection: form.itinerary,
+        itemLabel: 'Jour',
+        addLabel: 'Ajouter un jour'
+    } %}
+</section>
+
+{# ===== Ce qui est inclus ===== #}
+<section class="admin-card">
+    <h2 class="admin-card__title">Ce qui est inclus</h2>
+    <p class="admin-card__intro">Choisissez dans la liste, ou ajoutez un nouvel élément en bas de la liste (sans icône).</p>
+
+    <div class="admin-form__grid admin-form__grid--2">
+        <div class="admin-field">
+            <span class="admin-field__label">Inclus</span>
+            {% include 'admin/components/tag_picker.html.twig' with {
+                choices: form.includedItems,
+                custom: form.includedCustom,
+                placeholder: 'Choisir les éléments inclus…'
+            } %}
+        </div>
+
+        <div class="admin-field">
+            <span class="admin-field__label">Non inclus</span>
+            {% include 'admin/components/tag_picker.html.twig' with {
+                choices: form.excludedItems,
+                custom: form.excludedCustom,
+                placeholder: 'Choisir les éléments non inclus…'
+            } %}
+        </div>
+    </div>
+</section>
+
+{# ===== Avis client ===== #}
+<section class="admin-card">
+    <h2 class="admin-card__title">Avis client <span class="admin-card__optional">(optionnel)</span></h2>
+
+    {# Photo du client #}
+    <div class="admin-field{% if form.reviewAvatar.vars.errors|length > 0 %} has-error{% endif %}">
+        <div class="admin-avatar" data-avatar>
+            <label class="admin-avatar__picker" title="Choisir une photo">
+                {{ form_widget(form.reviewAvatar, {attr: {class: 'admin-avatar__input', accept: 'image/jpeg,image/png,image/webp'}}) }}
+                <span class="admin-avatar__circle" data-avatar-preview>
+                    {% if currentAvatarUrl %}
+                        <img src="{{ currentAvatarUrl }}" alt="Photo du client">
+                    {% else %}
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                    {% endif %}
+                </span>
+                <span class="admin-avatar__badge" aria-hidden="true"><i class="fas fa-camera"></i></span>
+            </label>
+            <div class="admin-avatar__info">
+                <strong data-avatar-title>{{ currentAvatarUrl ? 'Changer la photo' : 'Photo du client' }}</strong>
+                <span>Cliquez sur le cercle · JPG, PNG ou WebP · format carré conseillé</span>
+                <button type="button" class="admin-btn admin-btn--danger-ghost admin-btn--sm" data-avatar-remove{% if not currentAvatarUrl %} hidden{% endif %}>
+                    <i class="fas fa-trash-alt" aria-hidden="true"></i> Retirer
+                </button>
+            </div>
+        </div>
+        {{ form_errors(form.reviewAvatar) }}
+    </div>
+
+    <div class="admin-form__grid admin-form__grid--2">
+        {{ form_row(form.reviewName) }}
+        {{ form_row(form.reviewCountry) }}
+    </div>
+
+    {# Note : étoiles cliquables (radios stylés en CSS) #}
+    <div class="admin-field{% if form.reviewRating.vars.errors|length > 0 %} has-error{% endif %}">
+        <span class="admin-field__label">Note</span>
+        <div class="admin-rating" data-rating>
+            {% for child in form.reviewRating %}
+                {{ form_widget(child) }}
+                <label for="{{ child.vars.id }}" title="{{ child.vars.label }}">
+                    <span class="sr-only">{{ child.vars.label }}</span>
+                </label>
+            {% endfor %}
+            <span class="admin-rating__value" data-rating-value></span>
+        </div>
+        {{ form_errors(form.reviewRating) }}
+    </div>
+
+    {{ form_row(form.reviewComment) }}
+</section>

@@ -78,20 +78,33 @@ final class TripType extends AbstractType
             ->add('images', FileType::class, [
                 'label' => 'Images',
                 'multiple' => true,
+                // Sur la page "modifier", ce champ est optionnel : l'admin peut
+                // ne rien ré-uploader et garder les images existantes.
+                'required' => false,
                 'attr' => ['accept' => self::IMAGE_ACCEPT, 'class' => 'admin-dropzone__input'],
                 'constraints' => [
                     new Assert\Count([
-                        'min' => 2,
                         'max' => self::MAX_IMAGES,
-                        'minMessage' => 'Ajoutez au moins 2 images.',
                         'maxMessage' => sprintf('%d images maximum.', self::MAX_IMAGES),
                     ]),
                     new Assert\All([$image]),
                 ],
             ])
-            // Position de l'image principale (choisie avec ★)
+            // Position de l'image principale (add : index dans "images")
             ->add('mainImageIndex', HiddenType::class, [
+                'required' => false,
                 'attr' => ['data-main-index' => ''],
+            ])
+            // Images déjà présentes (JSON) — utilisé uniquement en édition
+            ->add('existingImages', HiddenType::class, [
+                'required' => false,
+                'attr' => ['data-existing-images' => ''],
+            ])
+            // Identifiant de l'image principale en édition :
+            //   "existing:0", "existing:2", "new:0", "new:3"…
+            ->add('mainImageKey', HiddenType::class, [
+                'required' => false,
+                'attr' => ['data-main-key' => ''],
             ])
 
             // ===== Itinéraire complet =====
@@ -158,8 +171,20 @@ final class TripType extends AbstractType
             ->add('reviewRating', ChoiceType::class, [
                 'label' => 'Note',
                 'required' => false,
-                'placeholder' => '—',
-                'choices' => ['★★★★★ (5)' => 5, '★★★★ (4)' => 4, '★★★ (3)' => 3, '★★ (2)' => 2, '★ (1)' => 1],
+                'placeholder' => false,
+                'expanded' => true,
+                'multiple' => false,
+                'choices' => [
+                    '5 étoiles' => 5,
+                    '4 étoiles' => 4,
+                    '3 étoiles' => 3,
+                    '2 étoiles' => 2,
+                    '1 étoile'  => 1,
+                ],
+                'choice_attr' => static fn ($choice, $key, $value): array => [
+                    'class' => 'admin-rating__input',
+                    'data-rating' => (string) $value,
+                ],
             ])
             ->add('reviewComment', TextareaType::class, [
                 'label' => 'Commentaire',
@@ -193,12 +218,25 @@ final class TripType extends AbstractType
         return array_combine($texts, $texts);
     }
 
-    // L'image principale doit faire partie des images envoyées
+    // L'image principale doit faire partie des images envoyées (page "ajouter" uniquement)
     public static function validateMainImage($data, ExecutionContextInterface $context): void
     {
         $images = is_array($data) ? ($data['images'] ?? []) : [];
+
+        // Si des images existantes sont fournies (page "modifier"), la
+        // validation stricte est gérée par le contrôleur — on ne vérifie ici
+        // que la page "ajouter" où existingImages est vide.
+        $hasExisting = is_array($data)
+            && isset($data['existingImages'])
+            && trim((string) $data['existingImages']) !== '';
+
+        if ($hasExisting) {
+            return;
+        }
+
         if (count($images) === 0) {
-            return; // Déjà signalé par "Ajoutez au moins 2 images"
+            // Déjà signalé par "Ajoutez au moins 2 images" côté admin
+            return;
         }
 
         $index = $data['mainImageIndex'] ?? null;

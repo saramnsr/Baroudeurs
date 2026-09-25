@@ -14,7 +14,7 @@ class CircuitRepository extends ServiceEntityRepository
     }
 
     /**
-     * Circuits visibles sur le site (hors corbeille), dans l'ordre d'affichage.
+     * Circuits visibles (hors corbeille), dans l'ordre d'affichage.
      *
      * @return Circuit[]
      */
@@ -24,6 +24,20 @@ class CircuitRepository extends ServiceEntityRepository
             ->where('c.deletedAt IS NULL')
             ->orderBy('c.position', 'ASC')
             ->addOrderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Circuits dans la corbeille, les plus récemment supprimés en premier.
+     *
+     * @return Circuit[]
+     */
+    public function findTrashed(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.deletedAt IS NOT NULL')
+            ->orderBy('c.deletedAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
@@ -54,7 +68,7 @@ class CircuitRepository extends ServiceEntityRepository
     }
 
     /**
-     * Liste légère pour le menu du header : id + titres (sans charger tout le circuit).
+     * Liste légère pour le menu du header : id + titres.
      *
      * @return array<int, array{id: int, title: array<string, string>}>
      */

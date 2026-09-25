@@ -1,0 +1,194 @@
+{% extends 'admin/admin_layout.html.twig' %}
+{% form_theme form 'admin/components/form_theme.html.twig' %}
+
+{% block title %}Modifier un circuit{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/fonts/flaticon/flaticon.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="admin-page-header">
+        <h1 class="admin-page-header__title">Modifier un circuit</h1>
+        <p class="admin-page-header__subtitle">
+            Modifiez les informations en français : les traductions sont régénérées pour les champs modifiés uniquement.
+        </p>
+    </div>
+
+    {{ form_start(form, {attr: {class: 'admin-form'}}) }}
+        {{ form_errors(form) }}
+
+        {# ===== 1. Images ===== #}
+        <section class="admin-card">
+            <h2 class="admin-card__title">Images</h2>
+            <p class="admin-card__intro">
+                Cliquez sur ★ pour choisir l'image principale (affichée sur la page Circuits).
+                Retirez une image avec ✕. Ajoutez-en de nouvelles ci-dessous.
+            </p>
+
+            {{ form_errors(form.images) }}
+
+            {# ---- Images déjà enregistrées ---- #}
+            {% if existingImages|length > 0 %}
+                <h3 class="admin-card__subtitle">Images actuelles</h3>
+                <div class="admin-gallery" data-existing-gallery>
+                    {% for img in existingImages %}
+                        <div class="admin-gallery__item{% if loop.index0 == mainExistingIndex %} is-main{% endif %}"
+                             data-existing-item
+                             data-url="{{ img.url }}"
+                             data-index="{{ loop.index0 }}">
+                            <img src="{{ img.url }}" alt="{{ img.title ?: '' }}" loading="lazy" decoding="async">
+                            {% if loop.index0 == mainExistingIndex %}
+                                <span class="admin-gallery__badge">★ Principale</span>
+                            {% endif %}
+                            <span class="admin-gallery__pos">Existante {{ loop.index }}</span>
+                            <div class="admin-gallery__actions">
+                                <button type="button" class="admin-gallery__btn{% if loop.index0 == mainExistingIndex %} is-active{% endif %}"
+                                        data-existing-set-main
+                                        aria-pressed="{{ loop.index0 == mainExistingIndex ? 'true' : 'false' }}"
+                                        title="Définir comme image principale">
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="admin-gallery__btn admin-gallery__btn--remove"
+                                        data-existing-remove
+                                        title="Retirer cette image">
+                                    <i class="fas fa-times" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {# ---- Nouvelles images à uploader ---- #}
+            <h3 class="admin-card__subtitle" style="margin-top: 20px;">
+                {{ existingImages|length > 0 ? 'Ajouter de nouvelles images' : 'Images' }}
+            </h3>
+
+            <label class="admin-dropzone" data-dropzone>
+                {{ form_widget(form.images) }}
+                <i class="fas fa-cloud-upload-alt admin-dropzone__icon" aria-hidden="true"></i>
+                <strong>Glissez-déposez vos images ici</strong>
+                <span>ou cliquez pour choisir · JPG, PNG, WebP · 10 Mo max par image</span>
+            </label>
+
+            <div class="admin-gallery" data-gallery></div>
+
+            {{ form_widget(form.mainImageIndex) }}
+            {{ form_widget(form.existingImages) }}
+            {{ form_widget(form.mainImageKey) }}
+        </section>
+
+        {# ===== 2 à 5 : sections partagées ===== #}
+        {% include 'admin/components/form_sections.html.twig' with {
+            form: form,
+            currentAvatarUrl: currentAvatarUrl
+        } %}
+
+        {# ===== Actions ===== #}
+        <div class="admin-form__actions">
+            <a class="admin-btn admin-btn--ghost" href="{{ path('admin_trip_index', {type: type}) }}">Annuler</a>
+            <button type="submit" class="admin-btn admin-btn--primary">
+                <i class="fas fa-save" aria-hidden="true"></i> Enregistrer les modifications
+            </button>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // ===== Note en étoiles =====
+            document.querySelectorAll('[data-rating]').forEach(function (wrap) {
+                var value = wrap.parentElement.querySelector('[data-rating-value]');
+                function refresh() {
+                    var checked = wrap.querySelector('input[type="radio"]:checked');
+                    value.textContent = checked ? checked.value + '/5' : '';
+                }
+                wrap.addEventListener('change', refresh);
+                refresh();
+            });
+
+            // ===== Images existantes =====
+            var existingGallery = document.querySelector('[data-existing-gallery]');
+            var existingInput   = document.querySelector('[data-existing-images]');
+            var mainKeyInput    = document.querySelector('[data-main-key]');
+            if (!existingGallery || !existingInput || !mainKeyInput) return;
+
+            // Liste JS des images existantes (source de vérité)
+            var items = Array.prototype.map.call(
+                existingGallery.querySelectorAll('[data-existing-item]'),
+                function (el) {
+                    return { url: el.getAttribute('data-url') };
+                }
+            );
+
+            // Clé de l'image principale : "existing:N" (N = index) ou "new:M"
+            var mainKey = mainKeyInput.value || '';
+            if (!mainKey) {
+                mainKey = items.length > 0 ? 'existing:0' : 'new:0';
+            }
+
+            function sync() {
+                existingInput.value = JSON.stringify(items);
+                mainKeyInput.value = mainKey;
+
+                existingGallery.querySelectorAll('[data-existing-item]').forEach(function (el, i) {
+                    var isMain = mainKey === 'existing:' + i;
+                    el.classList.toggle('is-main', isMain);
+
+                    var badge = el.querySelector('.admin-gallery__badge');
+                    if (isMain && !badge) {
+                        badge = document.createElement('span');
+                        badge.className = 'admin-gallery__badge';
+                        badge.textContent = '★ Principale';
+                        el.appendChild(badge);
+                    } else if (!isMain && badge) {
+                        badge.remove();
+                    }
+
+                    var btn = el.querySelector('[data-existing-set-main]');
+                    if (btn) {
+                        btn.classList.toggle('is-active', isMain);
+                        btn.setAttribute('aria-pressed', String(isMain));
+                    }
+                });
+            }
+
+            existingGallery.addEventListener('click', function (e) {
+                var mainBtn = e.target.closest('[data-existing-set-main]');
+                var removeBtn = e.target.closest('[data-existing-remove]');
+
+                if (mainBtn) {
+                    var itemEl = mainBtn.closest('[data-existing-item]');
+                    var idx = parseInt(itemEl.getAttribute('data-index'), 10);
+                    mainKey = 'existing:' + idx;
+                    sync();
+                    return;
+                }
+
+                if (removeBtn) {
+                    var itemEl = removeBtn.closest('[data-existing-item]');
+                    var idx = parseInt(itemEl.getAttribute('data-index'), 10);
+                    items.splice(idx, 1);
+                    itemEl.remove();
+
+                    existingGallery.querySelectorAll('[data-existing-item]').forEach(function (el, i) {
+                        el.setAttribute('data-index', String(i));
+                    });
+
+                    if (mainKey === 'existing:' + idx) {
+                        mainKey = items.length > 0 ? 'existing:0' : 'new:0';
+                    } else if (mainKey.indexOf('existing:') === 0) {
+                        var mk = parseInt(mainKey.split(':')[1], 10);
+                        if (mk > idx) mainKey = 'existing:' + (mk - 1);
+                    }
+                    sync();
+                }
+            });
+
+            sync();
+        });
+    </script>
+{% endblock %}

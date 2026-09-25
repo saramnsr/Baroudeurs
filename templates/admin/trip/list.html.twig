@@ -1,0 +1,83 @@
+{% extends 'admin/admin_layout.html.twig' %}
+
+{% block title %}{{ labels.manage_title }}{% endblock %}
+
+{% block content %}
+    <div class="admin-page-header">
+        <div class="admin-page-header__row">
+            <div>
+                <h1 class="admin-page-header__title">{{ labels.manage_title }}</h1>
+                <p class="admin-page-header__subtitle">
+                    {{ items|length }} {{ items|length > 1 ? labels.plural : labels.singular }}
+                    {% if trashCount > 0 %}
+                        · <a href="{{ path('admin_trip_trash', {type: type}) }}">{{ trashCount }} dans la corbeille</a>
+                    {% endif %}
+                </p>
+            </div>
+            <a class="admin-btn admin-btn--primary" href="{{ path('admin_trip_add', {type: type}) }}">
+                <i class="fas fa-plus" aria-hidden="true"></i> Ajouter
+            </a>
+        </div>
+    </div>
+
+    {% if items|length == 0 %}
+        <div class="admin-card admin-empty">
+            <i class="fas fa-route admin-empty__icon" aria-hidden="true"></i>
+            <h2 class="admin-empty__title">Aucun {{ labels.singular }} pour le moment</h2>
+            <p class="admin-empty__text">Commencez par en créer un.</p>
+            <a class="admin-btn admin-btn--primary" href="{{ path('admin_trip_add', {type: type}) }}">
+                <i class="fas fa-plus" aria-hidden="true"></i> {{ labels.add_title }}
+            </a>
+        </div>
+    {% else %}
+        <div class="admin-trip-grid">
+            {% for item in items %}
+                <article class="admin-trip-card">
+                    <div class="admin-trip-card__media">
+                        {% if item.image starts with 'http' %}
+                            <img src="{{ item.image }}" alt="{{ item.titleFr }}" loading="lazy" decoding="async">
+                        {% else %}
+                            <img src="{{ asset('assets/images/' ~ item.image) }}" alt="{{ item.titleFr }}" loading="lazy" decoding="async">
+                        {% endif %}
+                        <span class="admin-trip-card__pos">Position {{ item.position }}</span>
+                    </div>
+
+                    <div class="admin-trip-card__body">
+                        <h3 class="admin-trip-card__title">{{ item.titleFr }}</h3>
+                        {% if item.durationFr %}
+                            <p class="admin-trip-card__meta">
+                                <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                {{ item.durationFr }}
+                            </p>
+                        {% endif %}
+                        {% if item.updatedAt %}
+                            <p class="admin-trip-card__date">
+                                Modifié le {{ item.updatedAt|date('d/m/Y à H:i') }}
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    <div class="admin-trip-card__actions">
+                        <a class="admin-btn admin-btn--ghost admin-btn--sm"
+                           href="{{ path('admin_trip_edit', {type: type, id: item.id}) }}"
+                           title="Modifier">
+                            <i class="fas fa-pen" aria-hidden="true"></i> Modifier
+                        </a>
+
+                        <form method="post"
+                              action="{{ path('admin_trip_delete', {type: type, id: item.id}) }}"
+                              class="admin-trip-card__form"
+                              onsubmit="return confirm('Mettre « {{ item.titleFr|e('js') }} » à la corbeille ?');">
+                            <input type="hidden" name="_token"
+                                   value="{{ csrf_token('admin_trip_delete_' ~ item.id) }}">
+                            <button type="submit" class="admin-btn admin-btn--danger-ghost admin-btn--sm"
+                                    title="Déplacer dans la corbeille">
+                                <i class="fas fa-trash-alt" aria-hidden="true"></i> Supprimer
+                            </button>
+                        </form>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

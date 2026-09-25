@@ -3,7 +3,6 @@
 
 {% block title %}{{ labels.add_title }}{% endblock %}
 
-{# Icônes flaticon (éléments "inclus") #}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('assets/fonts/flaticon/flaticon.css') }}">
 {% endblock %}
@@ -21,7 +20,7 @@
         <section class="admin-card">
             <h2 class="admin-card__title">Images</h2>
             <p class="admin-card__intro">
-                Cliquez sur ★ pour choisir l'image principale (affichée sur la page {{ labels.list_page }}).
+                Cliquez sur ★ pour choisir l'image principale (affichée sur la page {{ labels.plural|capitalize }}).
                 Images 1 et 2 : en haut de la page détail. Les suivantes : bandeau défilant.
             </p>
 
@@ -35,89 +34,17 @@
             </label>
 
             <div class="admin-gallery" data-gallery></div>
+
             {{ form_widget(form.mainImageIndex) }}
+            {{ form_widget(form.existingImages) }}
+            {{ form_widget(form.mainImageKey) }}
         </section>
 
-        {# ===== 2. Informations générales ===== #}
-        <section class="admin-card">
-            <h2 class="admin-card__title">Informations générales</h2>
-            <div class="admin-form__grid admin-form__grid--2">
-                {{ form_row(form.title) }}
-                {{ form_row(form.duration) }}
-            </div>
-            {{ form_row(form.description) }}
-            {{ form_row(form.fullDescription) }}
-        </section>
-
-        {# ===== 3. Itinéraire complet ===== #}
-        <section class="admin-card">
-            <h2 class="admin-card__title">Itinéraire complet</h2>
-            {{ form_row(form.itinerarySummary) }}
-            {% include 'admin/components/form_collection.html.twig' with {
-                collection: form.itinerary,
-                itemLabel: 'Jour',
-                addLabel: 'Ajouter un jour'
-            } %}
-        </section>
-
-        {# ===== 4. Ce qui est inclus ===== #}
-        <section class="admin-card">
-            <h2 class="admin-card__title">Ce qui est inclus</h2>
-            <p class="admin-card__intro">Choisissez dans la liste, ou ajoutez un nouvel élément en bas de la liste (sans icône).</p>
-
-            <div class="admin-form__grid admin-form__grid--2">
-                <div class="admin-field">
-                    <span class="admin-field__label">Inclus</span>
-                    {% include 'admin/components/tag_picker.html.twig' with {
-                        choices: form.includedItems,
-                        custom: form.includedCustom,
-                        placeholder: 'Choisir les éléments inclus…'
-                    } %}
-                </div>
-
-                <div class="admin-field">
-                    <span class="admin-field__label">Non inclus</span>
-                    {% include 'admin/components/tag_picker.html.twig' with {
-                        choices: form.excludedItems,
-                        custom: form.excludedCustom,
-                        placeholder: 'Choisir les éléments non inclus…'
-                    } %}
-                </div>
-            </div>
-        </section>
-
-        {# ===== 5. Avis client ===== #}
-        <section class="admin-card">
-            <h2 class="admin-card__title">Avis client <span class="admin-card__optional">(optionnel)</span></h2>
-
-            {# Photo du client #}
-            <div class="admin-field{% if form.reviewAvatar.vars.errors|length > 0 %} has-error{% endif %}">
-                <div class="admin-avatar" data-avatar>
-                    <label class="admin-avatar__picker" title="Choisir une photo">
-                        {{ form_widget(form.reviewAvatar, {attr: {class: 'admin-avatar__input', accept: 'image/jpeg,image/png,image/webp'}}) }}
-                        <span class="admin-avatar__circle" data-avatar-preview>
-                            <i class="fas fa-user" aria-hidden="true"></i>
-                        </span>
-                        <span class="admin-avatar__badge" aria-hidden="true"><i class="fas fa-camera"></i></span>
-                    </label>
-                    <div class="admin-avatar__info">
-                        <strong data-avatar-title>Photo du client</strong>
-                        <span>Cliquez sur le cercle · JPG, PNG ou WebP · format carré conseillé</span>
-                        <button type="button" class="admin-btn admin-btn--danger-ghost admin-btn--sm" data-avatar-remove hidden>
-                            <i class="fas fa-trash-alt" aria-hidden="true"></i> Retirer
-                        </button>
-                    </div>
-                </div>
-                {{ form_errors(form.reviewAvatar) }}
-            </div>
-
-            <div class="admin-form__grid admin-form__grid--2">
-                {{ form_row(form.reviewName) }}
-                {{ form_row(form.reviewCountry) }}
-            </div>
-            {{ form_row(form.reviewRating) }}
-            {{ form_row(form.reviewComment) }}
-        </section>
+        {# ===== 2 à 5 : sections partagées ===== #}
+        {% include 'admin/components/form_sections.html.twig' with {
+            form: form,
+            currentAvatarUrl: null
+        } %}
 
         {# ===== Actions ===== #}
         <div class="admin-form__actions">
@@ -127,4 +54,21 @@
             </button>
         </div>
     {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('[data-rating]').forEach(function (wrap) {
+                var value = wrap.parentElement.querySelector('[data-rating-value]');
+                function refresh() {
+                    var checked = wrap.querySelector('input[type="radio"]:checked');
+                    value.textContent = checked ? checked.value + '/5' : '';
+                }
+                wrap.addEventListener('change', refresh);
+                refresh();
+            });
+        });
+    </script>
 {% endblock %}

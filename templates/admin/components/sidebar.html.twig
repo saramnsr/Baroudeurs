@@ -6,12 +6,12 @@
     { label: 'Tableau de bord', icon: 'fa-th-large', route: 'admin_dashboard' },
     { label: 'Circuits', icon: 'fa-route', type: 'circuits', children: [
         { label: 'Ajouter un circuit', icon: 'fa-plus-circle', route: 'admin_trip_add', params: { type: 'circuits' } },
-        { label: 'Gérer les circuits', icon: 'fa-edit', route: null },
-        { label: 'Corbeille', icon: 'fa-trash-alt', route: null }
+        { label: 'Modifier un circuit', icon: 'fa-edit', route: 'admin_trip_index', params: { type: 'circuits' } },
+        { label: 'Corbeille', icon: 'fa-trash-alt', route: 'admin_trip_trash', params: { type: 'circuits' } }
     ] },
     { label: 'Excursions', icon: 'fa-compass', type: 'excursions', children: [
         { label: 'Ajouter une excursion', icon: 'fa-plus-circle', route: 'admin_trip_add', params: { type: 'excursions' } },
-        { label: 'Gérer les excursions', icon: 'fa-edit', route: null },
+        { label: 'Modifier une excursion', icon: 'fa-edit', route: null },
         { label: 'Corbeille', icon: 'fa-trash-alt', route: null }
     ] },
     { label: 'Messages', icon: 'fa-envelope', route: null },
@@ -34,7 +34,6 @@
         <ul class="admin-nav__list">
             {% for item in nav %}
                 {% if item.children is defined %}
-                    {# Groupe ouvert si on est sur une page de ce type (circuits / excursions) #}
                     {% set isOpen = currentRoute starts with 'admin_trip_' and currentType == item.type %}
                     <li>
                         <details class="admin-nav__details" {% if isOpen %}open{% endif %}>
