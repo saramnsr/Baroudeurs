@@ -3,338 +3,15 @@
 {% set _detailType = app.request.attributes.get('type') %}
 {% set _detailId = app.request.attributes.get('id') %}
 
-    {# ============================================================
-       Circuits : fournis par le contrôleur (base de données) via
-       les variables "item" et "relatedItems".
-       Excursions : encore ci-dessous dans excursionData
-       (elles seront migrées en base plus tard, de la même façon).
-       ============================================================ #}
-    {% set excursionData = [
-    {
-        id: 1,
-        image: "Circuits/excursion Tatouine.jpg",
-        title: {
-            fr: "Excursion d'une Journée à Tataouine",
-            en: "Tataouine Day Excursion",
-            ar: "رحلة يوم واحد إلى تطاوين",
-            it: "Escursione di un Giorno a Tataouine"
-        },
-        description: {
-            fr: "Une journée de découverte le long de la Roman Road historique, avec un arrêt au lac salé de Chahbania, le marché de Tataouine et le village troglodyte de Chenini. Terminez au ksar Hadada, célèbre décor de Star Wars.",
-            en: "A day of discovery along the historic Roman Road, with a stop at the Chahbania salt lake, the Tataouine market, and the troglodyte village of Chenini. Finish at Ksar Hadada, the famous Star Wars filming location.",
-            ar: "يوم من الاكتشاف على طول الطريق الروماني التاريخي، مع توقف عند بحيرة الشحبانية المالحة وسوق تطاوين وقرية شنيني الكهفية. تنتهي الرحلة في قصر حدادة، الموقع الشهير لتصوير ستار وورز.",
-            it: "Una giornata alla scoperta della storica Roman Road, con una sosta al lago salato di Chahbania, il mercato di Tataouine e il villaggio trogloditico di Chenini. Termina al ksar Hadada, famoso set di Star Wars."
-        },
-        icons: [
-            "flaticon-hiking-2",
-            "flaticon-camp",
-            "flaticon-quotation"
-        ],
-        intro: {
-            fr: "Votre excursion promet d'être une expérience mémorable, riche en découvertes culturelles et en paysages magnifiques. Voici un aperçu de votre journée :",
-            en: "Your excursion promises to be a memorable experience, full of cultural discoveries and beautiful landscapes. Here is an overview of your day:",
-            ar: "تعد رحلتكم بأن تكون تجربة لا تُنسى، مليئة بالاكتشافات الثقافية والمناظر الطبيعية الخلابة. إليكم لمحة عن يومكم:",
-            it: "La vostra escursione promette di essere un'esperienza memorabile, ricca di scoperte culturali e paesaggi magnifici. Ecco una panoramica della vostra giornata:"
-        },
-        fullDescription: {
-            fr: "Une journée le long de la Roman Road historique. Admirez le lac salé de Chahbania, explorez le marché animé de Tataouine et le village troglodyte de Chenini avec un guide local. Dégustez un déjeuner berbère traditionnel avant de découvrir le ksar Hadada, célèbre décor du film Star Wars.",
-            en: "A day along the historic Roman Road. Admire the Chahbania salt lake, explore the lively Tataouine market and the troglodyte village of Chenini with a local guide. Enjoy a traditional Berber lunch before discovering Ksar Hadada, the famous Star Wars filming location.",
-            ar: "يوم على طول الطريق الروماني التاريخي. استمتع بمنظر بحيرة الشحبانية المالحة، واستكشف سوق تطاوين النابض بالحياة وقرية شنيني الكهفية برفقة مرشد محلي. تذوق غداءً أمازيغياً تقليدياً قبل اكتشاف قصر حدادة، الموقع الشهير لتصوير ستار وورز.",
-            it: "Una giornata lungo la storica Roman Road. Ammira il lago salato di Chahbania, esplora il vivace mercato di Tataouine e il villaggio trogloditico di Chenini con una guida locale. Gusta un pranzo berbero tradizionale prima di scoprire il ksar Hadada, famoso set di Star Wars."
-        },
-        itinerarySummary: {
-            fr: "Cette excursion d'une journée suit la Roman Road historique jusqu'au lac salé de Chahbania, au marché de Tataouine et au village troglodyte de Chenini. La journée se termine au ksar Hadada, célèbre décor de Star Wars, avant le retour à l'hôtel.",
-            en: "This single-day excursion follows the historic Roman Road to the Chahbania salt lake, the Tataouine market, and the troglodyte village of Chenini. The day ends at Ksar Hadada, the famous Star Wars filming location, before returning to your hotel.",
-            ar: "تتبع هذه الرحلة التي تستغرق يومًا واحدًا الطريق الروماني التاريخي وصولًا إلى بحيرة الشحبانية المالحة وسوق تطاوين وقرية شنيني الكهفية. ينتهي اليوم في قصر حدادة، الموقع الشهير لتصوير ستار وورز، قبل العودة إلى الفندق.",
-            it: "Questa escursione di un giorno segue la storica Roman Road fino al lago salato di Chahbania, al mercato di Tataouine e al villaggio trogloditico di Chenini. La giornata si conclude al ksar Hadada, famoso set di Star Wars, prima del ritorno in hotel."
-        },
-        itinerary: {
-            fr: [
-                "Roman Road et lac de Chahbania",
-                "Marché de Tataouine et Chenini",
-                "Ksar Hadada et retour"
-            ],
-            en: [
-                "Roman Road and Chahbania Lake",
-                "Tataouine Market and Chenini",
-                "Ksar Hadada and Return"
-            ],
-            ar: [
-                "الطريق الروماني وبحيرة الشحبانية",
-                "سوق تطاوين وشنيني",
-                "قصر حدادة والعودة"
-            ],
-            it: [
-                "Roman Road e Lago di Chahbania",
-                "Mercato di Tataouine e Chenini",
-                "Ksar Hadada e Ritorno"
-            ]
-        },
-        itineraryDetail: {
-            fr: [
-                "Votre aventure commence par un départ matinal de votre hôtel, vous mettant dans l'ambiance pour une journée remplie de découvertes. En chemin vers Tataouine, vous traverserez la Roman Road, un vestige historique qui relie l'île à l'Afrique continentale. Votre première halte sera au lac salé de Chahbania, où les reflets du soleil sur l'eau créent des panoramas époustouflants.",
-                "Vous vous aventurerez ensuite dans les rues animées du marché de Tataouine pour explorer les produits locaux et les épices berbères. Vous continuerez votre journée en visitant le village de Chenini, célèbre pour ses maisons troglodytes et son architecture berbère, accompagné d'un guide local. À midi, vous aurez le plaisir de déguster un repas traditionnel berbère dans un restaurant local.",
-                "Après le déjeuner, vous vous dirigerez vers le ksar Hadada, un site emblématique qui a servi de décor pour le film Star Wars. À la fin de cette journée bien remplie, vous serez raccompagné à votre hôtel, riche de souvenirs inoubliables."
-            ],
-            en: [
-                "Your adventure begins with an early morning departure from your hotel, setting the mood for a day full of discoveries. On the way to Tataouine, you'll cross the Roman Road, a historic causeway linking the island to mainland Africa. Your first stop will be at the Chahbania salt lake, where the sun's reflections on the water create breathtaking views.",
-                "You'll then venture into the lively streets of the Tataouine market to explore local products and Berber spices. You'll continue your day with a visit to the village of Chenini, famous for its troglodyte houses and Berber architecture, accompanied by a local guide. At midday, you'll enjoy a traditional Berber meal at a local restaurant.",
-                "After lunch, you'll head to Ksar Hadada, an iconic site that served as a set for the Star Wars film. At the end of this full day, you'll be taken back to your hotel, full of unforgettable memories."
-            ],
-            ar: [
-                "تبدأ مغامرتكم بانطلاقة صباحية من فندقكم، لتضعكم في أجواء يوم حافل بالاكتشافات. في الطريق نحو تطاوين، ستعبرون الطريق الروماني، وهو أثر تاريخي يربط الجزيرة بالقارة الأفريقية. ستكون محطتكم الأولى عند بحيرة الشحبانية المالحة، حيث تخلق انعكاسات الشمس على الماء مناظر خلابة.",
-                "ستغامرون بعدها في شوارع سوق تطاوين النابضة بالحياة لاستكشاف المنتجات المحلية والتوابل الأمازيغية. ستواصلون يومكم بزيارة قرية شنيني، المشهورة بمنازلها الكهفية وهندستها الأمازيغية، برفقة مرشد محلي. عند الظهيرة، ستستمتعون بوجبة أمازيغية تقليدية في مطعم محلي.",
-                "بعد الغداء، ستتوجهون نحو قصر حدادة، وهو موقع رمزي كان مسرحًا لتصوير فيلم ستار وورز. في نهاية هذا اليوم الحافل، سيتم إرجاعكم إلى فندقكم، مليئين بذكريات لا تُنسى."
-            ],
-            it: [
-                "La vostra avventura inizia con una partenza mattutina dal vostro hotel, dando il via a una giornata ricca di scoperte. Sulla strada verso Tataouine, attraverserete la Roman Road, un vestigio storico che collega l'isola al continente africano. La vostra prima tappa sarà al lago salato di Chahbania, dove i riflessi del sole sull'acqua creano panorami mozzafiato.",
-                "Vi avventurerete poi nelle vivaci strade del mercato di Tataouine per esplorare i prodotti locali e le spezie berbere. Continuerete la giornata visitando il villaggio di Chenini, famoso per le sue case trogloditiche e la sua architettura berbera, accompagnati da una guida locale. A mezzogiorno, gusterete un pasto tradizionale berbero in un ristorante locale.",
-                "Dopo pranzo, vi dirigerete verso il ksar Hadada, un sito emblematico che ha fatto da set per il film Star Wars. Alla fine di questa giornata intensa, sarete riaccompagnati al vostro hotel, ricchi di ricordi indimenticabili."
-            ]
-        },
-        included: {
-            fr: [
-                "Guide local",
-                "Déjeuner berbère",
-                "Transport en véhicule climatisé"
-            ],
-            en: [
-                "Local guide",
-                "Berber lunch",
-                "Air-conditioned vehicle transport"
-            ],
-            ar: [
-                "مرشد محلي",
-                "غداء أمازيغي",
-                "النقل بمركبة مكيفة"
-            ],
-            it: [
-                "Guida locale",
-                "Pranzo berbero",
-                "Trasporto in veicolo climatizzato"
-            ]
-        },
-        includedIcons: [
-            "hiking",
-            "eat",
-            "van"
-        ],
-        excluded: {
-            fr: null,
-            en: null,
-            ar: null,
-            it: null
-        },
-        excludedIcons: [],
-        gallery: [
-            {
-                url: "https://res.cloudinary.com/dy13axswo/image/upload/v1788607423/baroudeurs/service/Endless.jpg",
-                title: "Endless"
-            },
-            {
-                url: "https://res.cloudinary.com/dy13axswo/image/upload/v1788605281/baroudeurs/service/details/Tataouine/8.jpg",
-                title: "Tataouine"
-            },
-            {
-                url: "https://res.cloudinary.com/dy13axswo/image/upload/v1788605279/baroudeurs/service/details/Tataouine/7.jpg",
-                title: "Tataouine"
-            },
-            {
-                url: "https://res.cloudinary.com/dy13axswo/image/upload/v1788605266/baroudeurs/service/details/Tataouine/2.jpg",
-                title: "Tataouine"
-            },
-            {
-                url: "https://res.cloudinary.com/dy13axswo/image/upload/v1788605262/baroudeurs/service/details/Tataouine/1.jpg",
-                title: "Tataouine"
-            },
-            {
-                url: "https://res.cloudinary.com/dy13axswo/image/upload/v1788605274/baroudeurs/service/details/Tataouine/4.webp",
-                title: "Tataouine"
-            }
-        ],
-        review: {
-            avatar: "t-5.jpg",
-            name: "James Carter",
-            country: "United Kingdom",
-            rating: 4,
-            comment: {
-                fr: "Une journée parfaite. Chenini et le décor de Star Wars à Ksar Hadada étaient les points forts. Très bien organisé du début à la fin.",
-                en: "A perfect day trip. Chenini and the Star Wars set at Ksar Hadada were the highlights. Very well organized from start to finish.",
-                ar: "رحلة يوم واحد مثالية. كانت شنيني وموقع تصوير ستار وورز في قصر حدادة أبرز اللحظات. تنظيم ممتاز من البداية إلى النهاية.",
-                it: "Una gita perfetta. Chenini e il set di Star Wars a Ksar Hadada sono stati i momenti salienti. Molto ben organizzato dall'inizio alla fine."
-            }
-        }
-    },
-    {
-        id: 2,
-        image: "Circuits/excursion nuit k.ghilane.webp",
-        title: {
-            fr: "Excursion Nuit à Ksar Ghilane",
-            en: "Ksar Ghilane Overnight Excursion",
-            ar: "رحلة ليلية إلى قصر غيلان",
-            it: "Escursione Notturna a Ksar Ghilane"
-        },
-        description: {
-            fr: "Découvrez les villages berbères, le marché animé de Tataouine et les maisons troglodytes de Chenini avant de rejoindre l'oasis de Ksar Ghilane. Baignez-vous dans son bassin naturel et passez une nuit magique sous le ciel du désert.",
-            en: "Explore Berber villages, the lively Tataouine market, and the troglodyte houses of Chenini before heading to the oasis of Ksar Ghilane. Swim in its natural pool and spend a magical night camped beneath the desert sky.",
-            ar: "اكتشف القرى الأمازيغية وسوق تطاوين النابض بالحياة ومنازل شنيني الكهفية قبل التوجه إلى واحة قصر غيلان. اسبح في حوضها الطبيعي واقض ليلة سحرية تحت سماء الصحراء.",
-            it: "Scopri i villaggi berberi, il vivace mercato di Tataouine e le case trogloditiche di Chenini prima di raggiungere l'oasi di Ksar Ghilane. Fai il bagno nella sua piscina naturale e trascorri una notte magica sotto il cielo del deserto."
-        },
-        icons: [
-            "flaticon-hiking",
-            "flaticon-camp",
-            "flaticon-campfire"
-        ],
-        intro: {
-            fr: "Voici un itinéraire détaillé pour votre première journée en Tunisie, incluant des précisions sur les repas et la nuit.",
-            en: "Here is a detailed itinerary for your first day in Tunisia, including details about meals and overnight stays.",
-            ar: "إليكم برنامجًا مفصلاً ليومكم الأول في تونس، يتضمن تفاصيل حول الوجبات والمبيت.",
-            it: "Ecco un itinerario dettagliato per il vostro primo giorno in Tunisia, con dettagli sui pasti e sul pernottamento."
-        },
-        fullDescription: {
-            fr: "Deux jours entre villages berbères et désert. Traversez la Roman Road, découvrez le marché de Tataouine et le village troglodyte de Chenini, puis baignez-vous dans le bassin naturel de Ksar Ghilane pour une nuit sous les étoiles. Le second jour, visitez une famille berbère à Matmata, l'hôtel Sidi Idriss (décor de Star Wars) et le village de Toujane.",
-            en: "Two days between Berber villages and the desert. Cross the Roman Road, discover the Tataouine market and the troglodyte village of Chenini, then swim in the natural pool of Ksar Ghilane for a night under the stars. On the second day, visit a Berber family in Matmata, the Sidi Idriss hotel (Star Wars set), and the village of Toujane.",
-            ar: "يومان بين القرى الأمازيغية والصحراء. اعبر الطريق الروماني، اكتشف سوق تطاوين وقرية شنيني الكهفية، ثم اسبح في الحوض الطبيعي لقصر غيلان لقضاء ليلة تحت النجوم. في اليوم الثاني، زر عائلة أمازيغية في مطماطة، وفندق سيدي إدريس (موقع تصوير ستار وورز)، وقرية توجان.",
-            it: "Due giorni tra villaggi berberi e deserto. Attraversa la Roman Road, scopri il mercato di Tataouine e il villaggio trogloditico di Chenini, poi fai il bagno nella piscina naturale di Ksar Ghilane per una notte sotto le stelle. Il secondo giorno, visita una famiglia berbera a Matmata, l'hotel Sidi Idriss (set di Star Wars) e il villaggio di Toujane."
-        },
-        itinerarySummary: {
-            fr: "Cette excursion de 2 jours va de la Roman Road et du marché de Tataouine jusqu'au village berbère de Chenini, puis à l'oasis de Ksar Ghilane pour une nuit. Le second jour se poursuit par Matmata, Tamazret, Sidi Idriss et Toujane, avant le retour à l'hôtel.",
-            en: "This 2-day excursion goes from the Roman Road and Tataouine market to the Berber village of Chenini, then to the oasis of Ksar Ghilane for an overnight stay. The second day continues through Matmata, Tamazret, Sidi Idriss, and Toujane, before returning to the hotel.",
-            ar: "تنطلق هذه الرحلة التي تستغرق يومين من الطريق الروماني وسوق تطاوين وصولًا إلى قرية شنيني الأمازيغية، ثم إلى واحة قصر غيلان للمبيت. يستمر اليوم الثاني عبر مطماطة وتمزرط وسيدي إدريس وتوجان، قبل العودة إلى الفندق.",
-            it: "Questa escursione di 2 giorni va dalla Roman Road e dal mercato di Tataouine al villaggio berbero di Chenini, poi all'oasi di Ksar Ghilane per il pernottamento. Il secondo giorno prosegue attraverso Matmata, Tamazret, Sidi Idriss e Toujane, prima di tornare in hotel."
-        },
-        itinerary: {
-            fr: [
-                "Tataouine et oasis de Ksar Ghilane",
-                "Matmata et villages berbères"
-            ],
-            en: [
-                "Tataouine and the Ksar Ghilane Oasis",
-                "Matmata and Berber Villages"
-            ],
-            ar: [
-                "تطاوين وواحة قصر غيلان",
-                "مطماطة والقرى الأمازيغية"
-            ],
-            it: [
-                "Tataouine e l'Oasi di Ksar Ghilane",
-                "Matmata e i Villaggi Berberi"
-            ]
-        },
-        itineraryDetail: {
-            fr: [
-                "Vous serez accueilli à votre hôtel pour débuter votre aventure. Nous emprunterons la Roman Road, une digue pittoresque reliant l'île de Djerba au continent. En chemin, nous ferons une pause au lac salé de Chahbania pour profiter de la vue magnifique et prendre quelques photos mémorables. Une fois arrivés, vous aurez l'opportunité de découvrir le marché local, où vous pourrez explorer les différents produits et épices berbères. Nous reprendrons ensuite la route vers Chenini, un village berbère, où un guide local vous fera découvrir son histoire, ses traditions, et son mode de vie. À midi, vous aurez la chance de déguster un repas traditionnel berbère dans l'un des restaurants du village. Après le déjeuner, nous nous dirigerons vers l'Erg, le désert de roches, pour rejoindre l'oasis de Ksar Ghilane, où vous pourrez vous baigner dans le bassin d'eau naturel. Pour ceux qui le souhaitent, il sera possible de sillonner les alentours de l'oasis en quad ou à dos de chameau, moyennant un supplément. Après une journée bien remplie, vous passerez la nuit dans un hébergement local, où vous pourrez profiter de l'ambiance unique du désert.",
-                "Le lendemain matin, après un bon petit-déjeuner, nous partirons pour le village de Matmata. À Matmata, vous aurez la chance de rencontrer une famille berbère et de visiter leur habitat troglodyte traditionnel. Nous ferons une pause au village berbère de Tamazret, où vous pourrez déguster un thé aux amandes, une spécialité locale. Ensuite, nous nous rendrons à Sidi Idriss, un hôtel troglodyte célèbre pour avoir été le décor de certaines scènes du film Star Wars. La dernière visite de la journée sera au village berbère de Toujane, caché entre deux montagnes et réputé pour ses tapis faits à la main et son miel. À la fin de cette journée riche en découvertes, vous serez raccompagné à votre hôtel, la tête pleine de souvenirs inoubliables."
-            ],
-            en: [
-                "You will be welcomed at your hotel to begin your adventure. We will take the Roman Road, a picturesque causeway linking the island of Djerba to the mainland. Along the way, we will pause at the Chahbania salt lake to enjoy the magnificent view and take some memorable photos. Once there, you'll have the chance to discover the local market, exploring various Berber products and spices. We will then continue to Chenini, a Berber village, where a local guide will introduce you to its history, traditions, and way of life. At midday, you'll enjoy a traditional Berber meal at one of the village restaurants. After lunch, we head to the Erg, the rocky desert, to reach the oasis of Ksar Ghilane, where you can swim in the natural pool. For those who wish, it will be possible to explore the oasis surroundings by quad bike or camel, for an extra fee. After a full day, you'll spend the night in local accommodation, enjoying the unique desert atmosphere.",
-                "The next morning, after a good breakfast, we will set off for the village of Matmata. In Matmata, you'll have the chance to meet a Berber family and visit their traditional troglodyte home. We will stop in the Berber village of Tamazret, where you can enjoy an almond tea, a local specialty. Next, we head to Sidi Idriss, a troglodyte hotel famous for being the set of scenes from the Star Wars film. The day's last visit will be to the Berber village of Toujane, tucked between two mountains and known for its handmade carpets and honey. At the end of this discovery-filled day, you'll be taken back to your hotel, full of unforgettable memories."
-            ],
-            ar: [
-                "سيتم استقبالكم في فندقكم لبدء مغامرتكم. سنسلك الطريق الروماني، وهو جسر جميل يربط جزيرة جربة بالقارة. في الطريق، سنتوقف عند بحيرة الشحبانية المالحة للاستمتاع بالمنظر الرائع والتقاط بعض الصور التذكارية. بمجرد الوصول، ستتاح لكم فرصة اكتشاف السوق المحلي، حيث يمكنكم استكشاف مختلف المنتجات والتوابل الأمازيغية. سنواصل بعدها إلى شنيني، وهي قرية أمازيغية، حيث سيقدم لكم مرشد محلي تاريخها وتقاليدها وأسلوب حياتها. عند الظهيرة، ستستمتعون بوجبة أمازيغية تقليدية في أحد مطاعم القرية. بعد الغداء، سنتجه نحو العرق، صحراء الصخور، للوصول إلى واحة قصر غيلان، حيث يمكنكم السباحة في الحوض الطبيعي. لمن يرغب، يمكن استكشاف محيط الواحة بالدراجة الرباعية أو على ظهر الجمل مقابل رسوم إضافية. بعد يوم حافل، ستقضون الليلة في إقامة محلية، مستمتعين بأجواء الصحراء الفريدة.",
-                "في صباح اليوم التالي، وبعد فطور شهي، سننطلق نحو قرية مطماطة. في مطماطة، ستتاح لكم فرصة لقاء عائلة أمازيغية وزيارة مسكنهم الكهفي التقليدي. سنتوقف في قرية تمزرط الأمازيغية، حيث يمكنكم تذوق شاي باللوز، وهو طبق محلي خاص. بعدها، سنتوجه إلى سيدي إدريس، وهو فندق كهفي مشهور بكونه موقع تصوير مشاهد من ستار وورز. ستكون الزيارة الأخيرة لليوم إلى قرية توجان الأمازيغية، المختبئة بين جبلين والمشهورة بسجادها اليدوي وعسلها. في نهاية هذا اليوم الحافل بالاكتشافات، سيتم إرجاعكم إلى فندقكم، مليئين بذكريات لا تُنسى."
-            ],
-            it: [
-                "Sarete accolti nel vostro hotel per iniziare la vostra avventura. Percorreremo la Roman Road, una pittoresca diga che collega l'isola di Djerba alla terraferma. Lungo il percorso, faremo una sosta al lago salato di Chahbania per ammirare il magnifico paesaggio e scattare foto memorabili. Una volta arrivati, avrete l'opportunità di scoprire il mercato locale, esplorando diversi prodotti e spezie berbere. Proseguiremo poi verso Chenini, un villaggio berbero, dove una guida locale vi farà scoprire la sua storia, le sue tradizioni e il suo modo di vivere. A mezzogiorno, gusterete un pasto tradizionale berbero in uno dei ristoranti del villaggio. Dopo pranzo, ci dirigeremo verso l'Erg, il deserto di roccia, per raggiungere l'oasi di Ksar Ghilane, dove potrete fare il bagno nella piscina naturale. Per chi lo desidera, sarà possibile esplorare i dintorni dell'oasi in quad o in dromedario, con un supplemento. Dopo una giornata intensa, trascorrerete la notte in un alloggio locale, godendo dell'atmosfera unica del deserto.",
-                "La mattina seguente, dopo una buona colazione, partiremo per il villaggio di Matmata. A Matmata, avrete la possibilità di incontrare una famiglia berbera e visitare la loro tradizionale abitazione trogloditica. Faremo una sosta nel villaggio berbero di Tamazret, dove potrete gustare un tè alle mandorle, una specialità locale. Successivamente, ci recheremo a Sidi Idriss, un hotel trogloditico famoso per essere stato il set di scene del film Star Wars. L'ultima visita della giornata sarà al villaggio berbero di Toujane, nascosto tra due montagne e noto per i suoi tappeti fatti a mano e il suo miele. Alla fine di questa giornata ricca di scoperte, sarete riaccompagnati al vostro hotel, con la testa piena di ricordi indimenticabili."
-            ]
-        },
-        included: {
-            fr: [
-                "Prise en charge à l'hôtel",
-                "Guide local",
-                "Déjeuner",
-                "Transport en véhicule",
-                "Hébergement à Ksar Ghilane"
-            ],
-            en: [
-                "Hotel pickup",
-                "Local guide",
-                "Lunch",
-                "Vehicle transport",
-                "Accommodation in Ksar Ghilane"
-            ],
-            ar: [
-                "الانطلاق من الفندق",
-                "مرشد محلي",
-                "الغداء",
-                "النقل بالمركبة",
-                "الإقامة في قصر غيلان"
-            ],
-            it: [
-                "Prelievo in hotel",
-                "Guida locale",
-                "Pranzo",
-                "Trasporto in veicolo",
-                "Alloggio a Ksar Ghilane"
-            ]
-        },
-        includedIcons: [
-            "van",
-            "hiking",
-            "eat",
-            "van",
-            "tent-1"
-        ],
-        excluded: {
-            fr: null,
-            en: null,
-            ar: null,
-            it: null
-        },
-        excludedIcons: [],
-        gallery: [
-            {
-                url: "https://res.cloudinary.com/dy13axswo/image/upload/v1789039783/baroudeurs/excursions/metnj7iunp5pitmdmeei.jpg",
-                title: "Desert Horizon"
-            },
-            {
-                url: "https://res.cloudinary.com/dy13axswo/image/upload/v1788609984/baroudeurs/service/details/Baroudeurs/5.jpg",
-                title: "Baroudeurs"
-            },
-            {
-                url: "https://res.cloudinary.com/dy13axswo/image/upload/v1788609892/baroudeurs/service/details/Temba%C3%AFne/3.jpg",
-                title: "Tembaïne"
-            },
-            {
-                url: "https://res.cloudinary.com/dy13axswo/image/upload/v1788608952/baroudeurs/service/details/Baroudeurs/1.jpg",
-                title: "Baroudeurs"
-            },
-            {
-                url: "https://res.cloudinary.com/dy13axswo/image/upload/v1788608074/baroudeurs/service/details/Charm/5.jpg",
-                title: "Charm"
-            }
-        ],
-        review: {
-            avatar: "t-3.jpg",
-            name: "Sophie Martin",
-            country: "France",
-            rating: 5,
-            comment: {
-                fr: "Ksar Ghilane de nuit était magique. Deux jours remplis de culture, d'histoire et de la plus belle oasis du désert que j'aie jamais vue.",
-                en: "Ksar Ghilane at night was magical. Two days packed with culture, history, and the most beautiful desert oasis I've ever seen.",
-                ar: "كان قصر غيلان ليلاً ساحرًا. يومان مليئان بالثقافة والتاريخ وأجمل واحة صحراوية رأيتها في حياتي.",
-                it: "Ksar Ghilane di notte era magica. Due giorni pieni di cultura, storia e la più bella oasi del deserto che abbia mai visto."
-            }
-        }
-    }
-] %}
+{# item et relatedItems viennent du contrôleur (circuits ET excursions). #}
+{% set type = _detailType %}
+{% set locale = app.request.locale %}
 
-    {# Circuit : "item" et "relatedItems" viennent du contrôleur.
-       Excursion : recherche dans excursionData ci-dessus. #}
-    {% set type = _detailType %}
-    {% set locale = app.request.locale %}
-    {% if type == 'excursion' %}
-        {% set item = excursionData|filter(i => i.id == _detailId)|first ?: null %}
-        {% set relatedItems = item ? excursionData|filter(i => i.id != item.id)|slice(0, 3) : [] %}
-    {% endif %}
-
-    {% set title = item is not null ? (item.title[locale] is defined ? item.title[locale] : item.title.en) : '' %}
+{% set title = item is not null ? (item.title[locale] is defined ? item.title[locale] : item.title.en) : '' %}
 
 {% block title %}{{ title }} - Baroudeurs du Désert{% endblock %}
 
 {% block body %}
-
 
     {% if item is null %}
         <section class="pt-100 pb-100">
@@ -506,7 +183,6 @@
       }
     </style>
 
-    {# Image de repli : image principale (locale ou Cloudinary) #}
     {% set fallbackImage = item.image starts with 'http' ? item.image : asset('assets/images/' ~ item.image) %}
 
     <!--====== Start Detail Gallery ======-->
@@ -548,7 +224,6 @@
     <section class="detail-main-section pt-40 pb-60">
         <div class="container">
             <div class="row">
-                <!-- Main content -->
                 <div class="col-lg-8">
                     <h1 class="detail-page-title">{{ title }}</h1>
                     {% if intro %}
@@ -609,7 +284,6 @@
                     {% endif %}
                 </div>
 
-                <!-- Sidebar -->
                 <div class="col-lg-4">
                     <div class="detail-sidebar">
                         <div class="mini-calendar">
@@ -728,7 +402,6 @@
     <!--====== End Detail Main Section ======-->
 
     {% if gallery|length > 2 %}
-        <!--====== Start Auto-Scroll Gallery ======-->
         <div class="detail-scroll-gallery-wrap">
             <div class="detail-scroll-gallery-track">
                 {% for img in gallery|slice(2) %}
@@ -743,7 +416,6 @@
                 {% endfor %}
             </div>
         </div>
-        <!--====== End Auto-Scroll Gallery ======-->
     {% endif %}
 
     <!--====== Start Circuit Booking Card ======-->

@@ -3,9 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Circuit;
+use App\Entity\Excursion;
 use App\Form\Admin\TripChoices;
 use App\Form\Admin\TripType;
 use App\Repository\CircuitRepository;
+use App\Repository\ExcursionRepository;
 use App\Service\CloudinaryUploader;
 use App\Service\Translation\ContentTranslatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -49,10 +51,11 @@ class TripController extends AbstractController
         private CloudinaryUploader $uploader,
         private ContentTranslatorInterface $translator,
         private CircuitRepository $circuitRepository,
+        private ExcursionRepository $excursionRepository,
     ) {}
 
     // ==================================================================
-    // LISTE
+    // LISTE — "Modifier un circuit / une excursion"
     // ==================================================================
 
     /**
@@ -96,20 +99,30 @@ class TripController extends AbstractController
         set_time_limit(180);
         ini_set('memory_limit', '512M');
 
-        $circuit = $this->requireItem($type, $id);
+        $item = $this->requireItem($type, $id);
+        $isExcursion = $type === 'excursions';
 
-        $form = $this->createForm(TripType::class, $this->circuitToFormData($circuit));
+        $formData = $isExcursion
+            ? $this->excursionToFormData($item)
+            : $this->circuitToFormData($item);
+
+        $form = $this->createForm(TripType::class, $formData);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->updateCircuit($circuit, $form->getData());
+                if ($isExcursion) {
+                    $this->updateExcursion($item, $form->getData());
+                } else {
+                    $this->updateCircuit($item, $form->getData());
+                }
 
                 $this->em->flush();
 
                 $this->addFlash('success', sprintf(
-                    'Le circuit « %s » a été mis à jour.',
-                    $circuit->getTitleFr()
+                    'Le %s « %s » a été mis à jour.',
+                    self::LABELS[$type]['singular'],
+                    $item->getTitleFr()
                 ));
 
                 return $this->redirectToRoute('admin_trip_index', ['type' => $type]);
@@ -118,27 +131,85 @@ class TripController extends AbstractController
             }
         }
 
-        $existingImages = $circuit->getGalleryImages();
+        $existingImages = $item->getGalleryImages();
 
         return $this->render('admin/trip/edit.html.twig', [
             'type' => $type,
             'labels' => self::LABELS[$type],
             'form' => $form->createView(),
             'existingImages' => $existingImages,
-            'mainExistingIndex' => $this->findMainExistingIndex($circuit, $existingImages),
-            'currentAvatarUrl' => $circuit->getReviewAvatar(),
+            'mainExistingIndex' => $this->findMainExistingIndex($item, $existingImages),
+            'currentAvatarUrl' => $item->getReviewAvatar(),
         ]);
     }
 
-    /**
-     * Circuit → données de formulaire TripType.
-     */
-    private function circuitToFormData(Circuit $circuit): array
+    // ==================================================================
+    // MAPPERS : entité → données de formulaire
+    // ==================================================================
+
+    private function circuitToFormData(Circuit $c): array
     {
-        // Itinéraire : recompose les paires (titre, détail)
+        return $this->entityToFormData(
+            $c,
+            $c->getTitleFr(),
+            $c->getDurationFr(),
+            $c->getDescriptionFr(),
+            $c->getFullDescriptionFr(),
+            $c->getItinerarySummaryFr(),
+            $c->getItineraryFr(),
+            $c->getItineraryDetailFr(),
+            $c->getIncludedFr(),
+            $c->getExcludedFr(),
+            $c->getReviewName(),
+            $c->getReviewCountry(),
+            $c->getReviewRating(),
+            $c->getReviewCommentFr()
+        );
+    }
+
+    private function excursionToFormData(Excursion $e): array
+    {
+        return $this->entityToFormData(
+            $e,
+            $e->getTitleFr(),
+            $e->getDurationFr(),
+            $e->getDescriptionFr(),
+            $e->getFullDescriptionFr(),
+            $e->getItinerarySummaryFr(),
+            $e->getItineraryFr(),
+            $e->getItineraryDetailFr(),
+            $e->getIncludedFr(),
+            $e->getExcludedFr(),
+            $e->getReviewName(),
+            $e->getReviewCountry(),
+            $e->getReviewRating(),
+            $e->getReviewCommentFr()
+        );
+    }
+
+    /**
+     * Factorisation du mapping entité → données de formulaire.
+     * Fonctionne pour Circuit et Excursion (mêmes noms de méthodes FR).
+     */
+    private function entityToFormData(
+        object $entity,
+        ?string $titleFr,
+        ?string $durationFr,
+        ?string $descriptionFr,
+        ?string $fullDescriptionFr,
+        ?string $itinerarySummaryFr,
+        array $itineraryFr,
+        array $itineraryDetailFr,
+        array $includedFr,
+        array $excludedFr,
+        ?string $reviewName,
+        ?string $reviewCountry,
+        ?int $reviewRating,
+        ?string $reviewCommentFr,
+    ): array {
         $itinerary = [];
-        $titles = $circuit->getItineraryFr();
-        $details = $circuit->getItineraryDetailFr();
+        $titles = $itineraryFr;
+        $details = $itineraryDetailFr;
         $max = max(count($titles), count($details));
         for ($i = 0; $i < $max; $i++) {
             $itinerary[] = [
@@ -150,35 +221,30 @@ class TripController extends AbstractController
             $itinerary = [['title' => null, 'detail' => null]];
         }
 
-        [$includedItems, $includedCustom] = $this->splitTags($circuit->getIncludedFr(), TripChoices::INCLUDED);
-        [$excludedItems, $excludedCustom] = $this->splitTags($circuit->getExcludedFr(), TripChoices::EXCLUDED);
+        [$includedItems, $includedCustom] = $this->splitTags($includedFr, TripChoices::INCLUDED);
+        [$excludedItems, $excludedCustom] = $this->splitTags($excludedFr, TripChoices::EXCLUDED);
 
         return [
-            'title' => $circuit->getTitleFr(),
-            'duration' => $circuit->getDurationFr(),
-            'description' => $circuit->getDescriptionFr(),
-            'fullDescription' => $circuit->getFullDescriptionFr(),
-            'itinerarySummary' => $circuit->getItinerarySummaryFr(),
+            'title' => $titleFr,
+            'duration' => $durationFr,
+            'description' => $descriptionFr,
+            'fullDescription' => $fullDescriptionFr,
+            'itinerarySummary' => $itinerarySummaryFr,
             'itinerary' => $itinerary,
             'includedItems' => $includedItems,
             'includedCustom' => $includedCustom,
             'excludedItems' => $excludedItems,
             'excludedCustom' => $excludedCustom,
-            'reviewName' => $circuit->getReviewName(),
-            'reviewCountry' => $circuit->getReviewCountry(),
-            'reviewRating' => $circuit->getReviewRating(),
-            'reviewComment' => $circuit->getReviewCommentFr(),
+            'reviewName' => $reviewName,
+            'reviewCountry' => $reviewCountry,
+            'reviewRating' => $reviewRating,
+            'reviewComment' => $reviewCommentFr,
             'mainImageIndex' => 0,
             'mainImageKey' => '',
             'existingImages' => '',
         ];
     }
 
-    /**
-     * Sépare les étiquettes : catalogue (checkboxes) vs. personnalisées (chips).
-     *
-     * @return array{0: string[], 1: string[]}
-     */
     private function splitTags(array $tags, array $catalog): array
     {
         $fromCatalog = [];
@@ -193,12 +259,9 @@ class TripController extends AbstractController
         return [$fromCatalog, $custom];
     }
 
-    /**
-     * Index de l'image principale actuelle dans la galerie (-1 si non trouvée).
-     */
-    private function findMainExistingIndex(Circuit $circuit, array $gallery): int
+    private function findMainExistingIndex(object $entity, array $gallery): int
     {
-        $mainUrl = $circuit->getImage();
+        $mainUrl = $entity->getImage();
         foreach ($gallery as $i => $img) {
             if (($img['url'] ?? null) === $mainUrl) {
                 return $i;
@@ -207,254 +270,8 @@ class TripController extends AbstractController
         return -1;
     }
 
-    /**
-     * Applique les modifications du formulaire au circuit.
-     */
-    private function updateCircuit(Circuit $c, array $data): void
-    {
-        // ---------- 1. IMAGES ----------
-        // Images existantes (JSON depuis le champ caché)
-        $existingJson = trim((string) ($data['existingImages'] ?? ''));
-        $existing = [];
-        if ($existingJson !== '') {
-            $decoded = json_decode($existingJson, true);
-            if (is_array($decoded)) {
-                foreach ($decoded as $entry) {
-                    $url = is_array($entry) ? ($entry['url'] ?? null) : null;
-                    if (is_string($url) && $url !== '') {
-                        $existing[] = ['url' => $url, 'title' => ''];
-                    }
-                }
-            }
-        }
-
-        // Nouvelles images uploadées
-        /** @var UploadedFile[] $newFiles */
-        $newFiles = $data['images'] ?? [];
-        $uploaded = [];
-        foreach ($newFiles as $file) {
-            $result = $this->uploader->upload($file->getPathname(), 'circuits');
-            $uploaded[] = ['url' => $result['url'], 'title' => ''];
-        }
-
-        $gallery = array_merge($existing, $uploaded);
-        if (count($gallery) === 0) {
-            throw new \RuntimeException('Ajoutez au moins une image.');
-        }
-
-        // Image principale : "existing:N", "new:N", fallback = première
-        $mainKey = trim((string) ($data['mainImageKey'] ?? ''));
-        $mainUrl = null;
-        if (preg_match('/^existing:(\d+)$/', $mainKey, $m)) {
-            $i = (int) $m[1];
-            $mainUrl = $existing[$i]['url'] ?? null;
-        } elseif (preg_match('/^new:(\d+)$/', $mainKey, $m)) {
-            $i = (int) $m[1];
-            $mainUrl = $uploaded[$i]['url'] ?? null;
-        }
-        if ($mainUrl === null) {
-            $mainUrl = $gallery[0]['url'];
-        }
-
-        $c->setImage($mainUrl);
-        $c->setGalleryImages($gallery);
-
-        // ---------- 2. TEXTES FR ----------
-        $titleFr = trim((string) ($data['title'] ?? ''));
-        if ($titleFr === '') {
-            throw new \RuntimeException('Le titre est obligatoire.');
-        }
-        $durationFr = trim((string) ($data['duration'] ?? ''));
-        $descriptionFr = trim((string) ($data['description'] ?? ''));
-        $fullDescriptionFr = trim((string) ($data['fullDescription'] ?? ''));
-        $itinerarySummaryFr = trim((string) ($data['itinerarySummary'] ?? ''));
-
-        $itineraryFr = [];
-        $itineraryDetailFr = [];
-        foreach ($data['itinerary'] ?? [] as $day) {
-            $t = trim((string) ($day['title'] ?? ''));
-            $d = trim((string) ($day['detail'] ?? ''));
-            if ($t === '') {
-                continue;
-            }
-            $itineraryFr[] = $t;
-            $itineraryDetailFr[] = $d;
-        }
-
-        $includedFr = $this->mergeTags($data['includedItems'] ?? [], $data['includedCustom'] ?? []);
-        $excludedFr = $this->mergeTags($data['excludedItems'] ?? [], $data['excludedCustom'] ?? []);
-
-        $reviewName = trim((string) ($data['reviewName'] ?? ''));
-        $reviewCommentFr = $reviewName !== ''
-            ? trim((string) ($data['reviewComment'] ?? ''))
-            : '';
-
-        // ---------- 3. TRADUCTIONS : uniquement les champs changés ----------
-        $this->translateChangedFields($c, [
-            'title' => $titleFr,
-            'duration' => $durationFr,
-            'description' => $descriptionFr,
-            'fullDescription' => $fullDescriptionFr,
-            'itinerarySummary' => $itinerarySummaryFr,
-            'itinerary' => $itineraryFr,
-            'itineraryDetail' => $itineraryDetailFr,
-            'included' => $includedFr,
-            'excluded' => $excludedFr,
-            'reviewComment' => $reviewCommentFr,
-        ]);
-
-        // ---------- 4. APPLICATION DES VALEURS FR ----------
-        $c->setTitleFr($titleFr);
-        $c->setDurationFr($durationFr !== '' ? $durationFr : null);
-        $c->setDescriptionFr($descriptionFr);
-        $c->setFullDescriptionFr($fullDescriptionFr !== '' ? $fullDescriptionFr : null);
-        $c->setItinerarySummaryFr($itinerarySummaryFr !== '' ? $itinerarySummaryFr : null);
-        $c->setItineraryFr($itineraryFr);
-        $c->setItineraryDetailFr($itineraryDetailFr);
-        $c->setIncludedFr($includedFr);
-        $c->setExcludedFr($excludedFr);
-        $c->setIncludedIcons($this->iconsFor($includedFr, TripChoices::INCLUDED));
-        $c->setExcludedIcons($this->iconsFor($excludedFr, TripChoices::EXCLUDED));
-
-        if ($reviewName !== '') {
-            $c->setReviewName($reviewName);
-            $c->setReviewCountry(trim((string) ($data['reviewCountry'] ?? '')) ?: null);
-            $c->setReviewRating((int) ($data['reviewRating'] ?? 0) ?: null);
-            $c->setReviewCommentFr($reviewCommentFr ?: null);
-
-            $avatar = $data['reviewAvatar'] ?? null;
-            if ($avatar instanceof UploadedFile) {
-                $up = $this->uploader->upload($avatar->getPathname(), 'circuits/reviews');
-                $c->setReviewAvatar($up['url']);
-            }
-        } else {
-            $c->setReviewName(null);
-            $c->setReviewCountry(null);
-            $c->setReviewRating(null);
-            $c->setReviewCommentFr(null);
-        }
-    }
-
-    /**
-     * Traduit uniquement les champs dont la valeur FR a changé.
-     */
-    private function translateChangedFields(Circuit $c, array $newFr): void
-    {
-        // Champs scalaires : [clé => getter FR actuel]
-        $scalarGetters = [
-            'title' => 'getTitleFr',
-            'duration' => 'getDurationFr',
-            'description' => 'getDescriptionFr',
-            'fullDescription' => 'getFullDescriptionFr',
-            'itinerarySummary' => 'getItinerarySummaryFr',
-            'reviewComment' => 'getReviewCommentFr',
-        ];
-
-        // Champs listes : [clé => getter FR actuel]
-        $listGetters = [
-            'itinerary' => 'getItineraryFr',
-            'itineraryDetail' => 'getItineraryDetailFr',
-            'included' => 'getIncludedFr',
-            'excluded' => 'getExcludedFr',
-        ];
-
-        // Détermine les champs modifiés
-        $changedScalars = [];
-        foreach ($scalarGetters as $key => $getter) {
-            $current = (string) ($c->{$getter}() ?? '');
-            $new = (string) ($newFr[$key] ?? '');
-            if ($current !== $new) {
-                $changedScalars[$key] = $new;
-            }
-        }
-
-        $changedLists = [];
-        foreach ($listGetters as $key => $getter) {
-            $current = $c->{$getter}();
-            $new = $newFr[$key] ?? [];
-            if ($current != $new) {
-                $changedLists[$key] = $new;
-            }
-        }
-
-        if (empty($changedScalars) && empty($changedLists)) {
-            return; // rien à traduire
-        }
-
-        // Un seul appel DeepL par langue
-        foreach (self::TRANSLATION_LANGS as $lang) {
-            $L = ucfirst($lang);
-
-            // Prépare le tableau plat
-            $flat = [];
-            $map = [];
-            foreach ($changedScalars as $key => $value) {
-                if ($value === '') continue;
-                $k = 's_' . $key;
-                $flat[$k] = $value;
-                $map[$k] = ['type' => 'scalar', 'field' => $key];
-            }
-            foreach ($changedLists as $key => $values) {
-                foreach (array_values($values) as $i => $value) {
-                    $value = trim((string) $value);
-                    if ($value === '') continue;
-                    $k = 'l_' . $key . '_' . $i;
-                    $flat[$k] = $value;
-                    $map[$k] = ['type' => 'list', 'field' => $key, 'index' => $i];
-                }
-            }
-            if ($flat === []) continue;
-
-            try {
-                $translated = $this->translator->translate(array_values($flat), $lang);
-
-                $rebuiltScalar = [];
-                $rebuiltList = [];
-                $i = 0;
-                foreach ($flat as $k => $_v) {
-                    $info = $map[$k];
-                    $value = $translated[$i] ?? null;
-                    $i++;
-                    if ($info['type'] === 'scalar') {
-                        $rebuiltScalar[$info['field']] = $value;
-                    } else {
-                        $rebuiltList[$info['field']][$info['index']] = $value;
-                    }
-                }
-
-                foreach ($rebuiltScalar as $field => $value) {
-                    $setter = 'set' . ucfirst($field) . $L;
-                    if (method_exists($c, $setter)) {
-                        $c->{$setter}($value);
-                    }
-                }
-                foreach ($rebuiltList as $field => $values) {
-                    ksort($values);
-                    $setter = 'set' . ucfirst($field) . $L;
-                    if (method_exists($c, $setter)) {
-                        $c->{$setter}(array_values($values));
-                    }
-                }
-            } catch (\Throwable $e) {
-                // Repli : recopie le FR pour les champs modifiés
-                foreach ($changedScalars as $field => $value) {
-                    $setter = 'set' . ucfirst($field) . $L;
-                    if (method_exists($c, $setter)) {
-                        $c->{$setter}($value);
-                    }
-                }
-                foreach ($changedLists as $field => $values) {
-                    $setter = 'set' . ucfirst($field) . $L;
-                    if (method_exists($c, $setter)) {
-                        $c->{$setter}(array_values($values));
-                    }
-                }
-            }
-        }
-    }
-
     // ==================================================================
-    // SUPPRIMER (soft) / RESTAURER / PURGER (hard)
+    // SUPPRIMER / RESTAURER / PURGER
     // ==================================================================
 
     /**
@@ -559,25 +376,26 @@ class TripController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+            $isExcursion = $type === 'excursions';
 
             try {
-                if ($type === 'circuits') {
-                    $circuit = $this->buildCircuit($data);
-                    $this->em->persist($circuit);
-                    $this->em->flush();
+                $item = $isExcursion
+                    ? $this->buildExcursion($data)
+                    : $this->buildCircuit($data);
 
-                    $this->addFlash('success', sprintf(
-                        'Le circuit « %s » a bien été enregistré.',
-                        $circuit->getTitleFr()
-                    ));
+                $this->em->persist($item);
+                $this->em->flush();
 
-                    return $this->redirectToRoute('app_font_detail', [
-                        'type' => 'circuit',
-                        'id' => $circuit->getId(),
-                    ]);
-                }
+                $this->addFlash('success', sprintf(
+                    'Le %s « %s » a bien été enregistré.',
+                    self::LABELS[$type]['singular'],
+                    $item->getTitleFr()
+                ));
 
-                $this->addFlash('error', "L'ajout d'excursions n'est pas encore disponible.");
+                return $this->redirectToRoute('app_font_detail', [
+                    'type' => $isExcursion ? 'excursion' : 'circuit',
+                    'id' => $item->getId(),
+                ]);
             } catch (\Throwable $e) {
                 $this->addFlash('error', "Erreur lors de l'enregistrement : " . $e->getMessage());
             }
@@ -595,34 +413,33 @@ class TripController extends AbstractController
     // ==================================================================
 
     /**
-     * @return Circuit[]
+     * @return Circuit[]|Excursion[]
      */
     private function loadItems(string $type): array
     {
-        if ($type === 'circuits') {
-            return $this->circuitRepository->findPublished();
-        }
-        return [];
+        return $type === 'circuits'
+            ? $this->circuitRepository->findPublished()
+            : $this->excursionRepository->findPublished();
     }
 
     /**
-     * @return Circuit[]
+     * @return Circuit[]|Excursion[]
      */
     private function loadTrashedItems(string $type): array
     {
-        if ($type === 'circuits') {
-            return $this->circuitRepository->findTrashed();
-        }
-        return [];
+        return $type === 'circuits'
+            ? $this->circuitRepository->findTrashed()
+            : $this->excursionRepository->findTrashed();
     }
 
-    private function requireItem(string $type, int $id, bool $allowTrashed = false): Circuit
+    /**
+     * @return Circuit|Excursion
+     */
+    private function requireItem(string $type, int $id, bool $allowTrashed = false): object
     {
-        if ($type !== 'circuits') {
-            throw $this->createNotFoundException("Type non supporté : {$type}");
-        }
+        $repo = $type === 'circuits' ? $this->circuitRepository : $this->excursionRepository;
+        $item = $repo->find($id);
 
-        $item = $this->circuitRepository->find($id);
         if ($item === null) {
             throw $this->createNotFoundException("Élément introuvable (id {$id}).");
         }
@@ -638,16 +455,16 @@ class TripController extends AbstractController
     // CLOUDINARY
     // ==================================================================
 
-    private function deleteCloudinaryAssets(Circuit $circuit): void
+    private function deleteCloudinaryAssets(object $entity): void
     {
         $publicIds = [];
 
-        $mainPid = $this->publicIdFromUrl($circuit->getImage());
+        $mainPid = $this->publicIdFromUrl($entity->getImage());
         if ($mainPid !== null) {
             $publicIds[] = $mainPid;
         }
 
-        foreach ($circuit->getGalleryImages() as $img) {
+        foreach ($entity->getGalleryImages() as $img) {
             $url = $img['url'] ?? null;
             if (!is_string($url)) continue;
             $pid = $this->publicIdFromUrl($url);
@@ -656,7 +473,7 @@ class TripController extends AbstractController
             }
         }
 
-        $avatarPid = $this->publicIdFromUrl($circuit->getReviewAvatar());
+        $avatarPid = $this->publicIdFromUrl($entity->getReviewAvatar());
         if ($avatarPid !== null) {
             $publicIds[] = $avatarPid;
         }
@@ -665,15 +482,11 @@ class TripController extends AbstractController
             try {
                 $this->uploader->delete($pid);
             } catch (\Throwable $e) {
-                // Ignore : une image absente ne doit pas bloquer
+                // On continue : une image absente ne doit pas bloquer
             }
         }
     }
 
-    /**
-     * https://res.cloudinary.com/<cloud>/image/upload/v123/baroudeurs/circuits/abc.webp
-     * → "baroudeurs/circuits/abc"
-     */
     private function publicIdFromUrl(?string $url): ?string
     {
         if ($url === null || $url === '' || !str_starts_with($url, 'http')) {
@@ -695,42 +508,22 @@ class TripController extends AbstractController
     }
 
     // ==================================================================
-    // CRÉATION
+    // CRÉATION : CIRCUIT
     // ==================================================================
 
     private function buildCircuit(array $data): Circuit
     {
         $c = new Circuit();
+        $this->applyFormDataToCircuit($c, $data, 'circuits', true);
+        return $c;
+    }
 
-        /** @var UploadedFile[] $images */
-        $images = $data['images'] ?? [];
-        if (count($images) < 1) {
-            throw new \RuntimeException('Ajoutez au moins une image.');
-        }
+    private function applyFormDataToCircuit(Circuit $c, array $data, string $folder, bool $isNew): void
+    {
+        // Images
+        $this->applyImages($c, $data, $folder, $isNew);
 
-        $mainIndex = (int) ($data['mainImageIndex'] ?? 0);
-        if ($mainIndex < 0 || $mainIndex >= count($images)) {
-            $mainIndex = 0;
-        }
-
-        $uploaded = [];
-        foreach ($images as $i => $file) {
-            $result = $this->uploader->upload($file->getPathname(), 'circuits');
-            $uploaded[] = [
-                'url' => $result['url'],
-                'publicId' => $result['publicId'],
-                'isMain' => $i === $mainIndex,
-            ];
-        }
-
-        $mainUpload = $uploaded[$mainIndex];
-        $c->setImage($mainUpload['url']);
-
-        $c->setGalleryImages(array_map(
-            static fn (array $u): array => ['url' => $u['url'], 'title' => ''],
-            $uploaded
-        ));
-
+        // Textes FR
         $titleFr = trim((string) ($data['title'] ?? ''));
         $durationFr = trim((string) ($data['duration'] ?? ''));
         $descriptionFr = trim((string) ($data['description'] ?? ''));
@@ -747,64 +540,230 @@ class TripController extends AbstractController
         $c->setFullDescriptionFr($fullDescriptionFr !== '' ? $fullDescriptionFr : null);
         $c->setItinerarySummaryFr($itinerarySummaryFr !== '' ? $itinerarySummaryFr : null);
 
-        $itineraryFr = [];
-        $itineraryDetailFr = [];
-        foreach ($data['itinerary'] ?? [] as $day) {
-            $dayTitle = trim((string) ($day['title'] ?? ''));
-            $dayDetail = trim((string) ($day['detail'] ?? ''));
-            if ($dayTitle === '') continue;
-            $itineraryFr[] = $dayTitle;
-            $itineraryDetailFr[] = $dayDetail;
-        }
+        // Itinéraire
+        [$itineraryFr, $itineraryDetailFr] = $this->extractItinerary($data);
         $c->setItineraryFr($itineraryFr);
         $c->setItineraryDetailFr($itineraryDetailFr);
 
+        // Inclus / exclus
         $includedFr = $this->mergeTags($data['includedItems'] ?? [], $data['includedCustom'] ?? []);
         $excludedFr = $this->mergeTags($data['excludedItems'] ?? [], $data['excludedCustom'] ?? []);
         $c->setIncludedFr($includedFr);
         $c->setExcludedFr($excludedFr);
-
         $c->setIncludedIcons($this->iconsFor($includedFr, TripChoices::INCLUDED));
         $c->setExcludedIcons($this->iconsFor($excludedFr, TripChoices::EXCLUDED));
         $c->setIcons(TripChoices::DEFAULT_CARD_ICONS);
 
-        $reviewName = trim((string) ($data['reviewName'] ?? ''));
-        if ($reviewName !== '') {
-            $c->setReviewName($reviewName);
-            $c->setReviewCountry(trim((string) ($data['reviewCountry'] ?? '')) ?: null);
-            $c->setReviewRating((int) ($data['reviewRating'] ?? 0) ?: null);
-            $c->setReviewCommentFr(trim((string) ($data['reviewComment'] ?? '')) ?: null);
+        // Avis
+        $this->applyReview($c, $data, $folder);
 
-            $avatar = $data['reviewAvatar'] ?? null;
-            if ($avatar instanceof UploadedFile) {
-                $up = $this->uploader->upload($avatar->getPathname(), 'circuits/reviews');
-                $c->setReviewAvatar($up['url']);
+        // Position (nouveau uniquement)
+        if ($isNew) {
+            $maxPos = (int) $this->em->getConnection()
+                ->fetchOne('SELECT COALESCE(MAX(position), 0) FROM circuit');
+            $c->setPosition($maxPos + 1);
+        }
+
+        // Traductions
+        if ($isNew) {
+            $this->applyTranslationsForCircuit($c, $data, $titleFr, $durationFr, $descriptionFr, $fullDescriptionFr, $itinerarySummaryFr, $itineraryFr, $itineraryDetailFr, $includedFr, $excludedFr);
+        } else {
+            $this->translateChangedFieldsForCircuit($c, $data, $titleFr, $durationFr, $descriptionFr, $fullDescriptionFr, $itinerarySummaryFr, $itineraryFr, $itineraryDetailFr, $includedFr, $excludedFr);
+        }
+    }
+
+    // ==================================================================
+    // CRÉATION : EXCURSION
+    // ==================================================================
+
+    private function buildExcursion(array $data): Excursion
+    {
+        $e = new Excursion();
+        $this->applyFormDataToExcursion($e, $data, 'excursions', true);
+        return $e;
+    }
+
+    private function applyFormDataToExcursion(Excursion $e, array $data, string $folder, bool $isNew): void
+    {
+        $this->applyImages($e, $data, $folder, $isNew);
+
+        $titleFr = trim((string) ($data['title'] ?? ''));
+        $durationFr = trim((string) ($data['duration'] ?? ''));
+        $descriptionFr = trim((string) ($data['description'] ?? ''));
+        $fullDescriptionFr = trim((string) ($data['fullDescription'] ?? ''));
+        $itinerarySummaryFr = trim((string) ($data['itinerarySummary'] ?? ''));
+
+        if ($titleFr === '') {
+            throw new \RuntimeException('Le titre est obligatoire.');
+        }
+
+        $e->setTitleFr($titleFr);
+        $e->setDurationFr($durationFr !== '' ? $durationFr : null);
+        $e->setDescriptionFr($descriptionFr);
+        $e->setFullDescriptionFr($fullDescriptionFr !== '' ? $fullDescriptionFr : null);
+        $e->setItinerarySummaryFr($itinerarySummaryFr !== '' ? $itinerarySummaryFr : null);
+
+        [$itineraryFr, $itineraryDetailFr] = $this->extractItinerary($data);
+        $e->setItineraryFr($itineraryFr);
+        $e->setItineraryDetailFr($itineraryDetailFr);
+
+        $includedFr = $this->mergeTags($data['includedItems'] ?? [], $data['includedCustom'] ?? []);
+        $excludedFr = $this->mergeTags($data['excludedItems'] ?? [], $data['excludedCustom'] ?? []);
+        $e->setIncludedFr($includedFr);
+        $e->setExcludedFr($excludedFr);
+        $e->setIncludedIcons($this->iconsFor($includedFr, TripChoices::INCLUDED));
+        $e->setExcludedIcons($this->iconsFor($excludedFr, TripChoices::EXCLUDED));
+        $e->setIcons(TripChoices::DEFAULT_CARD_ICONS);
+
+        $this->applyReview($e, $data, $folder);
+
+        if ($isNew) {
+            $maxPos = (int) $this->em->getConnection()
+                ->fetchOne('SELECT COALESCE(MAX(position), 0) FROM excursion');
+            $e->setPosition($maxPos + 1);
+        }
+
+        if ($isNew) {
+            $this->applyTranslationsForExcursion($e, $data, $titleFr, $durationFr, $descriptionFr, $fullDescriptionFr, $itinerarySummaryFr, $itineraryFr, $itineraryDetailFr, $includedFr, $excludedFr);
+        } else {
+            $this->translateChangedFieldsForExcursion($e, $data, $titleFr, $durationFr, $descriptionFr, $fullDescriptionFr, $itinerarySummaryFr, $itineraryFr, $itineraryDetailFr, $includedFr, $excludedFr);
+        }
+    }
+
+    // ==================================================================
+    // MISE À JOUR
+    // ==================================================================
+
+    private function updateCircuit(Circuit $c, array $data): void
+    {
+        $this->applyFormDataToCircuit($c, $data, 'circuits', false);
+    }
+
+    private function updateExcursion(Excursion $e, array $data): void
+    {
+        $this->applyFormDataToExcursion($e, $data, 'excursions', false);
+    }
+
+    // ==================================================================
+    // HELPERS PARTAGÉS
+    // ==================================================================
+
+    /**
+     * Applique les images (existantes + nouvelles) sur l'entité.
+     */
+    private function applyImages(object $entity, array $data, string $folder, bool $isNew): void
+    {
+        if ($isNew) {
+            // Création : les images viennent toutes du champ "images"
+            /** @var UploadedFile[] $images */
+            $images = $data['images'] ?? [];
+            if (count($images) < 1) {
+                throw new \RuntimeException('Ajoutez au moins une image.');
+            }
+
+            $mainIndex = (int) ($data['mainImageIndex'] ?? 0);
+            if ($mainIndex < 0 || $mainIndex >= count($images)) {
+                $mainIndex = 0;
+            }
+
+            $uploaded = [];
+            foreach ($images as $file) {
+                $r = $this->uploader->upload($file->getPathname(), $folder);
+                $uploaded[] = ['url' => $r['url'], 'title' => ''];
+            }
+
+            $entity->setImage($uploaded[$mainIndex]['url']);
+            $entity->setGalleryImages($uploaded);
+            return;
+        }
+
+        // Édition : existantes (JSON) + nouvelles
+        $existingJson = trim((string) ($data['existingImages'] ?? ''));
+        $existing = [];
+        if ($existingJson !== '') {
+            $decoded = json_decode($existingJson, true);
+            if (is_array($decoded)) {
+                foreach ($decoded as $entry) {
+                    $url = is_array($entry) ? ($entry['url'] ?? null) : null;
+                    if (is_string($url) && $url !== '') {
+                        $existing[] = ['url' => $url, 'title' => ''];
+                    }
+                }
             }
         }
 
-        $maxPos = (int) $this->em->getConnection()
-            ->fetchOne('SELECT COALESCE(MAX(position), 0) FROM circuit');
-        $c->setPosition($maxPos + 1);
+        $newFiles = $data['images'] ?? [];
+        $uploaded = [];
+        foreach ($newFiles as $file) {
+            $r = $this->uploader->upload($file->getPathname(), $folder);
+            $uploaded[] = ['url' => $r['url'], 'title' => ''];
+        }
 
-        $this->applyTranslations($c, [
-            'title' => $titleFr,
-            'description' => $descriptionFr,
-            'duration' => $durationFr,
-            'fullDescription' => $fullDescriptionFr,
-            'itinerarySummary' => $itinerarySummaryFr,
-            'itinerary' => $itineraryFr,
-            'itineraryDetail' => $itineraryDetailFr,
-            'included' => $includedFr,
-            'excluded' => $excludedFr,
-            'reviewComment' => $reviewName !== ''
-                ? trim((string) ($data['reviewComment'] ?? ''))
-                : null,
-        ]);
+        $gallery = array_merge($existing, $uploaded);
+        if (count($gallery) === 0) {
+            throw new \RuntimeException('Ajoutez au moins une image.');
+        }
 
-        return $c;
+        $mainKey = trim((string) ($data['mainImageKey'] ?? ''));
+        $mainUrl = null;
+        if (preg_match('/^existing:(\d+)$/', $mainKey, $m)) {
+            $i = (int) $m[1];
+            $mainUrl = $existing[$i]['url'] ?? null;
+        } elseif (preg_match('/^new:(\d+)$/', $mainKey, $m)) {
+            $i = (int) $m[1];
+            $mainUrl = $uploaded[$i]['url'] ?? null;
+        }
+        if ($mainUrl === null) {
+            $mainUrl = $gallery[0]['url'];
+        }
+
+        $entity->setImage($mainUrl);
+        $entity->setGalleryImages($gallery);
     }
 
-    private function applyTranslations(Circuit $c, array $source): void
+    /**
+     * @return array{0: string[], 1: string[]}
+     */
+    private function extractItinerary(array $data): array
+    {
+        $titles = [];
+        $details = [];
+        foreach ($data['itinerary'] ?? [] as $day) {
+            $t = trim((string) ($day['title'] ?? ''));
+            $d = trim((string) ($day['detail'] ?? ''));
+            if ($t === '') continue;
+            $titles[] = $t;
+            $details[] = $d;
+        }
+        return [$titles, $details];
+    }
+
+    private function applyReview(object $entity, array $data, string $folder): void
+    {
+        $reviewName = trim((string) ($data['reviewName'] ?? ''));
+        if ($reviewName !== '') {
+            $entity->setReviewName($reviewName);
+            $entity->setReviewCountry(trim((string) ($data['reviewCountry'] ?? '')) ?: null);
+            $entity->setReviewRating((int) ($data['reviewRating'] ?? 0) ?: null);
+            $entity->setReviewCommentFr(trim((string) ($data['reviewComment'] ?? '')) ?: null);
+
+            $avatar = $data['reviewAvatar'] ?? null;
+            if ($avatar instanceof UploadedFile) {
+                $up = $this->uploader->upload($avatar->getPathname(), $folder . '/reviews');
+                $entity->setReviewAvatar($up['url']);
+            }
+        } else {
+            $entity->setReviewName(null);
+            $entity->setReviewCountry(null);
+            $entity->setReviewRating(null);
+            $entity->setReviewCommentFr(null);
+        }
+    }
+
+    /**
+     * Un seul appel DeepL par langue, tous les textes d'un coup.
+     */
+    private function applyTranslationsGeneric(object $entity, array $source): void
     {
         $scalarFields = ['title', 'description', 'duration', 'fullDescription', 'itinerarySummary', 'reviewComment'];
         $listFields   = ['itinerary', 'itineraryDetail', 'included', 'excluded'];
@@ -815,18 +774,18 @@ class TripController extends AbstractController
         foreach ($scalarFields as $field) {
             $value = $source[$field] ?? null;
             if ($value === null || $value === '') continue;
-            $key = 's_' . $field;
-            $flat[$key] = (string) $value;
-            $map[$key]  = ['type' => 'scalar', 'field' => $field];
+            $k = 's_' . $field;
+            $flat[$k] = (string) $value;
+            $map[$k]  = ['type' => 'scalar', 'field' => $field];
         }
         foreach ($listFields as $field) {
             $values = $source[$field] ?? [];
             foreach (array_values($values) as $i => $value) {
                 $value = trim((string) $value);
                 if ($value === '') continue;
-                $key = 'l_' . $field . '_' . $i;
-                $flat[$key] = $value;
-                $map[$key]  = ['type' => 'list', 'field' => $field, 'index' => $i];
+                $k = 'l_' . $field . '_' . $i;
+                $flat[$k] = $value;
+                $map[$k]  = ['type' => 'list', 'field' => $field, 'index' => $i];
             }
         }
         if ($flat === []) return;
@@ -838,8 +797,8 @@ class TripController extends AbstractController
                 $rebuiltScalar = [];
                 $rebuiltList   = [];
                 $i = 0;
-                foreach ($flat as $key => $_original) {
-                    $info = $map[$key];
+                foreach ($flat as $k => $_v) {
+                    $info = $map[$k];
                     $value = $translated[$i] ?? null;
                     $i++;
                     if ($info['type'] === 'scalar') {
@@ -850,28 +809,214 @@ class TripController extends AbstractController
                 }
                 foreach ($rebuiltScalar as $field => $value) {
                     $setter = 'set' . ucfirst($field) . $L;
-                    if (method_exists($c, $setter)) $c->{$setter}($value);
+                    if (method_exists($entity, $setter)) $entity->{$setter}($value);
                 }
                 foreach ($rebuiltList as $field => $values) {
                     ksort($values);
                     $setter = 'set' . ucfirst($field) . $L;
-                    if (method_exists($c, $setter)) $c->{$setter}(array_values($values));
+                    if (method_exists($entity, $setter)) $entity->{$setter}(array_values($values));
                 }
             } catch (\Throwable $e) {
                 foreach ($scalarFields as $field) {
                     $value = $source[$field] ?? null;
                     if ($value === null || $value === '') continue;
                     $setter = 'set' . ucfirst($field) . $L;
-                    if (method_exists($c, $setter)) $c->{$setter}($value);
+                    if (method_exists($entity, $setter)) $entity->{$setter}($value);
                 }
                 foreach ($listFields as $field) {
                     $values = $source[$field] ?? [];
                     if (empty($values)) continue;
                     $setter = 'set' . ucfirst($field) . $L;
-                    if (method_exists($c, $setter)) $c->{$setter}(array_values($values));
+                    if (method_exists($entity, $setter)) $entity->{$setter}(array_values($values));
                 }
             }
         }
+    }
+
+    private function applyTranslationsForCircuit(Circuit $c, array $data, string $titleFr, string $durationFr, string $descriptionFr, string $fullDescriptionFr, string $itinerarySummaryFr, array $itineraryFr, array $itineraryDetailFr, array $includedFr, array $excludedFr): void
+    {
+        $this->applyTranslationsGeneric($c, [
+            'title' => $titleFr,
+            'description' => $descriptionFr,
+            'duration' => $durationFr,
+            'fullDescription' => $fullDescriptionFr,
+            'itinerarySummary' => $itinerarySummaryFr,
+            'itinerary' => $itineraryFr,
+            'itineraryDetail' => $itineraryDetailFr,
+            'included' => $includedFr,
+            'excluded' => $excludedFr,
+            'reviewComment' => trim((string) ($data['reviewComment'] ?? '')) ?: null,
+        ]);
+    }
+
+    private function applyTranslationsForExcursion(Excursion $e, array $data, string $titleFr, string $durationFr, string $descriptionFr, string $fullDescriptionFr, string $itinerarySummaryFr, array $itineraryFr, array $itineraryDetailFr, array $includedFr, array $excludedFr): void
+    {
+        $this->applyTranslationsGeneric($e, [
+            'title' => $titleFr,
+            'description' => $descriptionFr,
+            'duration' => $durationFr,
+            'fullDescription' => $fullDescriptionFr,
+            'itinerarySummary' => $itinerarySummaryFr,
+            'itinerary' => $itineraryFr,
+            'itineraryDetail' => $itineraryDetailFr,
+            'included' => $includedFr,
+            'excluded' => $excludedFr,
+            'reviewComment' => trim((string) ($data['reviewComment'] ?? '')) ?: null,
+        ]);
+    }
+
+    /**
+     * Traduit uniquement les champs dont la valeur FR a changé.
+     */
+    private function translateChangedFieldsGeneric(object $entity, array $newFr): void
+    {
+        $scalarGetters = [
+            'title' => 'getTitleFr',
+            'duration' => 'getDurationFr',
+            'description' => 'getDescriptionFr',
+            'fullDescription' => 'getFullDescriptionFr',
+            'itinerarySummary' => 'getItinerarySummaryFr',
+            'reviewComment' => 'getReviewCommentFr',
+        ];
+        $listGetters = [
+            'itinerary' => 'getItineraryFr',
+            'itineraryDetail' => 'getItineraryDetailFr',
+            'included' => 'getIncludedFr',
+            'excluded' => 'getExcludedFr',
+        ];
+
+        $changedScalars = [];
+        foreach ($scalarGetters as $key => $getter) {
+            $current = (string) ($entity->{$getter}() ?? '');
+            $new = (string) ($newFr[$key] ?? '');
+            if ($current !== $new) {
+                $changedScalars[$key] = $new;
+            }
+        }
+
+        $changedLists = [];
+        foreach ($listGetters as $key => $getter) {
+            $current = $entity->{$getter}();
+            $new = $newFr[$key] ?? [];
+            if ($current != $new) {
+                $changedLists[$key] = $new;
+            }
+        }
+
+        if (empty($changedScalars) && empty($changedLists)) {
+            return;
+        }
+
+        foreach (self::TRANSLATION_LANGS as $lang) {
+            $L = ucfirst($lang);
+            $flat = [];
+            $map = [];
+            foreach ($changedScalars as $key => $value) {
+                if ($value === '') continue;
+                $k = 's_' . $key;
+                $flat[$k] = $value;
+                $map[$k] = ['type' => 'scalar', 'field' => $key];
+            }
+            foreach ($changedLists as $key => $values) {
+                foreach (array_values($values) as $i => $value) {
+                    $value = trim((string) $value);
+                    if ($value === '') continue;
+                    $k = 'l_' . $key . '_' . $i;
+                    $flat[$k] = $value;
+                    $map[$k] = ['type' => 'list', 'field' => $key, 'index' => $i];
+                }
+            }
+            if ($flat === []) continue;
+
+            try {
+                $translated = $this->translator->translate(array_values($flat), $lang);
+                $rebuiltScalar = [];
+                $rebuiltList = [];
+                $i = 0;
+                foreach ($flat as $k => $_v) {
+                    $info = $map[$k];
+                    $value = $translated[$i] ?? null;
+                    $i++;
+                    if ($info['type'] === 'scalar') {
+                        $rebuiltScalar[$info['field']] = $value;
+                    } else {
+                        $rebuiltList[$info['field']][$info['index']] = $value;
+                    }
+                }
+                foreach ($rebuiltScalar as $field => $value) {
+                    $setter = 'set' . ucfirst($field) . $L;
+                    if (method_exists($entity, $setter)) $entity->{$setter}($value);
+                }
+                foreach ($rebuiltList as $field => $values) {
+                    ksort($values);
+                    $setter = 'set' . ucfirst($field) . $L;
+                    if (method_exists($entity, $setter)) $entity->{$setter}(array_values($values));
+                }
+            } catch (\Throwable $e) {
+                foreach ($changedScalars as $field => $value) {
+                    $setter = 'set' . ucfirst($field) . $L;
+                    if (method_exists($entity, $setter)) $entity->{$setter}($value);
+                }
+                foreach ($changedLists as $field => $values) {
+                    $setter = 'set' . ucfirst($field) . $L;
+                    if (method_exists($entity, $setter)) $entity->{$setter}(array_values($values));
+                }
+            }
+        }
+    }
+
+    private function translateChangedFieldsForCircuit(Circuit $c, array $data, string $titleFr, string $durationFr, string $descriptionFr, string $fullDescriptionFr, string $itinerarySummaryFr, array $itineraryFr, array $itineraryDetailFr, array $includedFr, array $excludedFr): void
+    {
+        // 1) Applique les valeurs FR
+        $c->setTitleFr($titleFr);
+        $c->setDurationFr($durationFr !== '' ? $durationFr : null);
+        $c->setDescriptionFr($descriptionFr);
+        $c->setFullDescriptionFr($fullDescriptionFr !== '' ? $fullDescriptionFr : null);
+        $c->setItinerarySummaryFr($itinerarySummaryFr !== '' ? $itinerarySummaryFr : null);
+        $c->setItineraryFr($itineraryFr);
+        $c->setItineraryDetailFr($itineraryDetailFr);
+        $c->setIncludedFr($includedFr);
+        $c->setExcludedFr($excludedFr);
+
+        // 2) Traduit les champs changés
+        $this->translateChangedFieldsGeneric($c, [
+            'title' => $titleFr,
+            'duration' => $durationFr,
+            'description' => $descriptionFr,
+            'fullDescription' => $fullDescriptionFr,
+            'itinerarySummary' => $itinerarySummaryFr,
+            'itinerary' => $itineraryFr,
+            'itineraryDetail' => $itineraryDetailFr,
+            'included' => $includedFr,
+            'excluded' => $excludedFr,
+            'reviewComment' => trim((string) ($data['reviewComment'] ?? '')) ?: '',
+        ]);
+    }
+
+    private function translateChangedFieldsForExcursion(Excursion $e, array $data, string $titleFr, string $durationFr, string $descriptionFr, string $fullDescriptionFr, string $itinerarySummaryFr, array $itineraryFr, array $itineraryDetailFr, array $includedFr, array $excludedFr): void
+    {
+        $e->setTitleFr($titleFr);
+        $e->setDurationFr($durationFr !== '' ? $durationFr : null);
+        $e->setDescriptionFr($descriptionFr);
+        $e->setFullDescriptionFr($fullDescriptionFr !== '' ? $fullDescriptionFr : null);
+        $e->setItinerarySummaryFr($itinerarySummaryFr !== '' ? $itinerarySummaryFr : null);
+        $e->setItineraryFr($itineraryFr);
+        $e->setItineraryDetailFr($itineraryDetailFr);
+        $e->setIncludedFr($includedFr);
+        $e->setExcludedFr($excludedFr);
+
+        $this->translateChangedFieldsGeneric($e, [
+            'title' => $titleFr,
+            'duration' => $durationFr,
+            'description' => $descriptionFr,
+            'fullDescription' => $fullDescriptionFr,
+            'itinerarySummary' => $itinerarySummaryFr,
+            'itinerary' => $itineraryFr,
+            'itineraryDetail' => $itineraryDetailFr,
+            'included' => $includedFr,
+            'excluded' => $excludedFr,
+            'reviewComment' => trim((string) ($data['reviewComment'] ?? '')) ?: '',
+        ]);
     }
 
     private function mergeTags(array $selected, array $custom): array

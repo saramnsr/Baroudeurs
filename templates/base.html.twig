@@ -179,20 +179,16 @@
         </div><!--====== Search From ======-->
 
         {# ============================================================
-           Nav dropdown data.
-
-           - circuitNav : lus en base via App\Twig\NavigationExtension
-             (nav_circuits()). Les nouveaux circuits créés depuis
-             l'admin apparaissent automatiquement ici.
-           - excursionNav : encore hardcodé (excursions pas encore
-             migrées en base). À remplacer plus tard de la même façon.
+           Nav dropdown data — toutes deux lues en base via
+           App\Twig\NavigationExtension :
+             - nav_circuits()    → liste des circuits visibles
+             - nav_excursions()  → liste des excursions visibles
+           Les nouveaux éléments créés depuis l'admin apparaissent
+           automatiquement ici.
            ============================================================ #}
         {% set navLocale = app.request.locale %}
         {% set circuitNav = nav_circuits() %}
-        {% set excursionNav = [
-            { id: 1, title: { fr: 'Excursion à Tataouine', en: 'Tataouine Excursion', ar: 'رحلة إلى تطاوين', it: 'Escursione a Tataouine' } },
-            { id: 2, title: { fr: 'Excursion à Ksar Ghilane', en: 'Ksar Ghilane Excursion', ar: 'رحلة إلى قصر غيلان', it: 'Escursione a Ksar Ghilane' } }
-        ] %}
+        {% set excursionNav = nav_excursions() %}
 
         <!--====== Start Header ======-->
         <header class="header-area">

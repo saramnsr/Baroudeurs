@@ -28,7 +28,7 @@ class FontController extends AbstractController
     private ExcursionRepository $excursionRepository;
 
     public function __construct(
-        ProgrammeRepository $programmeRepository, 
+        ProgrammeRepository $programmeRepository,
         TestimonialRepository $testimonialRepository,
         QuoteRepository $quoteRepository,
         CircuitRepository $circuitRepository,
@@ -48,12 +48,7 @@ class FontController extends AbstractController
     {
         $programmes = $this->programmeRepository->findAll();
         $featuredProgrammes = $this->programmeRepository->findFeatured(5);
-
-        // Featured excursions on the homepage must come from the real
-        // Excursion entity (same table used by /excursions and the detail
-        // page), not from Programme — otherwise the ids won't resolve
-        // in FontController::detail().
-        $featuredExcursions = array_slice($this->excursionRepository->findAllOrdered(), 0, 5);
+        $featuredExcursions = array_slice($this->excursionRepository->findPublished(), 0, 5);
 
         return $this->render('font/index.html.twig', [
             'programmes' => $programmes,
@@ -130,7 +125,7 @@ class FontController extends AbstractController
     {
         $testimonials = $this->testimonialRepository->findAll();
         $randomImages = ['author-thumb-1.jpg', 'author-thumb-2.jpg', 'testimonial-1.jpg', 'thumb-1.jpg'];
-        
+
         return $this->render('font/testimonials.html.twig', [
             'testimonials' => $testimonials,
             'randomImages' => $randomImages,
@@ -146,25 +141,25 @@ class FontController extends AbstractController
         $country = $request->request->get('country');
         $rating = $request->request->get('rating');
         $message = $request->request->get('message');
-        
+
         if (empty($name) || empty($country) || empty($rating) || empty($message)) {
             $this->addFlash('error', 'Please fill in all required fields.');
             return $this->redirectToRoute('testimonials');
         }
-        
+
         $testimonial = new Testimonial();
         $testimonial->setName($name);
         $testimonial->setCountry($country);
         $testimonial->setRating((int)$rating);
         $testimonial->setVideoFilename(null);
-        
+
         $locale = $request->getLocale();
-        
+
         $testimonial->setCommentFr(null);
         $testimonial->setCommentEn(null);
         $testimonial->setCommentAr(null);
         $testimonial->setCommentIt(null);
-        
+
         switch($locale) {
             case 'fr':
                 $testimonial->setCommentFr($message);
@@ -178,12 +173,12 @@ class FontController extends AbstractController
             default:
                 $testimonial->setCommentEn($message);
         }
-        
+
         $em->persist($testimonial);
         $em->flush();
-        
+
         $this->addFlash('success', 'Thank you for your testimonial! It has been submitted successfully.');
-        
+
         return $this->redirectToRoute('testimonials');
     }
 
@@ -193,7 +188,7 @@ class FontController extends AbstractController
     public function quote(Request $request): Response
     {
         $programmes = $this->programmeRepository->findAll();
-        
+
         return $this->render('font/quote.html.twig', [
             'programmes' => $programmes,
         ]);
@@ -216,17 +211,17 @@ class FontController extends AbstractController
         $duration = $request->request->get('duration');
         $participants = $request->request->get('participants');
         $specificRequests = $request->request->get('specificRequests');
-        
+
         if (empty($lastName) || empty($firstName) || empty($email) || empty($telephone)) {
             $this->addFlash('error', 'Please fill in all required fields.');
             return $this->redirectToRoute('app_font_quote');
         }
-        
+
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->addFlash('error', 'Please enter a valid email address.');
             return $this->redirectToRoute('app_font_quote');
         }
-        
+
         $quote = new Quote();
         $quote->setLastName($lastName);
         $quote->setFirstName($firstName);
@@ -235,24 +230,24 @@ class FontController extends AbstractController
         $quote->setCircuit($circuit);
         $quote->setDepartureLocation($departureLocation);
         $quote->setArrivalLocation($arrivalLocation);
-        
+
         if ($startDate) {
             $quote->setStartDate(new \DateTime($startDate));
         }
         if ($endDate) {
             $quote->setEndDate(new \DateTime($endDate));
         }
-        
+
         $quote->setDuration($duration);
         $quote->setParticipants($participants);
         $quote->setSpecificRequests($specificRequests);
         $quote->setLocale($request->getLocale());
-        
+
         $em->persist($quote);
         $em->flush();
-        
+
         $this->addFlash('success', 'Your quote request has been sent successfully! We will contact you shortly.');
-        
+
         return $this->redirectToRoute('app_font_quote');
     }
 
@@ -289,7 +284,7 @@ class FontController extends AbstractController
             'Tataouine3.jpg',
             'Tataouine4.jpg'
         ];
-        
+
         $teamMembers = [
             [
                 'name' => 'about_page.team.member1.name',
@@ -316,7 +311,7 @@ class FontController extends AbstractController
                 'image' => 'team-4.jpg'
             ]
         ];
-        
+
         return $this->render('font/about.html.twig', [
             'galleryImages' => $galleryImages,
             'teamMembers' => $teamMembers,
@@ -406,17 +401,16 @@ class FontController extends AbstractController
         $mail = new PHPMailer(true);
 
         try {
-            // Gmail SMTP settings
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->Port       = 587;
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'takamuramhatli@gmail.com';     // ← YOUR Gmail
-            $mail->Password   = 'iiwb djvx ctpd ooej';       // ← YOUR App Password
+            $mail->Username   = 'takamuramhatli@gmail.com';
+            $mail->Password   = 'iiwb djvx ctpd ooej';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
             $mail->setFrom('noreply@baroudeursdedesert.com', 'Baroudeurs du Désert');
-            $mail->addAddress('contact@baroudeursdedesert.com');      // ← Company email
+            $mail->addAddress('contact@baroudeursdedesert.com');
 
             $mail->isHTML(false);
             $mail->Subject = 'New Booking Request - Baroudeurs du Désert';
@@ -444,276 +438,358 @@ class FontController extends AbstractController
 
         return $this->redirectToRoute('app_font_index');
     }
-  /**
- * @Route("/newsletter/subscribe", name="app_newsletter_subscribe", methods={"POST"})
- */
-public function subscribeNewsletter(Request $request, EntityManagerInterface $em): Response
-{
-    $email = $request->request->get('email');
-    
-    // Validate email
-    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $this->addFlash('error', 'Please enter a valid email address.');
-        return $this->redirectToRoute('app_font_index');
-    }
-    
-    // Check if email already exists
-    $existing = $em->getRepository(Newsletter::class)->findOneBy(['email' => $email]);
-    
-    if ($existing) {
-        $this->addFlash('warning', 'This email is already subscribed to our newsletter.');
-        return $this->redirectToRoute('app_font_index');
-    }
-    
-    // Create new subscription
-    $newsletter = new Newsletter();
-    $newsletter->setEmail($email);
-    $newsletter->setSubscribedAt(new \DateTime());
-    $newsletter->setIsActive(true);
-    
-    $em->persist($newsletter);
-    $em->flush();
-    
-    $this->addFlash('success', 'Thank you for subscribing to our newsletter!');
-    
-    return $this->redirectToRoute('app_font_index');
-}
 
-/**
- * @Route("/contact/submit", name="app_contact_submit", methods={"POST"})
- */
-public function submitContact(Request $request): Response
-{
-    $name = $request->request->get('name');
-    $email = $request->request->get('email');
-    $message = $request->request->get('message');
-    
-    // Validate required fields
-    if (empty($name) || empty($email) || empty($message)) {
-        $this->addFlash('error', 'Please fill in all required fields.');
-        return $this->redirectToRoute('app_font_contact');
-    }
-    
-    // Validate email
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $this->addFlash('error', 'Please enter a valid email address.');
-        return $this->redirectToRoute('app_font_contact');
-    }
-    
-    $mail = new PHPMailer(true);
-    
-    try {
-        // Gmail SMTP settings (YOUR Gmail)
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->Port       = 587;
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'takamuramhatli@gmail.com';     // ← YOUR Gmail
-        $mail->Password   = 'iiwb djvx ctpd ooej';       // ← YOUR App Password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        
-        // Sender and Recipient
-        $mail->setFrom('noreply@baroudeursdedesert.com', 'Baroudeurs du Désert');
-        $mail->addAddress('contact@baroudeursdedesert.com'); // ← Company email
-        
-        // Reply to the person who filled the form
-        $mail->addReplyTo($email, $name);
-        
-        // Email content
-        $mail->isHTML(true);
-        $mail->Subject = 'New Contact Message - Baroudeurs du Désert';
-        $mail->Body    = "
-        <html>
-        <head>
-            <style>
-                body { font-family: Arial, sans-serif; color: #333; }
-                .container { max-width: 600px; margin: 0 auto; padding: 20px; background: #f9f6f0; border-radius: 10px; }
-                .header { background: #3B281C; color: #fff; padding: 20px; text-align: center; border-radius: 10px 10px 0 0; }
-                .content { padding: 30px; background: #fff; border-radius: 0 0 10px 10px; }
-                .field { margin-bottom: 15px; }
-                .label { font-weight: bold; color: #3B281C; }
-                .value { color: #5B4636; }
-                .footer { text-align: center; margin-top: 20px; color: #C8A97E; font-size: 12px; }
-            </style>
-        </head>
-        <body>
-            <div class='container'>
-                <div class='header'>
-                    <h2>📩 New Contact Message</h2>
-                </div>
-                <div class='content'>
-                    <div class='field'>
-                        <div class='label'>Name:</div>
-                        <div class='value'>" . htmlspecialchars($name) . "</div>
-                    </div>
-                    <div class='field'>
-                        <div class='label'>Email:</div>
-                        <div class='value'>" . htmlspecialchars($email) . "</div>
-                    </div>
-                    <div class='field'>
-                        <div class='label'>Message:</div>
-                        <div class='value'>" . nl2br(htmlspecialchars($message)) . "</div>
-                    </div>
-                    <hr>
-                    <p style='color: #5B4636; font-size: 14px;'>This message was sent from the contact form on your website.</p>
-                </div>
-                <div class='footer'>
-                    &copy; " . date('Y') . " Baroudeurs du Désert - All Rights Reserved
-                </div>
-            </div>
-        </body>
-        </html>
-        ";
-        
-        // Plain text version for email clients that don't support HTML
-        $mail->AltBody = "
-        New Contact Message
-        ===================
-        Name: {$name}
-        Email: {$email}
-        Message: {$message}
-        ===================
-        This message was sent from the contact form on your website.
-        ";
-        
-        $mail->send();
-        $this->addFlash('success', 'Your message has been sent successfully! We will contact you shortly.');
-        
-    } catch (Exception $e) {
-        $this->addFlash('error', "Message could not be sent. Error: {$mail->ErrorInfo}");
-    }
-    
-    return $this->redirectToRoute('app_font_contact');
-}
+    /**
+     * @Route("/newsletter/subscribe", name="app_newsletter_subscribe", methods={"POST"})
+     */
+    public function subscribeNewsletter(Request $request, EntityManagerInterface $em): Response
+    {
+        $email = $request->request->get('email');
 
-/**
- * @Route("/circuits", name="app_font_circuits")
- */
-public function circuits(CircuitNormalizer $normalizer): Response
-{
-    // Circuits lus en base (hors corbeille), au format des templates
-    $circuits = $normalizer->normalizeAll($this->circuitRepository->findPublished());
-    $programmes = $this->programmeRepository->findAll();
-
-    return $this->render('font/circuits.html.twig', [
-        'circuits' => $circuits,
-        'programmes' => $programmes,
-    ]);
-}
-
-/**
- * @Route("/excursions", name="app_font_excursions")
- */
-public function excursions(): Response
-{
-    $excursions = $this->excursionRepository->findAllOrdered();
-
-    return $this->render('font/excursions.html.twig', [
-        'excursions' => $excursions,
-    ]);
-}
-
-
-
-/**
- * @Route("/detail/{type}/{id}", name="app_font_detail", requirements={"type"="circuit|excursion", "id"="\d+"})
- */
-public function detail(string $type, int $id, CircuitNormalizer $normalizer): Response
-{
-    $item = null;
-    $relatedItems = [];
-
-    // Circuits : lus en base. Excursions : encore dans le template (migrées plus tard).
-    if ($type === 'circuit') {
-        $circuit = $this->circuitRepository->findPublishedById($id);
-        if ($circuit === null) {
-            throw $this->createNotFoundException('Circuit introuvable.');
+        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->addFlash('error', 'Please enter a valid email address.');
+            return $this->redirectToRoute('app_font_index');
         }
 
-        $item = $normalizer->normalize($circuit);
-        $relatedItems = $normalizer->normalizeAll($this->circuitRepository->findRelated($circuit, 3));
+        $existing = $em->getRepository(Newsletter::class)->findOneBy(['email' => $email]);
+
+        if ($existing) {
+            $this->addFlash('warning', 'This email is already subscribed to our newsletter.');
+            return $this->redirectToRoute('app_font_index');
+        }
+
+        $newsletter = new Newsletter();
+        $newsletter->setEmail($email);
+        $newsletter->setSubscribedAt(new \DateTime());
+        $newsletter->setIsActive(true);
+
+        $em->persist($newsletter);
+        $em->flush();
+
+        $this->addFlash('success', 'Thank you for subscribing to our newsletter!');
+
+        return $this->redirectToRoute('app_font_index');
     }
 
-    return $this->render('font/detail.html.twig', [
-        'type' => $type,
-        'id' => $id,
-        'item' => $item,
-        'relatedItems' => $relatedItems,
-    ]);
-}
-/**
- * @Route("/circuit/booking/submit", name="app_circuit_booking_submit", methods={"POST"})
- */
-public function submitCircuitBooking(Request $request): Response
-{
-    $checkIn = $request->request->get('checkIn');
-    $checkOut = $request->request->get('checkOut');
-    $guests = $request->request->get('guests');
-    $circuitId = $request->request->get('circuitId');
-    $circuitTitle = $request->request->get('circuitTitle');
-    $name = $request->request->get('name');
-    $email = $request->request->get('email');
+    /**
+     * @Route("/contact/submit", name="app_contact_submit", methods={"POST"})
+     */
+    public function submitContact(Request $request): Response
+    {
+        $name = $request->request->get('name');
+        $email = $request->request->get('email');
+        $message = $request->request->get('message');
 
-    if (empty($checkIn) || empty($checkOut) || empty($guests) || empty($name) || empty($email)) {
-        $this->addFlash('error', 'Please fill in all required fields.');
+        if (empty($name) || empty($email) || empty($message)) {
+            $this->addFlash('error', 'Please fill in all required fields.');
+            return $this->redirectToRoute('app_font_contact');
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->addFlash('error', 'Please enter a valid email address.');
+            return $this->redirectToRoute('app_font_contact');
+        }
+
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->Port       = 587;
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'takamuramhatli@gmail.com';
+            $mail->Password   = 'iiwb djvx ctpd ooej';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
+            $mail->setFrom('noreply@baroudeursdedesert.com', 'Baroudeurs du Désert');
+            $mail->addAddress('contact@baroudeursdedesert.com');
+            $mail->addReplyTo($email, $name);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'New Contact Message - Baroudeurs du Désert';
+            $mail->Body    = "
+            <html>
+            <head>
+                <style>
+                    body { font-family: Arial, sans-serif; color: #333; }
+                    .container { max-width: 600px; margin: 0 auto; padding: 20px; background: #f9f6f0; border-radius: 10px; }
+                    .header { background: #3B281C; color: #fff; padding: 20px; text-align: center; border-radius: 10px 10px 0 0; }
+                    .content { padding: 30px; background: #fff; border-radius: 0 0 10px 10px; }
+                    .field { margin-bottom: 15px; }
+                    .label { font-weight: bold; color: #3B281C; }
+                    .value { color: #5B4636; }
+                    .footer { text-align: center; margin-top: 20px; color: #C8A97E; font-size: 12px; }
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <div class='header'>
+                        <h2>📩 New Contact Message</h2>
+                    </div>
+                    <div class='content'>
+                        <div class='field'>
+                            <div class='label'>Name:</div>
+                            <div class='value'>" . htmlspecialchars($name) . "</div>
+                        </div>
+                        <div class='field'>
+                            <div class='label'>Email:</div>
+                            <div class='value'>" . htmlspecialchars($email) . "</div>
+                        </div>
+                        <div class='field'>
+                            <div class='label'>Message:</div>
+                            <div class='value'>" . nl2br(htmlspecialchars($message)) . "</div>
+                        </div>
+                        <hr>
+                        <p style='color: #5B4636; font-size: 14px;'>This message was sent from the contact form on your website.</p>
+                    </div>
+                    <div class='footer'>
+                        &copy; " . date('Y') . " Baroudeurs du Désert - All Rights Reserved
+                    </div>
+                </div>
+            </body>
+            </html>
+            ";
+
+            $mail->AltBody = "
+            New Contact Message
+            ===================
+            Name: {$name}
+            Email: {$email}
+            Message: {$message}
+            ===================
+            This message was sent from the contact form on your website.
+            ";
+
+            $mail->send();
+            $this->addFlash('success', 'Your message has been sent successfully! We will contact you shortly.');
+
+        } catch (Exception $e) {
+            $this->addFlash('error', "Message could not be sent. Error: {$mail->ErrorInfo}");
+        }
+
+        return $this->redirectToRoute('app_font_contact');
+    }
+
+    /**
+     * @Route("/circuits", name="app_font_circuits")
+     */
+    public function circuits(CircuitNormalizer $normalizer): Response
+    {
+        $circuits = $normalizer->normalizeAll($this->circuitRepository->findPublished());
+        $programmes = $this->programmeRepository->findAll();
+
+        return $this->render('font/circuits.html.twig', [
+            'circuits' => $circuits,
+            'programmes' => $programmes,
+        ]);
+    }
+
+    /**
+     * @Route("/excursions", name="app_font_excursions")
+     */
+    public function excursions(): Response
+    {
+        // Excursions lues en base (hors corbeille), dans l'ordre d'affichage.
+        $excursions = $this->excursionRepository->findPublished();
+
+        return $this->render('font/excursions.html.twig', [
+            'excursions' => $excursions,
+        ]);
+    }
+
+    /**
+     * @Route("/detail/{type}/{id}", name="app_font_detail", requirements={"type"="circuit|excursion", "id"="\d+"})
+     */
+    public function detail(string $type, int $id, CircuitNormalizer $normalizer): Response
+    {
+        $item = null;
+        $relatedItems = [];
+
+        if ($type === 'circuit') {
+            $circuit = $this->circuitRepository->findPublishedById($id);
+            if ($circuit === null) {
+                throw $this->createNotFoundException('Circuit introuvable.');
+            }
+            $item = $normalizer->normalize($circuit);
+            $relatedItems = $normalizer->normalizeAll($this->circuitRepository->findRelated($circuit, 3));
+        } elseif ($type === 'excursion') {
+            $excursion = $this->excursionRepository->findPublishedById($id);
+            if ($excursion === null) {
+                throw $this->createNotFoundException('Excursion introuvable.');
+            }
+            $item = $this->excursionToTemplateArray($excursion);
+            $related = $this->excursionRepository->findRelated($excursion, 3);
+            $relatedItems = array_map(fn ($e) => $this->excursionToTemplateArray($e), $related);
+        }
+
+        return $this->render('font/detail.html.twig', [
+            'type' => $type,
+            'id' => $id,
+            'item' => $item,
+            'relatedItems' => $relatedItems,
+        ]);
+    }
+
+    /**
+     * Convertit une Excursion en tableau au format attendu par detail.html.twig
+     * (le même format que circuitData / excursionData).
+     */
+    private function excursionToTemplateArray(\App\Entity\Excursion $e): array
+    {
+        return [
+            'id' => $e->getId(),
+            'image' => $e->getImage(),
+            'title' => [
+                'fr' => $e->getTitleFr(),
+                'en' => $e->getTitleEn() ?: $e->getTitleFr(),
+                'ar' => $e->getTitleAr() ?: $e->getTitleFr(),
+                'it' => $e->getTitleIt() ?: $e->getTitleFr(),
+            ],
+            'description' => [
+                'fr' => $e->getDescriptionFr(),
+                'en' => $e->getDescriptionEn() ?: $e->getDescriptionFr(),
+                'ar' => $e->getDescriptionAr() ?: $e->getDescriptionFr(),
+                'it' => $e->getDescriptionIt() ?: $e->getDescriptionFr(),
+            ],
+            'duration' => [
+                'fr' => $e->getDurationFr(),
+                'en' => $e->getDurationEn() ?: $e->getDurationFr(),
+                'ar' => $e->getDurationAr() ?: $e->getDurationFr(),
+                'it' => $e->getDurationIt() ?: $e->getDurationFr(),
+            ],
+            'icons' => $e->getIcons(),
+            'intro' => [
+                'fr' => $e->getIntroFr(),
+                'en' => $e->getIntroEn() ?: $e->getIntroFr(),
+                'ar' => $e->getIntroAr() ?: $e->getIntroFr(),
+                'it' => $e->getIntroIt() ?: $e->getIntroFr(),
+            ],
+            'fullDescription' => [
+                'fr' => $e->getFullDescriptionFr(),
+                'en' => $e->getFullDescriptionEn() ?: $e->getFullDescriptionFr(),
+                'ar' => $e->getFullDescriptionAr() ?: $e->getFullDescriptionFr(),
+                'it' => $e->getFullDescriptionIt() ?: $e->getFullDescriptionFr(),
+            ],
+            'itinerarySummary' => [
+                'fr' => $e->getItinerarySummaryFr(),
+                'en' => $e->getItinerarySummaryEn() ?: $e->getItinerarySummaryFr(),
+                'ar' => $e->getItinerarySummaryAr() ?: $e->getItinerarySummaryFr(),
+                'it' => $e->getItinerarySummaryIt() ?: $e->getItinerarySummaryFr(),
+            ],
+            'itinerary' => [
+                'fr' => $e->getItineraryFr(),
+                'en' => $e->getItineraryEn() ?: $e->getItineraryFr(),
+                'ar' => $e->getItineraryAr() ?: $e->getItineraryFr(),
+                'it' => $e->getItineraryIt() ?: $e->getItineraryFr(),
+            ],
+            'itineraryDetail' => [
+                'fr' => $e->getItineraryDetailFr(),
+                'en' => $e->getItineraryDetailEn() ?: $e->getItineraryDetailFr(),
+                'ar' => $e->getItineraryDetailAr() ?: $e->getItineraryDetailFr(),
+                'it' => $e->getItineraryDetailIt() ?: $e->getItineraryDetailFr(),
+            ],
+            'included' => [
+                'fr' => $e->getIncludedFr(),
+                'en' => $e->getIncludedEn() ?: $e->getIncludedFr(),
+                'ar' => $e->getIncludedAr() ?: $e->getIncludedFr(),
+                'it' => $e->getIncludedIt() ?: $e->getIncludedFr(),
+            ],
+            'includedIcons' => $e->getIncludedIcons(),
+            'excluded' => [
+                'fr' => $e->getExcludedFr() ?: null,
+                'en' => $e->getExcludedEn() ?: null,
+                'ar' => $e->getExcludedAr() ?: null,
+                'it' => $e->getExcludedIt() ?: null,
+            ],
+            'excludedIcons' => $e->getExcludedIcons(),
+            'gallery' => $e->getGalleryImages(),
+            'review' => [
+                'avatar' => $e->getReviewAvatar(),
+                'name' => $e->getReviewName(),
+                'country' => $e->getReviewCountry(),
+                'rating' => $e->getReviewRating(),
+                'comment' => [
+                    'fr' => $e->getReviewCommentFr(),
+                    'en' => $e->getReviewCommentEn() ?: $e->getReviewCommentFr(),
+                    'ar' => $e->getReviewCommentAr() ?: $e->getReviewCommentFr(),
+                    'it' => $e->getReviewCommentIt() ?: $e->getReviewCommentFr(),
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @Route("/circuit/booking/submit", name="app_circuit_booking_submit", methods={"POST"})
+     */
+    public function submitCircuitBooking(Request $request): Response
+    {
+        $checkIn = $request->request->get('checkIn');
+        $checkOut = $request->request->get('checkOut');
+        $guests = $request->request->get('guests');
+        $circuitId = $request->request->get('circuitId');
+        $circuitTitle = $request->request->get('circuitTitle');
+        $name = $request->request->get('name');
+        $email = $request->request->get('email');
+
+        if (empty($checkIn) || empty($checkOut) || empty($guests) || empty($name) || empty($email)) {
+            $this->addFlash('error', 'Please fill in all required fields.');
+            return $this->redirectToRoute('app_font_detail', ['type' => 'circuit', 'id' => $circuitId]);
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->addFlash('error', 'Please enter a valid email address.');
+            return $this->redirectToRoute('app_font_detail', ['type' => 'circuit', 'id' => $circuitId]);
+        }
+
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->Port       = 587;
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'takamuramhatli@gmail.com';
+            $mail->Password   = 'iiwb djvx ctpd ooej';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
+            $mail->setFrom('noreply@baroudeursdedesert.com', 'Baroudeurs du Désert');
+            $mail->addAddress('contact@baroudeursdedesert.com');
+            $mail->addReplyTo($email, $name);
+
+            $mail->isHTML(false);
+            $mail->Subject = 'New Circuit Booking Request - ' . $circuitTitle;
+            $mail->Body    = "
+            =====================================
+            NEW CIRCUIT BOOKING REQUEST
+            =====================================
+
+            Circuit: {$circuitTitle}
+            Name: {$name}
+            Email: {$email}
+            Check-in: {$checkIn}
+            Check-out: {$checkOut}
+            Guests: {$guests}
+
+            -------------------------------------
+            Submitted from: Circuit Detail Page
+            Date Submitted: " . date('Y-m-d H:i:s') . "
+            =====================================
+            ";
+
+            $mail->send();
+            $this->addFlash('success', 'Your booking request has been sent successfully! We will contact you shortly.');
+        } catch (Exception $e) {
+            $this->addFlash('error', "Message could not be sent. Error: {$mail->ErrorInfo}");
+        }
+
         return $this->redirectToRoute('app_font_detail', ['type' => 'circuit', 'id' => $circuitId]);
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $this->addFlash('error', 'Please enter a valid email address.');
-        return $this->redirectToRoute('app_font_detail', ['type' => 'circuit', 'id' => $circuitId]);
+    /**
+     * @Route("/services", name="app_font_services")
+     */
+    public function services(): Response
+    {
+        return $this->render('font/services.html.twig');
     }
-
-    $mail = new PHPMailer(true);
-
-    try {
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->Port       = 587;
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'takamuramhatli@gmail.com';
-        $mail->Password   = 'iiwb djvx ctpd ooej';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-
-        $mail->setFrom('noreply@baroudeursdedesert.com', 'Baroudeurs du Désert');
-        $mail->addAddress('contact@baroudeursdedesert.com');
-        $mail->addReplyTo($email, $name);
-
-        $mail->isHTML(false);
-        $mail->Subject = 'New Circuit Booking Request - ' . $circuitTitle;
-        $mail->Body    = "
-        =====================================
-        NEW CIRCUIT BOOKING REQUEST
-        =====================================
-
-        Circuit: {$circuitTitle}
-        Name: {$name}
-        Email: {$email}
-        Check-in: {$checkIn}
-        Check-out: {$checkOut}
-        Guests: {$guests}
-
-        -------------------------------------
-        Submitted from: Circuit Detail Page
-        Date Submitted: " . date('Y-m-d H:i:s') . "
-        =====================================
-        ";
-
-        $mail->send();
-        $this->addFlash('success', 'Your booking request has been sent successfully! We will contact you shortly.');
-    } catch (Exception $e) {
-        $this->addFlash('error', "Message could not be sent. Error: {$mail->ErrorInfo}");
-    }
-
-    return $this->redirectToRoute('app_font_detail', ['type' => 'circuit', 'id' => $circuitId]);
-}
-
-
-/**
- * @Route("/services", name="app_font_services")
- */
-public function services(): Response
-{
-    return $this->render('font/services.html.twig');
-}
 }

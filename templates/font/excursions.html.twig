@@ -4,126 +4,7 @@
 
 {% block body %}
 
-    {# ============================================================
-       Excursion data, hardcoded directly here. Purely frontend.
-       This array holds 2 items (ids 1-2). It must stay separate
-       from the Circuit data in circuits.html.twig and
-       detail.html.twig's circuitData — ids are not shared across
-       the two, and links below use type: 'excursion'.
-       To edit an excursion: change the values below.
-       To add one: copy a whole { ... } block, append it, and give
-       it the next unused id (also add it to detail.html.twig's
-       excursionData so its detail page works).
-       ============================================================ #}
     {% set locale = app.request.locale %}
-    {% set excursions = [
-        {
-            id: 1,
-            image: "Circuits/excursion Tatouine.jpg",
-            title: {
-                fr: "Excursion d'une Journée à Tataouine",
-                en: "Tataouine Day Excursion",
-                ar: "رحلة يوم واحد إلى تطاوين",
-                it: "Escursione di un Giorno a Tataouine"
-            },
-            description: {
-                fr: "Une journée de découverte le long de la Roman Road historique, avec un arrêt au lac salé de Chahbania, le marché de Tataouine et le village troglodyte de Chenini. Terminez au ksar Hadada, célèbre décor de Star Wars.",
-                en: "A day of discovery along the historic Roman Road, with a stop at the Chahbania salt lake, the Tataouine market, and the troglodyte village of Chenini. Finish at Ksar Hadada, the famous Star Wars filming location.",
-                ar: "يوم من الاكتشاف على طول الطريق الروماني التاريخي، مع توقف عند بحيرة الشحبانية المالحة وسوق تطاوين وقرية شنيني الكهفية. تنتهي الرحلة في قصر حدادة، الموقع الشهير لتصوير ستار وورز.",
-                it: "Una giornata alla scoperta della storica Roman Road, con una sosta al lago salato di Chahbania, il mercato di Tataouine e il villaggio trogloditico di Chenini. Termina al ksar Hadada, famoso set di Star Wars."
-            },
-            duration: {
-                fr: "1 jour",
-                en: "1 day",
-                ar: "يوم واحد",
-                it: "1 giorno"
-            },
-            included: {
-                fr: [
-                    "Guide local",
-                    "Déjeuner berbère",
-                    "Transport en véhicule climatisé"
-                ],
-                en: [
-                    "Local guide",
-                    "Berber lunch",
-                    "Air-conditioned vehicle transport"
-                ],
-                ar: [
-                    "مرشد محلي",
-                    "غداء أمازيغي",
-                    "النقل بمركبة مكيفة"
-                ],
-                it: [
-                    "Guida locale",
-                    "Pranzo berbero",
-                    "Trasporto in veicolo climatizzato"
-                ]
-            },
-            icons: [
-                "flaticon-hiking-2",
-                "flaticon-camp",
-                "flaticon-quotation"
-            ]
-        },
-        {
-            id: 2,
-            image: "Circuits/excursion nuit k.ghilane.webp",
-            title: {
-                fr: "Excursion Nuit à Ksar Ghilane",
-                en: "Ksar Ghilane Overnight Excursion",
-                ar: "رحلة ليلية إلى قصر غيلان",
-                it: "Escursione Notturna a Ksar Ghilane"
-            },
-            description: {
-                fr: "Découvrez les villages berbères, le marché animé de Tataouine et les maisons troglodytes de Chenini avant de rejoindre l'oasis de Ksar Ghilane. Baignez-vous dans son bassin naturel et passez une nuit magique sous le ciel du désert.",
-                en: "Explore Berber villages, the lively Tataouine market, and the troglodyte houses of Chenini before heading to the oasis of Ksar Ghilane. Swim in its natural pool and spend a magical night camped beneath the desert sky.",
-                ar: "اكتشف القرى الأمازيغية وسوق تطاوين النابض بالحياة ومنازل شنيني الكهفية قبل التوجه إلى واحة قصر غيلان. اسبح في حوضها الطبيعي واقض ليلة سحرية تحت سماء الصحراء.",
-                it: "Scopri i villaggi berberi, il vivace mercato di Tataouine e le case trogloditiche di Chenini prima di raggiungere l'oasi di Ksar Ghilane. Fai il bagno nella sua piscina naturale e trascorri una notte magica sotto il cielo del deserto."
-            },
-            duration: {
-                fr: "2 jours / 1 nuit",
-                en: "2 days / 1 night",
-                ar: "يومان / ليلة واحدة",
-                it: "2 giorni / 1 notte"
-            },
-            included: {
-                fr: [
-                    "Prise en charge à l'hôtel",
-                    "Guide local",
-                    "Déjeuner",
-                    "Transport en véhicule",
-                    "Hébergement à Ksar Ghilane"
-                ],
-                en: [
-                    "Hotel pickup",
-                    "Local guide",
-                    "Lunch",
-                    "Vehicle transport",
-                    "Accommodation in Ksar Ghilane"
-                ],
-                ar: [
-                    "الانطلاق من الفندق",
-                    "مرشد محلي",
-                    "الغداء",
-                    "النقل بالمركبة",
-                    "الإقامة في قصر غيلان"
-                ],
-                it: [
-                    "Prelievo in hotel",
-                    "Guida locale",
-                    "Pranzo",
-                    "Trasporto in veicolo",
-                    "Alloggio a Ksar Ghilane"
-                ]
-            },
-            icons: [
-                "flaticon-hiking",
-                "flaticon-camp",
-                "flaticon-campfire"
-            ]
-        }
-    ] %}
 
     <!--====== Start Page Banner ======-->
     <section class="page-banner-section" style="background-image: url('{{ asset('assets/images/bg/bg-4.jpg') }}');">
@@ -137,7 +18,6 @@
                 </ul>
             </div>
         </div>
-        <!-- Wavy bottom -->
         <div class="banner-wave">
             <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0,40 C240,120 480,0 720,60 C960,120 1200,20 1440,70 L1440,120 L0,120 Z" fill="#ffffff"/>
@@ -150,10 +30,10 @@
     <section class="excursions-zigzag-section pt-100 pb-100">
         <div class="excursions-zigzag-wrapper">
             {% for excursion in excursions %}
-                {% set title = excursion.title[locale] is defined ? excursion.title[locale] : excursion.title.en %}
-                {% set description = excursion.description[locale] is defined ? excursion.description[locale] : excursion.description.en %}
-                {% set duration = excursion.duration[locale] is defined ? excursion.duration[locale] : excursion.duration.en %}
-                {% set included = excursion.included[locale] is defined ? excursion.included[locale] : excursion.included.en %}
+                {% set title = excursion.title(locale) %}
+                {% set description = excursion.description(locale) %}
+                {% set duration = excursion.duration(locale) %}
+                {% set included = excursion.included(locale) %}
                 <div class="excursion-zigzag-item {{ loop.index is odd ? 'excursion-normal' : 'excursion-reverse' }} wow {{ loop.index is odd ? 'fadeInLeft' : 'fadeInRight' }}" data-wow-delay="{{ (loop.index0 * 0.15) }}s" data-wow-duration="0.9s">
                     <div class="excursion-zigzag-image">
                         <img src="{{ excursion.image starts with 'http' ? excursion.image : asset('assets/images/' ~ excursion.image) }}" alt="{{ title }}">
@@ -187,7 +67,6 @@
     <!--====== End Excursions Zigzag Section ======-->
 
     <style>
-        /* Banner wave positioning */
         .page-banner-section {
             position: relative;
             overflow: hidden;
@@ -206,8 +85,6 @@
             width: 100%;
             height: 80px;
         }
-
-        /* Make the text stay green on hover with !important */
         .excursion-zigzag-btn:hover,
         .excursion-zigzag-btn:focus,
         .excursion-zigzag-btn:active {

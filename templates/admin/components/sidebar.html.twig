@@ -11,8 +11,8 @@
     ] },
     { label: 'Excursions', icon: 'fa-compass', type: 'excursions', children: [
         { label: 'Ajouter une excursion', icon: 'fa-plus-circle', route: 'admin_trip_add', params: { type: 'excursions' } },
-        { label: 'Modifier une excursion', icon: 'fa-edit', route: null },
-        { label: 'Corbeille', icon: 'fa-trash-alt', route: null }
+        { label: 'Modifier une excursion', icon: 'fa-edit', route: 'admin_trip_index', params: { type: 'excursions' } },
+        { label: 'Corbeille', icon: 'fa-trash-alt', route: 'admin_trip_trash', params: { type: 'excursions' } }
     ] },
     { label: 'Messages', icon: 'fa-envelope', route: null },
     { label: 'Services', icon: 'fa-concierge-bell', route: null }

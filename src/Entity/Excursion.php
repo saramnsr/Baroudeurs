@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ExcursionRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Excursion
 {
@@ -16,6 +17,15 @@ class Excursion
      * @ORM\Column(type="integer")
      */
     private ?int $id = null;
+
+    /** @ORM\Column(type="datetime_immutable", nullable=true) */
+    private ?\DateTimeImmutable $createdAt = null;
+
+    /** @ORM\Column(type="datetime_immutable", nullable=true) */
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    /** @ORM\Column(type="datetime_immutable", nullable=true) */
+    private ?\DateTimeImmutable $deletedAt = null;
 
     /**
      * @ORM\Column(type="string", length=500)
@@ -63,8 +73,6 @@ class Excursion
     private array $includedAr = [];
     /** @ORM\Column(type="json") */
     private array $includedIt = [];
-
-    // ==== New fields, matching Circuit's structure ====
 
     /** @ORM\Column(type="text", nullable=true) */
     private ?string $introFr = null;
@@ -125,8 +133,6 @@ class Excursion
     /** @ORM\Column(type="json") */
     private array $excludedIcons = [];
 
-    // ==== Meals (unique to Excursions — present in these docs) ====
-
     /** @ORM\Column(type="string", length=255, nullable=true) */
     private ?string $mealsBreakfastFr = null;
     /** @ORM\Column(type="string", length=255, nullable=true) */
@@ -169,7 +175,6 @@ class Excursion
     /** @ORM\Column(type="text", nullable=true) */
     private ?string $closingIt = null;
 
-    // ==== Sidebar review card ====
     /** @ORM\Column(type="string", length=255, nullable=true) */
     private ?string $reviewAvatar = null;
     /** @ORM\Column(type="string", length=255, nullable=true) */
@@ -188,17 +193,69 @@ class Excursion
     private ?string $reviewCommentIt = null;
 
 
+    // ==================================================================
+    // ID
+    // ==================================================================
+
     public function getId(): ?int { return $this->id; }
 
-    /**
-     * Only needed now because Excursion objects are hardcoded in
-     * ExcursionRepository instead of being loaded (and auto-assigned an
-     * id) by Doctrine.
-     */
     public function setId(int $id): self { $this->id = $id; return $this; }
+
+
+    // ==================================================================
+    // DATES & CORBEILLE
+    // ==================================================================
+
+    /** @ORM\PrePersist */
+    public function onPrePersist(): void
+    {
+        $now = new \DateTimeImmutable();
+        $this->createdAt = $this->createdAt ?? $now;
+        $this->updatedAt = $now;
+    }
+
+    /** @ORM\PreUpdate */
+    public function onPreUpdate(): void
+    {
+        $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable { return $this->createdAt; }
+    public function getUpdatedAt(): ?\DateTimeImmutable { return $this->updatedAt; }
+    public function getDeletedAt(): ?\DateTimeImmutable { return $this->deletedAt; }
+
+    public function isDeleted(): bool
+    {
+        return $this->deletedAt !== null;
+    }
+
+    public function moveToTrash(): self
+    {
+        $this->deletedAt = new \DateTimeImmutable();
+        return $this;
+    }
+
+    public function restore(): self
+    {
+        $this->deletedAt = null;
+        return $this;
+    }
+
+
+    // ==================================================================
+    // IMAGE & POSITION
+    // ==================================================================
 
     public function getImage(): string { return $this->image; }
     public function setImage(string $image): self { $this->image = $image; return $this; }
+
+    public function getPosition(): int { return $this->position; }
+    public function setPosition(int $position): self { $this->position = $position; return $this; }
+
+
+    // ==================================================================
+    // TITRES
+    // ==================================================================
 
     public function getTitleFr(): string { return $this->titleFr; }
     public function setTitleFr(string $v): self { $this->titleFr = $v; return $this; }
@@ -209,6 +266,11 @@ class Excursion
     public function getTitleIt(): string { return $this->titleIt; }
     public function setTitleIt(string $v): self { $this->titleIt = $v; return $this; }
 
+
+    // ==================================================================
+    // DESCRIPTIONS
+    // ==================================================================
+
     public function getDescriptionFr(): string { return $this->descriptionFr; }
     public function setDescriptionFr(string $v): self { $this->descriptionFr = $v; return $this; }
     public function getDescriptionEn(): string { return $this->descriptionEn; }
@@ -217,6 +279,11 @@ class Excursion
     public function setDescriptionAr(string $v): self { $this->descriptionAr = $v; return $this; }
     public function getDescriptionIt(): string { return $this->descriptionIt; }
     public function setDescriptionIt(string $v): self { $this->descriptionIt = $v; return $this; }
+
+
+    // ==================================================================
+    // DURÉE
+    // ==================================================================
 
     public function getDurationFr(): ?string { return $this->durationFr; }
     public function setDurationFr(?string $v): self { $this->durationFr = $v; return $this; }
@@ -227,11 +294,18 @@ class Excursion
     public function getDurationIt(): ?string { return $this->durationIt; }
     public function setDurationIt(?string $v): self { $this->durationIt = $v; return $this; }
 
+
+    // ==================================================================
+    // ICONS
+    // ==================================================================
+
     public function getIcons(): array { return $this->icons; }
     public function setIcons(array $icons): self { $this->icons = $icons; return $this; }
 
-    public function getPosition(): int { return $this->position; }
-    public function setPosition(int $position): self { $this->position = $position; return $this; }
+
+    // ==================================================================
+    // INCLUDED / EXCLUDED
+    // ==================================================================
 
     public function getIncludedFr(): array { return $this->includedFr; }
     public function setIncludedFr(array $v): self { $this->includedFr = $v; return $this; }
@@ -241,6 +315,156 @@ class Excursion
     public function setIncludedAr(array $v): self { $this->includedAr = $v; return $this; }
     public function getIncludedIt(): array { return $this->includedIt; }
     public function setIncludedIt(array $v): self { $this->includedIt = $v; return $this; }
+
+    public function getExcludedFr(): array { return $this->excludedFr; }
+    public function setExcludedFr(array $v): self { $this->excludedFr = $v; return $this; }
+    public function getExcludedEn(): array { return $this->excludedEn; }
+    public function setExcludedEn(array $v): self { $this->excludedEn = $v; return $this; }
+    public function getExcludedAr(): array { return $this->excludedAr; }
+    public function setExcludedAr(array $v): self { $this->excludedAr = $v; return $this; }
+    public function getExcludedIt(): array { return $this->excludedIt; }
+    public function setExcludedIt(array $v): self { $this->excludedIt = $v; return $this; }
+
+    public function getIncludedIcons(): array { return $this->includedIcons; }
+    public function setIncludedIcons(array $v): self { $this->includedIcons = $v; return $this; }
+    public function getExcludedIcons(): array { return $this->excludedIcons; }
+    public function setExcludedIcons(array $v): self { $this->excludedIcons = $v; return $this; }
+
+
+    // ==================================================================
+    // INTRO / FULL DESCRIPTION / ITINERARY SUMMARY
+    // ==================================================================
+
+    public function getIntroFr(): ?string { return $this->introFr; }
+    public function setIntroFr(?string $v): self { $this->introFr = $v; return $this; }
+    public function getIntroEn(): ?string { return $this->introEn; }
+    public function setIntroEn(?string $v): self { $this->introEn = $v; return $this; }
+    public function getIntroAr(): ?string { return $this->introAr; }
+    public function setIntroAr(?string $v): self { $this->introAr = $v; return $this; }
+    public function getIntroIt(): ?string { return $this->introIt; }
+    public function setIntroIt(?string $v): self { $this->introIt = $v; return $this; }
+
+    public function getFullDescriptionFr(): ?string { return $this->fullDescriptionFr; }
+    public function setFullDescriptionFr(?string $v): self { $this->fullDescriptionFr = $v; return $this; }
+    public function getFullDescriptionEn(): ?string { return $this->fullDescriptionEn; }
+    public function setFullDescriptionEn(?string $v): self { $this->fullDescriptionEn = $v; return $this; }
+    public function getFullDescriptionAr(): ?string { return $this->fullDescriptionAr; }
+    public function setFullDescriptionAr(?string $v): self { $this->fullDescriptionAr = $v; return $this; }
+    public function getFullDescriptionIt(): ?string { return $this->fullDescriptionIt; }
+    public function setFullDescriptionIt(?string $v): self { $this->fullDescriptionIt = $v; return $this; }
+
+    public function getItinerarySummaryFr(): ?string { return $this->itinerarySummaryFr; }
+    public function setItinerarySummaryFr(?string $v): self { $this->itinerarySummaryFr = $v; return $this; }
+    public function getItinerarySummaryEn(): ?string { return $this->itinerarySummaryEn; }
+    public function setItinerarySummaryEn(?string $v): self { $this->itinerarySummaryEn = $v; return $this; }
+    public function getItinerarySummaryAr(): ?string { return $this->itinerarySummaryAr; }
+    public function setItinerarySummaryAr(?string $v): self { $this->itinerarySummaryAr = $v; return $this; }
+    public function getItinerarySummaryIt(): ?string { return $this->itinerarySummaryIt; }
+    public function setItinerarySummaryIt(?string $v): self { $this->itinerarySummaryIt = $v; return $this; }
+
+
+    // ==================================================================
+    // ITINERARY / ITINERARY DETAIL
+    // ==================================================================
+
+    public function getItineraryFr(): array { return $this->itineraryFr; }
+    public function setItineraryFr(array $v): self { $this->itineraryFr = $v; return $this; }
+    public function getItineraryEn(): array { return $this->itineraryEn; }
+    public function setItineraryEn(array $v): self { $this->itineraryEn = $v; return $this; }
+    public function getItineraryAr(): array { return $this->itineraryAr; }
+    public function setItineraryAr(array $v): self { $this->itineraryAr = $v; return $this; }
+    public function getItineraryIt(): array { return $this->itineraryIt; }
+    public function setItineraryIt(array $v): self { $this->itineraryIt = $v; return $this; }
+
+    public function getItineraryDetailFr(): array { return $this->itineraryDetailFr; }
+    public function setItineraryDetailFr(array $v): self { $this->itineraryDetailFr = $v; return $this; }
+    public function getItineraryDetailEn(): array { return $this->itineraryDetailEn; }
+    public function setItineraryDetailEn(array $v): self { $this->itineraryDetailEn = $v; return $this; }
+    public function getItineraryDetailAr(): array { return $this->itineraryDetailAr; }
+    public function setItineraryDetailAr(array $v): self { $this->itineraryDetailAr = $v; return $this; }
+    public function getItineraryDetailIt(): array { return $this->itineraryDetailIt; }
+    public function setItineraryDetailIt(array $v): self { $this->itineraryDetailIt = $v; return $this; }
+
+
+    // ==================================================================
+    // MEALS (spécifique aux excursions)
+    // ==================================================================
+
+    public function getMealsBreakfastFr(): ?string { return $this->mealsBreakfastFr; }
+    public function setMealsBreakfastFr(?string $v): self { $this->mealsBreakfastFr = $v; return $this; }
+    public function getMealsBreakfastEn(): ?string { return $this->mealsBreakfastEn; }
+    public function setMealsBreakfastEn(?string $v): self { $this->mealsBreakfastEn = $v; return $this; }
+    public function getMealsBreakfastAr(): ?string { return $this->mealsBreakfastAr; }
+    public function setMealsBreakfastAr(?string $v): self { $this->mealsBreakfastAr = $v; return $this; }
+    public function getMealsBreakfastIt(): ?string { return $this->mealsBreakfastIt; }
+    public function setMealsBreakfastIt(?string $v): self { $this->mealsBreakfastIt = $v; return $this; }
+
+    public function getMealsLunchFr(): ?string { return $this->mealsLunchFr; }
+    public function setMealsLunchFr(?string $v): self { $this->mealsLunchFr = $v; return $this; }
+    public function getMealsLunchEn(): ?string { return $this->mealsLunchEn; }
+    public function setMealsLunchEn(?string $v): self { $this->mealsLunchEn = $v; return $this; }
+    public function getMealsLunchAr(): ?string { return $this->mealsLunchAr; }
+    public function setMealsLunchAr(?string $v): self { $this->mealsLunchAr = $v; return $this; }
+    public function getMealsLunchIt(): ?string { return $this->mealsLunchIt; }
+    public function setMealsLunchIt(?string $v): self { $this->mealsLunchIt = $v; return $this; }
+
+    public function getMealsDinnerFr(): ?string { return $this->mealsDinnerFr; }
+    public function setMealsDinnerFr(?string $v): self { $this->mealsDinnerFr = $v; return $this; }
+    public function getMealsDinnerEn(): ?string { return $this->mealsDinnerEn; }
+    public function setMealsDinnerEn(?string $v): self { $this->mealsDinnerEn = $v; return $this; }
+    public function getMealsDinnerAr(): ?string { return $this->mealsDinnerAr; }
+    public function setMealsDinnerAr(?string $v): self { $this->mealsDinnerAr = $v; return $this; }
+    public function getMealsDinnerIt(): ?string { return $this->mealsDinnerIt; }
+    public function setMealsDinnerIt(?string $v): self { $this->mealsDinnerIt = $v; return $this; }
+
+
+    // ==================================================================
+    // GALLERY
+    // ==================================================================
+
+    public function getGalleryImages(): array { return $this->galleryImages; }
+    public function setGalleryImages(array $v): self { $this->galleryImages = $v; return $this; }
+
+
+    // ==================================================================
+    // CLOSING
+    // ==================================================================
+
+    public function getClosingFr(): ?string { return $this->closingFr; }
+    public function setClosingFr(?string $v): self { $this->closingFr = $v; return $this; }
+    public function getClosingEn(): ?string { return $this->closingEn; }
+    public function setClosingEn(?string $v): self { $this->closingEn = $v; return $this; }
+    public function getClosingAr(): ?string { return $this->closingAr; }
+    public function setClosingAr(?string $v): self { $this->closingAr = $v; return $this; }
+    public function getClosingIt(): ?string { return $this->closingIt; }
+    public function setClosingIt(?string $v): self { $this->closingIt = $v; return $this; }
+
+
+    // ==================================================================
+    // REVIEW
+    // ==================================================================
+
+    public function getReviewAvatar(): ?string { return $this->reviewAvatar; }
+    public function setReviewAvatar(?string $v): self { $this->reviewAvatar = $v; return $this; }
+    public function getReviewName(): ?string { return $this->reviewName; }
+    public function setReviewName(?string $v): self { $this->reviewName = $v; return $this; }
+    public function getReviewCountry(): ?string { return $this->reviewCountry; }
+    public function setReviewCountry(?string $v): self { $this->reviewCountry = $v; return $this; }
+    public function getReviewRating(): ?int { return $this->reviewRating; }
+    public function setReviewRating(?int $v): self { $this->reviewRating = $v; return $this; }
+    public function getReviewCommentFr(): ?string { return $this->reviewCommentFr; }
+    public function setReviewCommentFr(?string $v): self { $this->reviewCommentFr = $v; return $this; }
+    public function getReviewCommentEn(): ?string { return $this->reviewCommentEn; }
+    public function setReviewCommentEn(?string $v): self { $this->reviewCommentEn = $v; return $this; }
+    public function getReviewCommentAr(): ?string { return $this->reviewCommentAr; }
+    public function setReviewCommentAr(?string $v): self { $this->reviewCommentAr = $v; return $this; }
+    public function getReviewCommentIt(): ?string { return $this->reviewCommentIt; }
+    public function setReviewCommentIt(?string $v): self { $this->reviewCommentIt = $v; return $this; }
+
+
+    // ==================================================================
+    // HELPERS MULTILINGUES
+    // ==================================================================
 
     public function getTitle(string $locale): string
     {
@@ -274,128 +498,11 @@ class Excursion
         };
     }
 
-    // ==== New getters/setters ====
-
-    public function getIntroFr(): ?string { return $this->introFr; }
-    public function setIntroFr(?string $v): self { $this->introFr = $v; return $this; }
-    public function getIntroEn(): ?string { return $this->introEn; }
-    public function setIntroEn(?string $v): self { $this->introEn = $v; return $this; }
-    public function getIntroAr(): ?string { return $this->introAr; }
-    public function setIntroAr(?string $v): self { $this->introAr = $v; return $this; }
-    public function getIntroIt(): ?string { return $this->introIt; }
-    public function setIntroIt(?string $v): self { $this->introIt = $v; return $this; }
-
-    public function getFullDescriptionFr(): ?string { return $this->fullDescriptionFr; }
-    public function setFullDescriptionFr(?string $v): self { $this->fullDescriptionFr = $v; return $this; }
-    public function getFullDescriptionEn(): ?string { return $this->fullDescriptionEn; }
-    public function setFullDescriptionEn(?string $v): self { $this->fullDescriptionEn = $v; return $this; }
-    public function getFullDescriptionAr(): ?string { return $this->fullDescriptionAr; }
-    public function setFullDescriptionAr(?string $v): self { $this->fullDescriptionAr = $v; return $this; }
-    public function getFullDescriptionIt(): ?string { return $this->fullDescriptionIt; }
-    public function setFullDescriptionIt(?string $v): self { $this->fullDescriptionIt = $v; return $this; }
-
-    public function getItinerarySummaryFr(): ?string { return $this->itinerarySummaryFr; }
-    public function setItinerarySummaryFr(?string $v): self { $this->itinerarySummaryFr = $v; return $this; }
-    public function getItinerarySummaryEn(): ?string { return $this->itinerarySummaryEn; }
-    public function setItinerarySummaryEn(?string $v): self { $this->itinerarySummaryEn = $v; return $this; }
-    public function getItinerarySummaryAr(): ?string { return $this->itinerarySummaryAr; }
-    public function setItinerarySummaryAr(?string $v): self { $this->itinerarySummaryAr = $v; return $this; }
-    public function getItinerarySummaryIt(): ?string { return $this->itinerarySummaryIt; }
-    public function setItinerarySummaryIt(?string $v): self { $this->itinerarySummaryIt = $v; return $this; }
-
-    public function getItineraryFr(): array { return $this->itineraryFr; }
-    public function setItineraryFr(array $v): self { $this->itineraryFr = $v; return $this; }
-    public function getItineraryEn(): array { return $this->itineraryEn; }
-    public function setItineraryEn(array $v): self { $this->itineraryEn = $v; return $this; }
-    public function getItineraryAr(): array { return $this->itineraryAr; }
-    public function setItineraryAr(array $v): self { $this->itineraryAr = $v; return $this; }
-    public function getItineraryIt(): array { return $this->itineraryIt; }
-    public function setItineraryIt(array $v): self { $this->itineraryIt = $v; return $this; }
-
-    public function getItineraryDetailFr(): array { return $this->itineraryDetailFr; }
-    public function setItineraryDetailFr(array $v): self { $this->itineraryDetailFr = $v; return $this; }
-    public function getItineraryDetailEn(): array { return $this->itineraryDetailEn; }
-    public function setItineraryDetailEn(array $v): self { $this->itineraryDetailEn = $v; return $this; }
-    public function getItineraryDetailAr(): array { return $this->itineraryDetailAr; }
-    public function setItineraryDetailAr(array $v): self { $this->itineraryDetailAr = $v; return $this; }
-    public function getItineraryDetailIt(): array { return $this->itineraryDetailIt; }
-    public function setItineraryDetailIt(array $v): self { $this->itineraryDetailIt = $v; return $this; }
-
-    public function getExcludedFr(): array { return $this->excludedFr; }
-    public function setExcludedFr(array $v): self { $this->excludedFr = $v; return $this; }
-    public function getExcludedEn(): array { return $this->excludedEn; }
-    public function setExcludedEn(array $v): self { $this->excludedEn = $v; return $this; }
-    public function getExcludedAr(): array { return $this->excludedAr; }
-    public function setExcludedAr(array $v): self { $this->excludedAr = $v; return $this; }
-    public function getExcludedIt(): array { return $this->excludedIt; }
-    public function setExcludedIt(array $v): self { $this->excludedIt = $v; return $this; }
-
-    public function getIncludedIcons(): array { return $this->includedIcons; }
-    public function setIncludedIcons(array $v): self { $this->includedIcons = $v; return $this; }
-    public function getExcludedIcons(): array { return $this->excludedIcons; }
-    public function setExcludedIcons(array $v): self { $this->excludedIcons = $v; return $this; }
-
-    public function getMealsBreakfastFr(): ?string { return $this->mealsBreakfastFr; }
-    public function setMealsBreakfastFr(?string $v): self { $this->mealsBreakfastFr = $v; return $this; }
-    public function getMealsBreakfastEn(): ?string { return $this->mealsBreakfastEn; }
-    public function setMealsBreakfastEn(?string $v): self { $this->mealsBreakfastEn = $v; return $this; }
-    public function getMealsBreakfastAr(): ?string { return $this->mealsBreakfastAr; }
-    public function setMealsBreakfastAr(?string $v): self { $this->mealsBreakfastAr = $v; return $this; }
-    public function getMealsBreakfastIt(): ?string { return $this->mealsBreakfastIt; }
-    public function setMealsBreakfastIt(?string $v): self { $this->mealsBreakfastIt = $v; return $this; }
-
-    public function getMealsLunchFr(): ?string { return $this->mealsLunchFr; }
-    public function setMealsLunchFr(?string $v): self { $this->mealsLunchFr = $v; return $this; }
-    public function getMealsLunchEn(): ?string { return $this->mealsLunchEn; }
-    public function setMealsLunchEn(?string $v): self { $this->mealsLunchEn = $v; return $this; }
-    public function getMealsLunchAr(): ?string { return $this->mealsLunchAr; }
-    public function setMealsLunchAr(?string $v): self { $this->mealsLunchAr = $v; return $this; }
-    public function getMealsLunchIt(): ?string { return $this->mealsLunchIt; }
-    public function setMealsLunchIt(?string $v): self { $this->mealsLunchIt = $v; return $this; }
-
-    public function getMealsDinnerFr(): ?string { return $this->mealsDinnerFr; }
-    public function setMealsDinnerFr(?string $v): self { $this->mealsDinnerFr = $v; return $this; }
-    public function getMealsDinnerEn(): ?string { return $this->mealsDinnerEn; }
-    public function setMealsDinnerEn(?string $v): self { $this->mealsDinnerEn = $v; return $this; }
-    public function getMealsDinnerAr(): ?string { return $this->mealsDinnerAr; }
-    public function setMealsDinnerAr(?string $v): self { $this->mealsDinnerAr = $v; return $this; }
-    public function getMealsDinnerIt(): ?string { return $this->mealsDinnerIt; }
-    public function setMealsDinnerIt(?string $v): self { $this->mealsDinnerIt = $v; return $this; }
-
-    public function getGalleryImages(): array { return $this->galleryImages; }
-    public function setGalleryImages(array $v): self { $this->galleryImages = $v; return $this; }
-
-    public function getClosingFr(): ?string { return $this->closingFr; }
-    public function setClosingFr(?string $v): self { $this->closingFr = $v; return $this; }
-    public function getClosingEn(): ?string { return $this->closingEn; }
-    public function setClosingEn(?string $v): self { $this->closingEn = $v; return $this; }
-    public function getClosingAr(): ?string { return $this->closingAr; }
-    public function setClosingAr(?string $v): self { $this->closingAr = $v; return $this; }
-    public function getClosingIt(): ?string { return $this->closingIt; }
-    public function setClosingIt(?string $v): self { $this->closingIt = $v; return $this; }
-
-    public function getReviewAvatar(): ?string { return $this->reviewAvatar; }
-    public function setReviewAvatar(?string $v): self { $this->reviewAvatar = $v; return $this; }
-    public function getReviewName(): ?string { return $this->reviewName; }
-    public function setReviewName(?string $v): self { $this->reviewName = $v; return $this; }
-    public function getReviewCountry(): ?string { return $this->reviewCountry; }
-    public function setReviewCountry(?string $v): self { $this->reviewCountry = $v; return $this; }
-    public function getReviewRating(): ?int { return $this->reviewRating; }
-    public function setReviewRating(?int $v): self { $this->reviewRating = $v; return $this; }
-    public function getReviewCommentFr(): ?string { return $this->reviewCommentFr; }
-    public function setReviewCommentFr(?string $v): self { $this->reviewCommentFr = $v; return $this; }
-    public function getReviewCommentEn(): ?string { return $this->reviewCommentEn; }
-    public function setReviewCommentEn(?string $v): self { $this->reviewCommentEn = $v; return $this; }
-    public function getReviewCommentAr(): ?string { return $this->reviewCommentAr; }
-    public function setReviewCommentAr(?string $v): self { $this->reviewCommentAr = $v; return $this; }
-    public function getReviewCommentIt(): ?string { return $this->reviewCommentIt; }
-    public function setReviewCommentIt(?string $v): self { $this->reviewCommentIt = $v; return $this; }
-
-    public function getReviewComment(string $locale): ?string
+    public function getExcluded(string $locale): array
     {
         return match ($locale) {
-            'fr' => $this->reviewCommentFr, 'ar' => $this->reviewCommentAr, 'it' => $this->reviewCommentIt,
-            default => $this->reviewCommentEn,
+            'fr' => $this->excludedFr, 'ar' => $this->excludedAr, 'it' => $this->excludedIt,
+            default => $this->excludedEn,
         };
     }
 
@@ -406,6 +513,7 @@ class Excursion
             default => $this->introEn,
         };
     }
+
     public function getFullDescription(string $locale): ?string
     {
         return match ($locale) {
@@ -413,6 +521,7 @@ class Excursion
             default => $this->fullDescriptionEn,
         };
     }
+
     public function getItinerarySummary(string $locale): ?string
     {
         return match ($locale) {
@@ -420,6 +529,7 @@ class Excursion
             default => $this->itinerarySummaryEn,
         };
     }
+
     public function getItinerary(string $locale): array
     {
         return match ($locale) {
@@ -427,6 +537,7 @@ class Excursion
             default => $this->itineraryEn,
         };
     }
+
     public function getItineraryDetail(string $locale): array
     {
         return match ($locale) {
@@ -434,13 +545,15 @@ class Excursion
             default => $this->itineraryDetailEn,
         };
     }
-    public function getExcluded(string $locale): array
+
+    public function getReviewComment(string $locale): ?string
     {
         return match ($locale) {
-            'fr' => $this->excludedFr, 'ar' => $this->excludedAr, 'it' => $this->excludedIt,
-            default => $this->excludedEn,
+            'fr' => $this->reviewCommentFr, 'ar' => $this->reviewCommentAr, 'it' => $this->reviewCommentIt,
+            default => $this->reviewCommentEn,
         };
     }
+
     public function getMealsBreakfast(string $locale): ?string
     {
         return match ($locale) {
@@ -448,6 +561,7 @@ class Excursion
             default => $this->mealsBreakfastEn,
         };
     }
+
     public function getMealsLunch(string $locale): ?string
     {
         return match ($locale) {
@@ -455,6 +569,7 @@ class Excursion
             default => $this->mealsLunchEn,
         };
     }
+
     public function getMealsDinner(string $locale): ?string
     {
         return match ($locale) {
@@ -462,6 +577,7 @@ class Excursion
             default => $this->mealsDinnerEn,
         };
     }
+
     public function getClosing(string $locale): ?string
     {
         return match ($locale) {
