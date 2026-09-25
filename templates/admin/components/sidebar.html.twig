@@ -1,17 +1,18 @@
 {% set currentRoute = app.request.attributes.get('_route') ?? '' %}
+{% set currentType = app.request.attributes.get('type') ?? '' %}
 
 {# Menu de l'admin. Pour activer une page : remplacer route: null par le nom de la route #}
 {% set nav = [
     { label: 'Tableau de bord', icon: 'fa-th-large', route: 'admin_dashboard' },
-    { label: 'Circuits', icon: 'fa-route', prefix: 'admin_circuit_', children: [
-        { label: 'Ajouter un circuit', route: null },
-        { label: 'Gérer les circuits', route: null },
-        { label: 'Corbeille', route: null }
+    { label: 'Circuits', icon: 'fa-route', type: 'circuits', children: [
+        { label: 'Ajouter un circuit', icon: 'fa-plus-circle', route: 'admin_trip_add', params: { type: 'circuits' } },
+        { label: 'Gérer les circuits', icon: 'fa-edit', route: null },
+        { label: 'Corbeille', icon: 'fa-trash-alt', route: null }
     ] },
-    { label: 'Excursions', icon: 'fa-compass', prefix: 'admin_excursion_', children: [
-        { label: 'Ajouter une excursion', route: null },
-        { label: 'Gérer les excursions', route: null },
-        { label: 'Corbeille', route: null }
+    { label: 'Excursions', icon: 'fa-compass', type: 'excursions', children: [
+        { label: 'Ajouter une excursion', icon: 'fa-plus-circle', route: 'admin_trip_add', params: { type: 'excursions' } },
+        { label: 'Gérer les excursions', icon: 'fa-edit', route: null },
+        { label: 'Corbeille', icon: 'fa-trash-alt', route: null }
     ] },
     { label: 'Messages', icon: 'fa-envelope', route: null },
     { label: 'Services', icon: 'fa-concierge-bell', route: null }
@@ -20,8 +21,8 @@
 <aside id="admin-sidebar" class="admin-sidebar" aria-label="Menu d'administration">
     {# Logo #}
     <div class="admin-sidebar__brand">
-        <a href="{{ path('admin_dashboard') }}">
-            <img src="{{ asset('assets/images/logo/logo-white.png') }}" alt="Baroudeurs du Désert" height="40">
+        <a class="admin-sidebar__logo" href="{{ path('admin_dashboard') }}">
+            <img src="{{ asset('assets/images/logo/logo-sidebar.png') }}" alt="Baroudeurs du Désert">
         </a>
         <button type="button" class="admin-sidebar__close" data-sidebar-close aria-label="Fermer le menu">
             <i class="fas fa-times" aria-hidden="true"></i>
@@ -33,7 +34,8 @@
         <ul class="admin-nav__list">
             {% for item in nav %}
                 {% if item.children is defined %}
-                    {% set isOpen = currentRoute starts with item.prefix %}
+                    {# Groupe ouvert si on est sur une page de ce type (circuits / excursions) #}
+                    {% set isOpen = currentRoute starts with 'admin_trip_' and currentType == item.type %}
                     <li>
                         <details class="admin-nav__details" {% if isOpen %}open{% endif %}>
                             <summary class="admin-nav__link{% if isOpen %} is-active{% endif %}">
@@ -43,13 +45,13 @@
                             </summary>
                             <ul class="admin-nav__sublist">
                                 {% for child in item.children %}
-                                    <li>{% include 'admin/components/nav_link.html.twig' with { item: child, currentRoute: currentRoute } only %}</li>
+                                    <li>{% include 'admin/components/nav_link.html.twig' with { item: child, currentRoute: currentRoute, currentType: currentType } only %}</li>
                                 {% endfor %}
                             </ul>
                         </details>
                     </li>
                 {% else %}
-                    <li>{% include 'admin/components/nav_link.html.twig' with { item: item, currentRoute: currentRoute } only %}</li>
+                    <li>{% include 'admin/components/nav_link.html.twig' with { item: item, currentRoute: currentRoute, currentType: currentType } only %}</li>
                 {% endif %}
             {% endfor %}
         </ul>

@@ -21,6 +21,13 @@
             </header>
 
             <main id="admin-content" class="admin-content">
+                {# Messages (succès, erreur…) #}
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="admin-alert admin-alert--{{ label }}" role="status">{{ message }}</div>
+                    {% endfor %}
+                {% endfor %}
+
                 {% block content %}{% endblock %}
             </main>
         </div>

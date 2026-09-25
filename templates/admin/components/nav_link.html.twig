@@ -1,7 +1,8 @@
 {# Un lien du menu. route: null = page pas encore créée (badge "Bientôt") #}
 {% if item.route %}
-    {% set active = currentRoute == item.route %}
-    <a class="admin-nav__link{% if active %} is-active{% endif %}" href="{{ path(item.route) }}"{% if active %} aria-current="page"{% endif %}>
+    {% set params = item.params ?? {} %}
+    {% set active = currentRoute == item.route and (params.type is not defined or params.type == currentType) %}
+    <a class="admin-nav__link{% if active %} is-active{% endif %}" href="{{ path(item.route, params) }}"{% if active %} aria-current="page"{% endif %}>
         {% if item.icon is defined %}<i class="fas {{ item.icon }} admin-nav__icon" aria-hidden="true"></i>{% endif %}
         <span>{{ item.label }}</span>
     </a>

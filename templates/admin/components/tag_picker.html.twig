@@ -1,0 +1,58 @@
+{# Liste déroulante à choix multiples : éléments existants + ajout d'un nouvel élément (sans icône) #}
+<div class="admin-multiselect"
+     data-tag-picker
+     data-prototype="{{ form_widget(custom.vars.prototype, {type: 'hidden'})|e('html_attr') }}"
+     data-index="{{ custom|length }}">
+
+    {{ form_errors(choices) }}
+    {{ form_errors(custom) }}
+
+    {# Éléments sélectionnés (étiquettes) #}
+    <div class="admin-multiselect__selected">
+        {# Éléments existants cochés (générés par le JS) #}
+        <span class="admin-multiselect__chips" data-tag-chips></span>
+        {# Nouveaux éléments ajoutés à la main (champs cachés envoyés au serveur) #}
+        <span class="admin-multiselect__chips" data-tag-list>
+            {% for entry in custom %}
+                <span class="admin-chip" data-tag-item>
+                    {{ form_widget(entry, {type: 'hidden'}) }}
+                    <span data-tag-text>{{ entry.vars.value }}</span>
+                    <button type="button" class="admin-chip__remove" data-tag-remove aria-label="Retirer">&times;</button>
+                </span>
+            {% endfor %}
+        </span>
+    </div>
+
+    {# Liste déroulante #}
+    <details class="admin-multiselect__dropdown" data-tag-dropdown>
+        <summary class="admin-multiselect__toggle">
+            <span data-tag-summary>{{ placeholder }}</span>
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+        </summary>
+
+        <div class="admin-multiselect__panel">
+            <div class="admin-multiselect__options">
+                {% for choice in choices %}
+                    {% set icon = choice.vars.attr['data-icon'] ?? '' %}
+                    <label class="admin-multiselect__option">
+                        {{ form_widget(choice) }}
+                        <span class="admin-multiselect__icon">
+                            {% if icon %}<i class="flaticon-{{ icon }}" aria-hidden="true"></i>{% endif %}
+                        </span>
+                        <span data-tag-text>{{ choice.vars.label }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+
+            {# Ajouter un nouvel élément #}
+            <div class="admin-multiselect__add">
+                <input type="text" class="admin-multiselect__input" data-tag-input maxlength="255"
+                       placeholder="Nouvel élément (sans icône)…" aria-label="Nouvel élément">
+                <button type="button" class="admin-btn admin-btn--primary admin-btn--sm" data-tag-add>
+                    <i class="fas fa-plus" aria-hidden="true"></i> Ajouter
+                </button>
+            </div>
+        </div>
+    </details>
+</div>
+{% do custom.setRendered %}

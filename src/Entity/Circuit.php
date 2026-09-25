@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CircuitRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Circuit
 {
@@ -122,7 +123,7 @@ class Circuit
     private array $excludedIcons = [];
 
     /**
-     * Array of ['url' => string, 'title' => string]
+     * Liste de ['url' => string, 'title' => string]
      * @ORM\Column(type="json")
      */
     private array $galleryImages = [];
@@ -136,7 +137,7 @@ class Circuit
     /** @ORM\Column(type="text", nullable=true) */
     private ?string $closingIt = null;
 
-    // ==== Sidebar review card ====
+    // ==== Avis affiché dans la sidebar du détail ====
     /** @ORM\Column(type="string", length=255, nullable=true) */
     private ?string $reviewAvatar = null;
     /** @ORM\Column(type="string", length=255, nullable=true) */
@@ -154,6 +155,63 @@ class Circuit
     /** @ORM\Column(type="text", nullable=true) */
     private ?string $reviewCommentIt = null;
 
+    // ==== Dates (remplies automatiquement) ====
+    /** @ORM\Column(type="datetime_immutable", nullable=true) */
+    private ?\DateTimeImmutable $createdAt = null;
+
+    /** @ORM\Column(type="datetime_immutable", nullable=true) */
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    // Rempli = dans la corbeille (caché du site)
+    /** @ORM\Column(type="datetime_immutable", nullable=true) */
+    private ?\DateTimeImmutable $deletedAt = null;
+
+
+    // ==== Dates automatiques ====
+
+    /** @ORM\PrePersist */
+    public function onPrePersist(): void
+    {
+        $now = new \DateTimeImmutable();
+        $this->createdAt = $this->createdAt ?? $now;
+        $this->updatedAt = $now;
+    }
+
+    /** @ORM\PreUpdate */
+    public function onPreUpdate(): void
+    {
+        $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable { return $this->createdAt; }
+    public function getUpdatedAt(): ?\DateTimeImmutable { return $this->updatedAt; }
+    public function getDeletedAt(): ?\DateTimeImmutable { return $this->deletedAt; }
+
+    // ==== Corbeille ====
+
+    public function isDeleted(): bool
+    {
+        return $this->deletedAt !== null;
+    }
+
+    // Envoyer à la corbeille
+    public function moveToTrash(): self
+    {
+        $this->deletedAt = new \DateTimeImmutable();
+
+        return $this;
+    }
+
+    // Restaurer depuis la corbeille
+    public function restore(): self
+    {
+        $this->deletedAt = null;
+
+        return $this;
+    }
+
+
+    // ==== Getters / setters existants (inchangés) ====
 
     public function getId(): ?int { return $this->id; }
 

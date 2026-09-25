@@ -1,0 +1,28 @@
+{# Liste dynamique : ajout / suppression de lignes (itinéraire, inclus, non inclus) #}
+<div class="admin-collection"
+     data-collection
+     data-prototype="{{ form_widget(collection.vars.prototype)|e('html_attr') }}"
+     data-index="{{ collection|length }}"
+     data-item-label="{{ itemLabel }}">
+
+    {{ form_errors(collection) }}
+
+    <div class="admin-collection__list" data-collection-list>
+        {% for entry in collection %}
+            <div class="admin-collection__item" data-collection-item>
+                <div class="admin-collection__head">
+                    <span class="admin-collection__num" data-collection-num>{{ itemLabel }} {{ loop.index }}</span>
+                    <button type="button" class="admin-btn admin-btn--danger-ghost admin-btn--sm" data-collection-remove>
+                        <i class="fas fa-trash-alt" aria-hidden="true"></i> Retirer
+                    </button>
+                </div>
+                {{ form_widget(entry) }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <button type="button" class="admin-btn admin-btn--ghost" data-collection-add>
+        <i class="fas fa-plus" aria-hidden="true"></i> {{ addLabel }}
+    </button>
+</div>
+{% do collection.setRendered %}
