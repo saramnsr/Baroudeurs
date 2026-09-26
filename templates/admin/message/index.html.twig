@@ -39,6 +39,10 @@
                 {% if m.type == 'availability' %}{% set typeClass = 'is-availability' %}{% endif %}
                 {% if m.type == 'booking' %}{% set typeClass = 'is-booking' %}{% endif %}
 
+                {# Un email valide permet de répondre. Les réservations sont enregistrées
+                   avec email = "n/a", donc pas de bouton réponse pour elles. #}
+                {% set hasEmail = m.email and m.email != 'n/a' and m.email is not empty %}
+
                 <div class="admin-msg-row {{ typeClass }}{% if not m.isRead %} is-unread{% endif %}">
                     <div class="admin-msg-row__content">
                         <span class="admin-msg-row__status" aria-hidden="true"></span>
@@ -67,17 +71,21 @@
                     </div>
 
                     <div class="admin-msg-row__actions">
-                        <a class="admin-msg-row__btn admin-msg-row__btn--reply"
-                           href="{{ path('admin_message_show', {id: m.id}) }}#reply"
-                           title="Ouvrir et répondre">
-                            <i class="fas fa-reply" aria-hidden="true"></i>
-                        </a>
-
-                        <a class="admin-msg-row__btn"
-                           href="{{ path('admin_message_show', {id: m.id}) }}"
-                           title="Ouvrir le message">
-                            <i class="fas fa-eye" aria-hidden="true"></i>
-                        </a>
+                        {% if hasEmail %}
+                            {# Contact + Disponibilité : bouton Répondre (orange) #}
+                            <a class="admin-msg-row__btn admin-msg-row__btn--reply"
+                               href="{{ path('admin_message_show', {id: m.id}) }}#reply"
+                               title="Ouvrir et répondre">
+                                <i class="fas fa-reply" aria-hidden="true"></i>
+                            </a>
+                        {% else %}
+                            {# Réservation : bouton Voir #}
+                            <a class="admin-msg-row__btn"
+                               href="{{ path('admin_message_show', {id: m.id}) }}"
+                               title="Voir le message">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </a>
+                        {% endif %}
 
                         <form method="post"
                               action="{{ path('admin_message_delete', {id: m.id}) }}"
