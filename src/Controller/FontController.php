@@ -17,6 +17,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use App\Entity\Newsletter;
+use App\Entity\ContactMessage;
 use App\Service\CircuitNormalizer;
 
 class FontController extends AbstractController
@@ -367,7 +368,7 @@ class FontController extends AbstractController
     /**
      * @Route("/book-adventure/submit", name="app_book_adventure_submit", methods={"POST"})
      */
-    public function submitBookAdventure(Request $request): Response
+    public function submitBookAdventure(Request $request, EntityManagerInterface $em): Response
     {
         $destination = $request->request->get('destination');
         $programmeId = $request->request->get('programme');
@@ -436,6 +437,21 @@ class FontController extends AbstractController
             $this->addFlash('error', "Message could not be sent. Error: {$mail->ErrorInfo}");
         }
 
+        // Enregistre dans la base pour le dashboard admin
+        $cm = new ContactMessage();
+        $cm->setType(ContactMessage::TYPE_BOOKING);
+        $cm->setName('Client');
+        $cm->setEmail('n/a');
+        $cm->setMessage('Réservation : ' . $programmeTitle);
+        $cm->setExtra([
+            'destination' => $destination,
+            'programme' => $programmeTitle,
+            'date' => $date,
+            'guests' => $guests,
+        ]);
+        $em->persist($cm);
+        $em->flush();
+
         return $this->redirectToRoute('app_font_index');
     }
 
@@ -474,7 +490,7 @@ class FontController extends AbstractController
     /**
      * @Route("/contact/submit", name="app_contact_submit", methods={"POST"})
      */
-    public function submitContact(Request $request): Response
+    public function submitContact(Request $request, EntityManagerInterface $em): Response
     {
         $name = $request->request->get('name');
         $email = $request->request->get('email');
@@ -564,8 +580,17 @@ class FontController extends AbstractController
             $this->addFlash('success', 'Your message has been sent successfully! We will contact you shortly.');
 
         } catch (Exception $e) {
-            $this->addFlash('error', "Message could not be sent. Error: {$mail->ErrorInfo}");
+            $this->addFlash('error', "Message could not be sent. Error: {$mail->errorInfo}");
         }
+
+        // Enregistre dans la base pour le dashboard admin
+        $cm = new ContactMessage();
+        $cm->setType(ContactMessage::TYPE_CONTACT);
+        $cm->setName((string) $name);
+        $cm->setEmail((string) $email);
+        $cm->setMessage((string) $message);
+        $em->persist($cm);
+        $em->flush();
 
         return $this->redirectToRoute('app_font_contact');
     }
@@ -589,7 +614,6 @@ class FontController extends AbstractController
      */
     public function excursions(): Response
     {
-        // Excursions lues en base (hors corbeille), dans l'ordre d'affichage.
         $excursions = $this->excursionRepository->findPublished();
 
         return $this->render('font/excursions.html.twig', [
@@ -600,7 +624,7 @@ class FontController extends AbstractController
     /**
      * @Route("/detail/{type}/{id}", name="app_font_detail", requirements={"type"="circuit|excursion", "id"="\d+"})
      */
-    public function detail(string $type, int $id, CircuitNormalizer $normalizer): Response
+    public function detail(string $type, int $id, CircuitNormalizer $normalizer, EntityManagerInterface $em): Response
     {
         $item = null;
         $relatedItems = [];
@@ -612,6 +636,10 @@ class FontController extends AbstractController
             }
             $item = $normalizer->normalize($circuit);
             $relatedItems = $normalizer->normalizeAll($this->circuitRepository->findRelated($circuit, 3));
+
+            // Incrémente le compteur de vues
+            $circuit->incrementViewCount();
+            $em->flush();
         } elseif ($type === 'excursion') {
             $excursion = $this->excursionRepository->findPublishedById($id);
             if ($excursion === null) {
@@ -620,6 +648,10 @@ class FontController extends AbstractController
             $item = $this->excursionToTemplateArray($excursion);
             $related = $this->excursionRepository->findRelated($excursion, 3);
             $relatedItems = array_map(fn ($e) => $this->excursionToTemplateArray($e), $related);
+
+            // Incrémente le compteur de vues
+            $excursion->incrementViewCount();
+            $em->flush();
         }
 
         return $this->render('font/detail.html.twig', [
@@ -631,8 +663,7 @@ class FontController extends AbstractController
     }
 
     /**
-     * Convertit une Excursion en tableau au format attendu par detail.html.twig
-     * (le même format que circuitData / excursionData).
+     * Convertit une Excursion en tableau au format attendu par detail.html.twig.
      */
     private function excursionToTemplateArray(\App\Entity\Excursion $e): array
     {
@@ -721,7 +752,7 @@ class FontController extends AbstractController
     /**
      * @Route("/circuit/booking/submit", name="app_circuit_booking_submit", methods={"POST"})
      */
-    public function submitCircuitBooking(Request $request): Response
+    public function submitCircuitBooking(Request $request, EntityManagerInterface $em): Response
     {
         $checkIn = $request->request->get('checkIn');
         $checkOut = $request->request->get('checkOut');
@@ -779,8 +810,24 @@ class FontController extends AbstractController
             $mail->send();
             $this->addFlash('success', 'Your booking request has been sent successfully! We will contact you shortly.');
         } catch (Exception $e) {
-            $this->addFlash('error', "Message could not be sent. Error: {$mail->ErrorInfo}");
+            $this->addFlash('error', "Message could not be sent. Error: {$mail->errorInfo}");
         }
+
+        // Enregistre dans la base pour le dashboard admin
+        $cm = new ContactMessage();
+        $cm->setType(ContactMessage::TYPE_AVAILABILITY);
+        $cm->setName((string) $name);
+        $cm->setEmail((string) $email);
+        $cm->setMessage('Circuit : ' . $circuitTitle);
+        $cm->setExtra([
+            'circuitId' => $circuitId,
+            'circuitTitle' => $circuitTitle,
+            'checkIn' => $checkIn,
+            'checkOut' => $checkOut,
+            'guests' => $guests,
+        ]);
+        $em->persist($cm);
+        $em->flush();
 
         return $this->redirectToRoute('app_font_detail', ['type' => 'circuit', 'id' => $circuitId]);
     }

@@ -2,6 +2,233 @@
 
 {% block title %}Tableau de bord{% endblock %}
 
+{# =========================================================
+   Macro : liste (table) des Top circuits / excursions
+   ========================================================= #}
+{% macro topTable(items, type) %}
+    {% if items|length == 0 %}
+        <p class="admin-card__text">Rien à afficher pour le moment.</p>
+    {% else %}
+        <div class="admin-tbl-wrap">
+            <table class="admin-tbl">
+                <thead>
+                    <tr>
+                        <th class="admin-tbl__rank">Rang</th>
+                        <th class="admin-tbl__product">Titre</th>
+                        <th class="admin-tbl__city">Itinéraire</th>
+                        <th class="admin-tbl__duration">Durée</th>
+                        <th class="admin-tbl__views">Vues</th>
+                        <th class="admin-tbl__actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        {% set rank = loop.index %}
+                        {% set rankClass = rank == 1 ? 'is-gold' : (rank == 2 ? 'is-silver' : 'is-bronze') %}
+
+                        {% set itineraryFr = item.itineraryFr ?? [] %}
+                        {% set city = itineraryFr|length > 0 ? itineraryFr[0] : null %}
+
+                        <tr class="admin-tbl__row {{ rankClass }}">
+                            <td class="admin-tbl__rank">
+                                <span class="admin-tbl__rank-num">{{ rank }}</span>
+                            </td>
+
+                            <td class="admin-tbl__product">
+                                <div class="admin-tbl__product-inner">
+                                    <div class="admin-tbl__thumb">
+                                        {% if item.image starts with 'http' %}
+                                            <img src="{{ item.image }}" alt="{{ item.titleFr }}" loading="lazy" decoding="async">
+                                        {% else %}
+                                            <img src="{{ asset('assets/images/' ~ item.image) }}" alt="{{ item.titleFr }}" loading="lazy" decoding="async">
+                                        {% endif %}
+                                    </div>
+                                    <span class="admin-tbl__title">{{ item.titleFr }}</span>
+                                </div>
+                            </td>
+
+                            <td class="admin-tbl__city">
+                                {% if city %}
+                                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                    {{ city }}
+                                {% else %}
+                                    <span class="admin-tbl__muted">—</span>
+                                {% endif %}
+                            </td>
+
+                            <td class="admin-tbl__duration">
+                                {% if item.durationFr %}
+                                    {{ item.durationFr }}
+                                {% else %}
+                                    <span class="admin-tbl__muted">—</span>
+                                {% endif %}
+                            </td>
+
+                            <td class="admin-tbl__views">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                                {{ item.viewCount }}
+                            </td>
+
+                            <td class="admin-tbl__actions">
+                                <div class="admin-tbl__actions-inner">
+                                    <a class="admin-tbl__btn"
+                                       href="{{ path('admin_trip_edit', {type: type, id: item.id}) }}"
+                                       title="Modifier">
+                                        <i class="fas fa-pen" aria-hidden="true"></i>
+                                    </a>
+
+                                    <form method="post"
+                                          action="{{ path('admin_trip_delete', {type: type, id: item.id}) }}"
+                                          class="admin-tbl__form"
+                                          onsubmit="return confirm('Mettre « {{ item.titleFr|e('js') }} » à la corbeille ?');">
+                                        <input type="hidden" name="_token"
+                                               value="{{ csrf_token('admin_trip_delete_' ~ item.id) }}">
+                                        <button type="submit"
+                                                class="admin-tbl__btn admin-tbl__btn--danger"
+                                                title="Mettre à la corbeille">
+                                            <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{# =========================================================
+   Macro : carte inbox (titre + liste de ContactMessage)
+   - items   : tableau de ContactMessage
+   - title   : titre de la carte
+   - empty   : texte si vide
+   ========================================================= #}
+{% macro inboxCard(items, title, empty) %}
+    <section class="admin-card">
+        <h2 class="admin-card__title">{{ title }}</h2>
+        {% if items|length == 0 %}
+            <p class="admin-card__text">{{ empty }}</p>
+        {% else %}
+            <ul class="admin-inbox">
+                {% for m in items %}
+                    <li class="admin-inbox__item">
+                        <div class="admin-inbox__main">
+                            <strong>{{ m.name }}</strong>
+                            <span class="admin-inbox__email">{{ m.message ?: m.email }}</span>
+                        </div>
+                        <div class="admin-inbox__actions">
+                            <span class="admin-inbox__date">{{ m.createdAt|date('d/m H:i') }}</span>
+                            {% if m.email and m.email != 'n/a' %}
+                                <a class="admin-inbox__btn admin-inbox__btn--reply"
+                                   href="{{ path('admin_message_show', {id: m.id}) }}#reply"
+                                   title="Ouvrir et répondre">
+                                    <i class="fas fa-reply" aria-hidden="true"></i>
+                                </a>
+                            {% else %}
+                                <a class="admin-inbox__btn admin-inbox__btn--reply"
+                                   href="{{ path('admin_message_show', {id: m.id}) }}"
+                                   title="Ouvrir">
+                                    <i class="fas fa-eye" aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </section>
+{% endmacro %}
+
 {% block content %}
-    {# Vide pour l'instant : les graphiques viendront plus tard #}
+    <div class="admin-page-header">
+        <h1 class="admin-page-header__title">Tableau de bord</h1>
+        <p class="admin-page-header__subtitle">Vue d'ensemble du site</p>
+    </div>
+
+    {# ===== KPIs ===== #}
+    <div class="admin-kpi-grid">
+        <a href="{{ path('admin_trip_index', {type: 'circuits'}) }}" class="admin-kpi">
+            <div class="admin-kpi__icon"><i class="fas fa-route" aria-hidden="true"></i></div>
+            <div class="admin-kpi__body">
+                <span class="admin-kpi__value">{{ circuitsCount }}</span>
+                <span class="admin-kpi__label">Circuits publiés</span>
+            </div>
+        </a>
+
+        <a href="{{ path('admin_trip_index', {type: 'excursions'}) }}" class="admin-kpi">
+            <div class="admin-kpi__icon"><i class="fas fa-compass" aria-hidden="true"></i></div>
+            <div class="admin-kpi__body">
+                <span class="admin-kpi__value">{{ excursionsCount }}</span>
+                <span class="admin-kpi__label">Excursions publiées</span>
+            </div>
+        </a>
+
+        <div class="admin-kpi">
+            <div class="admin-kpi__icon admin-kpi__icon--orange">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+            </div>
+            <div class="admin-kpi__body">
+                <span class="admin-kpi__value">{{ messagesCount }}</span>
+                <span class="admin-kpi__label">
+                    Messages{% if unreadCount > 0 %} · <strong>{{ unreadCount }} non lus</strong>{% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    {# ===== Top circuits ===== #}
+    <section class="admin-card">
+        <h2 class="admin-card__title">Top circuits</h2>
+        {{ _self.topTable(topCircuits, 'circuits') }}
+    </section>
+
+    {# ===== Top excursions ===== #}
+    <section class="admin-card">
+        <h2 class="admin-card__title">Top excursions</h2>
+        {{ _self.topTable(topExcursions, 'excursions') }}
+    </section>
+
+    {# ===== Ligne 1 : contacts + disponibilités ===== #}
+    <div class="admin-dash-row">
+        {{ _self.inboxCard(recentContacts, 'Derniers contacts', 'Aucun message de contact.') }}
+        {{ _self.inboxCard(recentAvailabilities, 'Dernières disponibilités', 'Aucune demande de disponibilité.') }}
+    </div>
+
+    {# ===== Ligne 2 : réservations + newsletter ===== #}
+    <div class="admin-dash-row">
+        {{ _self.inboxCard(recentBookings, 'Réservations', 'Aucune réservation.') }}
+
+        <section class="admin-card">
+            <div class="admin-card__header">
+                <h2 class="admin-card__title">
+                    Newsletter · <span class="admin-card__optional">{{ newsletterCount }} abonné{{ newsletterCount > 1 ? 's' : '' }}</span>
+                </h2>
+                {% if newsletterCount > 0 %}
+                    <a class="admin-btn admin-btn--primary admin-btn--sm"
+                       href="{{ path('admin_newsletter_compose') }}">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i> Envoyer un email
+                    </a>
+                {% endif %}
+            </div>
+
+            {% if recentNewsletter|length == 0 %}
+                <p class="admin-card__text">Aucun abonné pour le moment.</p>
+            {% else %}
+                <ul class="admin-inbox">
+                    {% for n in recentNewsletter %}
+                        <li class="admin-inbox__item">
+                            <div class="admin-inbox__main">
+                                <strong>{{ n.email }}</strong>
+                            </div>
+                            <span class="admin-inbox__date">
+                                {{ n.subscribedAt ? n.subscribedAt|date('d/m/Y') : '—' }}
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </section>
+    </div>
 {% endblock %}

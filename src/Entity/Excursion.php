@@ -27,6 +27,9 @@ class Excursion
     /** @ORM\Column(type="datetime_immutable", nullable=true) */
     private ?\DateTimeImmutable $deletedAt = null;
 
+    /** @ORM\Column(type="integer", options={"default": 0}) */
+    private int $viewCount = 0;
+
     /**
      * @ORM\Column(type="string", length=500)
      */
@@ -240,6 +243,10 @@ class Excursion
         $this->deletedAt = null;
         return $this;
     }
+
+    public function getViewCount(): int { return $this->viewCount; }
+    public function incrementViewCount(): self { $this->viewCount++; return $this; }
+
 
 
     // ==================================================================

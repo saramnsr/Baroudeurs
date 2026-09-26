@@ -1,0 +1,115 @@
+{% extends 'admin/admin_layout.html.twig' %}
+
+{% block title %}Message · {{ message.name }}{% endblock %}
+
+{% block content %}
+    <div class="admin-page-header">
+        <div class="admin-page-header__row">
+            <div>
+                <h1 class="admin-page-header__title">{{ message.name }}</h1>
+                <p class="admin-page-header__subtitle">
+                    <a href="mailto:{{ message.email }}">{{ message.email }}</a>
+                    · {{ message.createdAt|date('d/m/Y à H:i') }}
+                    {% if message.phone %} · {{ message.phone }}{% endif %}
+                </p>
+            </div>
+            <a class="admin-btn admin-btn--ghost" href="{{ path('admin_message_index') }}">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> Retour à la liste
+            </a>
+        </div>
+    </div>
+
+    {# Carte : le message reçu #}
+    <section class="admin-card">
+        <div class="admin-card__header">
+            <h2 class="admin-card__title">
+                <span class="admin-msg-type-circle admin-msg-type-circle--{{ message.type }}">
+                    {% if message.type == 'contact' %}Contact
+                    {% elseif message.type == 'availability' %}Disponibilité
+                    {% elseif message.type == 'booking' %}Réservation
+                    {% else %}{{ message.type }}{% endif %}
+                </span>
+                Message reçu
+            </h2>
+
+            <div class="admin-msg-actions">
+                <form method="post"
+                      action="{{ path('admin_message_toggle_read', {id: message.id}) }}"
+                      class="admin-msg-form">
+                    <input type="hidden" name="_token"
+                           value="{{ csrf_token('admin_message_toggle_' ~ message.id) }}">
+                    <button type="submit" class="admin-btn admin-btn--ghost admin-btn--sm">
+                        <i class="fas fa-{{ message.isRead ? 'envelope' : 'envelope-open' }}" aria-hidden="true"></i>
+                        {{ message.isRead ? 'Marquer non lu' : 'Marquer lu' }}
+                    </button>
+                </form>
+
+                <form method="post"
+                      action="{{ path('admin_message_delete', {id: message.id}) }}"
+                      class="admin-msg-form"
+                      onsubmit="return confirm('Supprimer définitivement ce message ?');">
+                    <input type="hidden" name="_token"
+                           value="{{ csrf_token('admin_message_delete_' ~ message.id) }}">
+                    <button type="submit" class="admin-btn admin-btn--danger-ghost admin-btn--sm">
+                        <i class="fas fa-trash-alt" aria-hidden="true"></i> Supprimer
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        {% if message.message %}
+            <p class="admin-msg-body">{{ message.message|nl2br }}</p>
+        {% endif %}
+
+        {% if message.extra %}
+            <div class="admin-msg-extra">
+                <h3 class="admin-msg-extra__title">Détails</h3>
+                <dl class="admin-msg-extra__list">
+                    {% for key, value in message.extra %}
+                        <dt>{{ key }}</dt>
+                        <dd>{{ value is iterable ? value|join(', ') : value }}</dd>
+                    {% endfor %}
+                </dl>
+            </div>
+        {% endif %}
+    </section>
+
+    {# Carte : répondre #}
+    {% if message.email != 'n/a' and message.email is not empty %}
+        <section class="admin-card" id="reply">
+            <h2 class="admin-card__title">Répondre à {{ message.name }}</h2>
+            <p class="admin-card__intro">
+                L'email sera envoyé depuis <strong>noreply@baroudeursdedesert.com</strong>.
+            </p>
+
+            <form method="post" action="{{ path('admin_message_reply', {id: message.id}) }}" class="admin-form">
+                <input type="hidden" name="_token"
+                       value="{{ csrf_token('admin_message_reply_' ~ message.id) }}">
+
+                <div class="admin-field">
+                    <label for="reply-subject">Sujet</label>
+                    <input type="text" id="reply-subject" name="subject" required
+                           value="Réponse à votre message — Baroudeurs du Désert">
+                </div>
+
+                <div class="admin-field">
+                    <label for="reply-body">Message</label>
+                    <textarea id="reply-body" name="body" rows="8" required
+                              placeholder="Bonjour {{ message.name }},"></textarea>
+                </div>
+
+                <div class="admin-form__actions" style="position: static; padding: 0; background: none; box-shadow: none; border: none; left: auto; right: auto; bottom: auto;">
+                    <button type="submit" class="admin-btn admin-btn--primary">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i> Envoyer la réponse
+                    </button>
+                </div>
+            </form>
+        </section>
+    {% else %}
+        <section class="admin-card">
+            <p class="admin-card__text">
+                Cet enregistrement ne contient pas d'adresse email valide — impossible de répondre.
+            </p>
+        </section>
+    {% endif %}
+{% endblock %}

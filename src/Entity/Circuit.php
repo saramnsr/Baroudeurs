@@ -167,6 +167,10 @@ class Circuit
     private ?\DateTimeImmutable $deletedAt = null;
 
 
+        /** @ORM\Column(type="integer", options={"default": 0}) */
+    private int $viewCount = 0;
+
+
     // ==== Dates automatiques ====
 
     /** @ORM\PrePersist */
@@ -212,6 +216,9 @@ class Circuit
 
 
     // ==== Getters / setters existants (inchangés) ====
+
+    public function getViewCount(): int { return $this->viewCount; }
+    public function incrementViewCount(): self { $this->viewCount++; return $this; }
 
     public function getId(): ?int { return $this->id; }
 

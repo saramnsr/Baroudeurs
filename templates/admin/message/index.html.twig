@@ -1,0 +1,99 @@
+{% extends 'admin/admin_layout.html.twig' %}
+
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+    <div class="admin-page-header">
+        <div class="admin-page-header__row">
+            <div>
+                <h1 class="admin-page-header__title">Messages</h1>
+                <p class="admin-page-header__subtitle">
+                    {{ items|length }} message{{ items|length > 1 ? 's' : '' }}
+                    {% if type != 'all' %} · {{ types[type] }}{% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {# Onglets de filtre #}
+    <div class="admin-msg-tabs">
+        {% for key, label in types %}
+            <a href="{{ path('admin_message_index', {type: key}) }}"
+               class="admin-msg-tab{% if type == key %} is-active{% endif %}">
+                {{ label }}
+                <span class="admin-msg-tab__count">{{ counts[key] }}</span>
+            </a>
+        {% endfor %}
+    </div>
+
+    {% if items|length == 0 %}
+        <div class="admin-card admin-empty">
+            <i class="fas fa-envelope-open admin-empty__icon" aria-hidden="true"></i>
+            <h2 class="admin-empty__title">Aucun message</h2>
+            <p class="admin-empty__text">Les messages reçus apparaîtront ici.</p>
+        </div>
+    {% else %}
+        <div class="admin-msg-list">
+            {% for m in items %}
+                {% set typeClass = 'is-contact' %}
+                {% if m.type == 'availability' %}{% set typeClass = 'is-availability' %}{% endif %}
+                {% if m.type == 'booking' %}{% set typeClass = 'is-booking' %}{% endif %}
+
+                <div class="admin-msg-row {{ typeClass }}{% if not m.isRead %} is-unread{% endif %}">
+                    <div class="admin-msg-row__content">
+                        <span class="admin-msg-row__status" aria-hidden="true"></span>
+
+                        <div class="admin-msg-row__main">
+                            <span class="admin-msg-row__name">{{ m.name }}</span>
+                            <span class="admin-msg-row__email">{{ m.email }}</span>
+                        </div>
+
+                        <div class="admin-msg-row__subject">
+                            {% if m.message %}
+                                {{ m.message|length > 80 ? m.message|slice(0, 80) ~ '…' : m.message }}
+                            {% endif %}
+                        </div>
+
+                        <span class="admin-msg-row__type admin-msg-type--{{ m.type }}">
+                            {% if m.type == 'contact' %}Contact
+                            {% elseif m.type == 'availability' %}Disponibilité
+                            {% elseif m.type == 'booking' %}Réservation
+                            {% else %}{{ m.type }}{% endif %}
+                        </span>
+
+                        <span class="admin-msg-row__date">
+                            {{ m.createdAt|date('d/m/Y H:i') }}
+                        </span>
+                    </div>
+
+                    <div class="admin-msg-row__actions">
+                        <a class="admin-msg-row__btn admin-msg-row__btn--reply"
+                           href="{{ path('admin_message_show', {id: m.id}) }}#reply"
+                           title="Ouvrir et répondre">
+                            <i class="fas fa-reply" aria-hidden="true"></i>
+                        </a>
+
+                        <a class="admin-msg-row__btn"
+                           href="{{ path('admin_message_show', {id: m.id}) }}"
+                           title="Ouvrir le message">
+                            <i class="fas fa-eye" aria-hidden="true"></i>
+                        </a>
+
+                        <form method="post"
+                              action="{{ path('admin_message_delete', {id: m.id}) }}"
+                              class="admin-msg-row__form"
+                              onsubmit="return confirm('Supprimer définitivement ce message ?');">
+                            <input type="hidden" name="_token"
+                                   value="{{ csrf_token('admin_message_delete_' ~ m.id) }}">
+                            <button type="submit"
+                                    class="admin-msg-row__btn admin-msg-row__btn--danger"
+                                    title="Supprimer">
+                                <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

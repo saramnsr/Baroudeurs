@@ -24,9 +24,29 @@
             <p class="admin-empty__text">Les éléments supprimés apparaîtront ici.</p>
         </div>
     {% else %}
-        <div class="admin-trip-grid">
+        {# Barre de recherche #}
+        <div class="admin-search" data-search-bar>
+            <i class="fas fa-search admin-search__icon" aria-hidden="true"></i>
+            <input
+                type="search"
+                class="admin-search__input"
+                placeholder="Rechercher par titre…"
+                aria-label="Rechercher dans la corbeille"
+                data-search-input
+                autocomplete="off">
+            <button type="button" class="admin-search__clear" data-search-clear hidden
+                    aria-label="Effacer la recherche">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <p class="admin-search__count" data-search-count hidden></p>
+
+        <div class="admin-trip-grid" data-search-list>
             {% for item in items %}
-                <article class="admin-trip-card admin-trip-card--trashed">
+                <article class="admin-trip-card admin-trip-card--trashed"
+                         data-search-item
+                         data-title="{{ item.titleFr|lower }}">
                     <div class="admin-trip-card__media">
                         {% if item.image starts with 'http' %}
                             <img src="{{ item.image }}" alt="{{ item.titleFr }}" loading="lazy" decoding="async">
@@ -79,5 +99,87 @@
                 </article>
             {% endfor %}
         </div>
+
+        {# Message si aucun résultat #}
+        <div class="admin-card admin-empty" data-search-empty hidden>
+            <i class="fas fa-search admin-empty__icon" aria-hidden="true"></i>
+            <h2 class="admin-empty__title">Aucun résultat</h2>
+            <p class="admin-empty__text">Essayez un autre terme de recherche.</p>
+        </div>
     {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var bar = document.querySelector('[data-search-bar]');
+            if (!bar) return;
+
+            var input    = bar.querySelector('[data-search-input]');
+            var clearBtn = bar.querySelector('[data-search-clear]');
+            var list     = document.querySelector('[data-search-list]');
+            var empty    = document.querySelector('[data-search-empty]');
+            var countEl  = document.querySelector('[data-search-count]');
+            var items    = list ? Array.prototype.slice.call(list.querySelectorAll('[data-search-item]')) : [];
+
+            if (!input || !list || items.length === 0) return;
+
+            // Normalise : minuscules + suppression des accents
+            function normalize(str) {
+                return (str || '')
+                    .toString()
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '');
+            }
+
+            function applyFilter() {
+                var raw = input.value.trim();
+                var q = normalize(raw);
+                var visible = 0;
+
+                items.forEach(function (card) {
+                    var haystack = normalize(card.getAttribute('data-title'));
+                    var match = q === '' || haystack.indexOf(q) !== -1;
+                    card.hidden = !match;
+                    if (match) visible++;
+                });
+
+                if (empty) empty.hidden = visible > 0;
+
+                if (countEl) {
+                    if (q === '') {
+                        countEl.hidden = true;
+                    } else {
+                        countEl.hidden = false;
+                        countEl.textContent = visible === 0
+                            ? 'Aucun résultat'
+                            : (visible + (visible > 1 ? ' résultats' : ' résultat'));
+                    }
+                }
+
+                if (clearBtn) clearBtn.hidden = raw === '';
+            }
+
+            input.addEventListener('input', applyFilter);
+
+            if (clearBtn) {
+                clearBtn.addEventListener('click', function () {
+                    input.value = '';
+                    input.focus();
+                    applyFilter();
+                });
+            }
+
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    input.value = '';
+                    applyFilter();
+                }
+            });
+
+            applyFilter();
+        });
+    </script>
 {% endblock %}

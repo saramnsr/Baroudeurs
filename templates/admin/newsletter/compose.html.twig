@@ -1,0 +1,80 @@
+{% extends 'admin/admin_layout.html.twig' %}
+
+{% block title %}Newsletter{% endblock %}
+
+{% block content %}
+    <div class="admin-page-header">
+        <div class="admin-page-header__row">
+            <div>
+                <h1 class="admin-page-header__title">Envoyer un email</h1>
+                <p class="admin-page-header__subtitle">
+                    {{ subscriberCount }} abonné{{ subscriberCount > 1 ? 's' : '' }} recevront cet email individuellement.
+                </p>
+            </div>
+            <a class="admin-btn admin-btn--ghost" href="{{ path('admin_dashboard') }}">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> Retour au tableau de bord
+            </a>
+        </div>
+    </div>
+
+    {% if subscriberCount == 0 %}
+        <div class="admin-card admin-empty">
+            <i class="fas fa-envelope-open admin-empty__icon" aria-hidden="true"></i>
+            <h2 class="admin-empty__title">Aucun abonné</h2>
+            <p class="admin-empty__text">Il n'y a personne à qui envoyer un email pour le moment.</p>
+        </div>
+    {% else %}
+        <form method="post"
+              action="{{ path('admin_newsletter_send') }}"
+              class="admin-form"
+              onsubmit="return confirm('Envoyer cet email à {{ subscriberCount }} abonné{{ subscriberCount > 1 ? 's' : '' }} ?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('admin_newsletter_send') }}">
+
+            <section class="admin-card">
+                <h2 class="admin-card__title">Message</h2>
+
+                <div class="admin-field">
+                    <label for="nl-subject">Sujet</label>
+                    <input type="text" id="nl-subject" name="subject" required
+                           maxlength="150"
+                           placeholder="Ex : Nos nouveaux circuits pour l'automne">
+                </div>
+
+                <div class="admin-field">
+                    <label for="nl-body">Message</label>
+                    <textarea id="nl-body" name="body" rows="12" required
+                              placeholder="Bonjour,&#10;&#10;Nous avons le plaisir de vous annoncer…"></textarea>
+                    <small class="admin-field__help">
+                        Le texte sera envoyé en HTML — les retours à la ligne sont préservés.
+                    </small>
+                </div>
+            </section>
+
+            <section class="admin-card">
+                <h2 class="admin-card__title">
+                    Destinataires <span class="admin-card__optional">({{ subscriberCount }})</span>
+                </h2>
+                <ul class="admin-inbox">
+                    {% for n in subscribers %}
+                        <li class="admin-inbox__item">
+                            <div class="admin-inbox__main">
+                                <strong>{{ n.email }}</strong>
+                            </div>
+                            <span class="admin-inbox__date">
+                                {{ n.subscribedAt ? n.subscribedAt|date('d/m/Y') : '—' }}
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+            <div class="admin-form__actions" style="position: static; padding: 0; background: none; box-shadow: none; border: none; left: auto; right: auto; bottom: auto;">
+                <a class="admin-btn admin-btn--ghost" href="{{ path('admin_dashboard') }}">Annuler</a>
+                <button type="submit" class="admin-btn admin-btn--primary">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    Envoyer à {{ subscriberCount }} abonné{{ subscriberCount > 1 ? 's' : '' }}
+                </button>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}
