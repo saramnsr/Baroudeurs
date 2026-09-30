@@ -44,13 +44,9 @@
                         <span class="field-label"><i class="fas fa-route"></i>{{ 'booking.programme'|trans }}</span>
                         <select class="form_control" name="programme" required>
                             <option value="">{{ 'booking.programme_placeholder'|trans }}</option>
-                            {% for p in programmes %}
-                                <option value="{{ p.id }}">
-                                    {% if app.request.locale == 'fr' %}{{ p.titleFr }}
-                                    {% elseif app.request.locale == 'ar' %}{{ p.titleAr }}
-                                    {% elseif app.request.locale == 'it' %}{{ p.titleIt }}
-                                    {% else %}{{ p.titleEn }}
-                                    {% endif %}
+                            {% for c in nav_circuits() %}
+                                <option value="{{ c.title[locale] is defined ? c.title[locale] : c.title.en }}">
+                                    {{ c.title[locale] is defined ? c.title[locale] : c.title.en }}
                                 </option>
                             {% endfor %}
                         </select>

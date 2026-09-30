@@ -116,13 +116,9 @@
                         <span class="field-label"><i class="fas fa-route"></i>{{ 'booking.programme'|trans }}</span>
                         <select class="form_control" name="programme" required>
                             <option value="">{{ 'booking.programme_placeholder'|trans }}</option>
-                            {% for p in programmes %}
-                                <option value="{{ p.id }}">
-                                    {% if locale == 'fr' %}{{ p.titleFr }}
-                                    {% elseif locale == 'ar' %}{{ p.titleAr }}
-                                    {% elseif locale == 'it' %}{{ p.titleIt }}
-                                    {% else %}{{ p.titleEn }}
-                                    {% endif %}
+                            {% for c in nav_circuits() %}
+                                <option value="{{ c.title[locale] is defined ? c.title[locale] : c.title.en }}">
+                                    {{ c.title[locale] is defined ? c.title[locale] : c.title.en }}
                                 </option>
                             {% endfor %}
                         </select>
@@ -415,7 +411,6 @@
                             <span class="about-tag"><i class="fas fa-check"></i>{{ 'about.item3'|trans }}</span>
                         </div>
 
-                        <!-- Learn more → About page -->
                         <a href="{{ path('app_font_about') }}" class="main-btn btn-yellow">
                             {{ 'about.button'|trans }}
                             <i class="far fa-arrow-right"></i>
@@ -525,7 +520,7 @@
                         <span class="number">02</span>{{ 'gallery_showcase.subtitle'|trans }}
                     </span>
                     <h2>
-                        <a href="{{ path('programmes') }}">
+                        <a href="{{ path('app_font_circuits') }}">
                             {{ 'gallery_showcase.title'|trans }}
                             <span class="thin">{{ 'gallery_showcase.title2'|trans }}</span>
                         </a>
@@ -717,7 +712,6 @@
                     </div>
                 </div>
                 <div class="col-lg-4 text-lg-end text-start mt-30 mt-lg-0">
-                    <!-- Contact us → Contact page -->
                     <a href="{{ path('app_font_contact') }}" class="main-btn btn-yellow">
                         {{ 'contact.button_short'|trans }}
                         <i class="far fa-angle-double-right"></i>
@@ -738,7 +732,6 @@
                 if (window.jQuery) {
                     var $slider = jQuery('.hero-slider-one');
 
-                    // Speed up autoplay without reinitializing the whole slider
                     if ($slider.hasClass('slick-initialized')) {
                         $slider.slick('slickSetOption', 'autoplaySpeed', 2200, true);
                     }
@@ -778,16 +771,15 @@
         var slider = document.querySelector('.showcase-slider');
         if (slider) {
             var scrollAmount = 1;
-            var scrollSpeed = 20; // ms between steps — lower = faster
+            var scrollSpeed = 20;
             var autoScroll = setInterval(function () {
                 if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 1) {
-                    slider.scrollLeft = 0; // loop back to start
+                    slider.scrollLeft = 0;
                 } else {
                     slider.scrollLeft += scrollAmount;
                 }
             }, scrollSpeed);
 
-            // Pause on hover, resume on mouse leave
             slider.addEventListener('mouseenter', function () {
                 clearInterval(autoScroll);
             });

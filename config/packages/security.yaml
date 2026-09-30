@@ -27,7 +27,6 @@ security:
             logout:
                 path: admin_logout
                 target: admin_login
-                csrf_token_generator: security.csrf.token_manager
 
         main:
             anonymous: lazy
