@@ -1,12 +1,10 @@
-﻿# Baroudeurs du Désert — Guide d'installation et d'utilisation
+﻿# Baroudeurs du Désert : Guide d'installation et d'utilisation
 
-Bienvenue dans le projet **Baroudeurs du Désert**. Ce guide vous explique, étape par étape, comment installer, configurer et lancer le projet sur votre machine, à partir de zéro.
+Bienvenue dans le projet **Baroudeurs du Désert**. Ce guide explique, étape par étape, comment installer, configurer et lancer le projet sur une machine, à partir de zéro.
 
 ---
 
 ## Prérequis
-
-Avant de commencer, assurez-vous que votre machine dispose des éléments suivants :
 
 | Logiciel | Version minimale | Rôle |
 |----------|------------------|------|
@@ -19,24 +17,26 @@ Avant de commencer, assurez-vous que votre machine dispose des éléments suivan
 
 **Extensions PHP obligatoires :** `pdo_mysql`, `mbstring`, `intl`, `openssl`, `ctype`, `iconv`.
 
-Pour vérifier, lancez :
+Pour vérifier :
+
 ```bash
 php -m
 ```
+
 Vous devez voir au minimum : `pdo_mysql`, `mbstring`, `intl`, `openssl`.
 
 ---
 
-## Étape 1 — Récupérer le projet
+## Étape 1 : Récupérer le projet
 
-### Option A — Cloner depuis Git
+### Option A : Cloner depuis Git
 
 ```bash
 git clone <url-du-depot> baroudeurs
 cd baroudeurs
 ```
 
-### Option B — À partir d'un fichier ZIP
+### Option B : À partir d'un fichier ZIP
 
 Décompressez le ZIP, puis :
 
@@ -46,21 +46,20 @@ cd baroudeurs-main
 
 ---
 
-## Étape 2 — Installer les dépendances PHP
+## Étape 2 : Installer les dépendances PHP
 
 ```bash
 composer install
 ```
 
-Cette commande lit `composer.json` et télécharge toutes les bibliothèques PHP dans le dossier `vendor/`.
+Cette commande lit `composer.json` et télécharge toutes les bibliothèques PHP dans `vendor/`.
 
 **Durée estimée :** 1 à 2 minutes.
-
 **Résultat attendu :** `Generating autoload files` à la fin, sans erreur.
 
 ---
 
-## Étape 3 — Installer les dépendances JavaScript
+## Étape 3 : Installer les dépendances JavaScript
 
 ```bash
 npm install
@@ -72,21 +71,21 @@ Cette commande télécharge tous les paquets frontend dans `node_modules/`.
 
 ---
 
-## Étape 4 — Créer le fichier de configuration local
+## Étape 4 : Créer le fichier de configuration local
 
-### Sous Linux / macOS :
+**Sous Linux / macOS :**
 
 ```bash
 cp .env .env.local
 ```
 
-### Sous Windows (PowerShell) :
+**Sous Windows (PowerShell) :**
 
 ```powershell
 Copy-Item .env .env.local
 ```
 
-Ouvrez ensuite `.env.local` dans un éditeur de texte et modifiez ces valeurs :
+Ouvrez ensuite `.env.local` et modifiez ces valeurs :
 
 ```dotenv
 APP_ENV=dev
@@ -95,23 +94,25 @@ APP_SECRET=changez_moi_par_une_chaine_aleatoire
 
 DATABASE_URL="mysql://baroudeurs:baroudeurs2026@127.0.0.1:3306/baroudeurs?serverVersion=8.4.8&charset=utf8mb4"
 
-CLOUDINARY_URL=cloudinary://442525621764211:Tt-AtQhLIaA4IBbUe-57904qJJI@dy13axswo
+CLOUDINARY_URL=cloudinary://<api_key>:<api_secret>@<cloud_name>
 DEEPL_API_KEY=
 ```
 
 ### Notes importantes
 
 - **`APP_SECRET`** : chaîne aléatoire de 32+ caractères. Générez-en une avec :
+
   ```bash
   php -r "echo bin2hex(random_bytes(16));"
   ```
-- **`DATABASE_URL`** : le mot de passe (`baroudeurs2026`) doit **correspondre exactement** à celui de l'étape 5.
+
+- **`DATABASE_URL`** : le mot de passe (`baroudeurs2026`) doit correspondre exactement à celui de l'étape 5.
 - **`CLOUDINARY_URL`** : nécessaire pour l'envoi d'images depuis l'admin. Si absente, l'upload d'images ne fonctionnera pas.
 - **`DEEPL_API_KEY`** : optionnelle. Utilisée pour la traduction automatique. Laissez vide si non utilisée.
 
 ---
 
-## Étape 5 — Créer la base de données MySQL
+## Étape 5 : Créer la base de données MySQL
 
 Ouvrez un terminal MySQL (`mysql` en ligne de commande, ou MySQL Workbench) et exécutez :
 
@@ -133,13 +134,13 @@ Le mot de passe `baroudeurs2026` doit être identique à celui utilisé dans `.e
 
 ---
 
-## Étape 6 — Importer le fichier SQL
+## Étape 6 : Importer le fichier SQL
 
-Le fichier `database/export/baroudeurs.sql` contient **toute la base de données** : les tables, les 7 circuits, les 2 excursions, avec toutes les traductions (français, anglais, arabe, italien), les images, les avis.
+Le fichier `database/export/baroudeurs.sql` contient toute la base de données : les tables, les 7 circuits, les 2 excursions, avec toutes les traductions (français, anglais, arabe, italien), les images et les avis.
 
 > ⚠️ **IMPORTANT :** vous devez impérativement préciser `--default-character-set=utf8mb4` lors de l'import. Sans cela, les accents (é, à, è) et l'arabe seront corrompus.
 
-### Option A — Ligne de commande (rapide)
+### Option A : Ligne de commande (rapide)
 
 **Sous Linux / macOS :**
 
@@ -155,27 +156,27 @@ mysql -u root -p --default-character-set=utf8mb4 < database\export\baroudeurs.sq
 
 Entrez le mot de passe root de MySQL lorsqu'il est demandé.
 
-### Option B — MySQL Workbench (interface graphique)
+### Option B : MySQL Workbench (interface graphique)
 
-1. Ouvrez **MySQL Workbench**
+1. Ouvrez MySQL Workbench
 2. Connectez-vous à `localhost` en tant que `root`
-3. Menu → **Server → Data Import**
+3. Menu → **Server** → **Data Import**
 4. Sélectionnez **"Import from Self-Contained File"**
 5. Parcourez jusqu'à `database/export/baroudeurs.sql`
-6. **Default Schema to be Imported To :** sélectionnez `baroudeurs`
+6. **Default Schema to be Imported To** : sélectionnez `baroudeurs`
 7. Cliquez sur **Start Import**
 
 ---
 
-## Étape 7 — Vérifier l'import
+## Étape 7 : Vérifier l'import
 
 ```bash
 mysql -u root -p --default-character-set=utf8mb4 -e "SELECT id, title_fr FROM baroudeurs.circuit ORDER BY id;"
 ```
 
-**Résultat attendu :**
+Résultat attendu :
 
-```
+```text
 1  Circuit Désert 8 Jours - Douz à Tembaïne
 2  Mirage du Désert - 8 Jours / 7 Nuits
 3  Appel du Désert
@@ -191,29 +192,30 @@ Vérifiez également l'arabe :
 mysql -u root -p --default-character-set=utf8mb4 -e "SELECT id, title_ar FROM baroudeurs.circuit WHERE id = 1;"
 ```
 
-**Résultat attendu :** `رحلة الصحراء 8 أيام - من دوز إلى تمباين`
+Résultat attendu : `رحلة الصحراء 8 أيام - من دوز إلى تمباين`
 
-> ❌ Si l'arabe s'affiche comme `?????`, cela signifie que l'import a été fait sans `--default-character-set=utf8mb4`. Il faut alors :
+> ❌ Si l'arabe s'affiche comme `?????`, l'import a été fait sans `--default-character-set=utf8mb4`. Il faut alors :
+>
 > 1. Supprimer la base : `DROP DATABASE baroudeurs;`
 > 2. La recréer (étape 5)
-> 3. Réimporter en utilisant le bon paramètre
+> 3. Réimporter avec le bon paramètre
 
 ---
 
-## Étape 8 — Vérifier la cohérence du schéma
+## Étape 8 : Vérifier la cohérence du schéma
 
 ```bash
 php bin/console doctrine:schema:validate
 ```
 
-**Résultat attendu :**
+Résultat attendu :
 
-```
+```text
 [OK] The mapping files are correct.
 [WARNING] The database schema is not in sync ...
 ```
 
-> ℹ️ Le `WARNING` est **purement cosmétique** (Doctrine souhaite ajouter des commentaires de métadonnées sur les colonnes de type date). Cela n'affecte pas le fonctionnement de l'application.
+> ℹ️ Le WARNING est purement cosmétique (Doctrine souhaite ajouter des commentaires de métadonnées sur les colonnes de type date). Cela n'affecte pas le fonctionnement de l'application.
 
 Pour faire disparaître l'avertissement (optionnel) :
 
@@ -223,19 +225,19 @@ php bin/console doctrine:schema:update --force
 
 ---
 
-## Étape 9 — Vider le cache Symfony
+## Étape 9 : Vider le cache Symfony
 
 ```bash
 php bin/console cache:clear
 ```
 
-**Résultat attendu :** `[OK] Cache for the "dev" environment was successfully cleared.`
+Résultat attendu : `[OK] Cache for the "dev" environment was successfully cleared.`
 
 ---
 
-## Étape 10 — Créer un compte administrateur
+## Étape 10 : Créer un compte administrateur
 
-> ⚠️ Le fichier SQL exporté **ne contient pas** de compte administrateur, car les mots de passe sont hachés de manière unique par environnement.
+> ⚠️ Le fichier SQL exporté ne contient pas de compte administrateur, car les mots de passe sont hachés de manière unique par environnement.
 
 Créez-en un :
 
@@ -245,25 +247,25 @@ php bin/console app:create-admin
 
 Trois questions vous seront posées :
 
-1. **Adresse email** — par exemple : `admin@baroudeursdedesert.com`
-2. **Mot de passe** — minimum 4 caractères (utilisez un mot de passe fort)
+1. **Adresse email** : par exemple `admin@baroudeursdedesert.com`
+2. **Mot de passe** : minimum 4 caractères (utilisez un mot de passe fort)
 3. **Confirmation du mot de passe**
 
-**Résultat attendu :** `[OK] Admin « admin@baroudeursdedesert.com » créé.`
+Résultat attendu : `[OK] Admin « admin@baroudeursdedesert.com » créé.`
 
 Pour modifier le mot de passe plus tard, relancez simplement la même commande avec le même email.
 
 ---
 
-## Étape 11 — Lancer le serveur de développement
+## Étape 11 : Lancer le serveur de développement
 
 ```bash
 php -S localhost:8000 -t public
 ```
 
-**Résultat attendu :**
+Résultat attendu :
 
-```
+```text
 PHP 8.1.x Development Server (http://localhost:8000) started
 ```
 
@@ -284,9 +286,9 @@ Connectez-vous à `/admin` avec l'email et le mot de passe créés à l'étape 1
 
 ---
 
-## Étape 12 — Déploiement en production (optionnel)
+## Étape 12 : Déploiement en production (optionnel)
 
-Pour un déploiement en production, utilisez **Apache** ou **Nginx** avec la racine web pointant vers `public/`.
+Pour un déploiement en production, utilisez Apache ou Nginx avec la racine web pointant vers `public/`.
 
 Modifiez `.env.local` :
 
@@ -302,13 +304,13 @@ php bin/console cache:clear --env=prod
 php bin/console cache:warmup --env=prod
 ```
 
-Configurez votre serveur web pour que le DocumentRoot soit le dossier `public/` du projet. Le contrôleur frontal `public/index.php` prendra en charge toutes les requêtes.
+Configurez votre serveur web pour que le `DocumentRoot` soit le dossier `public/` du projet. Le contrôleur frontal `public/index.php` prendra en charge toutes les requêtes.
 
 ---
 
 ## Structure du projet
 
-```
+```text
 baroudeurs/
 ├── bin/                      Commandes Symfony
 ├── config/                   Configuration (doctrine, security, routes...)
@@ -355,18 +357,17 @@ baroudeurs/
 
 ## Services externes
 
-Le projet utilise trois services externes :
-
 | Service | Configuration | Rôle |
 |---------|---------------|------|
-| **Cloudinary** | `CLOUDINARY_URL` dans `.env.local` | Hébergement et optimisation des images |
-| **Gmail SMTP** | Constantes `MAIL_*` dans `src/Controller/FontController.php` | Envoi des emails (contact, newsletter) |
-| **DeepL** | `DEEPL_API_KEY` dans `.env.local` | Traduction automatique |
+| Cloudinary | `CLOUDINARY_URL` dans `.env.local` | Hébergement et optimisation des images |
+| Gmail SMTP | Constantes `MAIL_*` dans `src/Controller/FontController.php` | Envoi des emails (contact, newsletter) |
+| DeepL | `DEEPL_API_KEY` dans `.env.local` | Traduction automatique |
 
-**Si l'un de ces services est absent :**
-- **Cloudinary manquant** → l'admin ne pourra pas téléverser d'images
-- **Gmail manquant** → les formulaires s'enregistreront en base mais aucun email ne sera envoyé
-- **DeepL manquant** → la traduction automatique des nouveaux contenus admin ne fonctionnera pas
+Si l'un de ces services est absent :
+
+- **Cloudinary manquant** : l'admin ne pourra pas téléverser d'images
+- **Gmail manquant** : les formulaires s'enregistreront en base mais aucun email ne sera envoyé
+- **DeepL manquant** : la traduction automatique des nouveaux contenus admin ne fonctionnera pas
 
 ---
 
@@ -389,7 +390,7 @@ Le projet utilise trois services externes :
 |----------|----------------|----------|
 | `Table 'baroudeurs.circuit' doesn't exist` | L'étape 6 n'a pas été exécutée | Refaire l'étape 6 |
 | `Access denied for user 'baroudeurs'` | Mot de passe incorrect ou utilisateur manquant | Refaire l'étape 5, vérifier `.env.local` |
-| Accents corrompus (`D??sert`) | Import sans `--default-character-set=utf8mb4` | Supprimer la base, refaire étape 6 avec le paramètre |
+| Accents corrompus (`D??sert`) | Import sans `--default-character-set=utf8mb4` | Supprimer la base, refaire l'étape 6 avec le paramètre |
 | Arabe corrompu (`??????`) | Même cause que ci-dessus | Même solution |
 | `Class not found` | `composer install` incomplet | Relancer `composer install` |
 | `Class "App\..." not found` | Autoloader non régénéré | Lancer `composer dump-autoload` |
@@ -412,7 +413,7 @@ Le projet utilise trois services externes :
 
 ## Résumé rapide des 12 étapes
 
-1. Récupérer le projet (git clone ou ZIP)
+1. Récupérer le projet (`git clone` ou ZIP)
 2. `composer install`
 3. `npm install`
 4. Créer `.env.local` avec les bonnes valeurs
@@ -427,4 +428,4 @@ Le projet utilise trois services externes :
 
 ---
 
-**Fin du guide. Pour toute question, contactez contact@baroudeursdedesert.com.**
+*Fin du guide. Pour toute question, contactez contact@baroudeursdedesert.com.*
