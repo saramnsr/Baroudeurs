@@ -1109,56 +1109,9 @@ button {
   visibility: visible;
   top: 100%;
 }
-.header-navigation.breakpoint-on .nav-search .form_contro {
-  border: 1px solid #C8A97E;
-  height: 60px;
-  padding: 0 20px;
-}
-.header-navigation.breakpoint-on .nav-search .search-btn {
-  position: absolute;
-  top: 17px;
-  right: 20px;
-  background-color: transparent;
-  color: #B8894A;
-}
-.header-navigation.breakpoint-on .nav-menu {
-  text-align: left;
-  background-color: #E8D0A8;
-  position: fixed;
-  top: 0;
-  left: -290px;
-  z-index: 9999;
-  width: 290px;
-  height: 100%;
-  -webkit-transition-duration: 500ms;
-          transition-duration: 500ms;
-  padding: 40px 20px;
-  -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  display: block;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-.header-navigation.breakpoint-on .nav-menu.menu-on {
-  left: 0;
-}
-.header-navigation.breakpoint-on .nav-menu .main-menu ul li {
-  display: block;
-  margin: 0;
-  border-bottom: 1px solid #ececec;
-}
-.header-navigation.breakpoint-on .nav-menu .main-menu ul li:last-child {
-  border-bottom: 0;
-}
-.header-navigation.breakpoint-on .nav-menu .main-menu ul li.active .sub-menu {
-  border-top: 1px solid #ececec;
-}
-.header-navigation.breakpoint-on .nav-menu .main-menu ul li a {
-  display: block;
-  border-bottom: 1px solid rgba(232, 208, 168, 0.5);
-  padding: 15px 0;
-  color: #2B1D14;
-}
+
+
+
 @media (max-width: 1199px) {
   .header-navigation.breakpoint-on .nav-menu .main-menu ul li .search-btn {
     display: none;
@@ -1179,25 +1132,7 @@ button {
   -webkit-transition: none;
   transition: none;
 }
-.header-navigation.breakpoint-on .nav-menu .main-menu ul li .sub-menu > li > a {
-  padding: 0px 20px 0 30px;
-}
-.header-navigation.breakpoint-on .nav-menu .main-menu ul li .sub-menu > li > a:hover {
-  border-color: rgba(232, 208, 168, 0.5);
-}
-.header-navigation.breakpoint-on .nav-menu .main-menu ul li .dd-trigger {
-  position: absolute;
-  right: 0;
-  top: 10px;
-  height: 25px;
-  width: 25px;
-  border-radius: 3px;
-  z-index: 2;
-  background-color: #C96B3C;
-  cursor: pointer;
-  color: #E8D0A8;
-  font-size: 16px;
-}
+
 .header-navigation.breakpoint-on .nav-menu .main-menu.menu-on {
   left: 0;
 }
@@ -13417,4 +13352,484 @@ html {
 
 .cr-latest-icons i {
     font-size: 26px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================================
+   MOBILE / TABLET DRAWER — FULL CSS (all-in-one)
+   Paste at the VERY END of public/assets/css/style.css
+   Palette: #1C231F · #63AC45 · #F7921E · #FFFFFF
+   ========================================================================= */
+@media (max-width: 1199px) {
+
+  /* =====================================================================
+     1. DRAWER SHELL — always fixed, always off-canvas by default
+     ===================================================================== */
+  .header-navigation .nav-menu,
+  .header-navigation.breakpoint-on .nav-menu,
+  .nav-menu {
+    position: fixed !important;
+    top: 0 !important;
+    left: -360px !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 330px !important;
+    max-width: 88vw !important;
+    height: 100dvh !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #1C231F !important;
+    background-image:
+      radial-gradient(circle at 100% 0%, rgba(99,172,69,.18), transparent 60%),
+      radial-gradient(circle at 0% 100%, rgba(247,146,30,.10), transparent 55%) !important;
+    border-right: 1px solid rgba(255,255,255,.06) !important;
+    box-shadow: 0 20px 60px rgba(0,0,0,.55) !important;
+    transition: left .4s cubic-bezier(.4,0,.2,1) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    overscroll-behavior: contain;
+    z-index: 9999 !important;
+    text-align: left !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Drawer visible when theme adds .menu-on */
+  .header-navigation .nav-menu.menu-on,
+  .header-navigation.breakpoint-on .nav-menu.menu-on,
+  .nav-menu.menu-on {
+    left: 0 !important;
+  }
+
+  /* Backdrop */
+  .header-navigation .nav-overlay {
+    position: fixed !important;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(15,20,17,.7) !important;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s ease, visibility .35s ease;
+    z-index: 9998 !important;
+  }
+  .header-navigation .nav-overlay.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* =====================================================================
+     2. DRAWER HEADER — bigger logo + ✕ (via ::after)
+     ===================================================================== */
+  .header-navigation .nav-menu .mobile-logo {
+    padding: 22px 22px !important;
+    margin: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,.08) !important;
+    background-color: rgba(0,0,0,.25) !important;
+    text-align: center !important;
+    flex-shrink: 0;
+    position: relative;
+    display: block !important;
+  }
+  .header-navigation .nav-menu .mobile-logo img {
+    max-height: 90px !important;
+    width: auto !important;
+  }
+  .header-navigation .nav-menu .mobile-logo::after {
+    content: "\f00d";
+    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome";
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,.08);
+    color: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    z-index: 5;
+    transition: background-color .25s ease, transform .25s ease;
+  }
+  .header-navigation .nav-menu .mobile-logo::after:hover {
+    background-color: #63AC45;
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  /* =====================================================================
+     3. DRAWER SEARCH
+     ===================================================================== */
+  .header-navigation .nav-menu .nav-search {
+    padding: 14px 22px !important;
+    margin: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,.08) !important;
+    flex-shrink: 0;
+    display: block !important;
+  }
+  .header-navigation .nav-menu .nav-search .form_group { position: relative; }
+  .header-navigation .nav-menu .nav-search .form_control {
+    background-color: rgba(255,255,255,.06) !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border-radius: 50px !important;
+    padding: 12px 46px 12px 20px !important;
+    height: 46px !important;
+    font-size: 14px !important;
+    width: 100% !important;
+    display: block !important;
+  }
+  .header-navigation .nav-menu .nav-search .form_control::placeholder {
+    color: rgba(255,255,255,.55) !important;
+    -webkit-text-fill-color: rgba(255,255,255,.55) !important;
+  }
+  .header-navigation .nav-menu .nav-search .search-btn {
+    position: absolute !important;
+    right: 4px !important;
+    top: 50% !important;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #63AC45 !important;
+    color: #FFFFFF !important;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  /* =====================================================================
+     4. MENU SCROLL AREA
+     ===================================================================== */
+  .header-navigation .nav-menu .main-menu {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 14px 0 20px !important;
+    margin: 0 !important;
+    background: transparent !important;
+    display: block !important;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99,172,69,.5) transparent;
+  }
+  .header-navigation .nav-menu .main-menu::-webkit-scrollbar { width: 4px; }
+  .header-navigation .nav-menu .main-menu::-webkit-scrollbar-thumb {
+    background-color: rgba(99,172,69,.5);
+    border-radius: 4px;
+  }
+
+  .header-navigation .nav-menu .main-menu ul {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    display: block !important;
+  }
+  .header-navigation .nav-menu .main-menu ul li {
+    display: block !important;
+    float: none !important;
+    margin: 0 !important;
+    padding: 0 22px !important;
+    border: none !important;
+    position: relative;
+    width: 100% !important;
+  }
+
+  /* =====================================================================
+     5. TOP-LEVEL LINKS — ALWAYS WHITE (Home, About, Circuits, Excursions,
+        Services, Blog, Contact) — every state
+     ===================================================================== */
+  .header-navigation .nav-menu .main-menu ul li > a,
+  .header-navigation .nav-menu .main-menu ul li > a:link,
+  .header-navigation .nav-menu .main-menu ul li > a:visited,
+  .header-navigation .nav-menu .main-menu ul li > a:hover,
+  .header-navigation .nav-menu .main-menu ul li > a:focus,
+  .header-navigation .nav-menu .main-menu ul li > a:active,
+  .header-navigation .nav-menu .main-menu ul li.active > a,
+  .header-navigation .nav-menu .main-menu ul li.current-menu-item > a,
+  .header-navigation .nav-menu .main-menu ul > li > a,
+  .nav-menu .main-menu ul li a,
+  .nav-menu ul li a {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    text-shadow: none !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    letter-spacing: .3px;
+    padding: 16px 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,.07) !important;
+    min-height: 54px;
+    position: relative;
+    text-decoration: none !important;
+    background: transparent !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    transition: padding-left .25s ease;
+  }
+  .header-navigation .nav-menu .main-menu ul li > a:hover,
+  .header-navigation .nav-menu .main-menu ul li.active > a {
+    padding-left: 6px !important;
+  }
+
+  /* =====================================================================
+     6. CHEVRON ICON — cleaner rounded look, white
+     ===================================================================== */
+  .header-navigation .nav-menu .main-menu ul li .dd-trigger,
+  .header-navigation .nav-menu .main-menu ul li .dd-trigger i,
+  .nav-menu .dd-trigger,
+  .nav-menu .dd-trigger i {
+    position: static !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 36px !important;
+    height: 36px !important;
+    margin-left: 12px !important;
+    border-radius: 50% !important;
+    background-color: rgba(99,172,69,.15) !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    font-size: 13px !important;
+    flex-shrink: 0;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    z-index: auto !important;
+    cursor: pointer;
+    border: 1px solid rgba(99,172,69,.35) !important;
+    transition: background-color .25s ease, transform .3s ease, color .25s ease;
+  }
+  .header-navigation .nav-menu .main-menu ul li .dd-trigger:hover {
+    background-color: rgba(99,172,69,.3) !important;
+  }
+  .header-navigation .nav-menu .main-menu ul li.active > a .dd-trigger {
+    background-color: #63AC45 !important;
+    border-color: #63AC45 !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    transform: rotate(180deg);
+  }
+  .header-navigation .nav-menu .main-menu ul li .dd-trigger::before,
+  .header-navigation .nav-menu .main-menu ul li .dd-trigger::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  /* =====================================================================
+     7. SUB-MENU — white text, green dot bullets
+     ===================================================================== */
+  .header-navigation .nav-menu .main-menu ul li .sub-menu {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    background-color: rgba(255,255,255,.03) !important;
+    border-top: 1px solid rgba(255,255,255,.06) !important;
+    border-radius: 0 !important;
+    padding: 6px 0 !important;
+    margin: 0 0 4px !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: none;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .header-navigation .nav-menu .main-menu ul li.active .sub-menu {
+    display: block !important;
+  }
+  .header-navigation .nav-menu .main-menu ul li .sub-menu li {
+    padding: 0 !important;
+    border: none !important;
+  }
+  .header-navigation .nav-menu .main-menu ul li .sub-menu li a,
+  .header-navigation .nav-menu .main-menu ul li .sub-menu li a:link,
+  .header-navigation .nav-menu .main-menu ul li .sub-menu li a:visited,
+  .header-navigation .nav-menu .main-menu ul li .sub-menu li a:hover,
+  .header-navigation .nav-menu .main-menu ul li .sub-menu li a:focus,
+  .header-navigation .nav-menu .main-menu ul li .sub-menu li a:active,
+  .nav-menu .sub-menu li a {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    font-size: 14.5px !important;
+    font-weight: 500 !important;
+    padding: 12px 20px 12px 42px !important;
+    border-bottom: none !important;
+    min-height: 46px;
+    display: flex !important;
+    align-items: center;
+    position: relative;
+    background: transparent !important;
+  }
+  .header-navigation .nav-menu .main-menu ul li .sub-menu li a::before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,.55);
+  }
+  .header-navigation .nav-menu .main-menu ul li .sub-menu li a:hover {
+    padding-left: 48px !important;
+  }
+
+  /* =====================================================================
+     8. DRAWER FOOTER CTA — Book now
+     ===================================================================== */
+  .header-navigation .nav-menu .menu-button {
+    padding: 18px 22px calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+    margin: 0 !important;
+    border-top: 1px solid rgba(255,255,255,.08) !important;
+    background-color: rgba(0,0,0,.3) !important;
+    flex-shrink: 0;
+    display: block !important;
+  }
+  .header-navigation .nav-menu .menu-button .main-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    background-color: #63AC45 !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border-radius: 50px !important;
+    padding: 14px 20px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+  }
+  .header-navigation .nav-menu .menu-button .main-btn:hover {
+    background-color: #F7921E !important;
+  }
+
+  /* =====================================================================
+     9. HAMBURGER TOGGLER
+     ===================================================================== */
+  .header-navigation .navbar-toggler {
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+    border: 1px solid rgba(28,35,31,.2) !important;
+    border-radius: 50% !important;
+    background-color: transparent !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .header-navigation .navbar-toggler span {
+    width: 20px !important;
+    background-color: #1C231F !important;
+  }
+  .header-navigation.navigation-white .navbar-toggler,
+  .header-navigation.transparent-header .navbar-toggler {
+    border-color: rgba(255,255,255,.25) !important;
+  }
+  .header-navigation.navigation-white .navbar-toggler span,
+  .header-navigation.transparent-header .navbar-toggler span {
+    background-color: #FFFFFF !important;
+  }
+
+  /* =====================================================================
+     10. HEADER LAYOUT + TOP LOGO
+     ===================================================================== */
+  .header-navigation .primary-menu {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .header-navigation .site-branding {
+    max-width: 190px !important;
+  }
+  .header-navigation .site-branding img {
+    max-height: 70px !important;
+    width: auto !important;
+  }
+
+  /* Hide desktop-only right-side items on mobile */
+  .header-navigation .nav-right-item .menu-button { display: none !important; }
+  .header-navigation .nav-right-item .lang-dropdown { display: none !important; }
+
+  /* Safe overflow */
+  body.nav-menu-open,
+  body { overflow-x: hidden; }
+}
+
+/* =========================================================================
+   VERY SMALL PHONES (≤ 400px)
+   ========================================================================= */
+@media (max-width: 400px) {
+  .header-navigation .nav-menu,
+  .nav-menu {
+    width: 290px !important;
+    max-width: 92vw !important;
+  }
+  .header-navigation .nav-menu .main-menu ul li > a,
+  .nav-menu .main-menu ul li a {
+    font-size: 15px !important;
+    padding: 14px 0 !important;
+  }
+  .header-navigation .nav-menu .mobile-logo img {
+    max-height: 75px !important;
+  }
+}
+
+/* =========================================================================
+   TOUCH DEVICES (hover: none) — reveal hover-only content
+   ========================================================================= */
+@media (hover: none) and (max-width: 1199px) {
+  .circuit-card .circuit-hover-arrow,
+  .showcase-card .showcase-tags,
+  .scroll-gallery-item .scroll-gallery-hover {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  * { -webkit-tap-highlight-color: transparent; }
 }
