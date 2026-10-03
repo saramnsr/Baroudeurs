@@ -13380,19 +13380,10 @@ html {
 
 
 
-
-
-
-
-/* =========================================================================
-   MOBILE / TABLET DRAWER — FULL CSS (all-in-one)
-   Paste at the VERY END of public/assets/css/style.css
-   Palette: #1C231F · #63AC45 · #F7921E · #FFFFFF
-   ========================================================================= */
 @media (max-width: 1199px) {
 
   /* =====================================================================
-     1. DRAWER SHELL — always fixed, always off-canvas by default
+     1. DRAWER SHELL
      ===================================================================== */
   .header-navigation .nav-menu,
   .header-navigation.breakpoint-on .nav-menu,
@@ -13423,15 +13414,10 @@ html {
     text-align: left !important;
     color: #FFFFFF !important;
   }
-
-  /* Drawer visible when theme adds .menu-on */
   .header-navigation .nav-menu.menu-on,
   .header-navigation.breakpoint-on .nav-menu.menu-on,
-  .nav-menu.menu-on {
-    left: 0 !important;
-  }
+  .nav-menu.menu-on { left: 0 !important; }
 
-  /* Backdrop */
   .header-navigation .nav-overlay {
     position: fixed !important;
     top: 0; left: 0;
@@ -13450,7 +13436,7 @@ html {
   }
 
   /* =====================================================================
-     2. DRAWER HEADER — bigger logo + ✕ (via ::after)
+     2. DRAWER HEADER — sidebar logo
      ===================================================================== */
   .header-navigation .nav-menu .mobile-logo {
     padding: 22px 22px !important;
@@ -13463,33 +13449,16 @@ html {
     display: block !important;
   }
   .header-navigation .nav-menu .mobile-logo img {
-    max-height: 90px !important;
+    max-height: 70px !important;
+    max-width: 260px !important;
     width: auto !important;
+    height: auto !important;
+    object-fit: contain;
+    display: inline-block;
   }
   .header-navigation .nav-menu .mobile-logo::after {
-    content: "\f00d";
-    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome";
-    font-weight: 900;
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(255,255,255,.08);
-    color: #FFFFFF;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    cursor: pointer;
-    z-index: 5;
-    transition: background-color .25s ease, transform .25s ease;
-  }
-  .header-navigation .nav-menu .mobile-logo::after:hover {
-    background-color: #63AC45;
-    transform: translateY(-50%) rotate(90deg);
+    content: none !important;
+    display: none !important;
   }
 
   /* =====================================================================
@@ -13555,26 +13524,18 @@ html {
     background-color: rgba(99,172,69,.5);
     border-radius: 4px;
   }
-
   .header-navigation .nav-menu .main-menu ul {
-    margin: 0 !important;
-    padding: 0 !important;
-    list-style: none !important;
-    display: block !important;
+    margin: 0 !important; padding: 0 !important;
+    list-style: none !important; display: block !important;
   }
   .header-navigation .nav-menu .main-menu ul li {
-    display: block !important;
-    float: none !important;
-    margin: 0 !important;
-    padding: 0 22px !important;
-    border: none !important;
-    position: relative;
-    width: 100% !important;
+    display: block !important; float: none !important;
+    margin: 0 !important; padding: 0 22px !important;
+    border: none !important; position: relative; width: 100% !important;
   }
 
   /* =====================================================================
-     5. TOP-LEVEL LINKS — ALWAYS WHITE (Home, About, Circuits, Excursions,
-        Services, Blog, Contact) — every state
+     5. TOP-LEVEL LINKS
      ===================================================================== */
   .header-navigation .nav-menu .main-menu ul li > a,
   .header-navigation .nav-menu .main-menu ul li > a:link,
@@ -13582,7 +13543,6 @@ html {
   .header-navigation .nav-menu .main-menu ul li > a:hover,
   .header-navigation .nav-menu .main-menu ul li > a:focus,
   .header-navigation .nav-menu .main-menu ul li > a:active,
-  .header-navigation .nav-menu .main-menu ul li.active > a,
   .header-navigation .nav-menu .main-menu ul li.current-menu-item > a,
   .header-navigation .nav-menu .main-menu ul > li > a,
   .nav-menu .main-menu ul li a,
@@ -13605,23 +13565,19 @@ html {
     transition: padding-left .25s ease;
   }
   .header-navigation .nav-menu .main-menu ul li > a:hover,
-  .header-navigation .nav-menu .main-menu ul li.active > a {
+  .header-navigation .nav-menu .main-menu ul li.sub-menu-open > a {
     padding-left: 6px !important;
   }
 
   /* =====================================================================
-     6. CHEVRON ICON — cleaner rounded look, white
+     6. CHEVRON
      ===================================================================== */
   .header-navigation .nav-menu .main-menu ul li .dd-trigger,
-  .header-navigation .nav-menu .main-menu ul li .dd-trigger i,
-  .nav-menu .dd-trigger,
-  .nav-menu .dd-trigger i {
+  .nav-menu .dd-trigger {
     position: static !important;
     display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 36px !important;
-    height: 36px !important;
+    align-items: center; justify-content: center;
+    width: 36px !important; height: 36px !important;
     margin-left: 12px !important;
     border-radius: 50% !important;
     background-color: rgba(99,172,69,.15) !important;
@@ -13629,9 +13585,7 @@ html {
     -webkit-text-fill-color: #FFFFFF !important;
     font-size: 13px !important;
     flex-shrink: 0;
-    top: auto !important;
-    right: auto !important;
-    left: auto !important;
+    top: auto !important; right: auto !important; left: auto !important;
     z-index: auto !important;
     cursor: pointer;
     border: 1px solid rgba(99,172,69,.35) !important;
@@ -13640,7 +13594,20 @@ html {
   .header-navigation .nav-menu .main-menu ul li .dd-trigger:hover {
     background-color: rgba(99,172,69,.3) !important;
   }
-  .header-navigation .nav-menu .main-menu ul li.active > a .dd-trigger {
+  .header-navigation .nav-menu .main-menu ul li .dd-trigger i,
+  .nav-menu .dd-trigger i {
+    width: auto !important; height: auto !important;
+    background: transparent !important;
+    border: none !important; border-radius: 0 !important;
+    margin: 0 !important; padding: 0 !important;
+    font-size: 13px !important; line-height: 1 !important;
+    color: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+    display: inline-block !important;
+    position: static !important;
+    transform: none !important;
+  }
+  .header-navigation .nav-menu .main-menu ul li.sub-menu-open > a .dd-trigger {
     background-color: #63AC45 !important;
     border-color: #63AC45 !important;
     color: #FFFFFF !important;
@@ -13654,34 +13621,45 @@ html {
   }
 
   /* =====================================================================
-     7. SUB-MENU — white text, green dot bullets
+     7. SUB-MENU
      ===================================================================== */
   .header-navigation .nav-menu .main-menu ul li .sub-menu {
     position: static !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
+    width: 100% !important; max-width: 100% !important; min-width: 0 !important;
     background-color: rgba(255,255,255,.03) !important;
     border-top: 1px solid rgba(255,255,255,.06) !important;
     border-radius: 0 !important;
-    padding: 6px 0 !important;
-    margin: 0 0 4px !important;
     box-shadow: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: none;
-    top: auto !important;
-    left: auto !important;
+    top: auto !important; left: auto !important;
     transform: none !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-  .header-navigation .nav-menu .main-menu ul li.active .sub-menu {
     display: block !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    padding-top: 0 !important; padding-bottom: 0 !important;
+    margin: 0 !important;
+    transition: max-height .35s ease, opacity .25s ease, padding .35s ease, margin .35s ease;
+  }
+  .header-navigation .nav-menu .main-menu ul li.sub-menu-open > .sub-menu {
+    max-height: 1200px !important;
+    opacity: 1 !important;
+    padding-top: 6px !important; padding-bottom: 6px !important;
+    margin: 0 0 4px !important;
+  }
+  .header-navigation .nav-menu .main-menu ul li.active > .sub-menu,
+  .header-navigation .nav-menu .main-menu ul li.open > .sub-menu,
+  .header-navigation .nav-menu .main-menu ul li.show > .sub-menu {
+    max-height: 0 !important; opacity: 0 !important;
+    padding-top: 0 !important; padding-bottom: 0 !important;
+    margin: 0 !important;
+  }
+  .header-navigation .nav-menu .main-menu ul li.sub-menu-open > .sub-menu {
+    max-height: 1200px !important; opacity: 1 !important;
+    padding-top: 6px !important; padding-bottom: 6px !important;
+    margin: 0 0 4px !important;
   }
   .header-navigation .nav-menu .main-menu ul li .sub-menu li {
-    padding: 0 !important;
-    border: none !important;
+    padding: 0 !important; border: none !important;
   }
   .header-navigation .nav-menu .main-menu ul li .sub-menu li a,
   .header-navigation .nav-menu .main-menu ul li .sub-menu li a:link,
@@ -13705,11 +13683,9 @@ html {
   .header-navigation .nav-menu .main-menu ul li .sub-menu li a::before {
     content: "";
     position: absolute;
-    left: 22px;
-    top: 50%;
+    left: 22px; top: 50%;
     transform: translateY(-50%);
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background-color: rgba(255,255,255,.55);
   }
@@ -13718,7 +13694,7 @@ html {
   }
 
   /* =====================================================================
-     8. DRAWER FOOTER CTA — Book now
+     8. DRAWER FOOTER CTA
      ===================================================================== */
   .header-navigation .nav-menu .menu-button {
     padding: 18px 22px calc(18px + env(safe-area-inset-bottom, 0px)) !important;
@@ -13749,57 +13725,138 @@ html {
   }
 
   /* =====================================================================
-     9. HAMBURGER TOGGLER
+     9. HAMBURGER — big, all WHITE
      ===================================================================== */
+  header.header-area .header-navigation .navbar-toggler,
+  header.header-area .header-navigation.scrolled .navbar-toggler,
+  header.header-area .header-navigation.sticky .navbar-toggler,
+  header.header-area .header-navigation.transparent-header .navbar-toggler,
+  header.header-area .header-navigation.navigation-white .navbar-toggler,
   .header-navigation .navbar-toggler {
-    width: 44px !important;
-    height: 44px !important;
+    width: 80px !important;
+    height: 80px !important;
     padding: 0 !important;
-    border: 1px solid rgba(28,35,31,.2) !important;
+    margin: 0 !important;
+    border: 3px solid #FFFFFF !important;
     border-radius: 50% !important;
     background-color: transparent !important;
+    box-shadow: none !important;
     display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
     cursor: pointer;
+    outline: none !important;
+    transition: background-color .25s ease, transform .25s ease;
+    flex-shrink: 0;
   }
+  header.header-area .header-navigation .navbar-toggler:hover,
+  header.header-area .header-navigation .navbar-toggler:focus,
+  header.header-area .header-navigation .navbar-toggler:active {
+    background-color: rgba(255,255,255,.15) !important;
+    border-color: #FFFFFF !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  header.header-area .header-navigation .navbar-toggler span,
+  header.header-area .header-navigation.scrolled .navbar-toggler span,
+  header.header-area .header-navigation.sticky .navbar-toggler span,
+  header.header-area .header-navigation.navigation-white .navbar-toggler span,
   .header-navigation .navbar-toggler span {
-    width: 20px !important;
-    background-color: #1C231F !important;
-  }
-  .header-navigation.navigation-white .navbar-toggler,
-  .header-navigation.transparent-header .navbar-toggler {
-    border-color: rgba(255,255,255,.25) !important;
-  }
-  .header-navigation.navigation-white .navbar-toggler span,
-  .header-navigation.transparent-header .navbar-toggler span {
+    display: block !important;
+    width: 34px !important;
+    height: 3px !important;
+    margin: 0 !important;
+    padding: 0 !important;
     background-color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 3px !important;
+    transition: transform .3s ease, opacity .3s ease, width .3s ease;
+    box-shadow: none !important;
+    opacity: 1 !important;
+  }
+  .header-navigation .navbar-toggler::before,
+  .header-navigation .navbar-toggler::after {
+    background-color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
   }
 
   /* =====================================================================
-     10. HEADER LAYOUT + TOP LOGO
+     10. MOBILE HEADER — transparent, logo left
      ===================================================================== */
-  .header-navigation .primary-menu {
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+  header.header-area .header-navigation,
+  header.header-area .header-navigation.scrolled,
+  header.header-area .header-navigation.sticky,
+  .header-navigation.transparent-header,
+  .header-navigation.navigation-white {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
   }
-  .header-navigation .site-branding {
-    max-width: 190px !important;
-  }
-  .header-navigation .site-branding img {
-    max-height: 70px !important;
+  .header-navigation .site-branding,
+  .header-navigation .site-branding .brand-logo,
+  .header-navigation .brand-logo {
+    display: block !important;
+    max-width: none !important;
     width: auto !important;
+    height: auto !important;
   }
-
-  /* Hide desktop-only right-side items on mobile */
+  .header-navigation .site-branding img,
+  .header-navigation .brand-logo img {
+    max-width: 85vw !important;
+    max-height: 220px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+  .header-navigation .container-fluid {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  .header-navigation .primary-menu {
+    justify-content: space-between !important;
+    align-items: center !important;
+    min-height: 240px !important;
+    padding: 10px 0 !important;
+  }
   .header-navigation .nav-right-item .menu-button { display: none !important; }
   .header-navigation .nav-right-item .lang-dropdown { display: none !important; }
 
-  /* Safe overflow */
   body.nav-menu-open,
   body { overflow-x: hidden; }
+
+  /* =====================================================================
+     11. CIRCUITS — mobile: hide 3rd card, keep 2; desktop unchanged
+     ===================================================================== */
+  .circuits-section .circuit-col[data-index="3"] {
+    display: none !important;
+  }
+  .circuits-section .circuit-card-body {
+    padding: 14px 12px !important;
+  }
+  .circuits-section .circuit-stars {
+    display: none !important;
+  }
+  .circuits-section .circuit-card-title,
+  .circuits-section .circuit-card-title a {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+  }
+  .circuits-section .circuit-card-desc {
+    font-size: 11.5px !important;
+    line-height: 1.4 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .circuits-section .circuit-card-img img {
+    height: 130px !important;
+    object-fit: cover !important;
+    width: 100% !important;
+  }
 }
 
 /* =========================================================================
@@ -13816,13 +13873,13 @@ html {
     font-size: 15px !important;
     padding: 14px 0 !important;
   }
-  .header-navigation .nav-menu .mobile-logo img {
-    max-height: 75px !important;
+  .header-navigation .nav-menu .mobile-logo {
+    padding: 16px 22px !important;
   }
 }
 
 /* =========================================================================
-   TOUCH DEVICES (hover: none) — reveal hover-only content
+   TOUCH DEVICES (hover: none)
    ========================================================================= */
 @media (hover: none) and (max-width: 1199px) {
   .circuit-card .circuit-hover-arrow,

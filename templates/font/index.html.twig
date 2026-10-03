@@ -147,7 +147,7 @@
         </div>
     </div><!--====== End Hero Search Form ======-->
 
-      <!--====== Start Circuits Section ======-->
+  <!--====== Start Circuits Section ======-->
     {% set featuredCircuits = [
         {
             id: 1,
@@ -220,7 +220,7 @@
                 {% for circuit in featuredCircuits %}
                     {% set cTitle = circuit.title[locale] is defined ? circuit.title[locale] : circuit.title.en %}
                     {% set cDesc = circuit.description[locale] is defined ? circuit.description[locale] : circuit.description.en %}
-                    <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="col-lg-4 col-md-6 col-6 circuit-col" data-index="{{ loop.index }}">
                         <div class="circuit-card mb-30 wow fadeInUp">
                             <div class="circuit-card-img">
                                 <img src="{{ circuit.image starts with 'http' ? circuit.image : asset('assets/images/' ~ circuit.image) }}" alt="{{ cTitle }}">

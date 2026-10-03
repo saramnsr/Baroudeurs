@@ -53,96 +53,100 @@
                 border-color: #F7921E !important;
             }
 
-            /* ===== Fixed/scrolled header: white background, black text =====
-               Forced with !important because the header carries other
-               theme classes (transparent-header, navigation-white) whose
-               own rules would otherwise win. The scroll script below adds
-               both "scrolled" and "sticky" once the user scrolls past the
-               top, which is what triggers this block. */
-            header.header-area .header-navigation.scrolled,
-            header.header-area .header-navigation.sticky {
-                background-color: #ffffff !important;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08) !important;
-            }
-            header.header-area .header-navigation.scrolled .main-menu ul > li > a,
-            header.header-area .header-navigation.sticky .main-menu ul > li > a {
-                color: #1C231F !important;
-            }
-            header.header-area .header-navigation.scrolled .main-menu ul > li > a .dd-trigger,
-            header.header-area .header-navigation.sticky .main-menu ul > li > a .dd-trigger {
-                color: #1C231F !important;
-            }
-            header.header-area .header-navigation.scrolled .main-menu ul > li:hover > a,
-            header.header-area .header-navigation.sticky .main-menu ul > li:hover > a {
-                color: #8FAB45 !important;
-            }
-            header.header-area .header-navigation.scrolled .nav-right-item .nice-select,
-            header.header-area .header-navigation.sticky .nav-right-item .nice-select,
-            header.header-area .header-navigation.scrolled .nav-right-item .nice-select .current,
-            header.header-area .header-navigation.sticky .nav-right-item .nice-select .current {
-                color: #1C231F !important;
-            }
-            header.header-area .header-navigation.scrolled .navbar-toggler,
-            header.header-area .header-navigation.sticky .navbar-toggler {
-                border-color: rgba(0, 0, 0, 0.15) !important;
-            }
-            header.header-area .header-navigation.scrolled .navbar-toggler span,
-            header.header-area .header-navigation.sticky .navbar-toggler span {
-                background-color: #1C231F !important;
-            }
+            /* ===== Fixed/scrolled header — DESKTOP ONLY =====
+               The scroll script adds "scrolled" and "sticky" once the user
+               scrolls past the top. These rules only apply on desktop so the
+               mobile transparent header + white toggler are never overridden. */
+            @media (min-width: 1200px) {
 
-            /* ===== Circuits / Excursions nav dropdowns =====
-               The theme's base CSS has a generic rule
-               ".main-menu ul > li { display: inline-block }" that also
-               matches these li's since they sit under ".main-menu ul"
-               too (nested). Every property below is forced with
-               !important specifically to beat that rule and guarantee
-               a plain white panel with one name per line. */
-            .header-navigation .main-menu ul > li.menu-item-has-children > a .dd-trigger {
-                margin-inline-start: 6px;
-                font-size: 12px;
-            }
-            .header-navigation .main-menu ul.sub-menu {
-                display: block !important;
-                background-color: #ffffff !important;
-                min-width: 300px;
-                width: max-content;
-                max-width: 360px;
-                max-height: 360px;
-                overflow-y: auto;
-                padding: 8px 0 !important;
-                margin: 0 !important;
-                border-radius: 8px !important;
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18) !important;
-                list-style: none !important;
-            }
-            .header-navigation .main-menu ul.sub-menu > li {
-                display: block !important;
-                float: none !important;
-                width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                list-style: none !important;
-            }
-            .header-navigation .main-menu ul.sub-menu > li > a {
-                display: block !important;
-                float: none !important;
-                width: 100% !important;
-                background-color: transparent !important;
-                color: #1C231F !important;
-                font-size: 14px !important;
-                line-height: 1.4 !important;
-                white-space: normal !important;
-                padding: 12px 20px !important;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-            }
-            .header-navigation .main-menu ul.sub-menu > li:last-child > a {
-                border-bottom: none !important;
-            }
-            .header-navigation .main-menu ul.sub-menu > li > a:hover {
-                background-color: #F2F1EE !important;
-                color: #8FAB45 !important;
-            }
+                header.header-area .header-navigation.scrolled,
+                header.header-area .header-navigation.sticky {
+                    background-color: #ffffff !important;
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08) !important;
+                }
+                header.header-area .header-navigation.scrolled .main-menu ul > li > a,
+                header.header-area .header-navigation.sticky .main-menu ul > li > a {
+                    color: #1C231F !important;
+                }
+                header.header-area .header-navigation.scrolled .main-menu ul > li > a .dd-trigger,
+                header.header-area .header-navigation.sticky .main-menu ul > li > a .dd-trigger {
+                    color: #1C231F !important;
+                }
+                header.header-area .header-navigation.scrolled .main-menu ul > li:hover > a,
+                header.header-area .header-navigation.sticky .main-menu ul > li:hover > a {
+                    color: #8FAB45 !important;
+                }
+                header.header-area .header-navigation.scrolled .nav-right-item .nice-select,
+                header.header-area .header-navigation.sticky .nav-right-item .nice-select,
+                header.header-area .header-navigation.scrolled .nav-right-item .nice-select .current,
+                header.header-area .header-navigation.sticky .nav-right-item .nice-select .current {
+                    color: #1C231F !important;
+                }
+                header.header-area .header-navigation.scrolled .navbar-toggler,
+                header.header-area .header-navigation.sticky .navbar-toggler {
+                    border-color: rgba(0, 0, 0, 0.15) !important;
+                }
+                header.header-area .header-navigation.scrolled .navbar-toggler span,
+                header.header-area .header-navigation.sticky .navbar-toggler span {
+                    background-color: #1C231F !important;
+                }
+
+            } /* end @media (min-width: 1200px) */
+
+            /* ===== Circuits / Excursions nav dropdowns (DESKTOP) =====
+               These only matter on desktop since the mobile drawer hides
+               the desktop dropdown via the mobile-only CSS in style.css.
+               Wrapped in the same desktop media query so the mobile
+               drawer's own sub-menu styling is never affected. */
+            @media (min-width: 1200px) {
+
+                .header-navigation .main-menu ul > li.menu-item-has-children > a .dd-trigger {
+                    margin-inline-start: 6px;
+                    font-size: 12px;
+                }
+                .header-navigation .main-menu ul.sub-menu {
+                    display: block !important;
+                    background-color: #ffffff !important;
+                    min-width: 300px;
+                    width: max-content;
+                    max-width: 360px;
+                    max-height: 360px;
+                    overflow-y: auto;
+                    padding: 8px 0 !important;
+                    margin: 0 !important;
+                    border-radius: 8px !important;
+                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18) !important;
+                    list-style: none !important;
+                }
+                .header-navigation .main-menu ul.sub-menu > li {
+                    display: block !important;
+                    float: none !important;
+                    width: 100% !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    list-style: none !important;
+                }
+                .header-navigation .main-menu ul.sub-menu > li > a {
+                    display: block !important;
+                    float: none !important;
+                    width: 100% !important;
+                    background-color: transparent !important;
+                    color: #1C231F !important;
+                    font-size: 14px !important;
+                    line-height: 1.4 !important;
+                    white-space: normal !important;
+                    padding: 12px 20px !important;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+                }
+                .header-navigation .main-menu ul.sub-menu > li:last-child > a {
+                    border-bottom: none !important;
+                }
+                .header-navigation .main-menu ul.sub-menu > li > a:hover {
+                    background-color: #F2F1EE !important;
+                    color: #8FAB45 !important;
+                }
+
+            } /* end @media (min-width: 1200px) */
         </style>
         {% endblock %}
     </head>
@@ -202,10 +206,10 @@
                         </div>
                         <!--=== Nav Inner Menu ===-->
                         <div class="nav-menu">
-                            <!--=== Mobile Logo ===-->
-                            <div class="mobile-logo mb-30 d-block d-xl-none text-center">
-                                <a href="{{ path('app_font_index') }}" class="brand-logo"><img src="{{ asset('assets/images/logo/main-logo.png') }}" alt="Site Logo"></a>
-                            </div>
+                          <!--=== Mobile Logo ===-->
+<div class="mobile-logo mb-30 d-block d-xl-none text-center">
+    <a href="{{ path('app_font_index') }}" class="brand-logo"><img src="{{ asset('assets/images/logo/logo-sidebar2.png') }}" alt="Site Logo"></a>
+</div>
                             <!--=== Nav Search ===-->
                             <div class="nav-search mb-30 d-block d-xl-none ">
                                 <form>
@@ -424,6 +428,90 @@
                 }
             });
         </script>
+
+
+
+
+
+        <script>
+(function () {
+    var MOBILE_BREAKPOINT = 1199;
+    function isMobile() { return window.innerWidth <= MOBILE_BREAKPOINT; }
+
+    // Close all sub-menus
+    function closeAll() {
+        document.querySelectorAll('.nav-menu .main-menu li.sub-menu-open')
+            .forEach(function (li) { li.classList.remove('sub-menu-open'); });
+    }
+
+    // 1. Handle clicks on the arrow
+    document.addEventListener('click', function (e) {
+        if (!isMobile()) return;
+
+        var trigger = e.target.closest('.nav-menu .main-menu .dd-trigger');
+        if (!trigger) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        var li = trigger.closest('li.menu-item-has-children');
+        if (!li) return;
+
+        var wasOpen = li.classList.contains('sub-menu-open');
+
+        // Close all others (accordion behavior)
+        closeAll();
+
+        // Toggle this one
+        if (!wasOpen) li.classList.add('sub-menu-open');
+    }, true);
+
+    // 2. When the drawer toggler is clicked, force everything closed
+    document.addEventListener('click', function (e) {
+        if (!isMobile()) return;
+        if (!e.target.closest('.navbar-toggler')) return;
+
+        // Run after the theme's own handler
+        setTimeout(closeAll, 0);
+        setTimeout(closeAll, 100);
+        setTimeout(closeAll, 300);
+    }, true);
+
+    // 3. On page load, force closed
+    function initClose() {
+        closeAll();
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initClose);
+    } else {
+        initClose();
+    }
+    // Also after everything loads (theme JS is often slow)
+    window.addEventListener('load', function () {
+        closeAll();
+        setTimeout(closeAll, 200);
+        setTimeout(closeAll, 500);
+    });
+
+    // 4. Watch for the theme adding its own class and remove sub-menus from opening
+    //    (fallback in case the theme toggles .active)
+    var observer = new MutationObserver(function () {
+        if (!isMobile()) return;
+        document.querySelectorAll('.nav-menu .main-menu li.menu-item-has-children.active')
+            .forEach(function (li) {
+                if (!li.classList.contains('sub-menu-open')) {
+                    li.classList.remove('active');
+                }
+            });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        var nav = document.querySelector('.nav-menu .main-menu');
+        if (nav) {
+            observer.observe(nav, { attributes: true, subtree: true, attributeFilter: ['class'] });
+        }
+    });
+})();
+</script>
         {% endblock %}
     </body>
 </html>
