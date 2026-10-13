@@ -24,3 +24,10 @@ services:
 
     # Traduction : DeepL (pour changer de fournisseur, changer uniquement cette ligne)
     App\Service\Translation\ContentTranslatorInterface: '@App\Service\Translation\DeepLTranslator'
+
+    # CDN pour les assets locaux (CSS, JS, fonts, images) — utilisé en production
+    # quand le dossier public/assets n'est pas présent sur le serveur.
+    # Le préfixe est configurable via ASSET_CDN_BASE dans .env
+    App\Twig\CdnAssetExtension:
+        arguments:
+            $cdnBase: '%env(ASSET_CDN_BASE)%'
