@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Cloudinary\Api\Admin\AdminApi;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ use PHPMailer\PHPMailer\Exception;
 use App\Entity\Newsletter;
 use App\Entity\ContactMessage;
 use App\Service\CircuitNormalizer;
+use Cloudinary\Api\Search\SearchApi;
 
 class FontController extends AbstractController
 {
@@ -79,20 +81,71 @@ class FontController extends AbstractController
      */
     public function gallery(): Response
     {
-        return $this->render('font/gallery.html.twig');
-    }
+        $cloudinaryUrl = $_ENV['CLOUDINARY_URL'] ?? '';
+        if (empty($cloudinaryUrl)) {
+            throw new \RuntimeException('CLOUDINARY_URL is not set in .env.local');
+        }
 
-    /**
-     * @Route("/testimonials", name="testimonials")
-     */
-    public function testimonials(): Response
-    {
-        $testimonials = $this->testimonialRepository->findAll();
-        $randomImages = ['author-thumb-1.jpg', 'author-thumb-2.jpg', 'testimonial-1.jpg', 'thumb-1.jpg'];
+        $parsed = parse_url($cloudinaryUrl);
+        $config = [
+            'cloud_name' => $parsed['host'] ?? '',
+            'api_key'    => $parsed['user'] ?? '',
+            'api_secret' => $parsed['pass'] ?? '',
+        ];
 
-        return $this->render('font/testimonials.html.twig', [
-            'testimonials' => $testimonials,
-            'randomImages' => $randomImages,
+        $searchApi = new SearchApi($config);
+
+        // folderName => [caption key, filter class, filter key, coverIndex]
+        // 'caption' and 'filter' are TRANSLATION KEYS — Twig will |trans them.
+        $folderMap = [
+            'Sahara Desert'         => ['caption' => 'gallery.caption.desert',   'class' => 'cat-desert',  'filter' => 'gallery.filter.desert',   'coverIndex' => 1],
+            'Douz'                  => ['caption' => 'gallery.caption.douz',     'class' => 'cat-douz',    'filter' => 'gallery.filter.douz',     'coverIndex' => 3],
+            'Island of Djerba'      => ['caption' => 'gallery.caption.djerba',   'class' => 'cat-djerba',  'filter' => 'gallery.filter.djerba',   'coverIndex' => 0],
+            'Desert Oasis'          => ['caption' => 'gallery.caption.oasis',    'class' => 'cat-oasis',   'filter' => 'gallery.filter.oasis',    'coverIndex' => 2],
+            'Bedouin Bivouac Camp'  => ['caption' => 'gallery.caption.bivouac',  'class' => 'cat-bivouac', 'filter' => 'gallery.filter.bivouac',  'coverIndex' => 3],
+            'star wars'             => ['caption' => 'gallery.caption.starwars', 'class' => 'cat-meeting', 'filter' => 'gallery.filter.starwars', 'coverIndex' => 2],
+        ];
+
+        $galleryFolders = [];
+
+        foreach ($folderMap as $folderName => $meta) {
+            $folderPath = 'baroudeurs/gallery/' . $folderName;
+
+            try {
+                $result = $searchApi
+                    ->expression('folder:"' . $folderPath . '"')
+                    ->maxResults(100)
+                    ->execute();
+
+                $images = [];
+                foreach ($result['resources'] as $asset) {
+                    $images[] = $asset['secure_url'];
+                }
+
+                if (count($images) > 0) {
+                    // Use the manually chosen cover index. Fall back to 0 if out of range.
+                    $coverIndex = $meta['coverIndex'] ?? 0;
+                    if (!isset($images[$coverIndex])) {
+                        $coverIndex = 0;
+                    }
+
+                    $galleryFolders[] = [
+                        'name'       => $folderName,
+                        'caption'    => $meta['caption'],   // translation key
+                        'class'      => $meta['class'],
+                        'filter'     => $meta['filter'],    // translation key
+                        'coverImage' => $images[$coverIndex],
+                        'images'     => $images,
+                        'count'      => count($images),
+                    ];
+                }
+            } catch (\Exception $e) {
+                error_log('[Gallery] ' . $folderName . ': ' . $e->getMessage());
+            }
+        }
+
+        return $this->render('font/gallery.html.twig', [
+            'galleryFolders' => $galleryFolders,
         ]);
     }
 
